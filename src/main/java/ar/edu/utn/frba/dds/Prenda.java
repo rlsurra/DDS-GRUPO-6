@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Prenda {
+public class Prenda {
 
     private TipoPrenda tipoPrenda;
     private Material material;
@@ -14,6 +14,10 @@ public abstract class Prenda {
         this.tipoPrenda = tipoPrenda;
         this.material = material;
         this.colores = colores;
+    }
+
+    public Categoria getCategoria(){
+        return tipoPrenda.getCategoria();
     }
 
 }
