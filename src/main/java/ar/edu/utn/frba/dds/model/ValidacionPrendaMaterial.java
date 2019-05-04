@@ -1,42 +1,41 @@
-package ar.edu.utn.frba.dds;
+package ar.edu.utn.frba.dds.model;
 
+import ar.edu.utn.frba.dds.model.prenda.TipoPrendaOLD;
 import org.javatuples.Pair;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class ValidacionPrendaMaterial {
 
-    //private Map<Pair<Material,TipoPrenda>,Boolean> mapaValidacion = new HashMap<Pair<Material,TipoPrenda>,Boolean>();
+    //private Map<Pair<Material,TipoPrendaOLD>,Boolean> mapaValidacion = new HashMap<Pair<Material,TipoPrendaOLD>,Boolean>();
     //private Boolean[][] matrizDeValidacion;
-    private List<Pair<Material,TipoPrenda>> listaValidacion = new ArrayList<Pair<Material,TipoPrenda>>();
+    private List<Pair<Material, TipoPrendaOLD>> listaValidacion = new ArrayList<Pair<Material, TipoPrendaOLD>>();
 
     public ValidacionPrendaMaterial(){
-        insertarValidacion(Material.ALGODON,TipoPrenda.REMERA_CORTA);
+        insertarValidacion(Material.ALGODON, TipoPrendaOLD.REMERA_CORTA);
         //TODO COMPLETAR LISTA
     }
 
-    private void insertarValidacion(Material m,TipoPrenda t){
-        this.listaValidacion.add(new Pair<Material,TipoPrenda>(m,t));
+    private void insertarValidacion(Material m, TipoPrendaOLD t){
+        this.listaValidacion.add(new Pair<Material, TipoPrendaOLD>(m,t));
     }
 
-    public boolean validarPrenda(Material material, TipoPrenda tipoPrenda){
-        Pair<Material,TipoPrenda> parMaterialTipoPrenda = new Pair<Material,TipoPrenda>(material,tipoPrenda);
+    public boolean validarPrenda(Material material, TipoPrendaOLD tipoPrenda){
+        Pair<Material, TipoPrendaOLD> parMaterialTipoPrenda = new Pair<Material, TipoPrendaOLD>(material,tipoPrenda);
         return listaValidacion.contains(parMaterialTipoPrenda);
         //return listaValidacion.stream().anyMatch(objects -> objects.equals(parMaterialTipoPrenda));
     }
 
-    public List<Pair<Material, TipoPrenda>> getListaValidacion() {
+    public List<Pair<Material, TipoPrendaOLD>> getListaValidacion() {
         return listaValidacion;
     }
 
-    public void setListaValidacion(List<Pair<Material, TipoPrenda>> listaValidacion) {
+    public void setListaValidacion(List<Pair<Material, TipoPrendaOLD>> listaValidacion) {
         this.listaValidacion = listaValidacion;
     }
 
-    /*public Boolean validar(TipoPrenda tipoPrenda, Material material){
+    /*public Boolean validar(TipoPrendaOLD tipoPrenda, Material material){
         return this.matrizDeValidacion[tipoPrenda.ordinal()][material.ordinal()];
     }
 
@@ -50,7 +49,7 @@ public class ValidacionPrendaMaterial {
     }
 
     public ValidacionPrendaMaterial(){
-        insertarValidacion(Material.ALGODON,TipoPrenda.REMERA_CORTA,true);
+        insertarValidacion(Material.ALGODON,TipoPrendaOLD.REMERA_CORTA,true);
 
 
 

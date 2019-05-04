@@ -1,13 +1,19 @@
 package ar.edu.utn.frba.dds;
 
-import java.awt.Color;
-import java.util.Arrays;
+import ar.edu.utn.frba.dds.model.*;
+import ar.edu.utn.frba.dds.model.prenda.TipoPrenda;
+import ar.edu.utn.frba.dds.model.prenda.superior.TipoCamisaCorta;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.awt.*;
+import java.util.Arrays;
+
+
 public class GuardarropaTest {
-private Guardarropa guardarropa;
+
+    private Guardarropa guardarropa;
 
     @Before
     public void setUp(){
@@ -19,9 +25,10 @@ private Guardarropa guardarropa;
     @Test
     public void guardarPrendaEnUnGuardarropa() {
         //CREAR UNA REMERA DEL TIPO CORTA Y CATEGORIA SUPEROR, QUE DEVUELVA ESO;
-    Prenda prenda = new Prenda(TipoPrenda.CAMISA_CORTA,Material.ALGODON, Arrays.asList(Color.BLACK));
-    guardarropa.setPrendas(Arrays.asList(prenda));
-    Assert.assertEquals(guardarropa.getPrendas().get(0).getCategoria(),Categoria.SUPERIOR);
+        TipoPrenda camisaCorta = new TipoCamisaCorta(Material.ALGODON);
+        Prenda prenda = new Prenda(camisaCorta,camisaCorta.getMaterial(), Arrays.asList(Color.BLACK, Color.RED));
+        guardarropa.setPrendas(Arrays.asList(prenda));
+        Assert.assertEquals(guardarropa.getPrendas().get(0).getCategoria(), Categoria.SUPERIOR);
     }
 
 }
