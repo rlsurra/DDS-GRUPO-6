@@ -5,7 +5,11 @@ import java.util.List;
 
 public class Guardarropa {
 
-    private List<Prenda> prendas = new ArrayList<Prenda>();
+    private List<Prenda> prendas = new ArrayList<>();
+
+    public Guardarropa(){
+
+    }
 
     public List<Prenda> getPrendas() {
         return prendas;
@@ -15,6 +19,8 @@ public class Guardarropa {
         this.prendas = prendas;
     }
 
+
     public void getAtuendo() {
+        //TODO: Aca va a estar la magia para generar los atuendos
     }
 }
