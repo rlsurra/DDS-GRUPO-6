@@ -16,4 +16,13 @@ public class Atuendo {
     private Prenda prendaCalzado;
     private Prenda prendaAccesorio;
 
+    @Override
+    public String toString() {
+        return System.getProperty("line.separator") +"Atuendo { " + System.getProperty("line.separator") +
+                "prendaSuperior=" + prendaSuperior +
+                ", prendaInferior=" + prendaInferior +
+                ", prendaCalzado=" + prendaCalzado +
+                ", prendaAccesorio=" + prendaAccesorio +
+                '}' + System.getProperty("line.separator") ;
+    }
 }

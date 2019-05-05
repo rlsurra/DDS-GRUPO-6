@@ -20,10 +20,7 @@ public class Guardarropa {
         this.prendas = prendas;
     }
 
-
-    public void getAtuendo() {
-        //TODO: Aca va a estar la magia para generar los atuendos,
-        // En el futuro, deberia poder pasarse un parametro para definir que tipo de atuendo generar
-        generadorDeAtuendos.generarAtuendos(prendas);
+    public List<Atuendo> getAtuendos() {
+        return generadorDeAtuendos.generarAtuendos(prendas);
     }
 }
