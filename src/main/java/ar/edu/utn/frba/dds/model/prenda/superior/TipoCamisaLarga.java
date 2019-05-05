@@ -9,9 +9,4 @@ public class TipoCamisaLarga extends TipoPrendaSuperior {
         super(material);
     }
 
-    @Override
-    public String toString() {
-        return this.getClass().getSimpleName().substring(4) + " { " +
-                "categoria=" + this.getCategoria() + ", material=" + this.getMaterial() + " }";
-    }
 }

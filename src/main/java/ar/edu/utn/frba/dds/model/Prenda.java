@@ -55,7 +55,14 @@ public class Prenda {
                 System.out.println("PRENDA CON MAS DE 2 COLORES");
                 throw new PrendaNoValidaException("PRENDA CON MAS DE 2 COLORES. NO VALIDO!");
         }
-
     }
 
+    @Override
+    public String toString() {
+        return "Prenda{" +
+                "tipoPrenda=" + tipoPrenda.getClass().getSimpleName() +
+                ", material=" + material +
+                ", colores=" + colores +
+                '}' + System.getProperty("line.separator") ;
+    }
 }

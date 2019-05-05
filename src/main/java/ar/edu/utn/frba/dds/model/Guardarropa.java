@@ -6,6 +6,7 @@ import java.util.List;
 public class Guardarropa {
 
     private List<Prenda> prendas = new ArrayList<>();
+    private GeneradorDeAtuendos generadorDeAtuendos = GeneradorDeAtuendos.getInstance();
 
     public Guardarropa(){
 
@@ -21,6 +22,8 @@ public class Guardarropa {
 
 
     public void getAtuendo() {
-        //TODO: Aca va a estar la magia para generar los atuendos
+        //TODO: Aca va a estar la magia para generar los atuendos,
+        // En el futuro, deberia poder pasarse un parametro para definir que tipo de atuendo generar
+        generadorDeAtuendos.generarAtuendos(prendas);
     }
 }
