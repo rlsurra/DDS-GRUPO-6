@@ -6,6 +6,6 @@ import ar.edu.utn.frba.dds.model.prenda.TipoPrendaAccesorio;
 public class TipoReloj extends TipoPrendaAccesorio {
 
     public TipoReloj(Material material){
-        super(material);
+        super();
     }
 }

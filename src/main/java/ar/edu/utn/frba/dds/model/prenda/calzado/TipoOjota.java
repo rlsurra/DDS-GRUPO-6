@@ -6,6 +6,6 @@ import ar.edu.utn.frba.dds.model.prenda.TipoPrendaCalzado;
 public class TipoOjota extends TipoPrendaCalzado {
 
     public TipoOjota(Material material){
-        super(material);
+        super();
     }
 }

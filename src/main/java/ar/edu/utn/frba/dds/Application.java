@@ -37,15 +37,15 @@ public class Application {
         // total 8 atuendos
         //pedro ----  1 prenda superior, 2 inferior, 2 calzado, 2 accesorio
         // 12 prendas posibles
-
-        TipoPrenda tipoCamisaLarga = new TipoCamisaLarga(Material.ALGODON);
-        TipoPrenda tipoRemeraCorta = new TipoRemeraCorta(Material.ALGODON);
-        TipoPrenda tipoJean = new TipoJean(Material.ALGODON);
-        TipoPrenda tipoBermuda = new TipoBermuda(Material.ALGODON);
-        TipoPrenda tipoZapatilla = new TipoZapatilla(Material.LONA);
-        TipoPrenda tipoZapato = new TipoZapato(Material.CUERO);
-        TipoPrenda tipoReloj = new TipoReloj(Material.METAL);
-        TipoPrenda tipoGorra = new TipoGorra(Material.ALGODON);
+/*
+        TipoPrenda tipoCamisaLarga = new TipoCamisaLarga();
+        TipoPrenda tipoRemeraCorta = new TipoRemeraCorta();
+        TipoPrenda tipoJean = new TipoJean();
+        TipoPrenda tipoBermuda = new TipoBermuda();
+        TipoPrenda tipoZapatilla = new TipoZapatilla();
+        TipoPrenda tipoZapato = new TipoZapato();
+        TipoPrenda tipoReloj = new TipoReloj();
+        TipoPrenda tipoGorra = new TipoGorra();
 
         Prenda remeraPablo1 = new Prenda(tipoRemeraCorta, tipoRemeraCorta.getMaterial(), Arrays.asList(Color.RED,Color.BLACK));
         Prenda remeraPablo2 = new Prenda(tipoRemeraCorta, tipoRemeraCorta.getMaterial(), Arrays.asList(Color.RED,Color.BLUE));
@@ -80,6 +80,8 @@ public class Application {
         System.out.println("Pablo le pide a sus guardarropas que ponerse : ");
         System.out.println("---------------------------------------------------------------------------------------");
         System.out.println(pedro.queMePongo());
-
+*/
     }
+
+
 }

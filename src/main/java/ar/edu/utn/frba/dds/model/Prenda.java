@@ -4,10 +4,8 @@ import ar.edu.utn.frba.dds.exceptions.ColorPrimarioIgualAlSecundarioException;
 import ar.edu.utn.frba.dds.exceptions.ParametrosInvalidosException;
 import ar.edu.utn.frba.dds.exceptions.PrendaNoValidaException;
 import ar.edu.utn.frba.dds.model.prenda.TipoPrenda;
-import lombok.Data;
 import java.awt.*;
 
-@Data
 public class Prenda {
     
     private TipoPrenda tipoPrenda;
@@ -36,7 +34,7 @@ public class Prenda {
 
     private void validarPrendaMaterial(TipoPrenda tipoPrenda, Material material){
         ValidacionPrendaMaterial validacionPrendaMaterial = ValidacionPrendaMaterial.ValidacionPrendaMaterial();
-        if(!validacionPrendaMaterial.validarPrenda(material,tipoPrenda.getClass())){
+        if(!validacionPrendaMaterial.validarPrenda(material,tipoPrenda)){
             //TODO: CAMBIAR EL SOUT POR LOGGER, USAR SLF4J de LOMBOK que es tremendo!
             System.out.println("Prenda no valida");
             throw new PrendaNoValidaException("COMBINACION TIPO DE PRENDA / MATERIAL NO VALIDA !");

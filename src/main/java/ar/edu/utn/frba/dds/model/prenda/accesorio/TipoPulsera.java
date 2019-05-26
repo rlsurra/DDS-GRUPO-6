@@ -6,6 +6,6 @@ import ar.edu.utn.frba.dds.model.prenda.TipoPrendaAccesorio;
 public class TipoPulsera extends TipoPrendaAccesorio {
 
     public TipoPulsera(Material material){
-        super(material);
+        super();
     }
 }

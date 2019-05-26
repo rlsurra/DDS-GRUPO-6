@@ -6,6 +6,6 @@ import ar.edu.utn.frba.dds.model.prenda.TipoPrendaInferior;
 public class TipoJogging extends TipoPrendaInferior {
 
     public TipoJogging(Material material){
-        super(material);
+        super();
     }
 }

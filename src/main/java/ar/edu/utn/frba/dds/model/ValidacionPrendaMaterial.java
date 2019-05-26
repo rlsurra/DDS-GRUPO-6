@@ -1,5 +1,6 @@
 package ar.edu.utn.frba.dds.model;
 
+import ar.edu.utn.frba.dds.model.prenda.TipoPrenda;
 import ar.edu.utn.frba.dds.model.prenda.accesorio.TipoAnteojos;
 import ar.edu.utn.frba.dds.model.prenda.accesorio.TipoGorra;
 import ar.edu.utn.frba.dds.model.prenda.accesorio.TipoPulsera;
@@ -46,8 +47,8 @@ public class ValidacionPrendaMaterial {
         this.listaValidacion.add(new Pair<>(m, t));
     }
 
-    public boolean validarPrenda(Material material, Class clazz){
-        Pair<Material, Class> parMaterialTipoPrenda = new Pair<>(material, clazz);
+    public boolean validarPrenda(Material material, TipoPrenda tipoPrenda){
+        Pair<Material, Class> parMaterialTipoPrenda = new Pair<>(material, tipoPrenda.getClass());
         return listaValidacion.contains(parMaterialTipoPrenda);
     }
 
@@ -103,33 +104,3 @@ public class ValidacionPrendaMaterial {
         insertarValidacion(Material.CUERO, TipoReloj.class);
     }
 }
-
-
-
-
-
-
-//---------------------------------------------------------------------------------------------------------------------
-
-/*     CUANDO LO PENSAMOS COMO SI FUERA UN MAPA ANTES QUE UNA LISTA, SEGURO ESTO VAYA A CAMBIAR
-private Map<Pair<Material,TipoPrendaOLD>,Boolean> mapaValidacion = new HashMap<Pair<Material,TipoPrendaOLD>,Boolean>();
-private Boolean[][] matrizDeValidacion;
-
-    public Boolean validar(TipoPrendaOLD tipoPrenda, Material material){
-        return this.matrizDeValidacion[tipoPrenda.ordinal()][material.ordinal()];
-    }
-
-    private void completarMatriz(){
-        this.matrizDeValidacion[0][0] = true; // REMERA_CORTA ; ALGODON
-        this.matrizDeValidacion[0][1] = true; // REMERA_CORTA ; NYLON
-        this.matrizDeValidacion[0][2] = false; // REMERA_CORTA ; CUERO
-        this.matrizDeValidacion[1][0] = true; // REMERA_LARGA ; ALGODON
-        this.matrizDeValidacion[1][1] = true; // REMERA_LARGA ; NYLON
-        this.matrizDeValidacion[1][2] = false; // REMERA_LARGA ; CUERO
-    }
-
-    public ValidacionPrendaMaterial(){
-        insertarValidacion(Material.ALGODON,TipoPrendaOLD.REMERA_CORTA,true);
-    }*/
-
-//return listaValidacion.stream().anyMatch(objects -> objects.equals(parMaterialTipoPrenda));
