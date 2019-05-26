@@ -22,7 +22,7 @@ import java.util.List;
 
 
 public class GuardarropaTest {
-
+/*
     private Guardarropa guardarropa;
     private GeneradorDeAtuendos generadorDeAtuendos = GeneradorDeAtuendos.getInstance();
     private List<Prenda> prendas;
@@ -75,5 +75,6 @@ public class GuardarropaTest {
         System.out.println(atuendos);
     }
 
-
+*/
 }
+
