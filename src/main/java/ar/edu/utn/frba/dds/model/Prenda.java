@@ -10,6 +10,11 @@ public class Prenda {
     
     private TipoPrenda tipoPrenda;
     private Material material;
+
+    public TipoPrenda getTipoPrenda() {
+        return tipoPrenda;
+    }
+
     private Color colorPrimario;
     private Color colorSecundario;
 

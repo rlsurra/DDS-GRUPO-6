@@ -55,6 +55,7 @@ public class ValidacionPrendaMaterial {
     private void cargarListaDeValidaciones() {
         insertarValidacion(Material.ALGODON, TipoRemeraCorta.class);
         insertarValidacion(Material.LINO, TipoRemeraCorta.class);
+        insertarValidacion(Material.NYLON, TipoRemeraCorta.class);
         insertarValidacion(Material.ALGODON, TipoRemeraLarga.class);
         insertarValidacion(Material.LINO, TipoRemeraLarga.class);
         insertarValidacion(Material.ALGODON, TipoCamisaLarga.class);
@@ -102,5 +103,6 @@ public class ValidacionPrendaMaterial {
         insertarValidacion(Material.PLASTICO, TipoReloj.class);
         insertarValidacion(Material.METAL, TipoReloj.class);
         insertarValidacion(Material.CUERO, TipoReloj.class);
+        insertarValidacion(Material.JEAN, TipoJean.class);
     }
 }

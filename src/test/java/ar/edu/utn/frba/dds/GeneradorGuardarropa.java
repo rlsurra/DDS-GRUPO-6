@@ -15,6 +15,7 @@ import ar.edu.utn.frba.dds.model.prenda.superior.TipoCamisaLarga;
 import ar.edu.utn.frba.dds.model.prenda.superior.TipoRemeraCorta;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -22,7 +23,7 @@ public class GeneradorGuardarropa {
 
 
     public List<Usuario> getCasosDePrueba(){
-
+        List<Usuario> usuarios = new ArrayList<>();
         Usuario pablo = new Usuario();
         Usuario pedro = new Usuario();
         Guardarropa guardarropaPablo1 = new Guardarropa();
@@ -56,8 +57,11 @@ public class GeneradorGuardarropa {
         Prenda jeanPablo1 = new Prenda(tipoJean, Material.JEAN, Color.RED,Color.BLUE);
         Prenda zapatillaPablo1 = new Prenda(tipoZapatilla, Material.CUERO, Color.RED,Color.BLUE);
         Prenda relojPablo1 = new Prenda(tipoReloj, Material.METAL, Color.RED,Color.BLUE);
-        //guardarropaPablo1.setP(Arrays.asList(remeraPablo1, remeraPablo2, jeanPablo1, zapatillaPablo1, relojPablo1));
-
+        guardarropaPablo1.setPrendasSuperiores(Arrays.asList(remeraPablo1, remeraPablo2));
+        guardarropaPablo1.setPrendasInferiores(Arrays.asList(jeanPablo1));
+        guardarropaPablo1.setPrendasCalzado(Arrays.asList(zapatillaPablo1));
+        guardarropaPablo1.setPrendasAccesorio(Arrays.asList(relojPablo1));
+/*
         Prenda remeraPablo3 = new Prenda(tipoRemeraCorta, tipoRemeraCorta.getMaterial(), Color.WHITE,Color.BLACK);
         Prenda camisaPablo = new Prenda(tipoCamisaLarga, tipoCamisaLarga.getMaterial(), Color.WHITE,Color.BLACK);
         Prenda jeanPablo2 = new Prenda(tipoJean, tipoJean.getMaterial(), Color.RED,Color.BLUE);
@@ -73,7 +77,9 @@ public class GeneradorGuardarropa {
         Prenda relojPedro = new Prenda(tipoReloj, tipoReloj.getMaterial(), Color.RED,Color.BLUE);
         Prenda gorraPedro = new Prenda(tipoGorra, tipoGorra.getMaterial(), Color.RED,Color.BLUE);
         //    guardarropaPedro.setPrendas(Arrays.asList(remeraPedro, jeanPedro, bermudaPedro, zapatillaPedro, zapatoPedro, relojPedro, gorraPedro));
-
-
+*/
+        // agregar pedro y otros
+        usuarios.add(pablo);
+        return usuarios;
     }
 }
