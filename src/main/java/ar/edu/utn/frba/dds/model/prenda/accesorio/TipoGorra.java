@@ -5,7 +5,7 @@ import ar.edu.utn.frba.dds.model.prenda.TipoPrendaAccesorio;
 
 public class TipoGorra extends TipoPrendaAccesorio {
 
-    public TipoGorra(Material material){
+    public TipoGorra(){
         super();
     }
 }

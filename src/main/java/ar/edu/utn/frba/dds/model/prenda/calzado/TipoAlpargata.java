@@ -5,7 +5,7 @@ import ar.edu.utn.frba.dds.model.prenda.TipoPrendaCalzado;
 
 public class TipoAlpargata extends TipoPrendaCalzado {
 
-    public TipoAlpargata(Material material){
+    public TipoAlpargata(){
         super();
     }
 }

@@ -5,7 +5,7 @@ import ar.edu.utn.frba.dds.model.prenda.TipoPrendaCalzado;
 
 public class TipoZapatilla extends TipoPrendaCalzado {
 
-    public TipoZapatilla(Material material){
+    public TipoZapatilla(){
         super();
     }
 }

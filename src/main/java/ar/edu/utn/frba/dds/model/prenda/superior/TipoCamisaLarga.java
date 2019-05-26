@@ -5,7 +5,7 @@ import ar.edu.utn.frba.dds.model.prenda.TipoPrendaSuperior;
 
 public class TipoCamisaLarga extends TipoPrendaSuperior {
 
-    public TipoCamisaLarga(Material material) {
+    public TipoCamisaLarga() {
         super();
     }
 
