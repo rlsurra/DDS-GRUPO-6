@@ -5,7 +5,7 @@ import ar.edu.utn.frba.dds.model.prenda.TipoPrendaSuperior;
 
 public class TipoMusculosa extends TipoPrendaSuperior {
 
-    public TipoMusculosa(Material material) {
+    public TipoMusculosa() {
         super();
     }
 }

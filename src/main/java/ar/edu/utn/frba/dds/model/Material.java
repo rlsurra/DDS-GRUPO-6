@@ -5,7 +5,7 @@ public enum Material {
     GABARDINA,
     LINO,
     NYLON,
-    CAUCHO, // Es el falso cuero
+    CAUCHO,
     LONA,
     PLASTICO,
     METAL,
