@@ -6,9 +6,6 @@ import java.util.stream.Collectors;
 
 public class GeneradorDeAtuendos {
 
-    //TODO: En un futuro se le va a poder pasar algun atuendo a generar para que sepa como hacerlo,
-    // por ahora lo hacemos siempre igual
-
     private static GeneradorDeAtuendos INSTANCE = null;
 
     private GeneradorDeAtuendos() {
@@ -61,6 +58,7 @@ public class GeneradorDeAtuendos {
             }
             posibilidades=false;
         }
+
 
 
         return atuendos;

@@ -29,6 +29,14 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/com.google.guava/guava | Maneja SETS para CartesianProduct-->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>27.1-jre</version>
+        </dependency>
+
+
         <dependency>
             <groupId>com.hackerrank.applications</groupId>
             <artifactId>junit-ordered-test-runner</artifactId>

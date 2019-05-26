@@ -1,4 +1,4 @@
-package ar.edu.utn.frba.dds.model;
+package ar.edu.utn.frba.dds.exceptions;
 
 public class PrendaNoValidaException extends RuntimeException {
 

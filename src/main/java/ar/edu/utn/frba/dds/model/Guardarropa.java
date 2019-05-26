@@ -2,6 +2,7 @@ package ar.edu.utn.frba.dds.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Guardarropa {
 
@@ -23,4 +24,14 @@ public class Guardarropa {
     public List<Atuendo> getAtuendos() {
         return generadorDeAtuendos.generarAtuendos(prendas);
     }
-}
+
+    public​ ​List<Atuendo> ​generarSugerencia​()​ {
+        return Sets
+        ​.cartesianProduct(prendasSuperiores, prendasInferiores, calzados)
+        .stream()
+        .map((list) -> ​new​ Atuendo(list.get(​0​), list.get(​1​), list.get(​2​)))
+        .collect(Collectors.toList());
+    }
+
+
+    }

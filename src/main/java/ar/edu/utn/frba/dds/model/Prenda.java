@@ -1,28 +1,33 @@
 package ar.edu.utn.frba.dds.model;
 
+import ar.edu.utn.frba.dds.exceptions.ColorPrimarioIgualAlSecundarioException;
+import ar.edu.utn.frba.dds.exceptions.ParametrosInvalidosException;
+import ar.edu.utn.frba.dds.exceptions.PrendaNoValidaException;
 import ar.edu.utn.frba.dds.model.prenda.TipoPrenda;
 import lombok.Data;
-
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Data
 public class Prenda {
     
     private TipoPrenda tipoPrenda;
     private Material material;
-    private List<Color> colores  = new ArrayList<>();
+    private Color colorPrimario;
+    private Color colorSecundario;
 
-    //TODO: Ver si tiene sentido que la prenda tenga el material en el constructor, ya que esta en el constructor de
-    // Tipo de Prenda
-    public Prenda(TipoPrenda tipoPrenda, Material material, List<Color> colores) {
 
+    public Prenda(TipoPrenda tipoPrenda, Material material, Color colorPrimario) {
+        this(tipoPrenda,material,colorPrimario, null);
+    }
+
+    public Prenda(TipoPrenda tipoPrenda, Material material, Color colorPrimario, Color colorSecundario) {
+        validarParametrosInvalidos(tipoPrenda,material,colorPrimario);
         validarPrendaMaterial(tipoPrenda, material);
-        validarColores(colores);
+        validarColores(colorPrimario,colorSecundario);
         this.tipoPrenda = tipoPrenda;
         this.material = material;
-        this.colores = colores;
+        this.colorPrimario = colorPrimario;
+        this.colorSecundario = colorSecundario;
     }
 
     public Categoria getCategoria(){
@@ -38,22 +43,15 @@ public class Prenda {
         }
     }
 
-    private void validarColores(List<Color> colores) {
-        switch (colores.size()){
-            case 0:
-                System.out.println("PRENDA SIN COLORES DEFINIDOS");
-                throw new PrendaNoValidaException("PRENDA SIN COLORES DEFINIDOS. NO VALIDO!");
-            case 1:
-                break;
-            case 2:
-                if( colores.get(0).equals(colores.get(1)) ) {
-                    System.out.println("PRENDA CON COLOR PRINCIPAL IGUAL A SECUNDARIO");
-                    throw new PrendaNoValidaException("PRENDA CON COLOR PRINCIPAL IGUAL A SECUNDARIO. NO VALIDO!");
-                }
-                break;
-            default:
-                System.out.println("PRENDA CON MAS DE 2 COLORES");
-                throw new PrendaNoValidaException("PRENDA CON MAS DE 2 COLORES. NO VALIDO!");
+    private void validarColores(Color primario,Color secundario) {
+        if(primario.equals(secundario)){
+            throw new ColorPrimarioIgualAlSecundarioException("El color primario debe ser distinto al secundario");
+        }
+    }
+
+    private void validarParametrosInvalidos(TipoPrenda tipoPrenda, Material material,Color primario) {
+        if(tipoPrenda == null || tipoPrenda.getCategoria() == null || material == null || primario == null){
+            throw new ParametrosInvalidosException("Los parámetros no pueden ser vacíos");
         }
     }
 
@@ -62,7 +60,8 @@ public class Prenda {
         return "Prenda{" +
                 "tipoPrenda=" + tipoPrenda.getClass().getSimpleName() +
                 ", material=" + material +
-                ", colores=" + colores +
+                ", color primario =" + colorPrimario +
+                ", color secundario =" + colorSecundario +
                 '}' + System.getProperty("line.separator") ;
     }
 }
