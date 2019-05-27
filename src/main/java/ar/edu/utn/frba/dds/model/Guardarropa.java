@@ -61,7 +61,8 @@ public class Guardarropa {
     }
 
     public Atuendo getSugerenciaAleatoria(){
-        return generarSugerencias().get(new Random().nextInt(generarSugerencias().size()));
+        List<Atuendo> sugerencias = generarSugerencias();
+        return sugerencias.get(new Random().nextInt(sugerencias.size()));
     }
 
 

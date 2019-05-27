@@ -10,14 +10,12 @@ public class Prenda {
     
     private TipoPrenda tipoPrenda;
     private Material material;
+    private Color colorPrimario;
+    private Color colorSecundario;
 
     public TipoPrenda getTipoPrenda() {
         return tipoPrenda;
     }
-
-    private Color colorPrimario;
-    private Color colorSecundario;
-
 
     public Prenda(TipoPrenda tipoPrenda, Material material, Color colorPrimario) {
         this(tipoPrenda,material,colorPrimario, null);
