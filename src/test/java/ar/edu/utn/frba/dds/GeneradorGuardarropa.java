@@ -3,7 +3,8 @@ package ar.edu.utn.frba.dds;
 import ar.edu.utn.frba.dds.model.Guardarropa;
 import ar.edu.utn.frba.dds.model.Material;
 import ar.edu.utn.frba.dds.model.Prenda;
-import ar.edu.utn.frba.dds.model.Usuario;
+import ar.edu.utn.frba.dds.model.usuario.TipoUsuarioPremium;
+import ar.edu.utn.frba.dds.model.usuario.Usuario;
 import ar.edu.utn.frba.dds.model.prenda.TipoPrenda;
 import ar.edu.utn.frba.dds.model.prenda.accesorio.TipoGorra;
 import ar.edu.utn.frba.dds.model.prenda.accesorio.TipoReloj;
@@ -22,10 +23,12 @@ import java.util.List;
 public class GeneradorGuardarropa {
 
 
-    public List<Usuario> getCasosDePrueba(){
+    public List<Usuario> getCasosDePrueba() {
+
+
         List<Usuario> usuarios = new ArrayList<>();
-        Usuario pablo = new Usuario();
-        Usuario pedro = new Usuario();
+        Usuario pablo = new Usuario(new TipoUsuarioPremium());
+        Usuario pedro = new Usuario(new TipoUsuarioPremium());
         Guardarropa guardarropaPablo1 = new Guardarropa();
         Guardarropa guardarropaPablo2 = new Guardarropa();
         Guardarropa guardarropaPedro = new Guardarropa();
@@ -54,9 +57,9 @@ public class GeneradorGuardarropa {
 
         Prenda remeraPablo1 = new Prenda(tipoRemeraCorta, Material.ALGODON, Color.RED, Color.BLACK);
         Prenda remeraPablo2 = new Prenda(tipoRemeraCorta, Material.NYLON, Color.RED, Color.BLUE);
-        Prenda jeanPablo1 = new Prenda(tipoJean, Material.JEAN, Color.RED,Color.BLUE);
-        Prenda zapatillaPablo1 = new Prenda(tipoZapatilla, Material.CUERO, Color.RED,Color.BLUE);
-        Prenda relojPablo1 = new Prenda(tipoReloj, Material.METAL, Color.RED,Color.BLUE);
+        Prenda jeanPablo1 = new Prenda(tipoJean, Material.JEAN, Color.RED, Color.BLUE);
+        Prenda zapatillaPablo1 = new Prenda(tipoZapatilla, Material.CUERO, Color.RED, Color.BLUE);
+        Prenda relojPablo1 = new Prenda(tipoReloj, Material.METAL, Color.RED, Color.BLUE);
         guardarropaPablo1.setPrendasSuperiores(Arrays.asList(remeraPablo1, remeraPablo2));
         guardarropaPablo1.setPrendasInferiores(Arrays.asList(jeanPablo1));
         guardarropaPablo1.setPrendasCalzado(Arrays.asList(zapatillaPablo1));
@@ -78,8 +81,11 @@ public class GeneradorGuardarropa {
         Prenda gorraPedro = new Prenda(tipoGorra, tipoGorra.getMaterial(), Color.RED,Color.BLUE);
         //    guardarropaPedro.setPrendas(Arrays.asList(remeraPedro, jeanPedro, bermudaPedro, zapatillaPedro, zapatoPedro, relojPedro, gorraPedro));
 */
+
+
         // agregar pedro y otros
         usuarios.add(pablo);
         return usuarios;
     }
+
 }
