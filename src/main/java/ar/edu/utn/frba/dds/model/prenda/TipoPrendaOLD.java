@@ -1,6 +1,8 @@
-package ar.edu.utn.frba.dds;
+package ar.edu.utn.frba.dds.model.prenda;
 
-public enum TipoPrenda {
+import ar.edu.utn.frba.dds.model.Categoria;
+
+public enum TipoPrendaOLD {
 
     //TIPOS DE PRENDA PARA CATEGORIA SUPERIOR
     REMERA_CORTA(Categoria.SUPERIOR),
@@ -32,7 +34,7 @@ public enum TipoPrenda {
     PULSERA(Categoria.ACCESORIO),
     ANTEOJO(Categoria.ACCESORIO);
 
-    TipoPrenda(Categoria categoria) {
+    TipoPrendaOLD(Categoria categoria) {
         this.categoria = categoria;
     }
 

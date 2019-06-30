@@ -1,27 +1,40 @@
 package ar.edu.utn.frba.dds;
 
-import java.awt.Color;
-import java.util.Arrays;
+import ar.edu.utn.frba.dds.model.*;
+import ar.edu.utn.frba.dds.model.prenda.TipoPrenda;
+import ar.edu.utn.frba.dds.model.prenda.accesorio.TipoAnteojos;
+import ar.edu.utn.frba.dds.model.prenda.accesorio.TipoReloj;
+import ar.edu.utn.frba.dds.model.prenda.calzado.TipoZapatilla;
+import ar.edu.utn.frba.dds.model.prenda.calzado.TipoZapato;
+import ar.edu.utn.frba.dds.model.prenda.inferior.TipoBermuda;
+import ar.edu.utn.frba.dds.model.prenda.inferior.TipoJean;
+import ar.edu.utn.frba.dds.model.prenda.superior.TipoCamisaCorta;
+import ar.edu.utn.frba.dds.model.prenda.superior.TipoCamisaLarga;
+import ar.edu.utn.frba.dds.model.prenda.superior.TipoRemeraCorta;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.awt.*;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+
 public class GuardarropaTest {
-private Guardarropa guardarropa;
-
+    List<Usuario> usuarios;
     @Before
-    public void setUp(){
-        guardarropa = new Guardarropa();
-        Usuario user = new Usuario();
-
+    public void setUp() {
+        GeneradorGuardarropa generadorGuardarropa = new GeneradorGuardarropa();
+        usuarios = generadorGuardarropa.getCasosDePrueba();
     }
 
     @Test
-    public void guardarPrendaEnUnGuardarropa() {
-        //CREAR UNA REMERA DEL TIPO CORTA Y CATEGORIA SUPEROR, QUE DEVUELVA ESO;
-    Prenda prenda = new Prenda(TipoPrenda.CAMISA_CORTA,Material.ALGODON, Arrays.asList(Color.BLACK));
-    guardarropa.setPrendas(Arrays.asList(prenda));
-    Assert.assertEquals(guardarropa.getPrendas().get(0).getCategoria(),Categoria.SUPERIOR);
+    public void generarAtuendoTest(){
+        Atuendo sugerenciaAleatoria = usuarios.get(0).getGuardarropas().get(0).getSugerenciaAleatoria();
+        System.out.println(sugerenciaAleatoria);
     }
 
+
 }
+
