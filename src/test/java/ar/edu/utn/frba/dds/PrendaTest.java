@@ -2,17 +2,12 @@ package ar.edu.utn.frba.dds;
 
 import ar.edu.utn.frba.dds.exceptions.ColorPrimarioIgualAlSecundarioException;
 import ar.edu.utn.frba.dds.model.*;
-import ar.edu.utn.frba.dds.exceptions.PrendaNoValidaException;
 import ar.edu.utn.frba.dds.model.prenda.TipoPrenda;
 import ar.edu.utn.frba.dds.model.prenda.superior.TipoRemeraCorta;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
 import java.awt.*;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 
 public class PrendaTest {
     //Debe saberse que tipo de prenda es
