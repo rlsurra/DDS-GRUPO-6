@@ -1,4 +1,5 @@
 package ar.edu.utn.frba.dds.openweather;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
