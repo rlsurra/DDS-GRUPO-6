@@ -1,10 +1,10 @@
-package ar.edu.utn.frba.dds.model.prenda.superior;
+package ar.edu.utn.frba.dds.model.prenda.superior.remera;
 
 import ar.edu.utn.frba.dds.model.prenda.TipoPrendaSuperior;
 
 public class TipoChomba extends TipoPrendaSuperior {
 
     public TipoChomba() {
-        super();
+        super(12.0);
     }
 }

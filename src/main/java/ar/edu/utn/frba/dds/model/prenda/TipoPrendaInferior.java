@@ -4,7 +4,7 @@ import ar.edu.utn.frba.dds.model.Categoria;
 
 public abstract class TipoPrendaInferior extends TipoPrenda {
 
-    public TipoPrendaInferior() {
-        super(Categoria.INFERIOR);
+    public TipoPrendaInferior(Double nivelDeCalor) {
+        super(Categoria.INFERIOR, nivelDeCalor);
     }
 }
