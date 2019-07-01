@@ -1,9 +1,11 @@
 package ar.edu.utn.frba.dds;
 
 import ar.edu.utn.frba.dds.exceptions.ColorPrimarioIgualAlSecundarioException;
-import ar.edu.utn.frba.dds.model.*;
+import ar.edu.utn.frba.dds.model.Categoria;
+import ar.edu.utn.frba.dds.model.Material;
+import ar.edu.utn.frba.dds.model.Prenda;
 import ar.edu.utn.frba.dds.model.prenda.TipoPrenda;
-import ar.edu.utn.frba.dds.model.prenda.superior.TipoRemeraCorta;
+import ar.edu.utn.frba.dds.model.prenda.superior.remera.TipoRemeraCorta;
 import org.junit.Assert;
 import org.junit.Test;
 

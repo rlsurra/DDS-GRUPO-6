@@ -2,7 +2,7 @@ package ar.edu.utn.frba.dds;
 
 import ar.edu.utn.frba.dds.model.Material;
 import ar.edu.utn.frba.dds.model.ValidacionPrendaMaterial;
-import ar.edu.utn.frba.dds.model.prenda.superior.TipoRemeraCorta;
+import ar.edu.utn.frba.dds.model.prenda.superior.remera.TipoRemeraCorta;
 import org.junit.Assert;
 import org.junit.Test;
 

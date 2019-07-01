@@ -1,10 +1,10 @@
-package ar.edu.utn.frba.dds.model.prenda.superior;
+package ar.edu.utn.frba.dds.model.prenda.superior.remera;
 
 import ar.edu.utn.frba.dds.model.prenda.TipoPrendaSuperior;
 
 public class TipoMusculosa extends TipoPrendaSuperior {
 
     public TipoMusculosa() {
-        super();
+        super(5.0);
     }
 }

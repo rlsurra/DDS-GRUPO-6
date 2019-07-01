@@ -5,6 +5,6 @@ import ar.edu.utn.frba.dds.model.Categoria;
 public abstract class TipoPrendaCalzado extends TipoPrenda {
 
     public TipoPrendaCalzado() {
-        super(Categoria.CALZADO);
+        super(Categoria.CALZADO, 0.0);
     }
 }

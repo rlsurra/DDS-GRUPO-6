@@ -1,11 +1,11 @@
-package ar.edu.utn.frba.dds.model.prenda.superior;
+package ar.edu.utn.frba.dds.model.prenda.superior.camisa;
 
 import ar.edu.utn.frba.dds.model.prenda.TipoPrendaSuperior;
 
 public class TipoCamisaLarga extends TipoPrendaSuperior {
 
     public TipoCamisaLarga() {
-        super();
+        super(15.0);
     }
 
 }
