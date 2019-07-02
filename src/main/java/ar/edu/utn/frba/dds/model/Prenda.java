@@ -5,7 +5,12 @@ import ar.edu.utn.frba.dds.exceptions.ParametrosInvalidosException;
 import ar.edu.utn.frba.dds.exceptions.PrendaNoValidaException;
 import ar.edu.utn.frba.dds.model.categoria.Categoria;
 import ar.edu.utn.frba.dds.model.prenda.TipoPrenda;
+
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 public class Prenda {
     
@@ -13,10 +18,7 @@ public class Prenda {
     private Material material;
     private Color colorPrimario;
     private Color colorSecundario;
-
-    public TipoPrenda getTipoPrenda() {
-        return tipoPrenda;
-    }
+    private String imagenPrenda;
 
     public Prenda(TipoPrenda tipoPrenda, Material material, Color colorPrimario) {
         this(tipoPrenda,material,colorPrimario, null);
@@ -32,8 +34,30 @@ public class Prenda {
         this.colorSecundario = colorSecundario;
     }
 
+    public TipoPrenda getTipoPrenda() {
+        return tipoPrenda;
+    }
+
     public Categoria getCategoria(){
         return tipoPrenda.getCategoria();
+    }
+
+    public String getImagenPrenda() {
+        return imagenPrenda;
+    }
+
+    public void setImagenPrenda(String pathFile) {
+        File archivo = new File(pathFile);
+        try {
+            BufferedImage imagenOriginal = ImageIO.read(archivo);
+            BufferedImage imagenFormateada = formatearImagen(imagenOriginal, 500, 500);
+            String pathArchivo = "/home/dds/TP/repo/DDS-GRUPO-6/images/" + tipoPrenda.getClass().getSimpleName()
+                    + material + ".jpg";
+            ImageIO.write(imagenFormateada, "jpg", new File(pathArchivo));
+            this.imagenPrenda = pathArchivo;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void validarPrendaMaterial(TipoPrenda tipoPrenda, Material material){
@@ -55,6 +79,16 @@ public class Prenda {
         if(tipoPrenda == null || tipoPrenda.getCategoria() == null || material == null || primario == null){
             throw new ParametrosInvalidosException("Los parámetros no pueden ser vacíos");
         }
+    }
+
+    private static BufferedImage formatearImagen(BufferedImage img, int alt, int anch) {
+        Image tmp = img.getScaledInstance(anch, alt, Image.SCALE_SMOOTH);
+        //Tuve que poner este Type en vez de TYPE_INT_ARGB ya que tiraba error al guardar.
+        BufferedImage resized = new BufferedImage(anch, alt, BufferedImage.TYPE_3BYTE_BGR);
+        Graphics2D g2d = resized.createGraphics();
+        g2d.drawImage(tmp, 0, 0, null);
+        g2d.dispose();
+        return resized;
     }
 
     @Override

@@ -12,7 +12,6 @@ import org.junit.Test;
 import java.awt.*;
 
 public class PrendaTest {
-    //Debe saberse que tipo de prenda es
 
     @Test
     public void saberTipoDePrenda() {
@@ -39,4 +38,11 @@ public class PrendaTest {
         generadorGuardarropa.getCasosDePrueba();
     }
 
+    @Test
+    public void cargarImagenAUnaPrenda(){
+        TipoPrenda tipoRemeraCorta = new TipoRemeraCorta();
+        Prenda remera = new Prenda(tipoRemeraCorta, Material.ALGODON, Color.BLACK);
+        remera.setImagenPrenda("/home/dds/Escritorio/remeraNegra.jpg");
+        Assert.assertEquals("/home/dds/TP/repo/DDS-GRUPO-6/images/TipoRemeraCortaALGODON.jpg", remera.getImagenPrenda());
+    }
 }
