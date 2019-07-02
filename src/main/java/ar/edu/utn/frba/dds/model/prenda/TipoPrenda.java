@@ -1,6 +1,6 @@
 package ar.edu.utn.frba.dds.model.prenda;
 
-import ar.edu.utn.frba.dds.model.Categoria;
+import ar.edu.utn.frba.dds.model.categoria.Categoria;
 
 public abstract class TipoPrenda {
 

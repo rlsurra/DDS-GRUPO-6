@@ -1,9 +1,9 @@
 package ar.edu.utn.frba.dds;
 
 import ar.edu.utn.frba.dds.exceptions.ColorPrimarioIgualAlSecundarioException;
-import ar.edu.utn.frba.dds.model.Categoria;
 import ar.edu.utn.frba.dds.model.Material;
 import ar.edu.utn.frba.dds.model.Prenda;
+import ar.edu.utn.frba.dds.model.categoria.superior.CategoriaSuperiorRemera;
 import ar.edu.utn.frba.dds.model.prenda.TipoPrenda;
 import ar.edu.utn.frba.dds.model.prenda.superior.remera.TipoRemeraCorta;
 import org.junit.Assert;
@@ -24,7 +24,7 @@ public class PrendaTest {
     public void saberCategoria() {
         TipoPrenda tipoRemeraCorta = new TipoRemeraCorta();
         Prenda remera = new Prenda(tipoRemeraCorta, Material.ALGODON, Color.BLACK);
-        Assert.assertEquals(remera.getCategoria(), Categoria.SUPERIOR);
+        Assert.assertEquals(remera.getCategoria(), CategoriaSuperiorRemera.CATEGORIA_SUPERIOR_REMERA);
     }
 
     @Test (expected = ColorPrimarioIgualAlSecundarioException.class)

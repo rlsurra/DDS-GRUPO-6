@@ -1,10 +1,10 @@
 package ar.edu.utn.frba.dds.model.prenda;
 
-import ar.edu.utn.frba.dds.model.Categoria;
+import ar.edu.utn.frba.dds.model.categoria.CategoriaCalzado;
 
 public abstract class TipoPrendaCalzado extends TipoPrenda {
 
     public TipoPrendaCalzado() {
-        super(Categoria.CALZADO, 0.0);
+        super(CategoriaCalzado.CATEGORIA_CALZADO, 0.0);
     }
 }
