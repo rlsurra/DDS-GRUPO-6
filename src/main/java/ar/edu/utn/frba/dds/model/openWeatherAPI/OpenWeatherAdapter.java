@@ -15,14 +15,12 @@ public class OpenWeatherAdapter implements ClimaAdapter {
 
     @Override
     public float getTemperatura(int idCiudad){
-        this.getTemperaturaByCiudadID(idCiudad);
-        //El codigo 200 nos dice que la respuesta fue exitosa
-        //Cuando temp=99999 significa que hubo un error, esto lo usamos para iterar al proximo
-        if(cod != 200){
-            main.setTemp(99999);
-        }
+        OpenWeatherAdapter temperatura = this.getTemperaturaByCiudadID(idCiudad);
+        //El codigo 0 nos dice que la respuesta fue exitosa
+        //Cuando temp=100.0f significa que hubo un error, esto lo usamos para iterar al proximo
+        if(temperatura.cod != 0) {temperatura.main.setTemp(100.0f);}
 
-        return main.getTemp();
+        return temperatura.main.getTemp();
     }
 
     public static OpenWeatherAdapter getTemperaturaByCiudadID(int idCiudad) {
