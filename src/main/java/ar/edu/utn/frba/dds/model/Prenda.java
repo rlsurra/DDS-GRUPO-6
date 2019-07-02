@@ -3,6 +3,7 @@ package ar.edu.utn.frba.dds.model;
 import ar.edu.utn.frba.dds.exceptions.ColorPrimarioIgualAlSecundarioException;
 import ar.edu.utn.frba.dds.exceptions.ParametrosInvalidosException;
 import ar.edu.utn.frba.dds.exceptions.PrendaNoValidaException;
+import ar.edu.utn.frba.dds.model.categoria.Categoria;
 import ar.edu.utn.frba.dds.model.prenda.TipoPrenda;
 
 import javax.imageio.ImageIO;

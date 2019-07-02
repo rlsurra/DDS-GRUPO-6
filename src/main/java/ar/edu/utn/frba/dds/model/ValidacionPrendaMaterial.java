@@ -7,7 +7,12 @@ import ar.edu.utn.frba.dds.model.prenda.accesorio.TipoPulsera;
 import ar.edu.utn.frba.dds.model.prenda.accesorio.TipoReloj;
 import ar.edu.utn.frba.dds.model.prenda.calzado.*;
 import ar.edu.utn.frba.dds.model.prenda.inferior.*;
-import ar.edu.utn.frba.dds.model.prenda.superior.*;
+import ar.edu.utn.frba.dds.model.prenda.superior.camisa.TipoCamisaCorta;
+import ar.edu.utn.frba.dds.model.prenda.superior.camisa.TipoCamisaLarga;
+import ar.edu.utn.frba.dds.model.prenda.superior.remera.TipoChomba;
+import ar.edu.utn.frba.dds.model.prenda.superior.remera.TipoMusculosa;
+import ar.edu.utn.frba.dds.model.prenda.superior.remera.TipoRemeraCorta;
+import ar.edu.utn.frba.dds.model.prenda.superior.remera.TipoRemeraLarga;
 import org.javatuples.Pair;
 
 import java.util.ArrayList;
