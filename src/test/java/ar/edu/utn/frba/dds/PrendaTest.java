@@ -45,4 +45,5 @@ public class PrendaTest {
         remera.setImagenPrenda("/home/dds/Escritorio/remeraNegra.jpg");
         Assert.assertEquals("/home/dds/TP/repo/DDS-GRUPO-6/images/TipoRemeraCortaALGODON.jpg", remera.getImagenPrenda());
     }
+
 }
