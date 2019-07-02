@@ -2,11 +2,13 @@ package ar.edu.utn.frba.dds.model;
 
 public class Atuendo {
 
-    private Prenda prendaSuperior;
-    private Prenda prendaInferior;
     private Prenda prendaCalzado;
+    private Prenda prendaInferior;
+    private Prenda prendaSuperior;
+    private Prenda abrigoLiviano;
+    private Prenda abrigoPesado;
     private Prenda prendaAccesorio;
-
+    
     public Atuendo(Prenda prendaSuperior, Prenda prendaInferior, Prenda prendaCalzado, Prenda prendaAccesorio) {
         this.prendaSuperior = prendaSuperior;
         this.prendaInferior = prendaInferior;

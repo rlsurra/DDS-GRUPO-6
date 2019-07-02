@@ -16,9 +16,10 @@ public class OpenWeatherAdapter implements ClimaAdapter {
     @Override
     public float getTemperatura(int idCiudad){
         OpenWeatherAdapter temperatura = this.getTemperaturaByCiudadID(idCiudad);
-        //El codigo 0 nos dice que la respuesta fue exitosa
+        //El codigo 200 nos indica un response exitoso
         //Cuando temp=100.0f significa que hubo un error, esto lo usamos para iterar al proximo
-        if(temperatura.cod != 0) {temperatura.main.setTemp(100.0f);}
+        if(temperatura.cod != 200) {temperatura.main.setTemp(100.0f);}
+        //Ver cacheo de errores
 
         return temperatura.main.getTemp();
     }
@@ -44,11 +45,11 @@ public class OpenWeatherAdapter implements ClimaAdapter {
         this.main = main;
     }
 
-    public int getCodResponse() {
+    public int getCod() {
         return cod;
     }
 
-    public void setCodResponse(int codResponse) {
+    public void setCod(int codResponse) {
         this.cod = codResponse;
     }
 
