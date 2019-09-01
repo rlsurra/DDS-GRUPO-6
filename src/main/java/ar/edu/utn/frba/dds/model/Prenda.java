@@ -19,6 +19,7 @@ public class Prenda {
     private Color colorPrimario;
     private Color colorSecundario;
     private String imagenPrenda;
+    private Double puntaje;
 
     public Prenda(TipoPrenda tipoPrenda, Material material, Color colorPrimario) {
         this(tipoPrenda,material,colorPrimario, null);
@@ -34,6 +35,10 @@ public class Prenda {
         this.colorSecundario = colorSecundario;
     }
 
+    /*
+    GETTERS
+     */
+
     public TipoPrenda getTipoPrenda() {
         return tipoPrenda;
     }
@@ -45,6 +50,38 @@ public class Prenda {
     public String getImagenPrenda() {
         return imagenPrenda;
     }
+
+    public Double getPuntaje() {
+        return puntaje;
+    }
+
+    /*
+    SETTERS
+     */
+
+    public void setTipoPrenda(TipoPrenda tipoPrenda) {
+        this.tipoPrenda = tipoPrenda;
+    }
+
+    public void setMaterial(Material material) {
+        this.material = material;
+    }
+
+    public void setColorPrimario(Color colorPrimario) {
+        this.colorPrimario = colorPrimario;
+    }
+
+    public void setColorSecundario(Color colorSecundario) {
+        this.colorSecundario = colorSecundario;
+    }
+
+    public void setPuntaje(Double puntaje) {
+        this.puntaje = puntaje;
+    }
+
+    /*
+    METODOS
+     */
 
     public void setImagenPrenda(String pathFile) {
         File archivo = new File(pathFile);

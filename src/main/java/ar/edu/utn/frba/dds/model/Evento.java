@@ -7,12 +7,12 @@ import java.util.Iterator;
 import java.util.List;
 
 public class Evento {
-    private String ciudad;
+    private Integer ciudad;
     private LocalDateTime fecha;
     private List<Atuendo> posiblesAtuendos = new ArrayList<>();
     private Atuendo atuendoElegido;
 
-    public Evento(String ciudad, LocalDateTime fecha) {
+    public Evento(Integer ciudad, LocalDateTime fecha) {
         this.ciudad = ciudad;
         this.fecha = fecha;
     }
@@ -20,7 +20,7 @@ public class Evento {
     /*
     getters
      */
-    public String getCiudad() {
+    public Integer getCiudad() {
         return ciudad;
     }
 
@@ -35,7 +35,7 @@ public class Evento {
     /*
     setters
      */
-    public void setCiudad(String ciudad) {
+    public void setCiudad(Integer ciudad) {
         this.ciudad = ciudad;
     }
 
