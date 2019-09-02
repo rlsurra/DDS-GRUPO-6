@@ -1,9 +1,7 @@
 package ar.edu.utn.frba.dds.model;
 
-import javax.swing.text.html.HTMLDocument;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class Evento {

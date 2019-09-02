@@ -1,5 +1,6 @@
 package ar.edu.utn.frba.dds;
 
+import ar.edu.utn.frba.dds.model.GrupoUsuario;
 import ar.edu.utn.frba.dds.model.Guardarropa;
 import ar.edu.utn.frba.dds.model.Material;
 import ar.edu.utn.frba.dds.model.Prenda;
@@ -10,10 +11,16 @@ import ar.edu.utn.frba.dds.model.prenda.calzado.TipoZapatilla;
 import ar.edu.utn.frba.dds.model.prenda.calzado.TipoZapato;
 import ar.edu.utn.frba.dds.model.prenda.inferior.TipoBermuda;
 import ar.edu.utn.frba.dds.model.prenda.inferior.TipoJean;
+import ar.edu.utn.frba.dds.model.prenda.superior.abrigoLigero.TipoBuzo;
+import ar.edu.utn.frba.dds.model.prenda.superior.abrigoLigero.TipoSweater;
+import ar.edu.utn.frba.dds.model.prenda.superior.abrigoPesado.TipoBuzoPolar;
+import ar.edu.utn.frba.dds.model.prenda.superior.abrigoPesado.TipoCampera;
 import ar.edu.utn.frba.dds.model.prenda.superior.camisa.TipoCamisaLarga;
 import ar.edu.utn.frba.dds.model.prenda.superior.remera.TipoRemeraCorta;
 import ar.edu.utn.frba.dds.model.usuario.TipoUsuarioPremium;
 import ar.edu.utn.frba.dds.model.usuario.Usuario;
+import ar.edu.utn.frba.dds.model.usuario.referenciaTemperatura.Caluroso;
+import ar.edu.utn.frba.dds.model.usuario.referenciaTemperatura.Friolento;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -22,13 +29,10 @@ import java.util.List;
 
 public class GeneradorGuardarropa {
 
-
     public List<Usuario> getCasosDePrueba() {
-
-
         List<Usuario> usuarios = new ArrayList<>();
-        Usuario pablo = new Usuario(new TipoUsuarioPremium());
-        Usuario pedro = new Usuario(new TipoUsuarioPremium());
+        Usuario pablo = new Usuario(new TipoUsuarioPremium(), new Caluroso());
+        Usuario pedro = new Usuario(new TipoUsuarioPremium(), new Friolento());
         Guardarropa guardarropaPablo1 = new Guardarropa();
         Guardarropa guardarropaPablo2 = new Guardarropa();
         Guardarropa guardarropaPedro = new Guardarropa();
@@ -37,13 +41,8 @@ public class GeneradorGuardarropa {
         pablo.agregarGuardarropa(guardarropaPablo2);
         pedro.agregarGuardarropa(guardarropaPedro);
 
-        //pablo ----  2 prendas superiores, 1 inferior, 1 calzado, 1 accesorio
-        // 4 atuendos posibles
-        //pablo ----  2 prendas superiores, 2 inferior, 1 calzado
-        // 4 atuendos posibles
-        // total 8 atuendos
-        //pedro ----  1 prenda superior, 2 inferior, 2 calzado, 2 accesorio
-        // 12 prendas posibles
+        GrupoUsuario testGrupo = new GrupoUsuario("testGrupo");
+        testGrupo.setUsuarios(Arrays.asList(pablo, pedro));
 
 
         TipoPrenda tipoCamisaLarga = new TipoCamisaLarga();
@@ -54,37 +53,67 @@ public class GeneradorGuardarropa {
         TipoPrenda tipoZapato = new TipoZapato();
         TipoPrenda tipoReloj = new TipoReloj();
         TipoPrenda tipoGorra = new TipoGorra();
+        TipoPrenda tipoCampera = new TipoCampera();
+        TipoPrenda tipoBuzoPolar = new TipoBuzoPolar();
+        TipoPrenda tipoBuzo = new TipoBuzo();
+        TipoPrenda tipoSweater = new TipoSweater();
 
+
+        // guardarropa pablo 1
         Prenda remeraPablo1 = new Prenda(tipoRemeraCorta, Material.ALGODON, Color.RED, Color.BLACK);
         Prenda remeraPablo2 = new Prenda(tipoRemeraCorta, Material.NYLON, Color.RED, Color.BLUE);
         Prenda jeanPablo1 = new Prenda(tipoJean, Material.JEAN, Color.RED, Color.BLUE);
         Prenda zapatillaPablo1 = new Prenda(tipoZapatilla, Material.CUERO, Color.RED, Color.BLUE);
         Prenda relojPablo1 = new Prenda(tipoReloj, Material.METAL, Color.RED, Color.BLUE);
+
+
         guardarropaPablo1.setPrendasSuperiores(Arrays.asList(remeraPablo1, remeraPablo2));
         guardarropaPablo1.setPrendasInferiores(Arrays.asList(jeanPablo1));
         guardarropaPablo1.setPrendasCalzado(Arrays.asList(zapatillaPablo1));
         guardarropaPablo1.setPrendasAccesorio(Arrays.asList(relojPablo1));
-/*
-        Prenda remeraPablo3 = new Prenda(tipoRemeraCorta, tipoRemeraCorta.getMaterial(), Color.WHITE,Color.BLACK);
-        Prenda camisaPablo = new Prenda(tipoCamisaLarga, tipoCamisaLarga.getMaterial(), Color.WHITE,Color.BLACK);
-        Prenda jeanPablo2 = new Prenda(tipoJean, tipoJean.getMaterial(), Color.RED,Color.BLUE);
-        Prenda bermudaPablo = new Prenda(tipoBermuda, tipoBermuda.getMaterial(), Color.WHITE,Color.BLACK);
-        Prenda zapatoPablo = new Prenda(tipoZapato, tipoZapato.getMaterial(), Color.WHITE,Color.BLACK);
-        //    guardarropaPablo2.setPrendas(Arrays.asList(remeraPablo3, camisaPablo, jeanPablo2, bermudaPablo, zapatoPablo);
-
-        Prenda remeraPedro = new Prenda(tipoRemeraCorta, tipoRemeraCorta.getMaterial(), Color.RED,Color.BLUE);
-        Prenda jeanPedro = new Prenda(tipoJean, tipoJean.getMaterial(), Color.RED,Color.BLUE);
-        Prenda bermudaPedro = new Prenda(tipoBermuda, tipoBermuda.getMaterial(), Color.WHITE,Color.BLACK);
-        Prenda zapatillaPedro = new Prenda(tipoZapatilla, tipoZapatilla.getMaterial(), Color.RED,Color.BLUE);
-        Prenda zapatoPedro = new Prenda(tipoZapato, tipoZapato.getMaterial(), Color.WHITE,Color.BLACK);
-        Prenda relojPedro = new Prenda(tipoReloj, tipoReloj.getMaterial(), Color.RED,Color.BLUE);
-        Prenda gorraPedro = new Prenda(tipoGorra, tipoGorra.getMaterial(), Color.RED,Color.BLUE);
-        //    guardarropaPedro.setPrendas(Arrays.asList(remeraPedro, jeanPedro, bermudaPedro, zapatillaPedro, zapatoPedro, relojPedro, gorraPedro));
-*/
 
 
-        // agregar pedro y otros
+        // guardarropa pablo2
+        Prenda remeraPablo3 = new Prenda(tipoRemeraCorta, Material.NYLON, Color.WHITE,Color.BLACK);
+        Prenda camisaPablo = new Prenda(tipoCamisaLarga, Material.ALGODON, Color.WHITE,Color.BLACK);
+        guardarropaPablo2.setPrendasSuperiores(Arrays.asList(remeraPablo3, camisaPablo));
+
+        Prenda camperaPablo = new Prenda(tipoCampera, Material.CUERO, Color.BLACK);
+        Prenda buzoPolarPablo = new Prenda(tipoBuzoPolar, Material.LANA, Color.RED);
+        guardarropaPablo2.setPrendasAbrigoPesado(Arrays.asList(camperaPablo, buzoPolarPablo));
+
+        Prenda buzoPablo = new Prenda(tipoBuzo, Material.LANA, Color.BLUE);
+        guardarropaPablo2.setPrendasAbrigoLigero(Arrays.asList(buzoPablo));
+
+        Prenda jeanPablo2 = new Prenda(tipoJean, Material.JEAN, Color.RED,Color.BLUE);
+        Prenda bermudaPablo = new Prenda(tipoBermuda, Material.GABARDINA, Color.WHITE,Color.BLACK);
+        guardarropaPablo2.setPrendasInferiores(Arrays.asList(jeanPablo2, bermudaPablo));
+
+        Prenda zapatoPablo = new Prenda(tipoZapato, Material.CUERO, Color.WHITE,Color.BLACK);
+        guardarropaPablo2.setPrendasCalzado(Arrays.asList(zapatoPablo));
+
+        // guardarropa pedro
+        Prenda remeraPedro = new Prenda(tipoRemeraCorta, Material.ALGODON, Color.RED,Color.BLUE);
+        guardarropaPedro.setPrendasSuperiores(Arrays.asList(remeraPedro));
+
+        Prenda jeanPedro = new Prenda(tipoJean, Material.JEAN, Color.RED,Color.BLUE);
+        Prenda bermudaPedro = new Prenda(tipoBermuda, Material.GABARDINA, Color.WHITE,Color.BLACK);
+        guardarropaPedro.setPrendasInferiores(Arrays.asList(jeanPedro, bermudaPedro));
+
+        Prenda zapatillaPedro = new Prenda(tipoZapatilla, Material.LONA, Color.RED,Color.BLUE);
+        Prenda zapatoPedro = new Prenda(tipoZapato, Material.CUERO, Color.WHITE,Color.BLACK);
+        guardarropaPedro.setPrendasCalzado(Arrays.asList(zapatillaPedro, zapatoPedro));
+
+        Prenda relojPedro = new Prenda(tipoReloj, Material.PLASTICO, Color.RED,Color.BLUE);
+        Prenda gorraPedro = new Prenda(tipoGorra, Material.ALGODON, Color.RED,Color.BLUE);
+        guardarropaPedro.setPrendasAccesorio(Arrays.asList(relojPedro, gorraPedro));
+
+        Prenda sweaterPedro = new Prenda(tipoSweater, Material.LANA, Color.GRAY);
+        guardarropaPedro.setPrendasAbrigoLigero(Arrays.asList(sweaterPedro));
+
+
         usuarios.add(pablo);
+        usuarios.add(pedro);
         return usuarios;
     }
 

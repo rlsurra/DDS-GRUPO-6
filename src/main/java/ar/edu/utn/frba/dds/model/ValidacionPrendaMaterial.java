@@ -7,6 +7,10 @@ import ar.edu.utn.frba.dds.model.prenda.accesorio.TipoPulsera;
 import ar.edu.utn.frba.dds.model.prenda.accesorio.TipoReloj;
 import ar.edu.utn.frba.dds.model.prenda.calzado.*;
 import ar.edu.utn.frba.dds.model.prenda.inferior.*;
+import ar.edu.utn.frba.dds.model.prenda.superior.abrigoLigero.TipoBuzo;
+import ar.edu.utn.frba.dds.model.prenda.superior.abrigoLigero.TipoSweater;
+import ar.edu.utn.frba.dds.model.prenda.superior.abrigoPesado.TipoBuzoPolar;
+import ar.edu.utn.frba.dds.model.prenda.superior.abrigoPesado.TipoCampera;
 import ar.edu.utn.frba.dds.model.prenda.superior.camisa.TipoCamisaCorta;
 import ar.edu.utn.frba.dds.model.prenda.superior.camisa.TipoCamisaLarga;
 import ar.edu.utn.frba.dds.model.prenda.superior.remera.TipoChomba;
@@ -109,5 +113,12 @@ public class ValidacionPrendaMaterial {
         insertarValidacion(Material.METAL, TipoReloj.class);
         insertarValidacion(Material.CUERO, TipoReloj.class);
         insertarValidacion(Material.JEAN, TipoJean.class);
+        insertarValidacion(Material.CUERO, TipoCampera.class);
+        insertarValidacion(Material.ALGODON, TipoCampera.class);
+        insertarValidacion(Material.NYLON, TipoCampera.class);
+        insertarValidacion(Material.JEAN, TipoCampera.class);
+        insertarValidacion(Material.LANA, TipoBuzoPolar.class);
+        insertarValidacion(Material.LANA, TipoBuzo.class);
+        insertarValidacion(Material.LANA, TipoSweater.class);
     }
 }

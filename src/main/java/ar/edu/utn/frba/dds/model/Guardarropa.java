@@ -1,19 +1,27 @@
 package ar.edu.utn.frba.dds.model;
 
+import ar.edu.utn.frba.dds.model.prenda.PrendaVacio;
 import ar.edu.utn.frba.dds.model.usuario.Usuario;
 import com.google.common.collect.Sets;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
 import java.util.stream.Collectors;
+
+import static ar.edu.utn.frba.dds.model.categoria.CategoriaAccesorio.CATEGORIA_ACCESORIO;
+import static ar.edu.utn.frba.dds.model.categoria.superior.CategoriaSuperiorAbrigoLigero.CATEGORIA_SUPERIOR_ABRIGO_LIGERO;
+import static ar.edu.utn.frba.dds.model.categoria.superior.CategoriaSuperiorAbrigoPesado.CATEGORIA_SUPERIOR_ABRIGO_PESADO;
 
 public class Guardarropa {
 
     private List<Prenda> prendasSuperiores = new ArrayList<>();
-    private List<Prenda> prendasAbrigoLigero = new ArrayList<>();
-    private List<Prenda> prendasAbrigoPesado = new ArrayList<>();
+    private List<Prenda> prendasAbrigoLigero = Arrays.asList(new PrendaVacio(CATEGORIA_SUPERIOR_ABRIGO_LIGERO));
+    private List<Prenda> prendasAbrigoPesado = Arrays.asList(new PrendaVacio(CATEGORIA_SUPERIOR_ABRIGO_PESADO));
     private List<Prenda> prendasInferiores = new ArrayList<>();
     private List<Prenda> prendasCalzado = new ArrayList<>();
-    private List<Prenda> prendasAccesorio = new ArrayList<>();
+    private List<Prenda> prendasAccesorio = Arrays.asList(new PrendaVacio(CATEGORIA_ACCESORIO));
 
     /*
     getters
@@ -54,18 +62,38 @@ public class Guardarropa {
         this.prendasCalzado = prendasCalzado;
     }
 
+        // Accesorio, abrigo ligero y abrigo pesado tienen q tener la posibilidad de no estar en un atuendo, por eso se agrega a la lista una prenda vacia
     public void setPrendasAccesorio(List<Prenda> prendasAccesorio) {
-        this.prendasAccesorio = prendasAccesorio;
+        this.prendasAccesorio = new ArrayList<>();
+        this.prendasAccesorio.addAll(prendasAccesorio);
+        this.prendasAccesorio.add(new PrendaVacio(CATEGORIA_ACCESORIO));
     }
 
-    public void setPrendasAbrigoLigero(List<Prenda> prendasAbrigoLigero) { this.prendasAbrigoLigero = prendasAbrigoLigero; }
+    public void setPrendasAbrigoLigero(List<Prenda> prendasAbrigoLigero) {
+        this.prendasAbrigoLigero = new ArrayList<>();
+        this.prendasAbrigoLigero.addAll(prendasAbrigoLigero);
+        this.prendasAbrigoLigero.add(new PrendaVacio(CATEGORIA_SUPERIOR_ABRIGO_LIGERO));
+    }
 
-    public void setPrendasAbrigoPesado(List<Prenda> prendasAbrigoPesado) { this.prendasAbrigoPesado = prendasAbrigoPesado; }
+    public void setPrendasAbrigoPesado(List<Prenda> prendasAbrigoPesado) {
+        this.prendasAbrigoPesado = new ArrayList<>();
+        this.prendasAbrigoPesado.addAll(prendasAbrigoPesado);
+        this.prendasAbrigoPesado.add(new PrendaVacio(CATEGORIA_SUPERIOR_ABRIGO_PESADO));
+    }
 
 
     /*
     metodos
      */
+
+    public List<Atuendo> generarSugerencias(Usuario usuario, Evento evento){
+        List<Atuendo> atuendosPosibles = generarSugerenciasPosibles();
+        System.out.println("Se generaron " + atuendosPosibles.size() + " atuendos");
+        System.out.println("Niveles de calor de atuendos: " + atuendosPosibles.stream().map(Atuendo::getNivelDeCalor).collect(Collectors.toList()));
+        return ordenarSugerenciasPorPuntaje(
+                filtrarSugerenciasPorNivelCalor(usuario, evento, atuendosPosibles)
+        );
+    }
 
     public List<Atuendo> generarSugerenciasPosibles(){
     return
@@ -80,6 +108,7 @@ public class Guardarropa {
     public List<Atuendo> filtrarSugerenciasPorNivelCalor(Usuario usuario, Evento evento, List<Atuendo> atuendosPosibles){
         ClimaAPIsProxy proxy = new ClimaAPIsProxy();
         Float temp = proxy.getTemperatura(evento.getCiudad());
+        System.out.println("Temperatura: " + temp);
 
         return atuendosPosibles.stream()
                 .filter(x -> x.getNivelDeCalor() + temp < usuario.getRefTemperatura().getMaximo() &&
@@ -88,21 +117,16 @@ public class Guardarropa {
     }
 
     public List<Atuendo> ordenarSugerenciasPorPuntaje(List<Atuendo> sugerencias){
-        sugerencias.sort(Comparator.comparingDouble(x -> x.getPuntaje()));
+        sugerencias.sort(Comparator.comparingDouble(Atuendo::getPuntaje));
         return sugerencias;
-    }
-
-    public List<Atuendo> getSugerencia(Usuario usuario, Evento evento){
-        List<Atuendo> posibilidades = generarSugerenciasPosibles();
-        List<Atuendo> sugerencias = filtrarSugerenciasPorNivelCalor(usuario,evento,posibilidades);
-        List<Atuendo> sugerenciasOrdenadas = ordenarSugerenciasPorPuntaje(sugerencias);
-        return sugerenciasOrdenadas;
     }
 
     @Override
     public String toString() {
         return "Guardarropa{" +
                 "prendasSuperiores=" + prendasSuperiores +
+                ", prendasAbrigoLigero=" + prendasAbrigoLigero +
+                ", prendasAbrigoPesado=" + prendasAbrigoPesado +
                 ", prendasInferiores=" + prendasInferiores +
                 ", prendasCalzado=" + prendasCalzado +
                 ", prendasAccesorio=" + prendasAccesorio +

@@ -1,7 +1,6 @@
 package ar.edu.utn.frba.dds.model.prenda;
 
 import ar.edu.utn.frba.dds.model.categoria.Categoria;
-import ar.edu.utn.frba.dds.model.categoria.CategoriaSuperior;
 
 public abstract class TipoPrendaSuperior extends TipoPrenda {
 

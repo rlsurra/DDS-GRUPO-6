@@ -18,6 +18,9 @@ import ar.edu.utn.frba.dds.model.prenda.superior.remera.TipoRemeraCorta;
 import ar.edu.utn.frba.dds.model.usuario.TipoUsuarioGratuito;
 import ar.edu.utn.frba.dds.model.usuario.TipoUsuarioPremium;
 import ar.edu.utn.frba.dds.model.usuario.Usuario;
+import ar.edu.utn.frba.dds.model.usuario.referenciaTemperatura.Caluroso;
+import ar.edu.utn.frba.dds.model.usuario.referenciaTemperatura.Friolento;
+import ar.edu.utn.frba.dds.model.usuario.referenciaTemperatura.Normal;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -29,8 +32,8 @@ public class UsuarioTest {
     private Guardarropa guardarropa1 = new Guardarropa();
     private Guardarropa guardarropa2 = new Guardarropa();
 
-    private Evento evento1 = new Evento("Buenos Aires", LocalDateTime.of(2019, 7, 22, 10, 0));
-    private Evento evento2 = new Evento("Rio de Janeiro", LocalDateTime.of(2019, 8, 3, 22, 45));
+    private Evento evento1 = new Evento(1, LocalDateTime.of(2019, 7, 22, 10, 0));
+    private Evento evento2 = new Evento(2, LocalDateTime.of(2019, 8, 3, 22, 45));
 
     @Before
     public void setUp(){
@@ -56,12 +59,12 @@ public class UsuarioTest {
 
     @Test (expected = ParametrosInvalidosException.class)
     public void crearUsuarioError(){
-        new Usuario(null);
+        new Usuario(null, null);
     }
 
     @Test
     public void crearUsuarioGratuitoExitoso(){
-        Usuario usuario = new Usuario(new TipoUsuarioGratuito());
+        Usuario usuario = new Usuario(new TipoUsuarioGratuito(), new Caluroso());
         usuario.agregarGuardarropa(guardarropa1);
         usuario.agregarEvento(evento1);
     }
@@ -69,14 +72,14 @@ public class UsuarioTest {
 
     @Test (expected = MaximaCantidadPrendasException.class)
     public void crearUsuarioGratuitoError(){
-        Usuario usuario = new Usuario(new TipoUsuarioGratuito());
+        Usuario usuario = new Usuario(new TipoUsuarioGratuito(), new Friolento());
         usuario.agregarGuardarropa(guardarropa2);
         usuario.agregarEvento(evento1);
     }
 
     @Test
     public void crearUsuarioPremiumExitoso(){
-        Usuario usuario = new Usuario(new TipoUsuarioPremium());
+        Usuario usuario = new Usuario(new TipoUsuarioPremium(), new Normal());
         usuario.agregarGuardarropa(guardarropa2);
         usuario.agregarEvento(evento2);
     }

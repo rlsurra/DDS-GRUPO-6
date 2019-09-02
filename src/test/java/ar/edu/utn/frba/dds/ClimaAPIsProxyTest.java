@@ -1,7 +1,6 @@
 package ar.edu.utn.frba.dds;
 
 import ar.edu.utn.frba.dds.model.ClimaAPIsProxy;
-import ar.edu.utn.frba.dds.model.openWeatherAPI.OpenWeatherAdapter;
 import org.junit.Assert;
 import org.junit.Test;
 

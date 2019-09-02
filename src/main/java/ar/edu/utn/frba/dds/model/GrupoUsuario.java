@@ -27,8 +27,14 @@ public class GrupoUsuario {
         return usuarios;
     }
 
+    /**
+     * Setea los usuarios como miembros del grupo, ademas setea el grupo de cada usuario con este grupo.
+     * Si el usuario ya tiene un grupo se pisa por el actual
+     * @param usuarios
+     */
     public void setUsuarios(List<Usuario> usuarios) {
         this.usuarios = usuarios;
+        usuarios.forEach(usuario -> usuario.setGrupo(this));
     }
 
     public List<Guardarropa> getGuardarropaGrupo(){

@@ -2,7 +2,6 @@ package ar.edu.utn.frba.dds.model.usuario;
 
 import ar.edu.utn.frba.dds.exceptions.MaximaCantidadPrendasException;
 import ar.edu.utn.frba.dds.exceptions.ParametrosInvalidosException;
-import ar.edu.utn.frba.dds.model.Atuendo;
 import ar.edu.utn.frba.dds.model.Evento;
 import ar.edu.utn.frba.dds.model.GrupoUsuario;
 import ar.edu.utn.frba.dds.model.Guardarropa;

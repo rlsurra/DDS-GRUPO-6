@@ -31,11 +31,13 @@ public class Atuendo {
 
     @Override
     public String toString() {
-        return System.getProperty("line.separator") +"Atuendo { " + System.getProperty("line.separator") +
-                "prendaSuperior=" + prendaSuperior +
+        return "Atuendo{" +
+                "prendaCalzado=" + prendaCalzado +
                 ", prendaInferior=" + prendaInferior +
-                ", prendaCalzado=" + prendaCalzado +
+                ", prendaSuperior=" + prendaSuperior +
+                ", abrigoLigero=" + abrigoLigero +
+                ", abrigoPesado=" + abrigoPesado +
                 ", prendaAccesorio=" + prendaAccesorio +
-                '}' + System.getProperty("line.separator") ;
+                '}';
     }
 }
