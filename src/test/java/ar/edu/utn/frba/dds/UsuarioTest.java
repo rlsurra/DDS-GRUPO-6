@@ -2,10 +2,11 @@ package ar.edu.utn.frba.dds;
 
 import ar.edu.utn.frba.dds.exceptions.MaximaCantidadPrendasException;
 import ar.edu.utn.frba.dds.exceptions.ParametrosInvalidosException;
-import ar.edu.utn.frba.dds.model.Evento;
+import ar.edu.utn.frba.dds.model.evento.Evento;
 import ar.edu.utn.frba.dds.model.Guardarropa;
 import ar.edu.utn.frba.dds.model.Material;
 import ar.edu.utn.frba.dds.model.Prenda;
+import ar.edu.utn.frba.dds.model.evento.EventoSimple;
 import ar.edu.utn.frba.dds.model.prenda.calzado.TipoOjota;
 import ar.edu.utn.frba.dds.model.prenda.calzado.TipoZapatilla;
 import ar.edu.utn.frba.dds.model.prenda.calzado.TipoZapato;
@@ -29,8 +30,8 @@ public class UsuarioTest {
     private Guardarropa guardarropa1 = new Guardarropa();
     private Guardarropa guardarropa2 = new Guardarropa();
 
-    private Evento evento1 = new Evento("Buenos Aires", LocalDateTime.of(2019, 7, 22, 10, 0));
-    private Evento evento2 = new Evento("Rio de Janeiro", LocalDateTime.of(2019, 8, 3, 22, 45));
+    private Evento evento1 = new EventoSimple("Buenos Aires", LocalDateTime.of(2019, 7, 22, 10, 0));
+    private Evento evento2 = new EventoSimple("Rio de Janeiro", LocalDateTime.of(2019, 8, 3, 22, 45));
 
     @Before
     public void setUp(){

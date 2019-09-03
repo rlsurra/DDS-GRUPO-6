@@ -1,4 +1,8 @@
-package ar.edu.utn.frba.dds.model;
+package ar.edu.utn.frba.dds.model.evento;
+
+import ar.edu.utn.frba.dds.model.Atuendo;
+import ar.edu.utn.frba.dds.model.evento.notificador.NotificadorAplicacion;
+import ar.edu.utn.frba.dds.model.evento.notificador.NotificadorEvento;
 
 import javax.swing.text.html.HTMLDocument;
 import java.time.LocalDateTime;
@@ -8,43 +12,49 @@ import java.util.List;
 
 public class Evento {
     private String ciudad;
-    private LocalDateTime fecha;
     private List<Atuendo> posiblesAtuendos = new ArrayList<>();
     private Atuendo atuendoElegido;
+    private NotificadorEvento notificadorEvento = new NotificadorAplicacion();
 
-    public Evento(String ciudad, LocalDateTime fecha) {
+    public Evento(String ciudad) {
         this.ciudad = ciudad;
-        this.fecha = fecha;
+    }
+
+    public Evento(String ciudad, NotificadorEvento notificadorEvento) {
+        this.ciudad = ciudad;
+        this.notificadorEvento = notificadorEvento;
     }
 
     /*
-    getters
-     */
+        getters
+         */
     public String getCiudad() {
         return ciudad;
     }
 
-    public LocalDateTime getFecha() {
-        return fecha;
-    }
-
     public List<Atuendo> getPosiblesAtuendos() { return posiblesAtuendos;  }
-
     public Atuendo getAtuendoElegido() {  return atuendoElegido; }
+    public NotificadorEvento getNotificadorEvento() {
+        return notificadorEvento;
+    }
 
     /*
     setters
      */
+
     public void setCiudad(String ciudad) {
         this.ciudad = ciudad;
     }
-
-    public void setFecha(LocalDateTime fecha) {
-        this.fecha = fecha;
-    }
-
     public void setPosiblesAtuendos(List<Atuendo> posiblesAtuendos) { this.posiblesAtuendos = posiblesAtuendos;}
+    public void setNotificadorEvento(NotificadorEvento notificadorEvento) {
+        this.notificadorEvento = notificadorEvento;
+    }
 
     //Este set es el "aceptarAtuendo" del usuario
     public void setAtuendoElegido(Atuendo atuendoElegido) {this.atuendoElegido = atuendoElegido;}
+
+    public void notificar(){
+        notificadorEvento.notificar(this);
+    }
+
 }
