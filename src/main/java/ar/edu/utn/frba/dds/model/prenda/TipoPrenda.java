@@ -7,7 +7,7 @@ public abstract class TipoPrenda {
     private Categoria categoria;
     private Double nivelDeCalor;
 
-    TipoPrenda(Categoria categoria, Double nivelDeCalor) {
+    public TipoPrenda(Categoria categoria, Double nivelDeCalor) {
         this.categoria = categoria;
         this.nivelDeCalor = nivelDeCalor;
     }

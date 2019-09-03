@@ -10,7 +10,9 @@ public class TipoUsuarioGratuito extends TipoUsuario{
         int cantidadDePrendas = guardarropa.getPrendasSuperiores().size() +
                 guardarropa.getPrendasInferiores().size() +
                 guardarropa.getPrendasCalzado().size() +
-                guardarropa.getPrendasAccesorio().size();
+                guardarropa.getPrendasAccesorio().size()-1 +
+                guardarropa.getPrendasAbrigoLigero().size()-1 +
+                guardarropa.getPrendasAbrigoPesado().size()-1;
         return cantidadDePrendas <= MAXIMA_CANTIDAD_PRENDAS;
     }
 }

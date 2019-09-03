@@ -2,8 +2,10 @@ package ar.edu.utn.frba.dds.model.usuario;
 
 import ar.edu.utn.frba.dds.exceptions.MaximaCantidadPrendasException;
 import ar.edu.utn.frba.dds.exceptions.ParametrosInvalidosException;
+import ar.edu.utn.frba.dds.model.GrupoUsuario;
 import ar.edu.utn.frba.dds.model.evento.Evento;
 import ar.edu.utn.frba.dds.model.Guardarropa;
+import ar.edu.utn.frba.dds.model.usuario.referenciaTemperatura.ReferenciaTemperatura;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,12 +14,15 @@ public class Usuario {
     private List<Guardarropa> guardarropas = new ArrayList<>();
     private List<Evento> eventos = new ArrayList<>();
     private TipoUsuario tipoUsuario;
+    private GrupoUsuario grupo;
+    private ReferenciaTemperatura refTemperatura;
 
-    public Usuario(TipoUsuario tipoUsuario){
+    public Usuario(TipoUsuario tipoUsuario,ReferenciaTemperatura refTemperatura){
         if (tipoUsuario == null) {
             throw new ParametrosInvalidosException("No se permite un usuario sin tipo");
         }
         this.tipoUsuario = tipoUsuario;
+        this.refTemperatura = refTemperatura;
     }
 
     /*
@@ -35,9 +40,26 @@ public class Usuario {
         return tipoUsuario;
     }
 
+    public GrupoUsuario getGrupo() { return grupo; }
+
+    public ReferenciaTemperatura getRefTemperatura() { return refTemperatura;  }
+
     /*
     setters
      */
+
+    public void setGuardarropas(List<Guardarropa> guardarropas) { this.guardarropas = guardarropas;  }
+
+    public void setEventos(List<Evento> eventos) { this.eventos = eventos;  }
+
+    public void setRefTemperatura(ReferenciaTemperatura refTemperatura) { this.refTemperatura = refTemperatura; }
+
+    public void setGrupo(GrupoUsuario grupo) {  this.grupo = grupo;  }
+
+    /*
+    metodos
+     */
+
     public void agregarGuardarropa(Guardarropa guardarropa){
         if (guardarropa == null) {
             throw new ParametrosInvalidosException("No se permite agregar guardarropa nulo");
@@ -61,6 +83,8 @@ public class Usuario {
     public void setTipoUsuario(TipoUsuario tipoUsuario) {
         this.tipoUsuario = tipoUsuario;
     }
+
+
 
     @Override
     public String toString() {

@@ -19,6 +19,7 @@ public class Prenda {
     private Color colorPrimario;
     private Color colorSecundario;
     private String imagenPrenda;
+    private Double puntaje = 0d;
 
     public Prenda(TipoPrenda tipoPrenda, Material material, Color colorPrimario) {
         this(tipoPrenda,material,colorPrimario, null);
@@ -34,6 +35,10 @@ public class Prenda {
         this.colorSecundario = colorSecundario;
     }
 
+    /*
+    GETTERS
+     */
+
     public TipoPrenda getTipoPrenda() {
         return tipoPrenda;
     }
@@ -45,6 +50,38 @@ public class Prenda {
     public String getImagenPrenda() {
         return imagenPrenda;
     }
+
+    public Double getPuntaje() {
+        return puntaje;
+    }
+
+    /*
+    SETTERS
+     */
+
+    public void setTipoPrenda(TipoPrenda tipoPrenda) {
+        this.tipoPrenda = tipoPrenda;
+    }
+
+    public void setMaterial(Material material) {
+        this.material = material;
+    }
+
+    public void setColorPrimario(Color colorPrimario) {
+        this.colorPrimario = colorPrimario;
+    }
+
+    public void setColorSecundario(Color colorSecundario) {
+        this.colorSecundario = colorSecundario;
+    }
+
+    public void setPuntaje(Double puntaje) {
+        this.puntaje = puntaje;
+    }
+
+    /*
+    METODOS
+     */
 
     public void setImagenPrenda(String pathFile) {
         File archivo = new File(pathFile);
@@ -60,7 +97,7 @@ public class Prenda {
         }
     }
 
-    private void validarPrendaMaterial(TipoPrenda tipoPrenda, Material material){
+    protected void validarPrendaMaterial(TipoPrenda tipoPrenda, Material material){
         ValidacionPrendaMaterial validacionPrendaMaterial = ValidacionPrendaMaterial.ValidacionPrendaMaterial();
         if(!validacionPrendaMaterial.validarPrenda(material,tipoPrenda)){
             //TODO: CAMBIAR EL SOUT POR LOGGER, USAR SLF4J de LOMBOK que es tremendo!
@@ -69,13 +106,13 @@ public class Prenda {
         }
     }
 
-    private void validarColores(Color primario,Color secundario) {
+    protected void validarColores(Color primario,Color secundario) {
         if(primario.equals(secundario)){
             throw new ColorPrimarioIgualAlSecundarioException("El color primario debe ser distinto al secundario");
         }
     }
 
-    private void validarParametrosInvalidos(TipoPrenda tipoPrenda, Material material,Color primario) {
+    protected void validarParametrosInvalidos(TipoPrenda tipoPrenda, Material material,Color primario) {
         if(tipoPrenda == null || tipoPrenda.getCategoria() == null || material == null || primario == null){
             throw new ParametrosInvalidosException("Los parámetros no pueden ser vacíos");
         }

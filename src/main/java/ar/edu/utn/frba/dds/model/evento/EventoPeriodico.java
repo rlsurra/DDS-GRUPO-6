@@ -6,7 +6,7 @@ import ar.edu.utn.frba.dds.model.evento.periodicidad.PeriodicidadEvento;
 public class EventoPeriodico extends Evento {
     private PeriodicidadEvento periodicidadEvento;
 
-    public EventoPeriodico(String ciudad, NotificadorEvento notificadorEvento, PeriodicidadEvento periodicidadEvento) {
+    public EventoPeriodico(Integer ciudad, NotificadorEvento notificadorEvento, PeriodicidadEvento periodicidadEvento) {
         super(ciudad, notificadorEvento);
         this.periodicidadEvento = periodicidadEvento;
     }

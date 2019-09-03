@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 public class EventoSimple extends Evento {
     private LocalDateTime fecha;
 
-    public EventoSimple(String ciudad, LocalDateTime fecha) {
+    public EventoSimple(Integer ciudad, LocalDateTime fecha) {
         super(ciudad);
         this.fecha = fecha;
     }
