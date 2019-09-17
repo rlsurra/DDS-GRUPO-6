@@ -4,14 +4,28 @@ import ar.edu.utn.frba.dds.model.Atuendo;
 import ar.edu.utn.frba.dds.model.evento.notificador.NotificadorAplicacion;
 import ar.edu.utn.frba.dds.model.evento.notificador.NotificadorEvento;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
+
+
+
 public class Evento {
+
+
+
+
     private Integer ciudad;
     private List<Atuendo> posiblesAtuendos = new ArrayList<>();
     private Atuendo atuendoElegido;
     private NotificadorEvento notificadorEvento = new NotificadorAplicacion();
+
+
+
+
+
+
 
     public Evento(Integer ciudad) {
         this.ciudad = ciudad;
@@ -24,7 +38,7 @@ public class Evento {
 
     /*
         getters
-         */
+    */
 
     public List<Atuendo> getPosiblesAtuendos() { return posiblesAtuendos;  }
     public Atuendo getAtuendoElegido() {  return atuendoElegido; }
@@ -54,4 +68,8 @@ public class Evento {
     public void setCiudad(Integer ciudad) {
         this.ciudad = ciudad;
     }
+
+
+
+
 }

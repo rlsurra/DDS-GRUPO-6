@@ -7,19 +7,32 @@ import ar.edu.utn.frba.dds.model.categoria.Categoria;
 import ar.edu.utn.frba.dds.model.prenda.TipoPrenda;
 
 import javax.imageio.ImageIO;
+import javax.persistence.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+
+
 public class Prenda {
-    
+
+
+    private Long id;
+
     private TipoPrenda tipoPrenda;
+
     private Material material;
+
     private Color colorPrimario;
+
     private Color colorSecundario;
+
     private String imagenPrenda;
+
     private Double puntaje = 0d;
+
+
 
     public Prenda(TipoPrenda tipoPrenda, Material material, Color colorPrimario) {
         this(tipoPrenda,material,colorPrimario, null);

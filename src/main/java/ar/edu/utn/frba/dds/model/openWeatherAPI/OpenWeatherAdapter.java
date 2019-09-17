@@ -4,14 +4,25 @@ import ar.edu.utn.frba.dds.model.ClimaAdapter;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.web.client.RestTemplate;
 
+import javax.persistence.*;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
+
 public class OpenWeatherAdapter implements ClimaAdapter {
 
     //No cambiar nombres de las variables porque rompe el parseo, ni siquiera con un refactor -> rename
+
+
+
     private int cod;
+
     private int id;
+
     private TemperaturaOW main;
+
     private String name;
+
+
 
     @Override
     public float getTemperatura(int idCiudad){
@@ -44,6 +55,7 @@ public class OpenWeatherAdapter implements ClimaAdapter {
     public void setMain(TemperaturaOW main) {
         this.main = main;
     }
+
 
     public int getCod() {
         return cod;
