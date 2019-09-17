@@ -1,21 +1,17 @@
 package ar.edu.utn.frba.dds;
 
 import ar.edu.utn.frba.dds.exceptions.ColorPrimarioIgualAlSecundarioException;
-import ar.edu.utn.frba.dds.model.*;
-import ar.edu.utn.frba.dds.exceptions.PrendaNoValidaException;
+import ar.edu.utn.frba.dds.model.Material;
+import ar.edu.utn.frba.dds.model.Prenda;
+import ar.edu.utn.frba.dds.model.categoria.superior.CategoriaSuperiorRemera;
 import ar.edu.utn.frba.dds.model.prenda.TipoPrenda;
-import ar.edu.utn.frba.dds.model.prenda.superior.TipoRemeraCorta;
+import ar.edu.utn.frba.dds.model.prenda.superior.remera.TipoRemeraCorta;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
 import java.awt.*;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 
 public class PrendaTest {
-    //Debe saberse que tipo de prenda es
 
     @Test
     public void saberTipoDePrenda() {
@@ -27,7 +23,7 @@ public class PrendaTest {
     public void saberCategoria() {
         TipoPrenda tipoRemeraCorta = new TipoRemeraCorta();
         Prenda remera = new Prenda(tipoRemeraCorta, Material.ALGODON, Color.BLACK);
-        Assert.assertEquals(remera.getCategoria(), Categoria.SUPERIOR);
+        Assert.assertEquals(remera.getCategoria(), CategoriaSuperiorRemera.CATEGORIA_SUPERIOR_REMERA);
     }
 
     @Test (expected = ColorPrimarioIgualAlSecundarioException.class)
@@ -40,6 +36,14 @@ public class PrendaTest {
     public void instanciarUsuariosConGuardarropa(){
         GeneradorGuardarropa generadorGuardarropa = new GeneradorGuardarropa();
         generadorGuardarropa.getCasosDePrueba();
+    }
+
+    @Test
+    public void cargarImagenAUnaPrenda(){
+        TipoPrenda tipoRemeraCorta = new TipoRemeraCorta();
+        Prenda remera = new Prenda(tipoRemeraCorta, Material.ALGODON, Color.BLACK);
+        remera.setImagenPrenda("/home/dds/Escritorio/remeraNegra.jpg");
+        Assert.assertEquals("/home/dds/TP/repo/DDS-GRUPO-6/images/TipoRemeraCortaALGODON.jpg", remera.getImagenPrenda());
     }
 
 }

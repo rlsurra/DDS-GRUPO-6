@@ -1,23 +1,10 @@
 package ar.edu.utn.frba.dds;
 
 import ar.edu.utn.frba.dds.model.*;
-import ar.edu.utn.frba.dds.model.prenda.TipoPrenda;
-import ar.edu.utn.frba.dds.model.prenda.accesorio.TipoAnteojos;
-import ar.edu.utn.frba.dds.model.prenda.accesorio.TipoReloj;
-import ar.edu.utn.frba.dds.model.prenda.calzado.TipoZapatilla;
-import ar.edu.utn.frba.dds.model.prenda.calzado.TipoZapato;
-import ar.edu.utn.frba.dds.model.prenda.inferior.TipoBermuda;
-import ar.edu.utn.frba.dds.model.prenda.inferior.TipoJean;
-import ar.edu.utn.frba.dds.model.prenda.superior.TipoCamisaCorta;
-import ar.edu.utn.frba.dds.model.prenda.superior.TipoCamisaLarga;
-import ar.edu.utn.frba.dds.model.prenda.superior.TipoRemeraCorta;
-import org.junit.Assert;
+import ar.edu.utn.frba.dds.model.usuario.Usuario;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.awt.*;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 
