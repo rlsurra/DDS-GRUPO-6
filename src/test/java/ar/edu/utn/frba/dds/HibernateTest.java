@@ -31,8 +31,6 @@ public class HibernateTest {
         manager.persist(emp);
         manager.getTransaction().commit();
         manager.close();
-
-
         emf.close();
 
 

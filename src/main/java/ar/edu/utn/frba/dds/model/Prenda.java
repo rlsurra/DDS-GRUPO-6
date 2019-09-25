@@ -12,24 +12,33 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 
 
 
-public class Prenda {
+@Entity
+@Table
+public class Prenda  {
+
+    public Prenda(){}
 
 
-    private Long id;
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+private Long id;
 
+    @OneToOne(cascade = CascadeType.ALL)
     private TipoPrenda tipoPrenda;
 
+    @Column
     private Material material;
-
+@Column
     private Color colorPrimario;
-
+@Column
     private Color colorSecundario;
-
+@Column
     private String imagenPrenda;
-
+@Column
     private Double puntaje = 0d;
 
 
