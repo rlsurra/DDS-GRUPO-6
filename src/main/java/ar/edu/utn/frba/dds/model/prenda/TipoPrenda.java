@@ -6,7 +6,6 @@ import javax.persistence.*;
 
 
 @Entity
-@Table
 public abstract class TipoPrenda {
 
     @Id

@@ -1,26 +1,45 @@
 package ar.edu.utn.frba.dds.model;
 
 
-import java.io.Serializable;
 import java.util.Arrays;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
-public class Atuendo  implements Serializable {
-    private static final long serialVersionUID = 1L;
-
+@Entity(name = "atuendo")
+@Table
+public class Atuendo{
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-
+    
+    @ManyToOne(targetEntity = Prenda.class)
+    @JoinColumn(name = "prenda_calzo_id")
     private Prenda prendaCalzado;
 
+    @ManyToOne(targetEntity = Prenda.class)
+    @JoinColumn(name = "prenda_inf_id")
     private Prenda prendaInferior;
 
+    @ManyToOne(targetEntity = Prenda.class)
+    @JoinColumn(name = "prenda_sup_id")
     private Prenda prendaSuperior;
 
+    @ManyToOne(targetEntity = Prenda.class)
+    @JoinColumn(name = "prenda_abr_lig_id")
     private Prenda abrigoLigero;
 
+    @ManyToOne(targetEntity = Prenda.class)
+    @JoinColumn(name = "prenda_abr_pes_id")
     private Prenda abrigoPesado;
 
+    @ManyToOne(targetEntity = Prenda.class)
+    @JoinColumn(name = "prenda_acce_id")
     private Prenda prendaAccesorio;
 
 
@@ -37,7 +56,15 @@ public class Atuendo  implements Serializable {
         this.prendaAccesorio = prendaAccesorio;
     }
 
-    public Double getNivelDeCalor(){
+    public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Double getNivelDeCalor(){
        return  Arrays.asList(prendaCalzado,prendaInferior,prendaSuperior,abrigoLigero,abrigoPesado,prendaAccesorio).stream().mapToDouble(x -> x.getTipoPrenda().getNivelDeCalor()).sum();
     }
 

@@ -6,7 +6,13 @@ import ar.edu.utn.frba.dds.model.categoria.Categoria;
 
 import java.awt.*;
 
+import javax.persistence.Entity;
+
+@Entity
 public class PrendaVacio extends Prenda {
+	public PrendaVacio() {
+	}
+	
     public PrendaVacio(Categoria categoria) {
         super(new TipoPrendaVacio(categoria), null, null);
     }
