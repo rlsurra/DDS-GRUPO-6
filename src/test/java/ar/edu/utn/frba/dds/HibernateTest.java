@@ -5,7 +5,6 @@ import java.awt.Color;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import javax.persistence.EntityGraph;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -26,7 +25,6 @@ import ar.edu.utn.frba.dds.model.evento.EventoSimple;
 import ar.edu.utn.frba.dds.model.prenda.PrendaVacio;
 import ar.edu.utn.frba.dds.model.prenda.calzado.TipoZapatilla;
 import ar.edu.utn.frba.dds.model.prenda.inferior.TipoJean;
-import ar.edu.utn.frba.dds.model.prenda.inferior.TipoJogging;
 import ar.edu.utn.frba.dds.model.prenda.superior.abrigoLigero.TipoSweater;
 import ar.edu.utn.frba.dds.model.prenda.superior.remera.TipoRemeraCorta;
 
