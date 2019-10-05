@@ -27,6 +27,7 @@ hs_err_pid*
 
 # Common Files
 target/
+bin/
 
 # IntelliJ Files
 .idea/
