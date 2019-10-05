@@ -1,18 +1,29 @@
 package ar.edu.utn.frba.dds.model;
 
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Convert;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
 import ar.edu.utn.frba.dds.exceptions.ColorPrimarioIgualAlSecundarioException;
 import ar.edu.utn.frba.dds.exceptions.ParametrosInvalidosException;
 import ar.edu.utn.frba.dds.exceptions.PrendaNoValidaException;
 import ar.edu.utn.frba.dds.model.categoria.Categoria;
+import ar.edu.utn.frba.dds.model.prenda.ColorJpaConverter;
 import ar.edu.utn.frba.dds.model.prenda.TipoPrenda;
-
-import javax.imageio.ImageIO;
-import javax.persistence.*;
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.io.Serializable;
 
 
 
@@ -32,13 +43,15 @@ private Long id;
 
     @Column
     private Material material;
-@Column
+    @Column
+	@Convert(converter = ColorJpaConverter.class)
     private Color colorPrimario;
-@Column
+    @Column
+	@Convert(converter = ColorJpaConverter.class)
     private Color colorSecundario;
-@Column
+    @Column
     private String imagenPrenda;
-@Column
+    @Column
     private Double puntaje = 0d;
 
 
