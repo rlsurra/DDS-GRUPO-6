@@ -7,15 +7,46 @@ import ar.edu.utn.frba.dds.model.evento.Evento;
 import ar.edu.utn.frba.dds.model.Guardarropa;
 import ar.edu.utn.frba.dds.model.usuario.referenciaTemperatura.ReferenciaTemperatura;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class Usuario {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+
+    /*@OneToMany(
+            mappedBy = "usuario", //EL GUARDARROPA AUN NO GUARDA USUARIOS
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )*/
+    @Transient //TODO PONER LO DE ARRIBA CUANDO LOS GUARDARROPAS GUARDEN EL USUARIO
     private List<Guardarropa> guardarropas = new ArrayList<>();
+
+    @OneToMany(
+            mappedBy = "usuario",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
     private List<Evento> eventos = new ArrayList<>();
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "tipoUsuario_id")
     private TipoUsuario tipoUsuario;
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "grupoUsuario_id")
     private GrupoUsuario grupo;
+
+    @OneToOne(targetEntity = ReferenciaTemperatura.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "refTemperatura_id", referencedColumnName = "id")
     private ReferenciaTemperatura refTemperatura;
+
+    public Usuario(){}
 
     public Usuario(TipoUsuario tipoUsuario,ReferenciaTemperatura refTemperatura){
         if (tipoUsuario == null) {
@@ -93,5 +124,13 @@ public class Usuario {
                 ", eventos=" + eventos +
                 ", tipoUsuario=" + tipoUsuario +
                 '}';
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

@@ -1,8 +1,9 @@
 package ar.edu.utn.frba.dds;
 
 
-import java.awt.Color;
+import java.awt.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -12,12 +13,14 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
+import ar.edu.utn.frba.dds.model.*;
+import ar.edu.utn.frba.dds.model.usuario.TipoUsuario;
+import ar.edu.utn.frba.dds.model.usuario.TipoUsuarioPremium;
+import ar.edu.utn.frba.dds.model.usuario.Usuario;
+import ar.edu.utn.frba.dds.model.usuario.referenciaTemperatura.Caluroso;
+import ar.edu.utn.frba.dds.model.usuario.referenciaTemperatura.ReferenciaTemperatura;
 import org.junit.Test;
 
-import ar.edu.utn.frba.dds.model.Atuendo;
-import ar.edu.utn.frba.dds.model.Empleado;
-import ar.edu.utn.frba.dds.model.Material;
-import ar.edu.utn.frba.dds.model.Prenda;
 import ar.edu.utn.frba.dds.model.categoria.CategoriaAccesorio;
 import ar.edu.utn.frba.dds.model.categoria.superior.CategoriaSuperiorAbrigoPesado;
 import ar.edu.utn.frba.dds.model.evento.Evento;
@@ -116,4 +119,35 @@ public class HibernateTest {
     	}
     }
 
+    @Test
+	public void guardarUsuarioTest() {
+
+		try {
+			emf = Persistence.createEntityManagerFactory("PERSISTENCE");
+			manager = emf.createEntityManager();
+
+			GrupoUsuario grupoUsuario = new GrupoUsuario();
+			ReferenciaTemperatura refTemp = new Caluroso();
+			Evento evento = new Evento(2);
+
+			TipoUsuario tipoUsuario = new TipoUsuarioPremium();
+			Usuario usuario = new Usuario();
+			usuario.setGuardarropas(new ArrayList<Guardarropa>());
+			usuario.setGrupo(grupoUsuario);
+			usuario.setRefTemperatura(refTemp);
+			usuario.setEventos(new ArrayList<Evento>());
+			usuario.getEventos().add(evento);
+			usuario.setTipoUsuario(tipoUsuario);
+
+			manager.getTransaction().begin();
+			manager.persist(usuario);
+			manager.flush();
+			manager.getTransaction().commit();
+		} catch (Exception e) {
+			System.out.println("Error en persistencia de usuario: " + e);
+			e.printStackTrace();
+		} finally {
+			emf.close();
+		}
+	}
 }

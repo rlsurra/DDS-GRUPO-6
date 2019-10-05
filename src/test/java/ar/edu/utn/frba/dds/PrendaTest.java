@@ -38,12 +38,12 @@ public class PrendaTest {
         generadorGuardarropa.getCasosDePrueba();
     }
 
-    @Test
+/*    @Test
     public void cargarImagenAUnaPrenda(){
         TipoPrenda tipoRemeraCorta = new TipoRemeraCorta();
         Prenda remera = new Prenda(tipoRemeraCorta, Material.ALGODON, Color.BLACK);
         remera.setImagenPrenda("/home/dds/Escritorio/remeraNegra.jpg");
         Assert.assertEquals("/home/dds/TP/repo/DDS-GRUPO-6/images/TipoRemeraCortaALGODON.jpg", remera.getImagenPrenda());
-    }
+    }*/
 
 }

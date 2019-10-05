@@ -3,6 +3,7 @@ package ar.edu.utn.frba.dds.model.evento;
 import ar.edu.utn.frba.dds.model.Atuendo;
 import ar.edu.utn.frba.dds.model.evento.notificador.NotificadorAplicacion;
 import ar.edu.utn.frba.dds.model.evento.notificador.NotificadorEvento;
+import ar.edu.utn.frba.dds.model.usuario.Usuario;
 
 
 import java.util.ArrayList;
@@ -40,6 +41,10 @@ public class Evento {
     
     @Column
     private Double temperatura;
+
+    @ManyToOne
+	@JoinColumn(name = "usuario_id")
+    private Usuario usuario;
 
     public Evento() {
 	}
@@ -103,6 +108,13 @@ public class Evento {
 				+ ", atuendoElegido=" + atuendoElegido + ", notificadorEvento=" + notificadorEvento + ", temperatura="
 				+ temperatura + "]";
 	}
-	
 
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
 }
