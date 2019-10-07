@@ -33,9 +33,9 @@ public class GeneradorGuardarropa {
         List<Usuario> usuarios = new ArrayList<>();
         Usuario pablo = new Usuario(new TipoUsuarioPremium(), new Caluroso());
         Usuario pedro = new Usuario(new TipoUsuarioPremium(), new Friolento());
-        Guardarropa guardarropaPablo1 = new Guardarropa();
-        Guardarropa guardarropaPablo2 = new Guardarropa();
-        Guardarropa guardarropaPedro = new Guardarropa();
+        Guardarropa guardarropaPablo1 = new Guardarropa(pablo);
+        Guardarropa guardarropaPablo2 = new Guardarropa(pablo);
+        Guardarropa guardarropaPedro = new Guardarropa(pedro);
 
         pablo.agregarGuardarropa(guardarropaPablo1);
         pablo.agregarGuardarropa(guardarropaPablo2);

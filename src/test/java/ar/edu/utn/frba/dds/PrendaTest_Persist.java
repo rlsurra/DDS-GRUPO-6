@@ -7,6 +7,7 @@ import ar.edu.utn.frba.dds.model.categoria.superior.CategoriaSuperiorRemera;
 import ar.edu.utn.frba.dds.model.prenda.TipoPrenda;
 import ar.edu.utn.frba.dds.model.prenda.superior.remera.TipoRemeraCorta;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import javax.persistence.EntityManager;
@@ -71,6 +72,7 @@ public class PrendaTest_Persist {
     }
 
     @Test
+    @Ignore
     public void cargarImagenAUnaPrenda(){
         TipoPrenda tipoRemeraCorta = new TipoRemeraCorta();
         Prenda remera = new Prenda(tipoRemeraCorta, Material.ALGODON, Color.BLACK);

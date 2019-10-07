@@ -23,10 +23,15 @@ public class Guardarropa {
     private List<Prenda> prendasInferiores = new ArrayList<>();
     private List<Prenda> prendasCalzado = new ArrayList<>();
     private List<Prenda> prendasAccesorio = Arrays.asList(new PrendaVacio(CATEGORIA_ACCESORIO));
+    private Usuario propietario;
+
+    public Guardarropa(Usuario propietario) {
+        this.propietario = propietario;
+    }
 
     /*
-    getters
-     */
+            getters
+             */
     public List<Prenda> getPrendasSuperiores() {
         return prendasSuperiores;
     }
@@ -46,6 +51,10 @@ public class Guardarropa {
     public List<Prenda> getPrendasAbrigoLigero() { return prendasAbrigoLigero; }
 
     public List<Prenda> getPrendasAbrigoPesado() { return prendasAbrigoPesado; }
+
+    public Usuario getPropietario() {
+        return propietario;
+    }
 
     /*
     setters
@@ -80,6 +89,10 @@ public class Guardarropa {
         this.prendasAbrigoPesado = new ArrayList<>();
         this.prendasAbrigoPesado.addAll(prendasAbrigoPesado);
         this.prendasAbrigoPesado.add(new PrendaVacio(CATEGORIA_SUPERIOR_ABRIGO_PESADO));
+    }
+
+    public void setPropietario(Usuario propietario) {
+        this.propietario = propietario;
     }
 
 
