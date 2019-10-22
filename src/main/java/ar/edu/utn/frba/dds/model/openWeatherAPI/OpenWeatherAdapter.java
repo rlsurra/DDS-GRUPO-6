@@ -20,7 +20,7 @@ public class OpenWeatherAdapter implements ClimaAdapter {
     //No cambiar nombres de las variables porque rompe el parseo, ni siquiera con un refactor -> rename
     @Column
     private int cod;
-@Column
+    @Column
     private int id;
 
 

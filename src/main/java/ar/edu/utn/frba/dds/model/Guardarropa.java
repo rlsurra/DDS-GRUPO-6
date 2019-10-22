@@ -1,5 +1,8 @@
 package ar.edu.utn.frba.dds.model;
 
+import ar.edu.utn.frba.dds.model.categoria.CategoriaCalzado;
+import ar.edu.utn.frba.dds.model.categoria.CategoriaInferior;
+import ar.edu.utn.frba.dds.model.categoria.CategoriaSuperior;
 import ar.edu.utn.frba.dds.model.evento.Evento;
 import ar.edu.utn.frba.dds.model.prenda.PrendaVacio;
 import ar.edu.utn.frba.dds.model.usuario.Usuario;
@@ -17,22 +20,23 @@ import static ar.edu.utn.frba.dds.model.categoria.superior.CategoriaSuperiorAbri
 
 public class Guardarropa {
 
-    private List<Prenda> prendasSuperiores = new ArrayList<>();
-    private List<Prenda> prendasAbrigoLigero = Arrays.asList(new PrendaVacio(CATEGORIA_SUPERIOR_ABRIGO_LIGERO));
-    private List<Prenda> prendasAbrigoPesado = Arrays.asList(new PrendaVacio(CATEGORIA_SUPERIOR_ABRIGO_PESADO));
-    private List<Prenda> prendasInferiores = new ArrayList<>();
-    private List<Prenda> prendasCalzado = new ArrayList<>();
-    private List<Prenda> prendasAccesorio = Arrays.asList(new PrendaVacio(CATEGORIA_ACCESORIO));
+    private List<Prenda> prendas = Arrays.asList(new PrendaVacio(CATEGORIA_SUPERIOR_ABRIGO_LIGERO), new PrendaVacio(CATEGORIA_SUPERIOR_ABRIGO_PESADO), new PrendaVacio(CATEGORIA_ACCESORIO));
+
     private Usuario propietario;
 
     public Guardarropa(Usuario propietario) {
         this.propietario = propietario;
     }
 
+    public List<Prenda> getPrendas() {
+        return prendas;
+    }
+
+
     /*
             getters
              */
-    public List<Prenda> getPrendasSuperiores() {
+    /*public List<Prenda> getPrendasSuperiores() {
         return prendasSuperiores;
     }
 
@@ -51,15 +55,21 @@ public class Guardarropa {
     public List<Prenda> getPrendasAbrigoLigero() { return prendasAbrigoLigero; }
 
     public List<Prenda> getPrendasAbrigoPesado() { return prendasAbrigoPesado; }
-
+*/
     public Usuario getPropietario() {
         return propietario;
+    }
+
+    public void setPrendas(List<Prenda> prendas) {
+        this.prendas = prendas;
     }
 
     /*
     setters
     */
 
+
+/*
     public void setPrendasSuperiores(List<Prenda> prendasSuperiores) {
         this.prendasSuperiores = prendasSuperiores;
     }
@@ -89,7 +99,7 @@ public class Guardarropa {
         this.prendasAbrigoPesado = new ArrayList<>();
         this.prendasAbrigoPesado.addAll(prendasAbrigoPesado);
         this.prendasAbrigoPesado.add(new PrendaVacio(CATEGORIA_SUPERIOR_ABRIGO_PESADO));
-    }
+    }*/
 
     public void setPropietario(Usuario propietario) {
         this.propietario = propietario;
@@ -110,7 +120,34 @@ public class Guardarropa {
     }
 
     public List<Atuendo> generarSugerenciasPosibles(){
-    return
+        List<Prenda> prendasSuperiores = new ArrayList<>();
+        List<Prenda> prendasAbrigoLigero = new ArrayList<>();
+        List<Prenda> prendasAbrigoPesado = new ArrayList<>();
+        List<Prenda> prendasInferiores = new ArrayList<>();
+        List<Prenda> prendasCalzado = new ArrayList<>();
+        List<Prenda> prendasAccesorio = new ArrayList<>();
+
+        prendasAbrigoLigero.add(new PrendaVacio(CATEGORIA_SUPERIOR_ABRIGO_LIGERO));
+        prendasAbrigoPesado.add(new PrendaVacio(CATEGORIA_SUPERIOR_ABRIGO_PESADO));
+        prendasAccesorio.add(new PrendaVacio(CATEGORIA_ACCESORIO));
+
+        prendas.forEach(prenda -> {
+            if (prenda.getCategoria().equals(CATEGORIA_ACCESORIO)){
+                prendasAccesorio.add(prenda);
+            } else if (prenda.getCategoria().equals(CATEGORIA_SUPERIOR_ABRIGO_LIGERO)) {
+                prendasAbrigoLigero.add(prenda);
+            } else if (prenda.getCategoria().equals(CATEGORIA_SUPERIOR_ABRIGO_PESADO)) {
+                prendasAbrigoPesado.add(prenda);
+            } else if (prenda.getCategoria().equals(new CategoriaInferior())){
+                prendasInferiores.add(prenda);
+            } else if (prenda.getCategoria().equals(new CategoriaCalzado())){
+                prendasCalzado.add(prenda);
+            } else if (prenda.getCategoria().equals(new CategoriaSuperior())){
+                prendasSuperiores.add(prenda);
+            }
+        });
+
+        return
        Sets.cartesianProduct(Sets.newHashSet(prendasSuperiores), Sets.newHashSet(prendasInferiores),
                 Sets.newHashSet(prendasCalzado), Sets.newHashSet(prendasAccesorio),
                Sets.newHashSet(prendasAbrigoLigero), Sets.newHashSet(prendasAbrigoPesado))
@@ -138,12 +175,7 @@ public class Guardarropa {
     @Override
     public String toString() {
         return "Guardarropa{" +
-                "prendasSuperiores=" + prendasSuperiores +
-                ", prendasAbrigoLigero=" + prendasAbrigoLigero +
-                ", prendasAbrigoPesado=" + prendasAbrigoPesado +
-                ", prendasInferiores=" + prendasInferiores +
-                ", prendasCalzado=" + prendasCalzado +
-                ", prendasAccesorio=" + prendasAccesorio +
+                "prendas=" + prendas +
                 '}';
     }
 }

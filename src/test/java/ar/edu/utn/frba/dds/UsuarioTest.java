@@ -41,19 +41,16 @@ public class UsuarioTest {
 
 //    @Before
     public void setUp(){
-        guardarropa1.setPrendasSuperiores(Arrays.asList(
+        guardarropa1.setPrendas(Arrays.asList(
             new Prenda(new TipoCamisaCorta(), Material.ALGODON, Color.RED),
             new Prenda(new TipoRemeraCorta(), Material.NYLON, Color.BLACK),
             new Prenda(new TipoChomba(), Material.ALGODON, Color.blue)
         ));
 
-        guardarropa2.setPrendasInferiores(Arrays.asList(
+        guardarropa2.setPrendas(Arrays.asList(
                 new Prenda(new TipoJean(), Material.JEAN, Color.BLUE),
                 new Prenda(new TipoJogging(), Material.ALGODON, Color.BLACK),
-                new Prenda(new TipoBermuda(), Material.GABARDINA, Color.GRAY)
-        ));
-
-        guardarropa2.setPrendasCalzado(Arrays.asList(
+                new Prenda(new TipoBermuda(), Material.GABARDINA, Color.GRAY),
                 new Prenda(new TipoZapatilla(), Material.LONA, Color.BLACK),
                 new Prenda(new TipoZapato(), Material.CUERO, Color.BLACK),
                 new Prenda(new TipoOjota(), Material.CAUCHO, Color.GREEN)
