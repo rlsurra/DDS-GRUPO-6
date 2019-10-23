@@ -2,16 +2,34 @@ package ar.edu.utn.frba.dds.model.openWeatherAPI;
 
 import ar.edu.utn.frba.dds.model.ClimaAdapter;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.checkerframework.checker.units.qual.C;
 import org.springframework.web.client.RestTemplate;
 
+import javax.persistence.*;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
+
+@Entity
+@Table
 public class OpenWeatherAdapter implements ClimaAdapter {
 
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private Long identi;
+
     //No cambiar nombres de las variables porque rompe el parseo, ni siquiera con un refactor -> rename
+    @Column
     private int cod;
+@Column
     private int id;
+
+
+@OneToOne(cascade = CascadeType.ALL)
     private TemperaturaOW main;
+@Column
     private String name;
+
+
 
     @Override
     public float getTemperatura(int idCiudad){
@@ -44,6 +62,7 @@ public class OpenWeatherAdapter implements ClimaAdapter {
     public void setMain(TemperaturaOW main) {
         this.main = main;
     }
+
 
     public int getCod() {
         return cod;

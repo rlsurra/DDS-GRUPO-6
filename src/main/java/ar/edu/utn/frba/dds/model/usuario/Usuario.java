@@ -2,23 +2,58 @@ package ar.edu.utn.frba.dds.model.usuario;
 
 import ar.edu.utn.frba.dds.exceptions.MaximaCantidadPrendasException;
 import ar.edu.utn.frba.dds.exceptions.ParametrosInvalidosException;
-import ar.edu.utn.frba.dds.model.Atuendo;
-import ar.edu.utn.frba.dds.model.Evento;
+import ar.edu.utn.frba.dds.model.GrupoUsuario;
+import ar.edu.utn.frba.dds.model.evento.Evento;
 import ar.edu.utn.frba.dds.model.Guardarropa;
+import ar.edu.utn.frba.dds.model.usuario.referenciaTemperatura.ReferenciaTemperatura;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class Usuario {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+
+    /*@OneToMany(
+            mappedBy = "usuario", //EL GUARDARROPA AUN NO GUARDA USUARIOS
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )*/
+    @Transient //TODO PONER LO DE ARRIBA CUANDO LOS GUARDARROPAS GUARDEN EL USUARIO
     private List<Guardarropa> guardarropas = new ArrayList<>();
+
+    @OneToMany(
+            mappedBy = "usuario",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
     private List<Evento> eventos = new ArrayList<>();
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "tipoUsuario_id")
     private TipoUsuario tipoUsuario;
 
-    public Usuario(TipoUsuario tipoUsuario){
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "grupoUsuario_id")
+    private GrupoUsuario grupo;
+
+    @OneToOne(targetEntity = ReferenciaTemperatura.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "refTemperatura_id", referencedColumnName = "id")
+    private ReferenciaTemperatura refTemperatura;
+
+    public Usuario(){}
+
+    public Usuario(TipoUsuario tipoUsuario,ReferenciaTemperatura refTemperatura){
         if (tipoUsuario == null) {
             throw new ParametrosInvalidosException("No se permite un usuario sin tipo");
         }
         this.tipoUsuario = tipoUsuario;
+        this.refTemperatura = refTemperatura;
     }
 
     /*
@@ -36,9 +71,26 @@ public class Usuario {
         return tipoUsuario;
     }
 
+    public GrupoUsuario getGrupo() { return grupo; }
+
+    public ReferenciaTemperatura getRefTemperatura() { return refTemperatura;  }
+
     /*
     setters
      */
+
+    public void setGuardarropas(List<Guardarropa> guardarropas) { this.guardarropas = guardarropas;  }
+
+    public void setEventos(List<Evento> eventos) { this.eventos = eventos;  }
+
+    public void setRefTemperatura(ReferenciaTemperatura refTemperatura) { this.refTemperatura = refTemperatura; }
+
+    public void setGrupo(GrupoUsuario grupo) {  this.grupo = grupo;  }
+
+    /*
+    metodos
+     */
+
     public void agregarGuardarropa(Guardarropa guardarropa){
         if (guardarropa == null) {
             throw new ParametrosInvalidosException("No se permite agregar guardarropa nulo");
@@ -63,6 +115,8 @@ public class Usuario {
         this.tipoUsuario = tipoUsuario;
     }
 
+
+
     @Override
     public String toString() {
         return "Usuario{" +
@@ -70,5 +124,13 @@ public class Usuario {
                 ", eventos=" + eventos +
                 ", tipoUsuario=" + tipoUsuario +
                 '}';
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
