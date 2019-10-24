@@ -15,12 +15,7 @@ public class TipoUsuarioGratuito extends TipoUsuario{
 
     @Override
     public boolean validarCantidadMaxima(Guardarropa guardarropa){
-        int cantidadDePrendas = guardarropa.getPrendasSuperiores().size() +
-                guardarropa.getPrendasInferiores().size() +
-                guardarropa.getPrendasCalzado().size() +
-                guardarropa.getPrendasAccesorio().size()-1 +
-                guardarropa.getPrendasAbrigoLigero().size()-1 +
-                guardarropa.getPrendasAbrigoPesado().size()-1;
+        int cantidadDePrendas = guardarropa.getPrendas().size();
         return cantidadDePrendas <= MAXIMA_CANTIDAD_PRENDAS;
     }
 }

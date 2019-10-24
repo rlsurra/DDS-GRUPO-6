@@ -22,7 +22,9 @@ import java.util.stream.Collectors;
 
 
 public class GuardarropaTest {
+
     private List<Usuario> usuarios;
+
     @Before
     public void setUp() {
         GeneradorGuardarropa generadorGuardarropa = new GeneradorGuardarropa();
@@ -46,24 +48,6 @@ public class GuardarropaTest {
         } else {
             System.out.println("Atuendo elegido: " + atuendos.get(new Random().nextInt(atuendos.size())));
         }
-    }
-
-    @Test
-    public void guardarropaCompartidoTest(){
-        Guardarropa guardarropa1 = new Guardarropa();
-        Guardarropa guardarropa2 = new Guardarropa();
-        Usuario pepe = new Usuario(new TipoUsuarioGratuito(), new Caluroso());
-        pepe.setGuardarropas(Arrays.asList(guardarropa1, guardarropa2));
-
-        Guardarropa guardarropa3 = new Guardarropa();
-        Usuario luis  = new Usuario(new TipoUsuarioPremium(), new Normal());
-        luis.setGuardarropas(Collections.singletonList(guardarropa3));
-
-        GrupoUsuario grupoUsuario = new GrupoUsuario("test-grupo");
-        grupoUsuario.setUsuarios(Arrays.asList(pepe, luis));
-
-        Assert.assertTrue(pepe.getGrupo().getGuardarropaGrupo().size() == 3 &&
-                            luis.getGrupo().getGuardarropaGrupo().size() == 3);
     }
 
 }

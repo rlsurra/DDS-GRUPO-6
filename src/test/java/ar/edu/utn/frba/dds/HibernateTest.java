@@ -56,7 +56,7 @@ public class HibernateTest {
         emf.close();
     }
 
-//    @Test
+    @Test
     public void guardarEventoTest() {
     	
     	try {
