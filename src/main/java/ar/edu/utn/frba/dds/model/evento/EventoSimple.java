@@ -1,21 +1,20 @@
 package ar.edu.utn.frba.dds.model.evento;
 
-import java.time.LocalDateTime;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import java.time.LocalDateTime;
 
 @Entity(name = "eventosimple")
 @Table
 public class EventoSimple extends Evento {
-	
-	@Column
+
+    @Column
     private LocalDateTime fecha;
-    
+
     public EventoSimple() {
-	}
-    
+    }
+
     public EventoSimple(Integer ciudad, LocalDateTime fecha) {
         super(ciudad);
         this.fecha = fecha;

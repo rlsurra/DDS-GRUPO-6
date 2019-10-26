@@ -1,23 +1,16 @@
 package ar.edu.utn.frba.dds.model;
 
 
+import javax.persistence.*;
 import java.util.Arrays;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
 @Entity(name = "atuendo")
 @Table
-public class Atuendo{
+public class Atuendo {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
+
     @ManyToOne(targetEntity = Prenda.class)
     @JoinColumn(name = "prenda_calzo_id")
     private Prenda prendaCalzado;
@@ -43,9 +36,9 @@ public class Atuendo{
     private Prenda prendaAccesorio;
 
 
+    public Atuendo() {
+    }
 
-    public Atuendo(){}
-    
     public Atuendo(Prenda prendaSuperior, Prenda prendaInferior, Prenda prendaCalzado, Prenda prendaAccesorio,
                    Prenda prendaAbrigoLigero, Prenda prendaAbrigoPesado) {
         this.abrigoLigero = prendaAbrigoLigero;
@@ -57,19 +50,19 @@ public class Atuendo{
     }
 
     public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Double getNivelDeCalor(){
-       return  Arrays.asList(prendaCalzado,prendaInferior,prendaSuperior,abrigoLigero,abrigoPesado,prendaAccesorio).stream().mapToDouble(x -> x.getTipoPrenda().getNivelDeCalor()).sum();
+        return id;
     }
 
-    public Double getPuntaje(){
-        return Arrays.asList(prendaCalzado,prendaInferior,prendaSuperior,abrigoLigero,abrigoPesado,prendaAccesorio).stream().mapToDouble(x -> x.getPuntaje()).sum();
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Double getNivelDeCalor() {
+        return Arrays.asList(prendaCalzado, prendaInferior, prendaSuperior, abrigoLigero, abrigoPesado, prendaAccesorio).stream().mapToDouble(x -> x.getTipoPrenda().getNivelDeCalor()).sum();
+    }
+
+    public Double getPuntaje() {
+        return Arrays.asList(prendaCalzado, prendaInferior, prendaSuperior, abrigoLigero, abrigoPesado, prendaAccesorio).stream().mapToDouble(x -> x.getPuntaje()).sum();
     }
 
     @Override

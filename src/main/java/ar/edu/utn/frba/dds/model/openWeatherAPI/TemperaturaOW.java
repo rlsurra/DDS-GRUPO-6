@@ -11,15 +11,17 @@ import javax.persistence.*;
 public class TemperaturaOW {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-private Long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
 
-@Column
-        float temp;
+    @Column
+    float temp;
+
     public float getTemp() {
         return temp;
     }
+
     public void setTemp(float temp) {
         this.temp = temp;
     }

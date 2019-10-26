@@ -13,7 +13,7 @@ public class Semanal implements PeriodicidadEvento {
 
     @Override
     public boolean tiempoDeNotificar(LocalDateTime fecha) {
-        if(dia.equals(fecha.getDayOfWeek()) && fecha.isAfter(actual)){
+        if (dia.equals(fecha.getDayOfWeek()) && fecha.isAfter(actual)) {
             actual = actual.plusWeeks(1);
             return true;
         }

@@ -1,21 +1,13 @@
 package ar.edu.utn.frba.dds;
 
 import ar.edu.utn.frba.dds.model.Atuendo;
-import ar.edu.utn.frba.dds.model.GrupoUsuario;
 import ar.edu.utn.frba.dds.model.Guardarropa;
 import ar.edu.utn.frba.dds.model.evento.EventoSimple;
-import ar.edu.utn.frba.dds.model.usuario.TipoUsuarioGratuito;
-import ar.edu.utn.frba.dds.model.usuario.TipoUsuarioPremium;
 import ar.edu.utn.frba.dds.model.usuario.Usuario;
-import ar.edu.utn.frba.dds.model.usuario.referenciaTemperatura.Caluroso;
-import ar.edu.utn.frba.dds.model.usuario.referenciaTemperatura.Normal;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.time.LocalDateTime;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
@@ -32,7 +24,7 @@ public class GuardarropaTest {
     }
 
     @Test
-    public void generarAtuendoTest(){
+    public void generarAtuendoTest() {
         Usuario usuario = usuarios.get(new Random().nextInt(usuarios.size()));
         List<Guardarropa> guardarropas = usuario.getGrupo().getGuardarropaGrupo();
         System.out.println("Guardarropas: " + guardarropas.size());

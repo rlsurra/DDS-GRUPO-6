@@ -3,8 +3,8 @@ package ar.edu.utn.frba.dds.model.usuario;
 import ar.edu.utn.frba.dds.exceptions.MaximaCantidadPrendasException;
 import ar.edu.utn.frba.dds.exceptions.ParametrosInvalidosException;
 import ar.edu.utn.frba.dds.model.GrupoUsuario;
-import ar.edu.utn.frba.dds.model.evento.Evento;
 import ar.edu.utn.frba.dds.model.Guardarropa;
+import ar.edu.utn.frba.dds.model.evento.Evento;
 import ar.edu.utn.frba.dds.model.usuario.referenciaTemperatura.ReferenciaTemperatura;
 
 import javax.persistence.*;
@@ -19,12 +19,11 @@ public class Usuario {
     private Long id;
 
 
-    /*@OneToMany(
-            mappedBy = "usuario", //EL GUARDARROPA AUN NO GUARDA USUARIOS
+    @OneToMany(
+            mappedBy = "propietario",
             cascade = CascadeType.ALL,
             orphanRemoval = true
-    )*/
-    @Transient //TODO PONER LO DE ARRIBA CUANDO LOS GUARDARROPAS GUARDEN EL USUARIO
+    )
     private List<Guardarropa> guardarropas = new ArrayList<>();
 
     @OneToMany(
@@ -35,20 +34,19 @@ public class Usuario {
     private List<Evento> eventos = new ArrayList<>();
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "tipoUsuario_id")
     private TipoUsuario tipoUsuario;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "grupoUsuario_id")
     private GrupoUsuario grupo;
 
     @OneToOne(targetEntity = ReferenciaTemperatura.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "refTemperatura_id", referencedColumnName = "id")
     private ReferenciaTemperatura refTemperatura;
 
-    public Usuario(){}
+    public Usuario() {
+    }
 
-    public Usuario(TipoUsuario tipoUsuario,ReferenciaTemperatura refTemperatura){
+    public Usuario(TipoUsuario tipoUsuario, ReferenciaTemperatura refTemperatura) {
         if (tipoUsuario == null) {
             throw new ParametrosInvalidosException("No se permite un usuario sin tipo");
         }
@@ -71,37 +69,49 @@ public class Usuario {
         return tipoUsuario;
     }
 
-    public GrupoUsuario getGrupo() { return grupo; }
+    public GrupoUsuario getGrupo() {
+        return grupo;
+    }
 
-    public ReferenciaTemperatura getRefTemperatura() { return refTemperatura;  }
+    public ReferenciaTemperatura getRefTemperatura() {
+        return refTemperatura;
+    }
 
     /*
     setters
      */
 
-    public void setGuardarropas(List<Guardarropa> guardarropas) { this.guardarropas = guardarropas;  }
+    public void setGuardarropas(List<Guardarropa> guardarropas) {
+        this.guardarropas = guardarropas;
+    }
 
-    public void setEventos(List<Evento> eventos) { this.eventos = eventos;  }
+    public void setEventos(List<Evento> eventos) {
+        this.eventos = eventos;
+    }
 
-    public void setRefTemperatura(ReferenciaTemperatura refTemperatura) { this.refTemperatura = refTemperatura; }
+    public void setRefTemperatura(ReferenciaTemperatura refTemperatura) {
+        this.refTemperatura = refTemperatura;
+    }
 
-    public void setGrupo(GrupoUsuario grupo) {  this.grupo = grupo;  }
+    public void setGrupo(GrupoUsuario grupo) {
+        this.grupo = grupo;
+    }
 
     /*
     metodos
      */
 
-    public void agregarGuardarropa(Guardarropa guardarropa){
+    public void agregarGuardarropa(Guardarropa guardarropa) {
         if (guardarropa == null) {
             throw new ParametrosInvalidosException("No se permite agregar guardarropa nulo");
         }
-        if(!tipoUsuario.validarCantidadMaxima(guardarropa)){
+        if (!tipoUsuario.validarCantidadMaxima(guardarropa)) {
             throw new MaximaCantidadPrendasException();
         }
         guardarropas.add(guardarropa);
     }
 
-    public void agregarEvento(Evento evento){
+    public void agregarEvento(Evento evento) {
         if (evento == null) {
             throw new ParametrosInvalidosException("No se permite agregar un evento nulo");
         }
@@ -114,7 +124,6 @@ public class Usuario {
     public void setTipoUsuario(TipoUsuario tipoUsuario) {
         this.tipoUsuario = tipoUsuario;
     }
-
 
 
     @Override

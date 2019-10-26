@@ -13,7 +13,7 @@ public class Diaria implements PeriodicidadEvento {
 
     @Override
     public boolean tiempoDeNotificar(LocalDateTime fecha) {
-        if(time.getHour() == fecha.getHour() && diaDelMes == fecha.getDayOfMonth()){
+        if (time.getHour() == fecha.getHour() && diaDelMes == fecha.getDayOfMonth()) {
             diaDelMes = fecha.plusDays(1).getDayOfMonth();
             return true;
         }

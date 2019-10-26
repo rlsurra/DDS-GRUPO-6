@@ -9,17 +9,17 @@ import javax.persistence.*;
 public abstract class TipoPrenda {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-private Long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     @OneToOne(cascade = CascadeType.ALL)
     private Categoria categoria;
 
-@Column
+    @Column
     private Double nivelDeCalor;
 
-public TipoPrenda(){}
-
+    public TipoPrenda() {
+    }
 
 
     public TipoPrenda(Categoria categoria, Double nivelDeCalor) {

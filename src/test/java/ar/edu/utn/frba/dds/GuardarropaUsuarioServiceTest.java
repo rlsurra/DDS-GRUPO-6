@@ -14,11 +14,11 @@ import java.util.List;
 
 public class GuardarropaUsuarioServiceTest {
 
-    @Test (expected = GuardarropaUsuarioException.class)
+    @Test(expected = GuardarropaUsuarioException.class)
     public void agregarRelacionCuandoElUsuarioEsPropietario() {
         Usuario usuario = new Usuario(new TipoUsuarioGratuito(), new Caluroso());
         Guardarropa guardarropa = new Guardarropa(usuario);
-        GuardarropaUsuarioService.GuardarropaUsuarioService().agregarRelacion(usuario,guardarropa);
+        GuardarropaUsuarioService.GuardarropaUsuarioService().agregarRelacion(usuario, guardarropa);
     }
 
     @Test
@@ -30,8 +30,8 @@ public class GuardarropaUsuarioServiceTest {
         Guardarropa guardarropa2 = new Guardarropa(usuario2);
 
         GuardarropaUsuarioService svc = GuardarropaUsuarioService.GuardarropaUsuarioService();
-        svc.agregarRelacion(usuario1 ,guardarropa2);
-        svc.agregarRelacion(usuario2 ,guardarropa1);
+        svc.agregarRelacion(usuario1, guardarropa2);
+        svc.agregarRelacion(usuario2, guardarropa1);
 
         List<GuardarropaUsuario> usuariosG1 = svc.obtenerUsuariosCompartidosDeGuardarropa(guardarropa1);
         List<GuardarropaUsuario> usuariosG2 = svc.obtenerUsuariosCompartidosDeGuardarropa(guardarropa2);
@@ -55,9 +55,9 @@ public class GuardarropaUsuarioServiceTest {
         Guardarropa guardarropa5 = new Guardarropa(usuario2);
 
         GuardarropaUsuarioService svc = GuardarropaUsuarioService.GuardarropaUsuarioService();
-        svc.agregarRelacion(usuario1 ,guardarropa2);
-        svc.agregarRelacion(usuario1 ,guardarropa4);
-        svc.agregarRelacion(usuario1 ,guardarropa5);
+        svc.agregarRelacion(usuario1, guardarropa2);
+        svc.agregarRelacion(usuario1, guardarropa4);
+        svc.agregarRelacion(usuario1, guardarropa5);
 
         List<GuardarropaUsuario> guardarropasU1 = svc.obtenerGuardarropasCompartidosPorElUsuario(usuario1);
 

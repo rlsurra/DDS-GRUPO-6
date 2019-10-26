@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Inheritance
-@DiscriminatorColumn(name="TIPO")
+@DiscriminatorColumn(name = "TIPO")
 public abstract class ReferenciaTemperatura {
 
     @Id
@@ -18,7 +18,9 @@ public abstract class ReferenciaTemperatura {
     private double maximo;
 
 
-    public double getMinimo() { return minimo; }
+    public double getMinimo() {
+        return minimo;
+    }
 
     public void setMinimo(double minimo) {
         this.minimo = minimo;

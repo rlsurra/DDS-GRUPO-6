@@ -4,21 +4,20 @@ import ar.edu.utn.frba.dds.model.Material;
 import ar.edu.utn.frba.dds.model.Prenda;
 import ar.edu.utn.frba.dds.model.categoria.Categoria;
 
-import java.awt.*;
-
 import javax.persistence.Entity;
+import java.awt.*;
 
 @Entity
 public class PrendaVacio extends Prenda {
-	public PrendaVacio() {
-	}
-	
+    public PrendaVacio() {
+    }
+
     public PrendaVacio(Categoria categoria) {
         super(new TipoPrendaVacio(categoria), null, null);
     }
 
     @Override
-    protected void validarPrendaMaterial(TipoPrenda tipoPrenda, Material material){
+    protected void validarPrendaMaterial(TipoPrenda tipoPrenda, Material material) {
     }
 
     @Override

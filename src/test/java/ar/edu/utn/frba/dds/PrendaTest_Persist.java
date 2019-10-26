@@ -19,7 +19,7 @@ public class PrendaTest_Persist {
 
     ///////////////////
     private static EntityManager manager;
-    private  static EntityManagerFactory emf;
+    private static EntityManagerFactory emf;
     /////////////////////
 
 
@@ -48,10 +48,6 @@ public class PrendaTest_Persist {
     }
 
 
-
-
-
-
     @Test
     public void saberCategoria() {
         TipoPrenda tipoRemeraCorta = new TipoRemeraCorta();
@@ -59,21 +55,21 @@ public class PrendaTest_Persist {
         Assert.assertEquals(remera.getCategoria(), CategoriaSuperiorRemera.CATEGORIA_SUPERIOR_REMERA);
     }
 
-    @Test (expected = ColorPrimarioIgualAlSecundarioException.class)
+    @Test(expected = ColorPrimarioIgualAlSecundarioException.class)
     public void crearPrendaNoValidaPorColoresIguales() {
         TipoPrenda tipoRemeraCorta = new TipoRemeraCorta();
         new Prenda(tipoRemeraCorta, Material.ALGODON, Color.RED, Color.RED);
     }
 
     @Test
-    public void instanciarUsuariosConGuardarropa(){
+    public void instanciarUsuariosConGuardarropa() {
         GeneradorGuardarropa generadorGuardarropa = new GeneradorGuardarropa();
         generadorGuardarropa.getCasosDePrueba();
     }
 
     @Test
     @Ignore
-    public void cargarImagenAUnaPrenda(){
+    public void cargarImagenAUnaPrenda() {
         TipoPrenda tipoRemeraCorta = new TipoRemeraCorta();
         Prenda remera = new Prenda(tipoRemeraCorta, Material.ALGODON, Color.BLACK);
         remera.setImagenPrenda("/home/dds/Escritorio/remeraNegra.jpg");

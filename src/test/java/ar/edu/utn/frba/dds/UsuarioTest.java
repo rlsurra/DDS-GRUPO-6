@@ -2,10 +2,10 @@ package ar.edu.utn.frba.dds;
 
 import ar.edu.utn.frba.dds.exceptions.MaximaCantidadPrendasException;
 import ar.edu.utn.frba.dds.exceptions.ParametrosInvalidosException;
-import ar.edu.utn.frba.dds.model.evento.Evento;
 import ar.edu.utn.frba.dds.model.Guardarropa;
 import ar.edu.utn.frba.dds.model.Material;
 import ar.edu.utn.frba.dds.model.Prenda;
+import ar.edu.utn.frba.dds.model.evento.Evento;
 import ar.edu.utn.frba.dds.model.evento.EventoSimple;
 import ar.edu.utn.frba.dds.model.prenda.calzado.TipoOjota;
 import ar.edu.utn.frba.dds.model.prenda.calzado.TipoZapatilla;
@@ -22,7 +22,6 @@ import ar.edu.utn.frba.dds.model.usuario.Usuario;
 import ar.edu.utn.frba.dds.model.usuario.referenciaTemperatura.Caluroso;
 import ar.edu.utn.frba.dds.model.usuario.referenciaTemperatura.Friolento;
 import ar.edu.utn.frba.dds.model.usuario.referenciaTemperatura.Normal;
-import org.junit.Before;
 import org.junit.Test;
 
 import java.awt.*;
@@ -39,12 +38,12 @@ public class UsuarioTest {
     private Evento evento1 = new EventoSimple(1, LocalDateTime.of(2019, 7, 22, 10, 0));
     private Evento evento2 = new EventoSimple(2, LocalDateTime.of(2019, 8, 3, 22, 45));
 
-//    @Before
-    public void setUp(){
+    //    @Before
+    public void setUp() {
         guardarropa1.setPrendas(Arrays.asList(
-            new Prenda(new TipoCamisaCorta(), Material.ALGODON, Color.RED),
-            new Prenda(new TipoRemeraCorta(), Material.NYLON, Color.BLACK),
-            new Prenda(new TipoChomba(), Material.ALGODON, Color.blue)
+                new Prenda(new TipoCamisaCorta(), Material.ALGODON, Color.RED),
+                new Prenda(new TipoRemeraCorta(), Material.NYLON, Color.BLACK),
+                new Prenda(new TipoChomba(), Material.ALGODON, Color.blue)
         ));
 
         guardarropa2.setPrendas(Arrays.asList(
@@ -58,13 +57,13 @@ public class UsuarioTest {
 
     }
 
-    @Test (expected = ParametrosInvalidosException.class)
-    public void crearUsuarioError(){
+    @Test(expected = ParametrosInvalidosException.class)
+    public void crearUsuarioError() {
         new Usuario(null, null);
     }
 
     @Test
-    public void crearUsuarioGratuitoExitoso(){
+    public void crearUsuarioGratuitoExitoso() {
         Usuario usuario = new Usuario(new TipoUsuarioGratuito(), new Caluroso());
         guardarropa1 = new Guardarropa(usuario);
         guardarropa2 = new Guardarropa(usuario);
@@ -75,8 +74,8 @@ public class UsuarioTest {
     }
 
 
-    @Test (expected = MaximaCantidadPrendasException.class)
-    public void crearUsuarioGratuitoError(){
+    @Test(expected = MaximaCantidadPrendasException.class)
+    public void crearUsuarioGratuitoError() {
         Usuario usuario = new Usuario(new TipoUsuarioGratuito(), new Friolento());
         guardarropa1 = new Guardarropa(usuario);
         guardarropa2 = new Guardarropa(usuario);
@@ -87,7 +86,7 @@ public class UsuarioTest {
     }
 
     @Test
-    public void crearUsuarioPremiumExitoso(){
+    public void crearUsuarioPremiumExitoso() {
         Usuario usuario = new Usuario(new TipoUsuarioPremium(), new Normal());
         guardarropa1 = new Guardarropa(usuario);
         guardarropa2 = new Guardarropa(usuario);

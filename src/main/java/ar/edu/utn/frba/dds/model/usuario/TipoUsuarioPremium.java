@@ -10,7 +10,7 @@ import javax.persistence.Entity;
 public class TipoUsuarioPremium extends TipoUsuario {
 
     @Override
-    public boolean validarCantidadMaxima(Guardarropa guardarropa){
+    public boolean validarCantidadMaxima(Guardarropa guardarropa) {
         return true;
     }
 }

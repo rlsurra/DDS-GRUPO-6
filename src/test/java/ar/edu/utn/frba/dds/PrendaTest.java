@@ -19,6 +19,7 @@ public class PrendaTest {
         Prenda remera = new Prenda(tipoRemeraCorta, Material.ALGODON, Color.BLACK, Color.BLUE);
         Assert.assertEquals(tipoRemeraCorta, remera.getTipoPrenda());
     }
+
     @Test
     public void saberCategoria() {
         TipoPrenda tipoRemeraCorta = new TipoRemeraCorta();
@@ -26,14 +27,14 @@ public class PrendaTest {
         Assert.assertEquals(remera.getCategoria(), CategoriaSuperiorRemera.CATEGORIA_SUPERIOR_REMERA);
     }
 
-    @Test (expected = ColorPrimarioIgualAlSecundarioException.class)
+    @Test(expected = ColorPrimarioIgualAlSecundarioException.class)
     public void crearPrendaNoValidaPorColoresIguales() {
         TipoPrenda tipoRemeraCorta = new TipoRemeraCorta();
         new Prenda(tipoRemeraCorta, Material.ALGODON, Color.RED, Color.RED);
     }
 
     @Test
-    public void instanciarUsuariosConGuardarropa(){
+    public void instanciarUsuariosConGuardarropa() {
         GeneradorGuardarropa generadorGuardarropa = new GeneradorGuardarropa();
         generadorGuardarropa.getCasosDePrueba();
     }

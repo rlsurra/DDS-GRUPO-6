@@ -5,7 +5,7 @@
              version="2.1">
 
     <persistence-unit name="PERSISTENCE">
-        <description> Ejemplo Crud básico Hibernate JPA</description>
+        <description>Ejemplo Crud básico Hibernate JPA</description>
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
         <class>ar.edu.utn.frba.dds.model.Empleado</class>
@@ -15,15 +15,14 @@
         <class>ar.edu.utn.frba.dds.model.Prenda</class>
 
 
-
         <properties>
-            <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
-            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/DDS-GRUPO-6" />
-            <property name="javax.persistence.jdbc.user" value="root" />
-            <property name="javax.persistence.jdbc.password" value="admin" />
-            <property name="hibernate.show_sql" value="true" />
-            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect" />
-            <property name="hibernate.hbm2ddl.auto" value="update" />
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/DDS-GRUPO-6"/>
+            <property name="javax.persistence.jdbc.user" value="root"/>
+            <property name="javax.persistence.jdbc.password" value="admin"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
         </properties>
 
     </persistence-unit>

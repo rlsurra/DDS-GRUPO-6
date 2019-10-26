@@ -2,6 +2,7 @@ package ar.edu.utn.frba.dds.model.prenda.superior.abrigoLigero;
 
 import ar.edu.utn.frba.dds.model.categoria.superior.CategoriaSuperiorAbrigoLigero;
 import ar.edu.utn.frba.dds.model.prenda.TipoPrendaSuperior;
+
 import javax.persistence.Entity;
 
 @Entity

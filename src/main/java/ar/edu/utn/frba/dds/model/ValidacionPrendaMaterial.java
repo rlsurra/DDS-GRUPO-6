@@ -24,7 +24,7 @@ import java.util.List;
 
 public class ValidacionPrendaMaterial {
 
-//    --------------------------------------------------------------------------------------------------
+    //    --------------------------------------------------------------------------------------------------
 //      ESTO ES PARA QUE SEA UNA CLASE SINGLETON, SOLO SE CREA UNA VEZ
     private static ValidacionPrendaMaterial INSTANCE = null;
 
@@ -33,8 +33,8 @@ public class ValidacionPrendaMaterial {
         cargarListaDeValidaciones();
     }
 
-    public static ValidacionPrendaMaterial ValidacionPrendaMaterial(){
-        if(INSTANCE == null){
+    public static ValidacionPrendaMaterial ValidacionPrendaMaterial() {
+        if (INSTANCE == null) {
             INSTANCE = new ValidacionPrendaMaterial();
         }
         return INSTANCE;
@@ -52,11 +52,11 @@ public class ValidacionPrendaMaterial {
         this.listaValidacion = listaValidacion;
     }
 
-    private void insertarValidacion(Material m, Class t){
+    private void insertarValidacion(Material m, Class t) {
         this.listaValidacion.add(new Pair<>(m, t));
     }
 
-    public boolean validarPrenda(Material material, TipoPrenda tipoPrenda){
+    public boolean validarPrenda(Material material, TipoPrenda tipoPrenda) {
         Pair<Material, Class> parMaterialTipoPrenda = new Pair<>(material, tipoPrenda.getClass());
         return listaValidacion.contains(parMaterialTipoPrenda);
     }

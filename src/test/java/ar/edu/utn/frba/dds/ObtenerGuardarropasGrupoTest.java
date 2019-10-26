@@ -10,6 +10,7 @@ import java.util.List;
 public class ObtenerGuardarropasGrupoTest {
 
     List<Usuario> usuarios;
+
     @Before
     public void setUp() {
         GeneradorGuardarropa generadorGuardarropa = new GeneradorGuardarropa();
@@ -17,7 +18,7 @@ public class ObtenerGuardarropasGrupoTest {
     }
 
     @Test
-    public void obtenerGuardarropasGrupoTest(){
+    public void obtenerGuardarropasGrupoTest() {
         GrupoUsuario grupo1 = new GrupoUsuario("grupo1");
         grupo1.setUsuarios(usuarios);
         System.out.println(grupo1.getGuardarropaGrupo());

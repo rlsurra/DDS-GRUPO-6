@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 @DiscriminatorValue("C")
 public class Caluroso extends ReferenciaTemperatura {
 
-    public Caluroso(){
+    public Caluroso() {
         this.setMaximo(40);
         this.setMinimo(30);
     }

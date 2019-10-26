@@ -1,6 +1,7 @@
 package ar.edu.utn.frba.dds.model.prenda;
 
 import ar.edu.utn.frba.dds.model.categoria.CategoriaCalzado;
+
 import javax.persistence.Entity;
 
 @Entity

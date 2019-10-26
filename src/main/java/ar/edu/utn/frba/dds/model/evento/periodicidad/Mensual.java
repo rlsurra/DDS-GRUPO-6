@@ -10,7 +10,7 @@ public class Mensual implements PeriodicidadEvento {
     private Month mesActual = LocalDateTime.now().getMonth();
 
     public Mensual(int diaDelMes) {
-        if(diaDelMes < 1 || diaDelMes > 31){
+        if (diaDelMes < 1 || diaDelMes > 31) {
             throw new ParametrosInvalidosException("Dia del mes incorrecto: " + diaDelMes);
         }
         this.diaDelMes = diaDelMes;
@@ -18,7 +18,7 @@ public class Mensual implements PeriodicidadEvento {
 
     @Override
     public boolean tiempoDeNotificar(LocalDateTime fecha) {
-        if(diaDelMes == fecha.getDayOfMonth() && fecha.getMonth().equals(mesActual)){
+        if (diaDelMes == fecha.getDayOfMonth() && fecha.getMonth().equals(mesActual)) {
             mesActual = mesActual.plus(1);
             return true;
         }

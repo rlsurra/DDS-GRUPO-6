@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 @DiscriminatorValue("N")
 public class Normal extends ReferenciaTemperatura {
 
-    public Normal(){
+    public Normal() {
         this.setMaximo(60);
         this.setMinimo(40);
     }

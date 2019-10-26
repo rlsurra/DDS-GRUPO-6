@@ -4,21 +4,22 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name= "EMPLEADO")
-public class Empleado  implements Serializable {
+@Table(name = "EMPLEADO")
+public class Empleado implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="CODIGO")
+    @Column(name = "CODIGO")
     private Long codigo;
-    @Column(name="APELLIDO")
+    @Column(name = "APELLIDO")
     private String apellido;
-    @Column(name="NOMBRE")
+    @Column(name = "NOMBRE")
     private String nombre;
-    @Column(name="FECHANAC")
+    @Column(name = "FECHANAC")
     private int fechanac;
 
-    public Empleado(){}
+    public Empleado() {
+    }
 
     public Empleado(Long codigo, String apellido, String nombre, int fechanac) {
         this.codigo = codigo;

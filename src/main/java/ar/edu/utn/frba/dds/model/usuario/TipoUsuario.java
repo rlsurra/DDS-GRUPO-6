@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @Inheritance
-@DiscriminatorColumn(name="Usuario_Tipo")
+@DiscriminatorColumn(name = "Usuario_Tipo")
 public abstract class TipoUsuario {
 
     @Id

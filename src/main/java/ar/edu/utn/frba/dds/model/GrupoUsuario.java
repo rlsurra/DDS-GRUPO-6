@@ -15,7 +15,7 @@ public class GrupoUsuario {
     private Long id;
 
     @Column
-    String nombre;
+    private String nombre;
 
     @OneToMany(
             mappedBy = "grupo",
@@ -24,11 +24,12 @@ public class GrupoUsuario {
     )
     List<Usuario> usuarios = new ArrayList<>();
 
-    public GrupoUsuario(String nombre){
+    public GrupoUsuario(String nombre) {
         this.nombre = nombre;
     }
 
-    public GrupoUsuario() {  }
+    public GrupoUsuario() {
+    }
 
     public String getNombre() {
         return nombre;
@@ -45,6 +46,7 @@ public class GrupoUsuario {
     /**
      * Setea los usuarios como miembros del grupo, ademas setea el grupo de cada usuario con este grupo.
      * Si el usuario ya tiene un grupo se pisa por el actual
+     *
      * @param usuarios
      */
     public void setUsuarios(List<Usuario> usuarios) {
@@ -52,7 +54,7 @@ public class GrupoUsuario {
         usuarios.forEach(usuario -> usuario.setGrupo(this));
     }
 
-    public List<Guardarropa> getGuardarropaGrupo(){
+    public List<Guardarropa> getGuardarropaGrupo() {
 
         List<List<Guardarropa>> listasDeGuardarropas = usuarios.stream().map(x -> x.getGuardarropas()).collect(Collectors.toList());
         List<Guardarropa> guardarropas = listasDeGuardarropas.stream()
