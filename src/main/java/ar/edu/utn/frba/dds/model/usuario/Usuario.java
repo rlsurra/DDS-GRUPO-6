@@ -18,7 +18,6 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-
     @OneToMany(
             mappedBy = "propietario",
             cascade = CascadeType.ALL,

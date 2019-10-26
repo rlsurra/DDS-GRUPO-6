@@ -11,30 +11,29 @@ public class Atuendo {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @ManyToOne(targetEntity = Prenda.class)
+    @ManyToOne(targetEntity = Prenda.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "prenda_calzo_id")
     private Prenda prendaCalzado;
 
-    @ManyToOne(targetEntity = Prenda.class)
+    @ManyToOne(targetEntity = Prenda.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "prenda_inf_id")
     private Prenda prendaInferior;
 
-    @ManyToOne(targetEntity = Prenda.class)
+    @ManyToOne(targetEntity = Prenda.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "prenda_sup_id")
     private Prenda prendaSuperior;
 
-    @ManyToOne(targetEntity = Prenda.class)
+    @ManyToOne(targetEntity = Prenda.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "prenda_abr_lig_id")
     private Prenda abrigoLigero;
 
-    @ManyToOne(targetEntity = Prenda.class)
+    @ManyToOne(targetEntity = Prenda.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "prenda_abr_pes_id")
     private Prenda abrigoPesado;
 
-    @ManyToOne(targetEntity = Prenda.class)
+    @ManyToOne(targetEntity = Prenda.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "prenda_acce_id")
     private Prenda prendaAccesorio;
-
 
     public Atuendo() {
     }

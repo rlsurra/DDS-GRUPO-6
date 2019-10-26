@@ -18,11 +18,11 @@ public class Evento {
     @Column
     private Integer ciudad;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "evento_id")
     private List<Atuendo> posiblesAtuendos = new ArrayList<>();
 
-    @ManyToOne(targetEntity = Atuendo.class)
+    @ManyToOne(targetEntity = Atuendo.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "atuendo_id")
     private Atuendo atuendoElegido;
 
@@ -32,7 +32,7 @@ public class Evento {
     @Column
     private Double temperatura;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 

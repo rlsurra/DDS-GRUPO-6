@@ -10,7 +10,6 @@ import com.google.common.collect.Sets;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -40,17 +39,15 @@ public class Guardarropa {
         this.propietario = propietario;
     }
 
+    public Usuario getPropietario() {
+        return propietario;
+    }
+
     public Guardarropa() {
     }
 
     public List<Prenda> getPrendas() {
         return prendas;
-    }
-
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "propietario_id")
-    public Usuario getPropietario() {
-        return propietario;
     }
 
     public void setPrendas(List<Prenda> prendas) {
