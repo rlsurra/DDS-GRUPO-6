@@ -1,3 +1,4 @@
+/*
 package ar.edu.utn.frba.dds;
 
 import ar.edu.utn.frba.dds.model.GrupoUsuario;
@@ -26,4 +27,5 @@ public class ObtenerGuardarropasGrupoTest {
 
 
 }
+*/
 

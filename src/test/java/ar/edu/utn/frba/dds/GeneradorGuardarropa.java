@@ -1,6 +1,5 @@
 package ar.edu.utn.frba.dds;
 
-import ar.edu.utn.frba.dds.model.GrupoUsuario;
 import ar.edu.utn.frba.dds.model.Guardarropa;
 import ar.edu.utn.frba.dds.model.Material;
 import ar.edu.utn.frba.dds.model.Prenda;
@@ -41,8 +40,11 @@ public class GeneradorGuardarropa {
         pablo.agregarGuardarropa(guardarropaPablo2);
         pedro.agregarGuardarropa(guardarropaPedro);
 
-        GrupoUsuario testGrupo = new GrupoUsuario("testGrupo");
-        testGrupo.setUsuarios(Arrays.asList(pablo, pedro));
+        guardarropaPablo1.setPropietario(pablo);
+        guardarropaPablo2.setPropietario(pablo);
+        guardarropaPedro.setPropietario(pedro);
+        guardarropaPedro.agregarUsuario(pedro);
+        guardarropaPedro.agregarUsuario(pablo);
 
 
         TipoPrenda tipoCamisaLarga = new TipoCamisaLarga();

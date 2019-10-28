@@ -1,8 +1,11 @@
 package ar.edu.utn.frba.dds.model;
 
 
+import ar.edu.utn.frba.dds.model.usuario.Usuario;
+
 import javax.persistence.*;
 import java.util.Arrays;
+import java.util.stream.Stream;
 
 @Entity(name = "atuendo")
 @Table
@@ -57,11 +60,11 @@ public class Atuendo {
     }
 
     public Double getNivelDeCalor() {
-        return Arrays.asList(prendaCalzado, prendaInferior, prendaSuperior, abrigoLigero, abrigoPesado, prendaAccesorio).stream().mapToDouble(x -> x.getTipoPrenda().getNivelDeCalor()).sum();
+        return Stream.of(prendaCalzado, prendaInferior, prendaSuperior, abrigoLigero, abrigoPesado, prendaAccesorio).mapToDouble(x -> x.getTipoPrenda().getNivelDeCalor()).sum();
     }
 
-    public Double getPuntaje() {
-        return Arrays.asList(prendaCalzado, prendaInferior, prendaSuperior, abrigoLigero, abrigoPesado, prendaAccesorio).stream().mapToDouble(x -> x.getPuntaje()).sum();
+    public Double getPuntaje(Usuario usuario) {
+        return Stream.of(prendaCalzado, prendaInferior, prendaSuperior, abrigoLigero, abrigoPesado, prendaAccesorio).mapToDouble(x -> x.getPuntajeDeUsuario(usuario)).sum();
     }
 
     @Override

@@ -2,7 +2,6 @@ package ar.edu.utn.frba.dds;
 
 
 import ar.edu.utn.frba.dds.model.Atuendo;
-import ar.edu.utn.frba.dds.model.GrupoUsuario;
 import ar.edu.utn.frba.dds.model.Material;
 import ar.edu.utn.frba.dds.model.Prenda;
 import ar.edu.utn.frba.dds.model.categoria.CategoriaAccesorio;
@@ -62,14 +61,12 @@ public class HibernateTest {
         evento.setAtuendoElegido(atuendoElegido);
         evento.setTemperatura(22d);
 
-        GrupoUsuario grupoUsuario = new GrupoUsuario();
         ReferenciaTemperatura refTemp = new Caluroso();
 
         TipoUsuario tipoUsuarioPremium = new TipoUsuarioPremium();
         tipoUsuarioGratuito = new TipoUsuarioGratuito();
         usuario = new Usuario();
         usuario.setGuardarropas(new ArrayList<>());
-        usuario.setGrupo(grupoUsuario);
         usuario.setRefTemperatura(refTemp);
         usuario.setEventos(new ArrayList<>());
         usuario.getEventos().add(evento);

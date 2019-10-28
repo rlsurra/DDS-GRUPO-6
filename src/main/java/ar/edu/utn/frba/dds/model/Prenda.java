@@ -7,6 +7,7 @@ import ar.edu.utn.frba.dds.model.categoria.Categoria;
 import ar.edu.utn.frba.dds.model.prenda.ColorJpaConverter;
 import ar.edu.utn.frba.dds.model.prenda.PuntajePrenda;
 import ar.edu.utn.frba.dds.model.prenda.TipoPrenda;
+import ar.edu.utn.frba.dds.model.usuario.Usuario;
 
 import javax.imageio.ImageIO;
 import javax.persistence.*;
@@ -195,5 +196,9 @@ public class Prenda {
 
     public void setPuntajes(java.util.List<PuntajePrenda> puntajes) {
         this.puntajes = puntajes;
+    }
+
+    public double getPuntajeDeUsuario(Usuario usuario) {
+        return this.getPuntajes().stream().filter(puntaje -> puntaje.getUsuario().equals(usuario)).mapToDouble(PuntajePrenda::getPuntaje).sum();
     }
 }

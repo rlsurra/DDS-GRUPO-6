@@ -2,7 +2,6 @@ package ar.edu.utn.frba.dds.model.usuario;
 
 import ar.edu.utn.frba.dds.exceptions.MaximaCantidadPrendasException;
 import ar.edu.utn.frba.dds.exceptions.ParametrosInvalidosException;
-import ar.edu.utn.frba.dds.model.GrupoUsuario;
 import ar.edu.utn.frba.dds.model.Guardarropa;
 import ar.edu.utn.frba.dds.model.evento.Evento;
 import ar.edu.utn.frba.dds.model.prenda.PuntajePrenda;
@@ -37,7 +36,7 @@ public class Usuario {
     private TipoUsuario tipoUsuario;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Guardarropa> guardarropasAccedidos;
+    private List<Guardarropa> guardarropasAccedidos = new ArrayList<>();
 
     @OneToOne(targetEntity = ReferenciaTemperatura.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "refTemperatura_id", referencedColumnName = "id")

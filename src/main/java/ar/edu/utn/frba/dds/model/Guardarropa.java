@@ -35,6 +35,9 @@ public class Guardarropa {
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Usuario propietario;
 
+    @ManyToMany(mappedBy = "guardarropasAccedidos", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Usuario> usuarios = new ArrayList<>();
+
     public Guardarropa(Usuario propietario) {
         this.propietario = propietario;
     }
@@ -74,9 +77,7 @@ public class Guardarropa {
         List<Atuendo> atuendosPosibles = generarSugerenciasPosibles();
         System.out.println("Se generaron " + atuendosPosibles.size() + " atuendos");
         System.out.println("Niveles de calor de atuendos: " + atuendosPosibles.stream().map(Atuendo::getNivelDeCalor).collect(Collectors.toList()));
-        return ordenarSugerenciasPorPuntaje(
-                filtrarSugerenciasPorNivelCalor(usuario, evento, atuendosPosibles)
-        );
+        return ordenarSugerenciasPorPuntaje(filtrarSugerenciasPorNivelCalor(usuario, evento, atuendosPosibles), usuario);
     }
 
     public List<Atuendo> generarSugerenciasPosibles() {
@@ -127,8 +128,8 @@ public class Guardarropa {
                 .collect(Collectors.toList());
     }
 
-    public List<Atuendo> ordenarSugerenciasPorPuntaje(List<Atuendo> sugerencias) {
-        sugerencias.sort(Comparator.comparingDouble(Atuendo::getPuntaje));
+    public List<Atuendo> ordenarSugerenciasPorPuntaje(List<Atuendo> sugerencias, Usuario usuario) {
+        sugerencias.sort(Comparator.comparingDouble(atuendo -> atuendo.getPuntaje(usuario)));
         return sugerencias;
     }
 
@@ -138,4 +139,17 @@ public class Guardarropa {
                 "prendas=" + prendas +
                 '}';
     }
+
+    public List<Usuario> getUsuarios() {
+        return usuarios;
+    }
+
+    public void setUsuarios(List<Usuario> usuarios) {
+        this.usuarios = usuarios;
+    }
+
+    public void agregarUsuario(Usuario usuario) {
+        this.usuarios.add(usuario);
+    }
+
 }

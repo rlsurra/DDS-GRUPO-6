@@ -26,7 +26,8 @@ public class GuardarropaTest {
     @Test
     public void generarAtuendoTest() {
         Usuario usuario = usuarios.get(new Random().nextInt(usuarios.size()));
-        List<Guardarropa> guardarropas = usuario.getGrupo().getGuardarropaGrupo();
+        List<Guardarropa> guardarropas = usuario.getGuardarropasAccedidos();
+        guardarropas.addAll(usuario.getGuardarropas());
         System.out.println("Guardarropas: " + guardarropas.size());
 
         Guardarropa guardarropa = guardarropas.get(new Random().nextInt(guardarropas.size()));
