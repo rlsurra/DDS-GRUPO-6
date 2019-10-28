@@ -85,7 +85,7 @@ public class GeneradorGuardarropa {
         Prenda bermudaPablo = new Prenda(tipoBermuda, Material.GABARDINA, Color.WHITE, Color.BLACK);
         Prenda zapatoPablo = new Prenda(tipoZapato, Material.CUERO, Color.WHITE, Color.BLACK);
 
-        List<Prenda> prendasPablo2 = new ArrayList<Prenda>();
+        List<Prenda> prendasPablo2 = new ArrayList<>();
         prendasPablo2.add(remeraPablo3);
         prendasPablo2.add(camisaPablo);
         prendasPablo2.add(camperaPablo);
@@ -94,7 +94,7 @@ public class GeneradorGuardarropa {
         prendasPablo2.add(jeanPablo2);
         prendasPablo2.add(bermudaPablo);
         prendasPablo2.add(zapatoPablo);
-        guardarropaPablo1.setPrendas(prendasPablo1);
+        guardarropaPablo1.setPrendas(prendasPablo2);
 
         // Guardarropa pedro
         Prenda remeraPedro = new Prenda(tipoRemeraCorta, Material.ALGODON, Color.RED, Color.BLUE);
@@ -106,7 +106,7 @@ public class GeneradorGuardarropa {
         Prenda gorraPedro = new Prenda(tipoGorra, Material.ALGODON, Color.RED, Color.BLUE);
         Prenda sweaterPedro = new Prenda(tipoSweater, Material.LANA, Color.GRAY);
 
-        List<Prenda> prendasPedro = new ArrayList<Prenda>();
+        List<Prenda> prendasPedro = new ArrayList<>();
         prendasPedro.add(sweaterPedro);
         prendasPedro.add(relojPedro);
         prendasPedro.add(gorraPedro);

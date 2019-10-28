@@ -5,6 +5,7 @@ import ar.edu.utn.frba.dds.exceptions.ParametrosInvalidosException;
 import ar.edu.utn.frba.dds.model.GrupoUsuario;
 import ar.edu.utn.frba.dds.model.Guardarropa;
 import ar.edu.utn.frba.dds.model.evento.Evento;
+import ar.edu.utn.frba.dds.model.prenda.PuntajePrenda;
 import ar.edu.utn.frba.dds.model.usuario.referenciaTemperatura.ReferenciaTemperatura;
 
 import javax.persistence.*;
@@ -35,12 +36,19 @@ public class Usuario {
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private TipoUsuario tipoUsuario;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private GrupoUsuario grupo;
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Guardarropa> guardarropasAccedidos;
 
     @OneToOne(targetEntity = ReferenciaTemperatura.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "refTemperatura_id", referencedColumnName = "id")
     private ReferenciaTemperatura refTemperatura;
+
+    @OneToMany(
+            mappedBy = "usuario",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<PuntajePrenda> puntajes;
 
     public Usuario() {
     }
@@ -68,10 +76,6 @@ public class Usuario {
         return tipoUsuario;
     }
 
-    public GrupoUsuario getGrupo() {
-        return grupo;
-    }
-
     public ReferenciaTemperatura getRefTemperatura() {
         return refTemperatura;
     }
@@ -90,10 +94,6 @@ public class Usuario {
 
     public void setRefTemperatura(ReferenciaTemperatura refTemperatura) {
         this.refTemperatura = refTemperatura;
-    }
-
-    public void setGrupo(GrupoUsuario grupo) {
-        this.grupo = grupo;
     }
 
     /*
@@ -140,5 +140,21 @@ public class Usuario {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public List<PuntajePrenda> getPuntajes() {
+        return puntajes;
+    }
+
+    public void setPuntajes(List<PuntajePrenda> puntajes) {
+        this.puntajes = puntajes;
+    }
+
+    public List<Guardarropa> getGuardarropasAccedidos() {
+        return guardarropasAccedidos;
+    }
+
+    public void setGuardarropasAccedidos(List<Guardarropa> guardarropasAccedidos) {
+        this.guardarropasAccedidos = guardarropasAccedidos;
     }
 }

@@ -16,6 +16,7 @@ public class GuardarropaUsuarioService {
 
     private GuardarropaUsuarioService() {
         //TODO: Cargar los datos de la BBDD o donde esten y se guarden las relaciones
+
     }
 
     public static GuardarropaUsuarioService GuardarropaUsuarioService() {

@@ -5,6 +5,7 @@ import ar.edu.utn.frba.dds.exceptions.ParametrosInvalidosException;
 import ar.edu.utn.frba.dds.exceptions.PrendaNoValidaException;
 import ar.edu.utn.frba.dds.model.categoria.Categoria;
 import ar.edu.utn.frba.dds.model.prenda.ColorJpaConverter;
+import ar.edu.utn.frba.dds.model.prenda.PuntajePrenda;
 import ar.edu.utn.frba.dds.model.prenda.TipoPrenda;
 
 import javax.imageio.ImageIO;
@@ -39,11 +40,17 @@ public class Prenda {
     private Color colorSecundario;
     @Column
     private String imagenPrenda;
-    @Column
-    private Double puntaje = 0d;
 
     @ManyToOne(cascade = CascadeType.ALL)
     private Guardarropa guardarropaActual;
+
+    @OneToMany(
+            mappedBy = "prenda",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private java.util.List<PuntajePrenda> puntajes;
+
 
     public Prenda(TipoPrenda tipoPrenda, Material material, Color colorPrimario) {
         this(tipoPrenda, material, colorPrimario, null);
@@ -91,10 +98,6 @@ public class Prenda {
         return imagenPrenda;
     }
 
-    public Double getPuntaje() {
-        return puntaje;
-    }
-
     public Guardarropa getGuardarropaAcual() {
         return guardarropaActual;
     }
@@ -121,10 +124,6 @@ public class Prenda {
 
     public void setColorSecundario(Color colorSecundario) {
         this.colorSecundario = colorSecundario;
-    }
-
-    public void setPuntaje(Double puntaje) {
-        this.puntaje = puntaje;
     }
 
     public void setGuardarropaAcual(Guardarropa guardarropa) {
@@ -188,5 +187,13 @@ public class Prenda {
                 ", color primario =" + colorPrimario +
                 ", color secundario =" + colorSecundario +
                 '}' + System.getProperty("line.separator");
+    }
+
+    public java.util.List<PuntajePrenda> getPuntajes() {
+        return puntajes;
+    }
+
+    public void setPuntajes(java.util.List<PuntajePrenda> puntajes) {
+        this.puntajes = puntajes;
     }
 }
