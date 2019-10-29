@@ -2,7 +2,7 @@ package ar.edu.utn.frba.dds;
 
 import ar.edu.utn.frba.dds.model.Guardarropa;
 import ar.edu.utn.frba.dds.model.Material;
-import ar.edu.utn.frba.dds.model.Prenda;
+import ar.edu.utn.frba.dds.model.prenda.Prenda;
 import ar.edu.utn.frba.dds.model.prenda.TipoPrenda;
 import ar.edu.utn.frba.dds.model.prenda.accesorio.TipoGorra;
 import ar.edu.utn.frba.dds.model.prenda.accesorio.TipoReloj;
@@ -23,7 +23,6 @@ import ar.edu.utn.frba.dds.model.usuario.referenciaTemperatura.Friolento;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class GeneradorGuardarropa {

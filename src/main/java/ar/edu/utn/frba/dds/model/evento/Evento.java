@@ -1,5 +1,6 @@
 package ar.edu.utn.frba.dds.model.evento;
 
+import ar.edu.utn.frba.dds.Persistible;
 import ar.edu.utn.frba.dds.model.Atuendo;
 import ar.edu.utn.frba.dds.model.evento.notificador.NotificadorAplicacion;
 import ar.edu.utn.frba.dds.model.evento.notificador.NotificadorEvento;
@@ -10,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity(name = "evento")
-public class Evento {
+public class Evento extends Persistible {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;

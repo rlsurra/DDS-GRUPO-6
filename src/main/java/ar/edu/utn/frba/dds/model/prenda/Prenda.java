@@ -1,8 +1,12 @@
-package ar.edu.utn.frba.dds.model;
+package ar.edu.utn.frba.dds.model.prenda;
 
+import ar.edu.utn.frba.dds.Persistible;
 import ar.edu.utn.frba.dds.exceptions.ColorPrimarioIgualAlSecundarioException;
 import ar.edu.utn.frba.dds.exceptions.ParametrosInvalidosException;
 import ar.edu.utn.frba.dds.exceptions.PrendaNoValidaException;
+import ar.edu.utn.frba.dds.model.Guardarropa;
+import ar.edu.utn.frba.dds.model.Material;
+import ar.edu.utn.frba.dds.model.ValidacionPrendaMaterial;
 import ar.edu.utn.frba.dds.model.categoria.Categoria;
 import ar.edu.utn.frba.dds.model.prenda.ColorJpaConverter;
 import ar.edu.utn.frba.dds.model.prenda.PuntajePrenda;
@@ -19,7 +23,7 @@ import java.io.IOException;
 
 @Entity(name = "prenda")
 @Table
-public class Prenda {
+public class Prenda extends Persistible {
 
     public Prenda() {
     }

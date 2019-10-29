@@ -4,7 +4,7 @@ import ar.edu.utn.frba.dds.exceptions.MaximaCantidadPrendasException;
 import ar.edu.utn.frba.dds.exceptions.ParametrosInvalidosException;
 import ar.edu.utn.frba.dds.model.Guardarropa;
 import ar.edu.utn.frba.dds.model.Material;
-import ar.edu.utn.frba.dds.model.Prenda;
+import ar.edu.utn.frba.dds.model.prenda.Prenda;
 import ar.edu.utn.frba.dds.model.evento.Evento;
 import ar.edu.utn.frba.dds.model.evento.EventoSimple;
 import ar.edu.utn.frba.dds.model.prenda.calzado.TipoOjota;

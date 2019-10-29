@@ -4,6 +4,7 @@ import ar.edu.utn.frba.dds.model.categoria.CategoriaCalzado;
 import ar.edu.utn.frba.dds.model.categoria.CategoriaInferior;
 import ar.edu.utn.frba.dds.model.categoria.CategoriaSuperior;
 import ar.edu.utn.frba.dds.model.evento.Evento;
+import ar.edu.utn.frba.dds.model.prenda.Prenda;
 import ar.edu.utn.frba.dds.model.prenda.PrendaVacio;
 import ar.edu.utn.frba.dds.model.usuario.Usuario;
 import com.google.common.collect.Sets;

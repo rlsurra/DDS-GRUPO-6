@@ -1,7 +1,6 @@
 package ar.edu.utn.frba.dds.model.prenda;
 
 import ar.edu.utn.frba.dds.model.Material;
-import ar.edu.utn.frba.dds.model.Prenda;
 import ar.edu.utn.frba.dds.model.categoria.Categoria;
 
 import javax.persistence.Entity;

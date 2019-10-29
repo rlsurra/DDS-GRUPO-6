@@ -2,11 +2,17 @@ package ar.edu.utn.frba.dds.model.evento.periodicidad;
 
 import ar.edu.utn.frba.dds.exceptions.ParametrosInvalidosException;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.time.Month;
 
-public class Mensual implements PeriodicidadEvento {
+@Entity
+public class Mensual extends PeriodicidadEvento {
+
+    @Column
     private int diaDelMes;
+
+    @Column
     private Month mesActual = LocalDateTime.now().getMonth();
 
     public Mensual(int diaDelMes) {
@@ -14,6 +20,10 @@ public class Mensual implements PeriodicidadEvento {
             throw new ParametrosInvalidosException("Dia del mes incorrecto: " + diaDelMes);
         }
         this.diaDelMes = diaDelMes;
+    }
+
+    public Mensual() {
+
     }
 
     @Override
@@ -24,4 +34,5 @@ public class Mensual implements PeriodicidadEvento {
         }
         return false;
     }
+
 }

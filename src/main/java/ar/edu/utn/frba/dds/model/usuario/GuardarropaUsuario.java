@@ -1,8 +1,9 @@
 package ar.edu.utn.frba.dds.model.usuario;
 
+import ar.edu.utn.frba.dds.Persistible;
 import ar.edu.utn.frba.dds.model.Guardarropa;
 
-public class GuardarropaUsuario {
+public class GuardarropaUsuario extends Persistible {
 
     public Guardarropa guardarropa;
     public Usuario usuario;

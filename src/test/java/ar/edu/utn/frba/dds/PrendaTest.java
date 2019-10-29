@@ -2,7 +2,7 @@ package ar.edu.utn.frba.dds;
 
 import ar.edu.utn.frba.dds.exceptions.ColorPrimarioIgualAlSecundarioException;
 import ar.edu.utn.frba.dds.model.Material;
-import ar.edu.utn.frba.dds.model.Prenda;
+import ar.edu.utn.frba.dds.model.prenda.Prenda;
 import ar.edu.utn.frba.dds.model.categoria.superior.CategoriaSuperiorRemera;
 import ar.edu.utn.frba.dds.model.prenda.TipoPrenda;
 import ar.edu.utn.frba.dds.model.prenda.superior.remera.TipoRemeraCorta;

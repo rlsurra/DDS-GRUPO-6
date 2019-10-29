@@ -1,5 +1,6 @@
 package ar.edu.utn.frba.dds.model.usuario;
 
+import ar.edu.utn.frba.dds.Persistible;
 import ar.edu.utn.frba.dds.exceptions.MaximaCantidadPrendasException;
 import ar.edu.utn.frba.dds.exceptions.ParametrosInvalidosException;
 import ar.edu.utn.frba.dds.model.Guardarropa;
@@ -12,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Usuario {
+public class Usuario extends Persistible {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

@@ -1,14 +1,24 @@
 package ar.edu.utn.frba.dds.model.evento.periodicidad;
 
+import javax.persistence.*;
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 
-public class Semanal implements PeriodicidadEvento {
+@Entity
+public class Semanal extends PeriodicidadEvento {
+
+    @Column
     private DayOfWeek dia;
+
+    @Column
     private LocalDateTime actual = LocalDateTime.now();
 
     public Semanal(DayOfWeek dia) {
         this.dia = dia;
+    }
+
+    public Semanal() {
+
     }
 
     @Override

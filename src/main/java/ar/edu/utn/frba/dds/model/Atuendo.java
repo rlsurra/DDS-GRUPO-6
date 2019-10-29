@@ -1,15 +1,16 @@
 package ar.edu.utn.frba.dds.model;
 
 
+import ar.edu.utn.frba.dds.Persistible;
+import ar.edu.utn.frba.dds.model.prenda.Prenda;
 import ar.edu.utn.frba.dds.model.usuario.Usuario;
 
 import javax.persistence.*;
-import java.util.Arrays;
 import java.util.stream.Stream;
 
 @Entity(name = "atuendo")
 @Table
-public class Atuendo {
+public class Atuendo extends Persistible {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

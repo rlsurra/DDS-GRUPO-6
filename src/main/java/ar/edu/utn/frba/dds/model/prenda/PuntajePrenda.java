@@ -1,12 +1,12 @@
 package ar.edu.utn.frba.dds.model.prenda;
 
-import ar.edu.utn.frba.dds.model.Prenda;
+import ar.edu.utn.frba.dds.Persistible;
 import ar.edu.utn.frba.dds.model.usuario.Usuario;
 
 import javax.persistence.*;
 
 @Entity
-public class PuntajePrenda {
+public class PuntajePrenda extends Persistible {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

@@ -1,15 +1,25 @@
 package ar.edu.utn.frba.dds.model.evento.periodicidad;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.time.Year;
 
-public class Anual implements PeriodicidadEvento {
+@Entity
+public class Anual extends PeriodicidadEvento {
+
+    @Column
     private Month mes;
+
+    @Column
     private Year anioActual = Year.now();
 
     public Anual(Month mes) {
         this.mes = mes;
+    }
+
+    public Anual() {
+
     }
 
     @Override

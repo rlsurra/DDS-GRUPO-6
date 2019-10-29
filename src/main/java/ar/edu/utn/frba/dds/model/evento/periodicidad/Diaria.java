@@ -1,14 +1,24 @@
 package ar.edu.utn.frba.dds.model.evento.periodicidad;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
-public class Diaria implements PeriodicidadEvento {
+@Entity
+public class Diaria extends PeriodicidadEvento {
+
+    @Column
     private LocalTime time;
+
+    @Column
     private int diaDelMes = LocalDateTime.now().getDayOfMonth();
 
     public Diaria(LocalTime time) {
         this.time = time;
+    }
+
+    public Diaria() {
+
     }
 
     @Override

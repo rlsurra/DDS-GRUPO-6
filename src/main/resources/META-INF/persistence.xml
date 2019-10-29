@@ -12,7 +12,7 @@
 
         <class>ar.edu.utn.frba.dds.model.openWeatherAPI.OpenWeatherAdapter</class>
         <class>ar.edu.utn.frba.dds.model.openWeatherAPI.TemperaturaOW</class>
-        <class>ar.edu.utn.frba.dds.model.Prenda</class>
+        <class>ar.edu.utn.frba.dds.model.prenda.Prenda</class>
 
 
         <properties>

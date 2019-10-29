@@ -3,7 +3,7 @@ package ar.edu.utn.frba.dds;
 
 import ar.edu.utn.frba.dds.model.Atuendo;
 import ar.edu.utn.frba.dds.model.Material;
-import ar.edu.utn.frba.dds.model.Prenda;
+import ar.edu.utn.frba.dds.model.prenda.Prenda;
 import ar.edu.utn.frba.dds.model.categoria.CategoriaAccesorio;
 import ar.edu.utn.frba.dds.model.categoria.superior.CategoriaSuperiorAbrigoPesado;
 import ar.edu.utn.frba.dds.model.evento.Evento;
