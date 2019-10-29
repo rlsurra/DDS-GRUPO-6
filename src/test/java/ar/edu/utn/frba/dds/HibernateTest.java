@@ -77,7 +77,6 @@ public class HibernateTest {
     @Test
     public void guardarEventoTest() {
 
-        try {
             EntityManager manager = JPAUtils.getEntityManager();
 
             manager.getTransaction().begin();
@@ -90,16 +89,11 @@ public class HibernateTest {
             manager.persist(atuendoElegido);
             manager.persist(evento);
             manager.getTransaction().commit();
-        } catch (Exception e) {
-            System.out.println("Error en persistencia de evento: " + e);
-            e.printStackTrace();
-        }
 
     }
 
     @Test
     public void obtenerEventosTest() {
-        try {
             EntityManager manager = JPAUtils.getEntityManager();
             manager.getTransaction().begin();
 
@@ -111,48 +105,34 @@ public class HibernateTest {
             manager.getTransaction().commit();
             System.out.println(eventos);
 
-        } catch (Exception e) {
-            System.out.println("Error en persistencia de evento: " + e);
-            e.printStackTrace();
-        }
+
     }
 
     @Test
     public void guardarUsuarioTest() {
 
-        try {
             EntityManager manager = JPAUtils.getEntityManager();
             manager.getTransaction().begin();
             manager.persist(usuario);
             manager.flush();
             manager.getTransaction().commit();
-        } catch (Exception e) {
-            System.out.println("Error en persistencia de usuario: " + e);
-            e.printStackTrace();
-        }
     }
 
     @Test
     public void getUsuarioTest() {
         Usuario usuario2;
-        try {
             EntityManager manager = JPAUtils.getEntityManager();
             manager.getTransaction().begin();
             manager.persist(usuario);
             manager.getTransaction().commit();
             usuario2 = manager.find(Usuario.class, usuario.getId());
             assertEquals(usuario, usuario2);
-        } catch (Exception e) {
-            System.out.println("Error en la recuperacion de un usuario: " + e);
-            e.printStackTrace();
-        }
     }
 
     @Test
     public void deleteUsuarioRemoveTest() {
         Usuario usuario2;
         Usuario usuarioEliminado;
-        try {
             EntityManager manager = JPAUtils.getEntityManager();
             manager.getTransaction().begin();
             manager.persist(usuario);
@@ -164,16 +144,12 @@ public class HibernateTest {
             manager.getTransaction().commit();
             usuarioEliminado = manager.find(usuario2.getClass(), usuario2.getId());
             assertNull(usuarioEliminado);
-        } catch (Exception e) {
-            System.out.println("Error en la recuperacion de un usuario: " + e);
-            e.printStackTrace();
-        }
+
     }
 
     @Test
     public void updateUsuarioTest() {
         Usuario usuarioUpdateado;
-        try {
             EntityManager manager = JPAUtils.getEntityManager();
             manager.getTransaction().begin();
             manager.persist(usuario);
@@ -186,9 +162,5 @@ public class HibernateTest {
             manager.detach(usuario);
             usuarioUpdateado = manager.find(usuario.getClass(), usuario.getId());
             assertEquals(usuarioUpdateado.getTipoUsuario(), usuario.getTipoUsuario());
-        } catch (Exception e) {
-            System.out.println("Error en el update de un usuario: " + e);
-            e.printStackTrace();
-        }
     }
 }
