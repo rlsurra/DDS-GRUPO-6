@@ -33,8 +33,7 @@ public class Evento extends Persistible {
     @Column
     private Double temperatura;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "usuario_id")
+    @ManyToOne
     private Usuario usuario;
 
     public Evento() {

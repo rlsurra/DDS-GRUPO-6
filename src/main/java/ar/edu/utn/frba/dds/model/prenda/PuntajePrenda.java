@@ -12,10 +12,10 @@ public class PuntajePrenda extends Persistible {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @ManyToOne(targetEntity = Usuario.class, cascade = CascadeType.ALL)
+    @ManyToOne(targetEntity = Usuario.class)
     private Usuario usuario;
 
-    @ManyToOne(targetEntity = Prenda.class, cascade = CascadeType.ALL)
+    @ManyToOne(targetEntity = Prenda.class)
     private Prenda prenda;
 
     @Column

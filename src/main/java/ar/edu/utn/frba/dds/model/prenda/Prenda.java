@@ -46,7 +46,7 @@ public class Prenda extends Persistible {
     @Column
     private String imagenPrenda;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private Guardarropa guardarropaActual;
 
     @OneToMany(

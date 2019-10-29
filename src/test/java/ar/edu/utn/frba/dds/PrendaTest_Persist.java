@@ -6,9 +6,7 @@ import ar.edu.utn.frba.dds.model.prenda.Prenda;
 import ar.edu.utn.frba.dds.model.categoria.superior.CategoriaSuperiorRemera;
 import ar.edu.utn.frba.dds.model.prenda.TipoPrenda;
 import ar.edu.utn.frba.dds.model.prenda.superior.remera.TipoRemeraCorta;
-import org.junit.Assert;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -17,33 +15,12 @@ import java.awt.*;
 
 public class PrendaTest_Persist {
 
-    ///////////////////
-    private static EntityManager manager;
-    private static EntityManagerFactory emf;
-    /////////////////////
-
-
     @Test
     public void saberTipoDePrenda() {
-
-        ////////////entity manager////////////
-
-        emf = Persistence.createEntityManagerFactory("PERSISTENCE");
-        manager = emf.createEntityManager();
-        ////////////fin entity////////////
-
 
         TipoPrenda tipoRemeraCorta = new TipoRemeraCorta();
         Prenda remera = new Prenda(tipoRemeraCorta, Material.ALGODON, Color.BLACK, Color.BLUE);
         Assert.assertEquals(tipoRemeraCorta, remera.getTipoPrenda());
-
-
-        manager.getTransaction().begin();
-        manager.persist(remera);
-        manager.getTransaction().commit();
-        manager.close();
-        emf.close();
-
 
     }
 

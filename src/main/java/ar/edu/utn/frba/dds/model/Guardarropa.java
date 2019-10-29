@@ -31,12 +31,12 @@ public class Guardarropa {
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
-    private List<Prenda> prendas;
+    private List<Prenda> prendas = new ArrayList<>();
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Usuario propietario;
 
-    @ManyToMany(mappedBy = "guardarropasAccedidos", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "guardarropasAccedidos", fetch = FetchType.LAZY)
     private List<Usuario> usuarios = new ArrayList<>();
 
     public Guardarropa(Usuario propietario) {

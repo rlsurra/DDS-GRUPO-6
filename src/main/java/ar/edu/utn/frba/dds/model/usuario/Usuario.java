@@ -48,7 +48,7 @@ public class Usuario extends Persistible {
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
-    private List<PuntajePrenda> puntajes;
+    private List<PuntajePrenda> puntajes = new ArrayList<>();
 
     public Usuario() {
     }

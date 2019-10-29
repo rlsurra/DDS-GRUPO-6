@@ -3,11 +3,10 @@ package ar.edu.utn.frba.dds;
 
 import ar.edu.utn.frba.dds.model.Atuendo;
 import ar.edu.utn.frba.dds.model.Material;
-import ar.edu.utn.frba.dds.model.prenda.Prenda;
 import ar.edu.utn.frba.dds.model.categoria.CategoriaAccesorio;
 import ar.edu.utn.frba.dds.model.categoria.superior.CategoriaSuperiorAbrigoPesado;
-import ar.edu.utn.frba.dds.model.evento.Evento;
 import ar.edu.utn.frba.dds.model.evento.EventoSimple;
+import ar.edu.utn.frba.dds.model.prenda.Prenda;
 import ar.edu.utn.frba.dds.model.prenda.PrendaVacio;
 import ar.edu.utn.frba.dds.model.prenda.calzado.TipoZapatilla;
 import ar.edu.utn.frba.dds.model.prenda.inferior.TipoJean;
@@ -19,20 +18,17 @@ import ar.edu.utn.frba.dds.model.usuario.TipoUsuarioPremium;
 import ar.edu.utn.frba.dds.model.usuario.Usuario;
 import ar.edu.utn.frba.dds.model.usuario.referenciaTemperatura.Caluroso;
 import ar.edu.utn.frba.dds.model.usuario.referenciaTemperatura.ReferenciaTemperatura;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import javax.persistence.EntityManager;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 import java.awt.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
 
 
 public class HibernateTest {
@@ -47,9 +43,21 @@ public class HibernateTest {
     private EventoSimple evento;
     private TipoUsuario tipoUsuarioGratuito;
     private Usuario usuario;
+    private static EntityManager manager;
+
+    @BeforeClass
+    public static void beforeclass(){
+        manager = JPAUtils.getEntityManager();
+    }
+
+    @AfterClass
+    public static void afterclass(){
+        manager.close();
+    }
 
     @Before
     public void setUp() {
+
         evento = new EventoSimple(3435910, LocalDateTime.now());
         prendaSuperior = new Prenda(new TipoRemeraCorta(), Material.ALGODON, Color.ORANGE);
         prendaInferior = new Prenda(new TipoJean(), Material.JEAN, Color.BLACK);
@@ -74,7 +82,7 @@ public class HibernateTest {
 
     }
 
-    @Test
+   /* @Test
     public void guardarEventoTest() {
 
             EntityManager manager = JPAUtils.getEntityManager();
@@ -89,10 +97,10 @@ public class HibernateTest {
             manager.persist(atuendoElegido);
             manager.persist(evento);
             manager.getTransaction().commit();
+            manager.close();
+    }*/
 
-    }
-
-    @Test
+    /*@Test
     public void obtenerEventosTest() {
             EntityManager manager = JPAUtils.getEntityManager();
             manager.getTransaction().begin();
@@ -106,48 +114,28 @@ public class HibernateTest {
             System.out.println(eventos);
 
 
-    }
+    }*/
 
     @Test
     public void guardarUsuarioTest() {
 
-            EntityManager manager = JPAUtils.getEntityManager();
-            manager.getTransaction().begin();
-            manager.persist(usuario);
-            manager.flush();
-            manager.getTransaction().commit();
+        manager.getTransaction().begin();
+        manager.persist(usuario);
+        manager.flush();
+        manager.getTransaction().commit();
     }
 
     @Test
     public void getUsuarioTest() {
         Usuario usuario2;
-            EntityManager manager = JPAUtils.getEntityManager();
-            manager.getTransaction().begin();
-            manager.persist(usuario);
-            manager.getTransaction().commit();
-            usuario2 = manager.find(Usuario.class, usuario.getId());
-            assertEquals(usuario, usuario2);
+        manager.getTransaction().begin();
+        manager.persist(usuario);
+        manager.getTransaction().commit();
+        usuario2 = manager.find(Usuario.class, usuario.getId());
+        assertEquals(usuario, usuario2);
     }
 
-    @Test
-    public void deleteUsuarioRemoveTest() {
-        Usuario usuario2;
-        Usuario usuarioEliminado;
-            EntityManager manager = JPAUtils.getEntityManager();
-            manager.getTransaction().begin();
-            manager.persist(usuario);
-            manager.getTransaction().commit();
-            manager.detach(usuario);
-            usuario2 = manager.find(Usuario.class, usuario.getId());
-            manager.getTransaction().begin();
-            manager.remove(usuario2);
-            manager.getTransaction().commit();
-            usuarioEliminado = manager.find(usuario2.getClass(), usuario2.getId());
-            assertNull(usuarioEliminado);
-
-    }
-
-    @Test
+    /*@Test
     public void updateUsuarioTest() {
         Usuario usuarioUpdateado;
             EntityManager manager = JPAUtils.getEntityManager();
@@ -162,5 +150,5 @@ public class HibernateTest {
             manager.detach(usuario);
             usuarioUpdateado = manager.find(usuario.getClass(), usuario.getId());
             assertEquals(usuarioUpdateado.getTipoUsuario(), usuario.getTipoUsuario());
-    }
+    }*/
 }
