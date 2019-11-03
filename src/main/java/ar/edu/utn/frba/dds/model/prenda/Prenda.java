@@ -16,6 +16,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 
 @Entity(name = "prenda")
@@ -47,7 +48,7 @@ public class Prenda extends Entidad {
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
-    private java.util.List<PuntajePrenda> puntajes;
+    private java.util.List<PuntajePrenda> puntajes = new  java.util.ArrayList<>();
 
 
     public Prenda(TipoPrenda tipoPrenda, Material material, Color colorPrimario) {
