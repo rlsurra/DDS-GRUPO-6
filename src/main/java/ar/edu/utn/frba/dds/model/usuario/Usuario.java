@@ -1,5 +1,6 @@
 package ar.edu.utn.frba.dds.model.usuario;
 
+import ar.edu.utn.frba.dds.model.usuario.HistorialAtuendos.RegistroAtuendoSeleccionado;
 import ar.edu.utn.frba.dds.persistence.Entidad;
 import ar.edu.utn.frba.dds.exceptions.MaximaCantidadPrendasException;
 import ar.edu.utn.frba.dds.exceptions.ParametrosInvalidosException;
@@ -50,6 +51,13 @@ public class Usuario extends Entidad {
             orphanRemoval = true
     )
     private List<PuntajePrenda> puntajes = new ArrayList<>();
+
+    @OneToMany(
+            mappedBy = "usuario",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<RegistroAtuendoSeleccionado> historialAtuendos = new ArrayList<>();
 
     public Usuario() {
     }
@@ -157,5 +165,13 @@ public class Usuario extends Entidad {
 
     public void setGuardarropasAccedidos(List<Guardarropa> guardarropasAccedidos) {
         this.guardarropasAccedidos = guardarropasAccedidos;
+    }
+
+    public List<RegistroAtuendoSeleccionado> getHistorialAtuendos() {
+        return historialAtuendos;
+    }
+
+    public void setHistorialAtuendos(List<RegistroAtuendoSeleccionado> historialAtuendos) {
+        this.historialAtuendos = historialAtuendos;
     }
 }

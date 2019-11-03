@@ -14,6 +14,7 @@ import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.calzado.TipoZapatilla;
 import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.inferior.TipoJean;
 import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.superior.abrigoLigero.TipoSweater;
 import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.superior.remera.TipoRemeraCorta;
+import ar.edu.utn.frba.dds.model.usuario.HistorialAtuendos.RegistroAtuendoSeleccionado;
 import ar.edu.utn.frba.dds.model.usuario.tipoUsuario.TipoUsuario;
 import ar.edu.utn.frba.dds.model.usuario.tipoUsuario.TipoUsuarioGratuito;
 import ar.edu.utn.frba.dds.model.usuario.tipoUsuario.TipoUsuarioPremium;
@@ -29,6 +30,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.awt.*;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
@@ -50,6 +52,7 @@ public class RepositorioTest {
     private Repositorio repositorio;
     private EntityManagerFactory emFactory;
     private Guardarropa guardarropa;
+    private RegistroAtuendoSeleccionado historialAtuendo;
 
     @Before
     public void setUp() {
@@ -94,6 +97,13 @@ public class RepositorioTest {
         guardarropa.getPrendas().add(prendaSuperior);
         guardarropa.getPrendas().add(prendaAbrigoLigero);
         guardarropa.getPrendas().add(prendaAbrigoPesado);
+
+        historialAtuendo = new RegistroAtuendoSeleccionado();
+        historialAtuendo.setAtuendo(atuendoElegido);
+        historialAtuendo.setUsuario(usuario);
+        historialAtuendo.setEvento(evento);
+        historialAtuendo.setFecha(LocalTime.now());
+        historialAtuendo.setNombre("Hola");
 
     }
 
@@ -194,6 +204,38 @@ public class RepositorioTest {
         repositorio.save(guardarropa2);
         guardarropa2 = repositorio.getEntidadById(Guardarropa.class, guardarropa2.getId());
         assertEquals(nombreNuevo, guardarropa2.getNombre());
+    }
+
+    @Test
+    public void guardarRegistroAtuendoSeleccionadoTest() {
+        repositorio.save(historialAtuendo);
+    }
+
+    @Test
+    public void getRegistroAtuendoSeleccionadoTest() {
+        repositorio.save(historialAtuendo);
+        RegistroAtuendoSeleccionado historialAtuendo2 = repositorio.getEntidadById(RegistroAtuendoSeleccionado.class, historialAtuendo.getId());
+        assertEquals(historialAtuendo.getNombre(), historialAtuendo2.getNombre());
+    }
+
+    @Test
+    public void deleteRegistroAtuendoSeleccionadoTest() {
+        repositorio.save(historialAtuendo);
+        RegistroAtuendoSeleccionado historialAtuendo2 = repositorio.getEntidadById(RegistroAtuendoSeleccionado.class, historialAtuendo.getId());
+        repositorio.delete(historialAtuendo2);
+        historialAtuendo2 = repositorio.getEntidadById(RegistroAtuendoSeleccionado.class, historialAtuendo2.getId());
+        assertNull(historialAtuendo2);
+    }
+
+    @Test
+    public void updateRegistroAtuendoSeleccionadoTest() {
+        String nombreNuevo = "Un Nombre Nuevo";
+        repositorio.save(historialAtuendo);
+        RegistroAtuendoSeleccionado historialAtuendo2 = repositorio.getEntidadById(RegistroAtuendoSeleccionado.class, historialAtuendo.getId());
+        historialAtuendo2.setNombre(nombreNuevo);
+        repositorio.save(historialAtuendo2);
+        historialAtuendo2 = repositorio.getEntidadById(RegistroAtuendoSeleccionado.class, historialAtuendo2.getId());
+        assertEquals(nombreNuevo, historialAtuendo2.getNombre());
     }
 
     @Test
