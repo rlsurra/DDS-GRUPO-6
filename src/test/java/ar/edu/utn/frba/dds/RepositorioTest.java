@@ -3,6 +3,8 @@ package ar.edu.utn.frba.dds;
 
 import ar.edu.utn.frba.dds.model.atuendo.Atuendo;
 import ar.edu.utn.frba.dds.model.evento.Evento;
+import ar.edu.utn.frba.dds.model.evento.notificador.NotificadorAplicacion;
+import ar.edu.utn.frba.dds.model.evento.notificador.NotificadorCorreo;
 import ar.edu.utn.frba.dds.model.guardarropa.Guardarropa;
 import ar.edu.utn.frba.dds.model.material.Material;
 import ar.edu.utn.frba.dds.model.categoria.CategoriaAccesorio;
@@ -55,6 +57,8 @@ public class RepositorioTest {
     private Guardarropa guardarropa;
     private RegistroAtuendoSeleccionado historialAtuendo;
     private PuntajePrenda preferencia;
+    private NotificadorCorreo notificadorCorreo;
+    private NotificadorAplicacion notificadorAplicacion;
 
     @Before
     public void setUp() {
@@ -77,6 +81,9 @@ public class RepositorioTest {
         atuendoElegido = new Atuendo(prendaSuperior, prendaInferior, prendaCalzado, prendaAccesorio, prendaAbrigoLigero, prendaAbrigoPesado);
         evento.setAtuendoElegido(atuendoElegido);
         evento.setTemperatura(22d);
+        notificadorAplicacion = new NotificadorAplicacion();
+        notificadorCorreo = new NotificadorCorreo(notificadorAplicacion);
+        evento.setNotificadorEvento(notificadorCorreo);
 
         ReferenciaTemperatura refTemp = new Caluroso();
 
@@ -89,6 +96,8 @@ public class RepositorioTest {
         usuario.getEventos().add(evento);
         usuario.setTipoUsuario(tipoUsuarioPremium);
         usuario.setId(null);
+
+
 
         guardarropa = new Guardarropa();
         guardarropa.setPrendas(new ArrayList<>());
