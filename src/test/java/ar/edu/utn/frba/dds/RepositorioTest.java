@@ -10,6 +10,7 @@ import ar.edu.utn.frba.dds.model.categoria.superior.CategoriaSuperiorAbrigoPesad
 import ar.edu.utn.frba.dds.model.evento.EventoSimple;
 import ar.edu.utn.frba.dds.model.prenda.Prenda;
 import ar.edu.utn.frba.dds.model.prenda.PrendaVacio;
+import ar.edu.utn.frba.dds.model.prenda.PuntajePrenda;
 import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.calzado.TipoZapatilla;
 import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.inferior.TipoJean;
 import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.superior.abrigoLigero.TipoSweater;
@@ -53,6 +54,7 @@ public class RepositorioTest {
     private EntityManagerFactory emFactory;
     private Guardarropa guardarropa;
     private RegistroAtuendoSeleccionado historialAtuendo;
+    private PuntajePrenda preferencia;
 
     @Before
     public void setUp() {
@@ -104,6 +106,11 @@ public class RepositorioTest {
         historialAtuendo.setEvento(evento);
         historialAtuendo.setFecha(LocalTime.now());
         historialAtuendo.setNombre("Hola");
+
+        preferencia = new PuntajePrenda();
+        preferencia.setPrenda(prendaAccesorio);
+        preferencia.setUsuario(usuario);
+        preferencia.setPuntaje(5.00);
 
     }
 
@@ -268,6 +275,38 @@ public class RepositorioTest {
         repositorio.save(prendaAbrigoLigero2);
         prendaAbrigoLigero2 = repositorio.getEntidadById(Prenda.class, prendaAbrigoLigero2.getId());
         assertEquals(nombreNuevo, prendaAbrigoLigero2.getNombre());
+    }
+
+    @Test
+    public void guardarPreferenciaTest() {
+        repositorio.save(preferencia);
+    }
+
+    @Test
+    public void getPreferenciaTest() {
+        repositorio.save(preferencia);
+        PuntajePrenda preferencia2 = repositorio.getEntidadById(PuntajePrenda.class, preferencia.getId());
+        assertEquals(preferencia.getNombre(), preferencia2.getNombre());
+    }
+
+    @Test
+    public void deletePreferenciaTest() {
+        repositorio.save(preferencia);
+        PuntajePrenda preferencia2 = repositorio.getEntidadById(PuntajePrenda.class, preferencia.getId());
+        repositorio.delete(preferencia2);
+        preferencia2 = repositorio.getEntidadById(PuntajePrenda.class, preferencia2.getId());
+        assertNull(preferencia2);
+    }
+
+    @Test
+    public void updatePreferenciaTest() {
+        Double puntajeNuevo = 2.00;
+        repositorio.save(preferencia);
+        PuntajePrenda preferencia2 = repositorio.getEntidadById(PuntajePrenda.class, preferencia.getId());
+        preferencia2.setPuntaje(puntajeNuevo);
+        repositorio.save(preferencia2);
+        preferencia2 = repositorio.getEntidadById(PuntajePrenda.class, preferencia2.getId());
+        assertEquals(puntajeNuevo, preferencia2.getPuntaje());
     }
 
 }

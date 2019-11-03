@@ -8,10 +8,10 @@ import javax.persistence.*;
 @Entity
 public class PuntajePrenda extends Entidad {
 
-    @ManyToOne(targetEntity = Usuario.class)
+    @ManyToOne(targetEntity = Usuario.class, cascade = CascadeType.MERGE)
     private Usuario usuario;
 
-    @ManyToOne(targetEntity = Prenda.class)
+    @ManyToOne(targetEntity = Prenda.class, cascade = CascadeType.MERGE)
     private Prenda prenda;
 
     @Column
