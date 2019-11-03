@@ -3,12 +3,23 @@ package ar.edu.utn.frba.dds.model.evento.notificador;
 import ar.edu.utn.frba.dds.model.evento.Evento;
 
 import javax.annotation.Nonnull;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.MappedSuperclass;
+import javax.persistence.OneToOne;
 
-public abstract class NotificadorExtra implements NotificadorEvento {
+@Entity
+public abstract class NotificadorExtra extends NotificadorEvento {
+
+    @OneToOne(cascade = CascadeType.ALL)
     private NotificadorEvento notificadorDecorado;
 
     public NotificadorExtra(@Nonnull NotificadorEvento notificadorDecorado) {
         this.notificadorDecorado = notificadorDecorado;
+    }
+
+    public NotificadorExtra() {
+
     }
 
     @Override

@@ -24,7 +24,7 @@ public class Evento extends Entidad {
     @JoinColumn(name = "atuendo_id")
     private Atuendo atuendoElegido;
 
-    @Transient
+    @OneToOne(cascade = CascadeType.ALL)
     private NotificadorEvento notificadorEvento = new NotificadorAplicacion();
 
     @Column
