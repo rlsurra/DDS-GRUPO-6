@@ -1,16 +1,12 @@
 package ar.edu.utn.frba.dds.model.prenda;
 
-import ar.edu.utn.frba.dds.Persistible;
+import ar.edu.utn.frba.dds.persistence.Entidad;
 import ar.edu.utn.frba.dds.model.usuario.Usuario;
 
 import javax.persistence.*;
 
 @Entity
-public class PuntajePrenda extends Persistible {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+public class PuntajePrenda extends Entidad {
 
     @ManyToOne(targetEntity = Usuario.class)
     private Usuario usuario;
@@ -45,11 +41,4 @@ public class PuntajePrenda extends Persistible {
         this.puntaje = puntaje;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 }

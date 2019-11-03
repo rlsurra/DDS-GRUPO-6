@@ -1,16 +1,13 @@
 package ar.edu.utn.frba.dds;
 
 import ar.edu.utn.frba.dds.exceptions.ColorPrimarioIgualAlSecundarioException;
-import ar.edu.utn.frba.dds.model.Material;
+import ar.edu.utn.frba.dds.model.material.Material;
 import ar.edu.utn.frba.dds.model.prenda.Prenda;
 import ar.edu.utn.frba.dds.model.categoria.superior.CategoriaSuperiorRemera;
-import ar.edu.utn.frba.dds.model.prenda.TipoPrenda;
-import ar.edu.utn.frba.dds.model.prenda.superior.remera.TipoRemeraCorta;
+import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.TipoPrenda;
+import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.superior.remera.TipoRemeraCorta;
 import org.junit.*;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import java.awt.*;
 
 public class PrendaTest_Persist {
@@ -49,7 +46,7 @@ public class PrendaTest_Persist {
     public void cargarImagenAUnaPrenda() {
         TipoPrenda tipoRemeraCorta = new TipoRemeraCorta();
         Prenda remera = new Prenda(tipoRemeraCorta, Material.ALGODON, Color.BLACK);
-        remera.setImagenPrenda("/home/dds/Escritorio/remeraNegra.jpg");
+        remera.setImagenPrenda("/remeraNegra.jpg");
         Assert.assertEquals("/home/dds/TP/repo/DDS-GRUPO-6/images/TipoRemeraCortaALGODON.jpg", remera.getImagenPrenda());
     }
 

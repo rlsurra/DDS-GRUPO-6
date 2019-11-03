@@ -1,7 +1,7 @@
 package ar.edu.utn.frba.dds;
 
-import ar.edu.utn.frba.dds.model.Atuendo;
-import ar.edu.utn.frba.dds.model.Guardarropa;
+import ar.edu.utn.frba.dds.model.atuendo.Atuendo;
+import ar.edu.utn.frba.dds.model.guardarropa.Guardarropa;
 import ar.edu.utn.frba.dds.model.evento.EventoSimple;
 import ar.edu.utn.frba.dds.model.usuario.Usuario;
 import org.junit.Before;

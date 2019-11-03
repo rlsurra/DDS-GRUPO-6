@@ -1,7 +1,7 @@
 package ar.edu.utn.frba.dds.model.evento;
 
-import ar.edu.utn.frba.dds.Persistible;
-import ar.edu.utn.frba.dds.model.Atuendo;
+import ar.edu.utn.frba.dds.persistence.Entidad;
+import ar.edu.utn.frba.dds.model.atuendo.Atuendo;
 import ar.edu.utn.frba.dds.model.evento.notificador.NotificadorAplicacion;
 import ar.edu.utn.frba.dds.model.evento.notificador.NotificadorEvento;
 import ar.edu.utn.frba.dds.model.usuario.Usuario;
@@ -11,10 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity(name = "evento")
-public class Evento extends Persistible {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+public class Evento extends Entidad {
 
     @Column
     private Integer ciudad;
@@ -55,9 +52,6 @@ public class Evento extends Persistible {
     /*
         getters
      */
-    public Integer getId() {
-        return id;
-    }
 
     public List<Atuendo> getPosiblesAtuendos() {
         return posiblesAtuendos;
@@ -77,10 +71,6 @@ public class Evento extends Persistible {
 
     public Double getTemperatura() {
         return temperatura;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     /*

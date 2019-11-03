@@ -1,10 +1,10 @@
 package ar.edu.utn.frba.dds;
 
 import ar.edu.utn.frba.dds.exceptions.GuardarropaUsuarioException;
-import ar.edu.utn.frba.dds.model.Guardarropa;
-import ar.edu.utn.frba.dds.model.GuardarropaUsuarioService;
-import ar.edu.utn.frba.dds.model.usuario.GuardarropaUsuario;
-import ar.edu.utn.frba.dds.model.usuario.TipoUsuarioGratuito;
+import ar.edu.utn.frba.dds.model.guardarropa.Guardarropa;
+import ar.edu.utn.frba.dds.model.guardarropaUsuario.GuardarropaUsuarioService;
+import ar.edu.utn.frba.dds.model.guardarropaUsuario.GuardarropaUsuario;
+import ar.edu.utn.frba.dds.model.usuario.tipoUsuario.TipoUsuarioGratuito;
 import ar.edu.utn.frba.dds.model.usuario.Usuario;
 import ar.edu.utn.frba.dds.model.usuario.referenciaTemperatura.Caluroso;
 import org.junit.Assert;

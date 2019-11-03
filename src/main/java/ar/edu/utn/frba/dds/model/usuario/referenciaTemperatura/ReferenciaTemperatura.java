@@ -1,15 +1,13 @@
 package ar.edu.utn.frba.dds.model.usuario.referenciaTemperatura;
 
+import ar.edu.utn.frba.dds.persistence.Entidad;
+
 import javax.persistence.*;
 
 @Entity
 @Inheritance
 @DiscriminatorColumn(name = "TIPO")
-public abstract class ReferenciaTemperatura {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public abstract class ReferenciaTemperatura extends Entidad {
 
     @Column
     private double minimo;
@@ -34,11 +32,4 @@ public abstract class ReferenciaTemperatura {
         this.maximo = maximo;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 }

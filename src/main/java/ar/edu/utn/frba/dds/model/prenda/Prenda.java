@@ -1,16 +1,13 @@
 package ar.edu.utn.frba.dds.model.prenda;
 
-import ar.edu.utn.frba.dds.Persistible;
+import ar.edu.utn.frba.dds.persistence.Entidad;
 import ar.edu.utn.frba.dds.exceptions.ColorPrimarioIgualAlSecundarioException;
 import ar.edu.utn.frba.dds.exceptions.ParametrosInvalidosException;
 import ar.edu.utn.frba.dds.exceptions.PrendaNoValidaException;
-import ar.edu.utn.frba.dds.model.Guardarropa;
-import ar.edu.utn.frba.dds.model.Material;
-import ar.edu.utn.frba.dds.model.ValidacionPrendaMaterial;
+import ar.edu.utn.frba.dds.model.guardarropa.Guardarropa;
+import ar.edu.utn.frba.dds.model.material.Material;
 import ar.edu.utn.frba.dds.model.categoria.Categoria;
-import ar.edu.utn.frba.dds.model.prenda.ColorJpaConverter;
-import ar.edu.utn.frba.dds.model.prenda.PuntajePrenda;
-import ar.edu.utn.frba.dds.model.prenda.TipoPrenda;
+import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.TipoPrenda;
 import ar.edu.utn.frba.dds.model.usuario.Usuario;
 
 import javax.imageio.ImageIO;
@@ -23,14 +20,10 @@ import java.io.IOException;
 
 @Entity(name = "prenda")
 @Table
-public class Prenda extends Persistible {
+public class Prenda extends Entidad {
 
     public Prenda() {
     }
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
 
     @ManyToOne(cascade = CascadeType.ALL)
     private TipoPrenda tipoPrenda;
@@ -75,10 +68,6 @@ public class Prenda extends Persistible {
     GETTERS
      */
 
-    public Long getId() {
-        return id;
-    }
-
     public Material getMaterial() {
         return material;
     }
@@ -110,10 +99,6 @@ public class Prenda extends Persistible {
 	/*
     SETTERS
      */
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public void setTipoPrenda(TipoPrenda tipoPrenda) {
         this.tipoPrenda = tipoPrenda;

@@ -1,19 +1,20 @@
 package ar.edu.utn.frba.dds.model.usuario;
 
-import ar.edu.utn.frba.dds.Persistible;
+import ar.edu.utn.frba.dds.persistence.Entidad;
 import ar.edu.utn.frba.dds.exceptions.MaximaCantidadPrendasException;
 import ar.edu.utn.frba.dds.exceptions.ParametrosInvalidosException;
-import ar.edu.utn.frba.dds.model.Guardarropa;
+import ar.edu.utn.frba.dds.model.guardarropa.Guardarropa;
 import ar.edu.utn.frba.dds.model.evento.Evento;
 import ar.edu.utn.frba.dds.model.prenda.PuntajePrenda;
 import ar.edu.utn.frba.dds.model.usuario.referenciaTemperatura.ReferenciaTemperatura;
+import ar.edu.utn.frba.dds.model.usuario.tipoUsuario.TipoUsuario;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Usuario extends Persistible {
+public class Usuario extends Entidad {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
