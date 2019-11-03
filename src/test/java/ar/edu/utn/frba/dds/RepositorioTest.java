@@ -73,6 +73,7 @@ public class RepositorioTest {
         usuario.setEventos(new ArrayList<>());
         usuario.getEventos().add(evento);
         usuario.setTipoUsuario(tipoUsuarioPremium);
+        usuario.setId(null);
 
     }
 

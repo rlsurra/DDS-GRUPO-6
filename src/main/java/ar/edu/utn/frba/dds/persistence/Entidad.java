@@ -3,7 +3,7 @@ package ar.edu.utn.frba.dds.persistence;
 import javax.persistence.*;
 import java.io.Serializable;
 
-@Entity
+@MappedSuperclass
 public abstract class Entidad implements Serializable {
 
     private static final long serialVersionUID = 1L;
