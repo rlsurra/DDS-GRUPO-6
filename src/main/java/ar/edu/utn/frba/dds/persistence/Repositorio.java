@@ -1,5 +1,7 @@
 package ar.edu.utn.frba.dds.persistence;
 
+import org.springframework.stereotype.Repository;
+
 import javax.persistence.EntityManager;
 
 public class Repositorio {
@@ -49,7 +51,6 @@ public class Repositorio {
         em.getTransaction().commit();
         entidad.afterDelete(em);
     }
-
     public <T> T getEntidadById(Class<T> clase, Long id){
         return em.find(clase, id);
     }
