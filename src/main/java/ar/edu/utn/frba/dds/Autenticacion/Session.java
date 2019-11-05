@@ -10,7 +10,6 @@ public class Session {
     public Session(String token, Usuario usuario){
         this.token = token;
         this.usuario = usuario;
-        Sessions.getSessiones().put(token, this);
     }
 
     public String getToken() {

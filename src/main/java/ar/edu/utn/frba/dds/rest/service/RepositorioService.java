@@ -20,13 +20,10 @@ public class RepositorioService {
         repositorio = new Repositorio(emFactory.createEntityManager());
     }
 
-    public Usuario crearUsuario(){
-        Usuario usuario = new Usuario();
+    public Usuario crearUsuario(Usuario usuario){
         usuario.setGuardarropas(new ArrayList<>());
         TipoUsuario tipoUsuarioPremium = new TipoUsuarioPremium();
         usuario.setTipoUsuario(tipoUsuarioPremium);
-        usuario.setId(null);
-
         repositorio.save(usuario);
 
         return repositorio.getEntidadById(Usuario.class, usuario.getId());

@@ -2,6 +2,7 @@ package ar.edu.utn.frba.dds.Autenticacion;
 
 import ar.edu.utn.frba.dds.exceptions.InvalidCredentialsException;
 import ar.edu.utn.frba.dds.model.usuario.Usuario;
+import ar.edu.utn.frba.dds.persistence.Repositorio;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
@@ -12,11 +13,11 @@ public class Autenticacion {
         String token = null;
 
         EntityManager manager = Persistence.createEntityManagerFactory("PERSISTENCE").createEntityManager();
-        Usuario user = (Usuario) manager.createNativeQuery("SELECT * FROM User WHERE username = " + username).getSingleResult();
+        Long idusuario = ((Number) manager.createNativeQuery("SELECT id FROM Usuario WHERE username = '" + username + "'"
+        ).getSingleResult()).longValue();
 
-        if (user == null){
-            throw new InvalidCredentialsException();
-        }
+        Repositorio repo = new Repositorio(manager);
+        Usuario user = repo.getEntidadById(Usuario.class, idusuario);
 
         if (!user.getPassword().equals(password)){
             throw new InvalidCredentialsException();
@@ -24,7 +25,8 @@ public class Autenticacion {
 
         token = new RandomString(32).nextString();
 
-        new Session(token, user);
+        Session session = new Session(token, user);
+        Sessions.getSessiones().put(token, session);
 
         return token;
     }
