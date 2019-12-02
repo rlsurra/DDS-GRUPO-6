@@ -9,6 +9,7 @@ import ar.edu.utn.frba.dds.model.material.Material;
 import ar.edu.utn.frba.dds.model.categoria.Categoria;
 import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.TipoPrenda;
 import ar.edu.utn.frba.dds.model.usuario.Usuario;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.imageio.ImageIO;
 import javax.persistence.*;
@@ -27,20 +28,29 @@ public class Prenda extends Entidad {
     }
 
     @ManyToOne(cascade = CascadeType.ALL)
+    @JsonIgnore
     private TipoPrenda tipoPrenda;
 
     @Column
+    @JsonIgnore
     private Material material;
+
     @Column
+    @JsonIgnore
     @Convert(converter = ColorJpaConverter.class)
     private Color colorPrimario;
+
     @Column
+    @JsonIgnore
     @Convert(converter = ColorJpaConverter.class)
     private Color colorSecundario;
+
     @Column
+    @JsonIgnore
     private String imagenPrenda;
 
     @ManyToOne
+    @JsonIgnore
     private Guardarropa guardarropaActual;
 
     @OneToMany(
@@ -48,6 +58,7 @@ public class Prenda extends Entidad {
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
+    @JsonIgnore
     private java.util.List<PuntajePrenda> puntajes = new  java.util.ArrayList<>();
 
 

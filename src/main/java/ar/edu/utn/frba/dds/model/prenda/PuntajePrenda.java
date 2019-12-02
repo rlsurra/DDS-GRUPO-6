@@ -2,6 +2,7 @@ package ar.edu.utn.frba.dds.model.prenda;
 
 import ar.edu.utn.frba.dds.persistence.Entidad;
 import ar.edu.utn.frba.dds.model.usuario.Usuario;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
@@ -9,9 +10,11 @@ import javax.persistence.*;
 public class PuntajePrenda extends Entidad {
 
     @ManyToOne(targetEntity = Usuario.class, cascade = CascadeType.MERGE)
+    @JsonIgnore
     private Usuario usuario;
 
     @ManyToOne(targetEntity = Prenda.class, cascade = CascadeType.MERGE)
+    @JsonIgnore
     private Prenda prenda;
 
     @Column

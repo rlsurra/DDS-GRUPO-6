@@ -6,8 +6,6 @@ import ar.edu.utn.frba.dds.persistence.JPAUtils;
 import ar.edu.utn.frba.dds.persistence.Repositorio;
 
 import javax.persistence.EntityManager;
-import javax.persistence.Persistence;
-import javax.persistence.criteria.CriteriaBuilder;
 
 public class Autenticacion {
 
@@ -19,7 +17,7 @@ public class Autenticacion {
             Long idusuario = ((Number) manager.createNativeQuery("SELECT id FROM Usuario WHERE username = '" + username + "'"
             ).getSingleResult()).longValue();
 
-            Repositorio repo = new Repositorio(manager);
+            Repositorio repo = Repositorio.getInstance();
             Usuario user = repo.getEntidadById(Usuario.class, idusuario);
 
             if (!user.getPassword().equals(password)) {
@@ -30,10 +28,10 @@ public class Autenticacion {
 
             Session session = new Session(token, user.getId());
             Sessions.getSessiones().put(token, session);
-        } catch (InvalidCredentialsException e){
+        } catch (InvalidCredentialsException e) {
             throw e;
         } finally {
-            if (manager != null){
+            if (manager != null) {
                 manager.close();
             }
         }
@@ -41,7 +39,7 @@ public class Autenticacion {
         return token;
     }
 
-    public void logout(String token){
+    public void logout(String token) {
         Sessions.getSessiones().remove(token);
     }
 

@@ -6,10 +6,17 @@ import javax.persistence.EntityManager;
 
 public class Repositorio {
 
-    private EntityManager em;
+    private static Repositorio instance = null;
 
-    public Repositorio(EntityManager em){
-       this.em = em;
+    private EntityManager em = JPAUtils.getEntityManagerFactory().createEntityManager();
+
+    private Repositorio(){   }
+
+    public static Repositorio getInstance(){
+        if (instance == null){
+            instance = new Repositorio();
+        }
+        return instance;
     }
 
     public void close(){
