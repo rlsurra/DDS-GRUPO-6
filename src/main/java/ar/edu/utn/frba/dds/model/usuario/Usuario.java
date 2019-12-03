@@ -17,6 +17,9 @@ import java.util.List;
 @Entity
 public class Usuario extends Entidad {
 
+    @Column
+    private String apellido;
+
     @Column(unique = true)
     private String username;
 
@@ -183,5 +186,13 @@ public class Usuario extends Entidad {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
     }
 }
