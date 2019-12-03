@@ -63,7 +63,7 @@ public class RepositorioTest {
     @Before
     public void setUp() {
         emFactory = Persistence.createEntityManagerFactory("PERSISTENCE");
-        repositorio = new Repositorio(emFactory.createEntityManager());
+        repositorio = Repositorio.getInstance();
 
         evento = new EventoSimple(3435910, LocalDateTime.now());
         prendaSuperior = new Prenda(new TipoRemeraCorta(), Material.ALGODON, Color.ORANGE);

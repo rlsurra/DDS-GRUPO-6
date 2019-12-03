@@ -10,6 +10,7 @@ import ar.edu.utn.frba.dds.model.evento.Evento;
 import ar.edu.utn.frba.dds.model.prenda.Prenda;
 import ar.edu.utn.frba.dds.model.prenda.PrendaVacio;
 import ar.edu.utn.frba.dds.model.usuario.Usuario;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.common.collect.Sets;
 
 import javax.persistence.*;
@@ -33,9 +34,11 @@ public class Guardarropa extends Entidad {
     private List<Prenda> prendas = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
     private Usuario propietario;
 
     @ManyToMany(mappedBy = "guardarropasAccedidos", fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Usuario> usuarios = new ArrayList<>();
 
     public Guardarropa(Usuario propietario) {

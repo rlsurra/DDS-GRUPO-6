@@ -5,11 +5,11 @@ import ar.edu.utn.frba.dds.model.usuario.Usuario;
 public class Session {
 
     private String token;
-    private Usuario usuario;
+    private Long usuarioId;
 
-    public Session(String token, Usuario usuario){
+    public Session(String token, Long usuarioid){
         this.token = token;
-        this.usuario = usuario;
+        this.usuarioId = usuarioid;
     }
 
     public String getToken() {
@@ -20,11 +20,11 @@ public class Session {
         this.token = token;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public Long getUsuarioId() {
+        return usuarioId;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setUsuarioId(Long usuarioId) {
+        this.usuarioId = usuarioId;
     }
 }
