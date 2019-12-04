@@ -9,6 +9,7 @@ import ar.edu.utn.frba.dds.model.evento.Evento;
 import ar.edu.utn.frba.dds.model.prenda.PuntajePrenda;
 import ar.edu.utn.frba.dds.model.usuario.referenciaTemperatura.ReferenciaTemperatura;
 import ar.edu.utn.frba.dds.model.usuario.tipoUsuario.TipoUsuario;
+import ar.edu.utn.frba.dds.persistence.Repositorio;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -195,4 +196,21 @@ public class Usuario extends Entidad {
     public void setApellido(String apellido) {
         this.apellido = apellido;
     }
+
+    public static Usuario getUsuarioFromUserName(String username){
+        Long id = null;
+        try {
+            id = getUsuarioIdFromUsername(username);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return Repositorio.getInstance().getEntidadById(Usuario.class, id);
+    }
+
+    public static Long getUsuarioIdFromUsername(String username){
+        return ((Number) Repositorio.getInstance().getEntityManager().createNativeQuery("SELECT id FROM Usuario WHERE username = '" + username + "'"
+        ).getSingleResult()).longValue();
+    }
+
 }

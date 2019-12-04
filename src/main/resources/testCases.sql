@@ -15,6 +15,6 @@ values (30001, 40, 30, 'C');
 insert into tipousuario (id, Usuario_Tipo)
 values (30001, 'P');
 insert into usuario (id, nombre, apellido, refTemperatura_id, tipoUsuario_id, password, username)
-values (30001, 'Julieta', 'Azul', 30001, 30001, '123456', 'aroco');
+values (30001, 'Julieta', 'Azul', 30001, 30001, '123456', 'jazul');
 insert into guardarropa (id, nombre, propietario_id)
 values (30001, 'Guardarropa Julieta', 30001);
