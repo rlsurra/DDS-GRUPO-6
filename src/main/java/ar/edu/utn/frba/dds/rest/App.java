@@ -1,5 +1,13 @@
 package ar.edu.utn.frba.dds.rest;
 
+import ar.edu.utn.frba.dds.model.guardarropa.Guardarropa;
+import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.TipoPrenda;
+import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.TipoPrendaCalzado;
+import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.TipoPrendaInferior;
+import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.TipoPrendaSuperior;
+import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.superior.abrigoLigero.TipoSweater;
+import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.superior.remera.TipoRemeraCorta;
+import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.superior.remera.TipoRemeraLarga;
 import ar.edu.utn.frba.dds.model.usuario.Usuario;
 import ar.edu.utn.frba.dds.model.usuario.referenciaTemperatura.Caluroso;
 import ar.edu.utn.frba.dds.model.usuario.referenciaTemperatura.ReferenciaTemperatura;
@@ -22,6 +30,12 @@ public class App {
 
         Repositorio repo = Repositorio.getInstance();
 
+
+        TipoPrenda RemeraCuelloRedondoMangaCorta = new TipoPrendaSuperior();
+        RemeraCuelloRedondoMangaCorta.setNombre("Remera cuello redondo manga corta");
+        RemeraCuelloRedondoMangaCorta.setNivelDeCalor(5D);
+        //No puedo agregar telas admitidas ni combina con
+
         ReferenciaTemperatura caluroso = new Caluroso();
         TipoUsuario gratuito = new TipoUsuarioGratuito();
         TipoUsuario premium = new TipoUsuarioPremium();
@@ -38,6 +52,12 @@ public class App {
             aroco.setPassword("123456");
             aroco.setNombre("Alejandro");
             aroco.setApellido("Roco");
+            if (aroco.getGuardarropas().size() == 0) {
+                Guardarropa guardarropa = new Guardarropa();
+                guardarropa.setNombre("Guardarropas de Alejandro");
+                guardarropa.setPropietario(aroco);
+                aroco.agregarGuardarropa(guardarropa);
+            }
             repo.save(aroco);
         }
 
@@ -53,8 +73,83 @@ public class App {
             jazul.setPassword("123456");
             jazul.setNombre("Julieta");
             jazul.setApellido("Azul");
+            if (jazul.getGuardarropas().size() == 0) {
+                Guardarropa guardarropa = new Guardarropa();
+                guardarropa.setNombre("Guardarropas de Julieta");
+                guardarropa.setPropietario(jazul);
+                jazul.agregarGuardarropa(guardarropa);
+            }
             repo.save(jazul);
         }
+
+
+
+        TipoPrenda RemeraCuelloRedondoMangaLarga = new TipoPrendaSuperior();
+        RemeraCuelloRedondoMangaLarga.setNombre("Remera cuello redondo manga larga");
+        RemeraCuelloRedondoMangaLarga.setNivelDeCalor(8D);
+        //No puedo agregar telas admitidas ni combina con
+
+        TipoPrenda RemeraEscoteVMangaCorta = new TipoPrendaSuperior();
+        RemeraEscoteVMangaCorta.setNombre("Remera escote V manga corta");
+        RemeraEscoteVMangaCorta.setNivelDeCalor(5D);
+        //No puedo agregar telas admitidas ni combina con
+
+        TipoPrenda RemeraEscoteVMangaLarga = new TipoPrendaSuperior();
+        RemeraEscoteVMangaLarga.setNombre("Remera escote V manga larga");
+        RemeraEscoteVMangaLarga.setNivelDeCalor(8D);
+        //No puedo agregar telas admitidas ni combina con
+
+        TipoPrenda sueter = new TipoPrendaSuperior();
+        sueter.setNombre("Sueter");
+        sueter.setNivelDeCalor(15D);
+
+        TipoPrenda campera = new TipoPrendaSuperior();
+        campera.setNombre("Campera");
+        campera.setNivelDeCalor(15D);
+
+        TipoPrenda pantalonLargo = new TipoPrendaInferior();
+        pantalonLargo.setNombre("Pantalón largo");
+        pantalonLargo.setNivelDeCalor(8D);
+
+        TipoPrenda pantalonCorto = new TipoPrendaInferior();
+        pantalonCorto.setNombre("Pantalón corto");
+        pantalonCorto.setNivelDeCalor(8D);
+
+        TipoPrenda bermuda = new TipoPrendaInferior();
+        bermuda.setNombre("Bermuda");
+        bermuda.setNivelDeCalor(3D);
+
+        TipoPrenda pollera = new TipoPrendaInferior();
+        pollera.setNombre("Pollera");
+        pollera.setNivelDeCalor(3D);
+
+        TipoPrenda calza = new TipoPrendaInferior();
+        calza.setNombre("Calza");
+        calza.setNivelDeCalor(5D);
+
+        TipoPrenda buzo = new TipoPrendaSuperior();
+        buzo.setNombre("Buzo");
+        buzo.setNivelDeCalor(13D);
+
+        TipoPrenda musculosa = new TipoPrendaSuperior();
+        musculosa.setNombre("Musculosa");
+        musculosa.setNivelDeCalor(3D);
+
+        TipoPrenda zapatillas = new TipoPrendaCalzado();
+        zapatillas.setNombre("Zapatillas");
+        zapatillas.setNivelDeCalor(0D);
+
+        TipoPrenda zapatos = new TipoPrendaCalzado();
+        zapatos.setNombre("Zapatos");
+        zapatos.setNivelDeCalor(0D);
+
+        TipoPrenda sandalias = new TipoPrendaCalzado();
+        sandalias.setNombre("Zapatos");
+        sandalias.setNivelDeCalor(0D);
+
+
+
+
 
 
     }

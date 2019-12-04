@@ -31,4 +31,14 @@ public abstract class TipoPrenda extends Entidad {
     public Double getNivelDeCalor() {
         return nivelDeCalor;
     }
+
+    public void setNivelDeCalor(Double nivelDeCalor) {
+        this.nivelDeCalor = nivelDeCalor;
+    }
+
+    public static TipoPrenda buscarTipoDePrendaPorCodigo(){
+        
+    }
+    }
+
 }

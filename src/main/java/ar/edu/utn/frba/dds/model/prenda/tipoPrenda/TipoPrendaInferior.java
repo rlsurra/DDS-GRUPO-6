@@ -5,7 +5,7 @@ import ar.edu.utn.frba.dds.model.categoria.CategoriaInferior;
 import javax.persistence.Entity;
 
 @Entity
-public abstract class TipoPrendaInferior extends TipoPrenda {
+public class TipoPrendaInferior extends TipoPrenda {
     public TipoPrendaInferior() {
     }
 
