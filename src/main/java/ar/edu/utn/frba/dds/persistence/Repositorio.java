@@ -21,6 +21,7 @@ public class Repositorio {
 
     public void close(){
         em.close();
+        instance = null;
     }
 
     public void save(Entidad entidad) {
@@ -60,6 +61,10 @@ public class Repositorio {
     }
     public <T> T getEntidadById(Class<T> clase, Long id){
         return em.find(clase, id);
+    }
+
+    public EntityManager getEntityManager(){
+        return em;
     }
 
 }
