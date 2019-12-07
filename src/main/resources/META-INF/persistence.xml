@@ -17,9 +17,9 @@
 
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
-            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/DDS-GRUPO-6"/>
-            <property name="javax.persistence.jdbc.user" value="root"/>
-            <property name="javax.persistence.jdbc.password" value="admin"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://us-cdbr-iron-east-05.cleardb.net:3306/heroku_35acfda2cfc344b"/>
+            <property name="javax.persistence.jdbc.user" value="bece78f583027d"/>
+            <property name="javax.persistence.jdbc.password" value="0c7e280b"/>
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"/>
             <property name="hibernate.hbm2ddl.auto" value="update"/>
