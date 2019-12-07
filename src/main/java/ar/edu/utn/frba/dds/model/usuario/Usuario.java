@@ -16,6 +16,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@NamedQueries({
+	@NamedQuery(name = "selectUserByUsername", query = "SELECT u FROM Usuario u WHERE u.username = :username")
+})
 public class Usuario extends Entidad {
 
     @Column
@@ -198,14 +201,14 @@ public class Usuario extends Entidad {
     }
 
     public static Usuario getUsuarioFromUserName(String username){
-        Long id = null;
         try {
-            id = getUsuarioIdFromUsername(username);
+        	TypedQuery<Usuario> namedQuery = Repositorio.getInstance().getEntityManager().createNamedQuery("selectUserByUsername", Usuario.class);
+        	namedQuery.setParameter("username", username);
+        	return namedQuery.getSingleResult();
         } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
-        return Repositorio.getInstance().getEntidadById(Usuario.class, id);
     }
 
     public static Long getUsuarioIdFromUsername(String username){
