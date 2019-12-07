@@ -210,10 +210,10 @@ public class Usuario extends Entidad {
             return null;
         }
     }
-
+/*
     public static Long getUsuarioIdFromUsername(String username){
         return ((Number) Repositorio.getInstance().getEntityManager().createNativeQuery("SELECT id FROM Usuario WHERE username = '" + username + "'"
         ).getSingleResult()).longValue();
-    }
+    }*/
 
 }

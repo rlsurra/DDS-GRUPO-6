@@ -28,25 +28,20 @@ public class Prenda extends Entidad {
     }
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JsonIgnore
     private TipoPrenda tipoPrenda;
 
     @Column
-    @JsonIgnore
     private Material material;
 
     @Column
-    @JsonIgnore
     @Convert(converter = ColorJpaConverter.class)
     private Color colorPrimario;
 
     @Column
-    @JsonIgnore
     @Convert(converter = ColorJpaConverter.class)
     private Color colorSecundario;
 
     @Column
-    @JsonIgnore
     private String imagenPrenda;
 
     @ManyToOne
@@ -58,7 +53,6 @@ public class Prenda extends Entidad {
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
-    @JsonIgnore
     private java.util.List<PuntajePrenda> puntajes = new  java.util.ArrayList<>();
 
 
