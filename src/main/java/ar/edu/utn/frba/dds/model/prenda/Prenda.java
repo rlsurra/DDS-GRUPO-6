@@ -98,6 +98,7 @@ public class Prenda extends Entidad {
         return imagenPrenda;
     }
 
+    @JsonIgnore
     public Guardarropa getGuardarropaAcual() {
         return guardarropaActual;
     }

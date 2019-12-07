@@ -222,31 +222,34 @@ public class App {
             aroco.setPassword("123456");
             aroco.setNombre("Alejandro");
             aroco.setApellido("Roco");
-            if (aroco.getGuardarropas().size() == 0) {
-                Guardarropa guardarropa = new Guardarropa();
-                guardarropa.setNombre("Guardarropas de Alejandro");
-                guardarropa.setPropietario(aroco);
-                aroco.agregarGuardarropa(guardarropa);
-            }
-            Guardarropa guardarropa = aroco.getGuardarropas().get(0);
-            if (guardarropa.getPrendas().size() == 0){
-
-                java.util.List<Prenda> prendas = guardarropa.getPrendas();
-                prendas.add(new Prenda(RemeraCuelloRedondoMangaCorta, Material.ALGODON, Color.BLACK ));
-                prendas.add(new Prenda(RemeraEscoteVMangaCorta, Material.LYCRA, Color.WHITE ));
-                prendas.add(new Prenda(musculosa, Material.LYCRA, Color.YELLOW ));
-                prendas.add(new Prenda(campera, Material.CUERO, Color.WHITE ));
-                prendas.add(new Prenda(sueter, Material.POLIESTER, Color.WHITE ));
-                prendas.add(new Prenda(bermuda, Material.JEAN, new Color(0, 128, 255) ));
-                prendas.add(new Prenda(pantalonLargo, Material.NYLON, Color.gray));
-                prendas.add(new Prenda(zapatillas, Material.NYLON, new Color(112, 0, 0) ));
-                prendas.add(new Prenda(zapatos, Material.CUERO, Color.BLACK));
-                guardarropa.setPrendas(prendas);
-
-            }
-
             repo.save(aroco);
         }
+
+        if (aroco.getGuardarropas().size() == 0) {
+            Guardarropa guardarropa = new Guardarropa();
+            guardarropa.setNombre("Guardarropas de Alejandro");
+            guardarropa.setPropietario(aroco);
+            aroco.agregarGuardarropa(guardarropa);
+        }
+
+        Guardarropa guardarropaAroco = aroco.getGuardarropas().get(0);
+        if (guardarropaAroco.getPrendas().size() == 0) {
+
+            java.util.List<Prenda> prendas = guardarropaAroco.getPrendas();
+            prendas.add(new Prenda(RemeraCuelloRedondoMangaCorta, Material.ALGODON, Color.BLACK));
+            prendas.add(new Prenda(RemeraEscoteVMangaCorta, Material.LYCRA, Color.WHITE));
+            prendas.add(new Prenda(musculosa, Material.LYCRA, Color.YELLOW));
+            prendas.add(new Prenda(campera, Material.CUERO, Color.WHITE));
+            prendas.add(new Prenda(sueter, Material.POLIESTER, Color.WHITE));
+            prendas.add(new Prenda(bermuda, Material.JEAN, new Color(0, 128, 255)));
+            prendas.add(new Prenda(pantalonLargo, Material.NYLON, Color.gray));
+            prendas.add(new Prenda(zapatillas, Material.NYLON, new Color(112, 0, 0)));
+            prendas.add(new Prenda(zapatos, Material.CUERO, Color.BLACK));
+            guardarropaAroco.setPrendas(prendas);
+        }
+        aroco.getGuardarropas().clear();
+        aroco.getGuardarropas().add(guardarropaAroco);
+        repo.save(aroco);
 
         //Usuario jazul
         Usuario jazul = Usuario.getUsuarioFromUserName("jazul");
@@ -266,24 +269,28 @@ public class App {
                 guardarropa.setPropietario(jazul);
                 jazul.agregarGuardarropa(guardarropa);
             }
-            Guardarropa guardarropa = jazul.getGuardarropas().get(0);
-            if (guardarropa.getPrendas().size() == 0){
-
-                java.util.List<Prenda> prendas = guardarropa.getPrendas();
-                prendas.add(new Prenda(RemeraCuelloRedondoMangaLarga, Material.LYCRA, Color.YELLOW ));
-                prendas.add(new Prenda(RemeraEscoteVMangaLarga, Material.ALGODON, Color.WHITE ));
-                prendas.add(new Prenda(musculosa, Material.LYCRA, Color.GREEN ));
-                prendas.add(new Prenda(sueter, Material.POLIESTER, Color.GRAY ));
-                prendas.add(new Prenda(pollera, Material.SEDA, Color.BLACK ));
-                prendas.add(new Prenda(calza, Material.NYLON, Color.BLACK ));
-                prendas.add(new Prenda(buzo, Material.ALGODON, Color.WHITE ));
-                prendas.add(new Prenda(zapatos, Material.CUERO, Color.BLACK ));
-                prendas.add(new Prenda(sandalias, Material.CUERO, Color.BLACK ));
-                guardarropa.setPrendas(prendas);
-            }
-
             repo.save(jazul);
         }
+
+        Guardarropa guardarropajazul = jazul.getGuardarropas().get(0);
+        if (guardarropajazul.getPrendas().size() == 0){
+
+            java.util.List<Prenda> prendas = guardarropajazul.getPrendas();
+            prendas.add(new Prenda(RemeraCuelloRedondoMangaLarga, Material.LYCRA, Color.YELLOW ));
+            prendas.add(new Prenda(RemeraEscoteVMangaLarga, Material.ALGODON, Color.WHITE ));
+            prendas.add(new Prenda(musculosa, Material.LYCRA, Color.GREEN ));
+            prendas.add(new Prenda(sueter, Material.POLIESTER, Color.GRAY ));
+            prendas.add(new Prenda(pollera, Material.SEDA, Color.BLACK ));
+            prendas.add(new Prenda(calza, Material.NYLON, Color.BLACK ));
+            prendas.add(new Prenda(buzo, Material.ALGODON, Color.WHITE ));
+            prendas.add(new Prenda(zapatos, Material.CUERO, Color.BLACK ));
+            prendas.add(new Prenda(sandalias, Material.CUERO, Color.BLACK ));
+            guardarropajazul.setPrendas(prendas);
+        }
+        jazul.getGuardarropas().clear();
+        jazul.getGuardarropas().add(guardarropajazul);
+        repo.save(jazul);
+
 
 
 

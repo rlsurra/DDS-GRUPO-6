@@ -45,6 +45,7 @@ public class Guardarropa extends Entidad {
         this.propietario = propietario;
     }
 
+    @JsonIgnore
     public Usuario getPropietario() {
         return propietario;
     }
@@ -57,6 +58,7 @@ public class Guardarropa extends Entidad {
     }
 
     public void setPrendas(List<Prenda> prendas) {
+        prendas.forEach(prenda -> {prenda.setGuardarropaAcual(this);});
         this.prendas = prendas;
     }
 
@@ -143,6 +145,7 @@ public class Guardarropa extends Entidad {
                 '}';
     }
 
+    @JsonIgnore
     public List<Usuario> getUsuarios() {
         return usuarios;
     }
