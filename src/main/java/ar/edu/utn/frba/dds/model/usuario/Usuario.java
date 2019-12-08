@@ -126,6 +126,7 @@ public class Usuario extends Entidad {
             throw new MaximaCantidadPrendasException();
         }
         guardarropas.add(guardarropa);
+        guardarropa.setPropietario(this);
     }
 
     public void agregarEvento(Evento evento) {
@@ -136,6 +137,7 @@ public class Usuario extends Entidad {
             this.eventos = new ArrayList<>();
         }
         this.eventos.add(evento);
+        evento.setUsuario(this);
     }
 
     public void setTipoUsuario(TipoUsuario tipoUsuario) {
