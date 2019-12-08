@@ -9,23 +9,35 @@ import ar.edu.utn.frba.dds.model.evento.Evento;
 import ar.edu.utn.frba.dds.model.prenda.PuntajePrenda;
 import ar.edu.utn.frba.dds.model.usuario.referenciaTemperatura.ReferenciaTemperatura;
 import ar.edu.utn.frba.dds.model.usuario.tipoUsuario.TipoUsuario;
+import ar.edu.utn.frba.dds.persistence.Repositorio;
+import com.fasterxml.jackson.annotation.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@NamedQueries({
+	@NamedQuery(name = "selectUserByUsername", query = "SELECT u FROM Usuario u WHERE u.username = :username")
+})
 public class Usuario extends Entidad {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @Column
+    private String apellido;
+
+    @Column(unique = true)
+    private String username;
+
+    @Column
+    private String password;
 
     @OneToMany(
             mappedBy = "propietario",
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
+    @JsonIgnoreProperties(value = "propietario", allowSetters = true)
+    @JsonProperty(value = "guardarropas")
     private List<Guardarropa> guardarropas = new ArrayList<>();
 
     @OneToMany(
@@ -33,6 +45,7 @@ public class Usuario extends Entidad {
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
+    @JsonIgnoreProperties(value = "usuario", allowSetters = true)
     private List<Evento> eventos = new ArrayList<>();
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -73,10 +86,13 @@ public class Usuario extends Entidad {
     /*
     getters
      */
+
+    @JsonIgnoreProperties(value = "propietario", allowSetters = true)
     public List<Guardarropa> getGuardarropas() {
         return guardarropas;
     }
 
+    @JsonIgnoreProperties(value = "usuarios", allowSetters = true)
     public List<Evento> getEventos() {
         return eventos;
     }
@@ -93,10 +109,12 @@ public class Usuario extends Entidad {
     setters
      */
 
+    @JsonIgnoreProperties(value = "propietario", allowSetters = true)
     public void setGuardarropas(List<Guardarropa> guardarropas) {
         this.guardarropas = guardarropas;
     }
 
+    @JsonIgnoreProperties(value = "usuarios", allowSetters = true)
     public void setEventos(List<Evento> eventos) {
         this.eventos = eventos;
     }
@@ -117,6 +135,7 @@ public class Usuario extends Entidad {
             throw new MaximaCantidadPrendasException();
         }
         guardarropas.add(guardarropa);
+        guardarropa.setPropietario(this);
     }
 
     public void agregarEvento(Evento evento) {
@@ -127,6 +146,7 @@ public class Usuario extends Entidad {
             this.eventos = new ArrayList<>();
         }
         this.eventos.add(evento);
+        evento.setUsuario(this);
     }
 
     public void setTipoUsuario(TipoUsuario tipoUsuario) {
@@ -141,14 +161,6 @@ public class Usuario extends Entidad {
                 ", eventos=" + eventos +
                 ", tipoUsuario=" + tipoUsuario +
                 '}';
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public List<PuntajePrenda> getPuntajes() {
@@ -174,4 +186,45 @@ public class Usuario extends Entidad {
     public void setHistorialAtuendos(List<RegistroAtuendoSeleccionado> historialAtuendos) {
         this.historialAtuendos = historialAtuendos;
     }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public static Usuario getUsuarioFromUserName(String username){
+        try {
+        	TypedQuery<Usuario> namedQuery = Repositorio.getInstance().getEntityManager().createNamedQuery("selectUserByUsername", Usuario.class);
+        	namedQuery.setParameter("username", username);
+        	return namedQuery.getSingleResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+/*
+    public static Long getUsuarioIdFromUsername(String username){
+        return ((Number) Repositorio.getInstance().getEntityManager().createNativeQuery("SELECT id FROM Usuario WHERE username = '" + username + "'"
+        ).getSingleResult()).longValue();
+    }*/
+
 }

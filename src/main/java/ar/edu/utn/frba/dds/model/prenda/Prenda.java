@@ -9,6 +9,9 @@ import ar.edu.utn.frba.dds.model.material.Material;
 import ar.edu.utn.frba.dds.model.categoria.Categoria;
 import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.TipoPrenda;
 import ar.edu.utn.frba.dds.model.usuario.Usuario;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.imageio.ImageIO;
 import javax.persistence.*;
@@ -31,16 +34,20 @@ public class Prenda extends Entidad {
 
     @Column
     private Material material;
+
     @Column
     @Convert(converter = ColorJpaConverter.class)
     private Color colorPrimario;
+
     @Column
     @Convert(converter = ColorJpaConverter.class)
     private Color colorSecundario;
+
     @Column
     private String imagenPrenda;
 
     @ManyToOne
+    @JsonIgnoreProperties({"prendas", "propietario"})
     private Guardarropa guardarropaActual;
 
     @OneToMany(
@@ -57,7 +64,7 @@ public class Prenda extends Entidad {
 
     public Prenda(TipoPrenda tipoPrenda, Material material, Color colorPrimario, Color colorSecundario) {
         validarParametrosInvalidos(tipoPrenda, material, colorPrimario);
-        validarPrendaMaterial(tipoPrenda, material);
+        //validarPrendaMaterial(tipoPrenda, material);
         validarColores(colorPrimario, colorSecundario);
         this.tipoPrenda = tipoPrenda;
         this.material = material;
@@ -93,7 +100,8 @@ public class Prenda extends Entidad {
         return imagenPrenda;
     }
 
-    public Guardarropa getGuardarropaAcual() {
+    @JsonIgnoreProperties({"prendas", "propietario"})
+    public Guardarropa getGuardarropaActual() {
         return guardarropaActual;
     }
 
@@ -117,7 +125,8 @@ public class Prenda extends Entidad {
         this.colorSecundario = colorSecundario;
     }
 
-    public void setGuardarropaAcual(Guardarropa guardarropa) {
+    @JsonIgnoreProperties({"prendas", "propietario"})
+    public void setGuardarropaActual(Guardarropa guardarropa) {
         this.guardarropaActual = guardarropa;
     }
 
@@ -190,5 +199,29 @@ public class Prenda extends Entidad {
 
     public double getPuntajeDeUsuario(Usuario usuario) {
         return this.getPuntajes().stream().filter(puntaje -> puntaje.getUsuario().equals(usuario)).mapToDouble(PuntajePrenda::getPuntaje).sum();
+    }
+
+    public void update(Prenda prenda){
+        if (prenda.getGuardarropaActual() != null){
+            this.setGuardarropaActual(prenda.getGuardarropaActual());
+        }
+        if (prenda.getTipoPrenda() != null){
+            this.setTipoPrenda(prenda.getTipoPrenda());
+        }
+        if (prenda.getImagenPrenda() != null){
+            this.setImagenPrenda(prenda.getImagenPrenda());
+        }
+        if (prenda.getColorPrimario() != null){
+            this.setColorPrimario(prenda.getColorPrimario());
+        }
+        if (prenda.getMaterial() != null){
+            this.setMaterial(prenda.getMaterial());
+        }
+        if (prenda.getColorSecundario() != null){
+            this.setColorSecundario(prenda.getColorSecundario());
+        }
+        if (prenda.getNombre() != null){
+            this.setNombre(prenda.getNombre());
+        }
     }
 }

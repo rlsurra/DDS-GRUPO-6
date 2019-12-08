@@ -1,17 +1,27 @@
 package ar.edu.utn.frba.dds.persistence;
 
+import org.springframework.stereotype.Repository;
+
 import javax.persistence.EntityManager;
 
 public class Repositorio {
 
-    private EntityManager em;
+    private static Repositorio instance = null;
 
-    public Repositorio(EntityManager em){
-       this.em = em;
+    private EntityManager em = JPAUtils.getEntityManagerFactory().createEntityManager();
+
+    private Repositorio(){   }
+
+    public static Repositorio getInstance(){
+        if (instance == null){
+            instance = new Repositorio();
+        }
+        return instance;
     }
 
     public void close(){
         em.close();
+        instance = null;
     }
 
     public void save(Entidad entidad) {
@@ -49,9 +59,12 @@ public class Repositorio {
         em.getTransaction().commit();
         entidad.afterDelete(em);
     }
-
     public <T> T getEntidadById(Class<T> clase, Long id){
         return em.find(clase, id);
+    }
+
+    public EntityManager getEntityManager(){
+        return em;
     }
 
 }

@@ -11,5 +11,8 @@ public enum Material {
     METAL,
     LANA,
     JEAN,
-    CUERO
+    CUERO,
+    LYCRA,
+    POLIESTER,
+    SEDA
 }
