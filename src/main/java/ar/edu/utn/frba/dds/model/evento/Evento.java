@@ -34,7 +34,7 @@ public class Evento extends Entidad {
     private Double temperatura;
 
     @ManyToOne
-    @JsonIgnoreProperties(value = "eventos", allowSetters = true)
+    @JsonIgnoreProperties({"guardarropas", "eventos", "tipoUsuario", "guardarropasAccedidos", "refTemperatura"})
     private Usuario usuario;
 
     public Evento() {
@@ -108,12 +108,12 @@ public class Evento extends Entidad {
                 + temperatura + "]";
     }
 
-    @JsonIgnoreProperties(value = "eventos", allowSetters = true)
+    @JsonIgnoreProperties({"guardarropas", "eventos", "tipoUsuario", "guardarropasAccedidos", "refTemperatura"})
     public Usuario getUsuario() {
         return usuario;
     }
 
-    @JsonIgnoreProperties(value = "eventos", allowSetters = true)
+    @JsonIgnoreProperties({"guardarropas", "eventos", "tipoUsuario", "guardarropasAccedidos", "refTemperatura"})
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }

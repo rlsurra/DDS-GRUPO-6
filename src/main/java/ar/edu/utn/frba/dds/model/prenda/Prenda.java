@@ -47,7 +47,7 @@ public class Prenda extends Entidad {
     private String imagenPrenda;
 
     @ManyToOne
-    @JsonIgnoreProperties(value = "prendas", allowSetters = true)
+    @JsonIgnoreProperties({"prendas", "propietario"})
     private Guardarropa guardarropaActual;
 
     @OneToMany(
@@ -100,7 +100,7 @@ public class Prenda extends Entidad {
         return imagenPrenda;
     }
 
-    @JsonIgnoreProperties(value = "prendas", allowSetters = true)
+    @JsonIgnoreProperties({"prendas", "propietario"})
     public Guardarropa getGuardarropaAcual() {
         return guardarropaActual;
     }
@@ -125,7 +125,7 @@ public class Prenda extends Entidad {
         this.colorSecundario = colorSecundario;
     }
 
-    @JsonIgnoreProperties(value = "prendas", allowSetters = true)
+    @JsonIgnoreProperties({"prendas", "propietario"})
     public void setGuardarropaAcual(Guardarropa guardarropa) {
         this.guardarropaActual = guardarropa;
     }

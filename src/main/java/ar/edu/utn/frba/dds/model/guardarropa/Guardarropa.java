@@ -42,7 +42,7 @@ public class Guardarropa extends Entidad {
     private List<Prenda> prendas = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnoreProperties(value = "guardarropas", allowSetters = true)
+    @JsonIgnoreProperties({"guardarropas", "eventos", "tipoUsuario", "guardarropasAccedidos", "refTemperatura"})
     @JsonProperty(value = "propietario")
     private Usuario propietario;
 
@@ -50,7 +50,7 @@ public class Guardarropa extends Entidad {
     private List<Usuario> usuarios = new ArrayList<>();
 
 
-    @JsonIgnoreProperties(value = "guardarropas", allowSetters = true)
+    @JsonIgnoreProperties({"guardarropas", "eventos", "tipoUsuario", "guardarropasAccedidos", "refTemperatura"})
     public Usuario getPropietario() {
         return propietario;
     }
@@ -71,7 +71,7 @@ public class Guardarropa extends Entidad {
         this.prendas = prendas;
     }
 
-    @JsonIgnoreProperties(value = "guardarropas", allowSetters = true)
+    @JsonIgnoreProperties({"guardarropas", "eventos", "tipoUsuario", "guardarropasAccedidos", "refTemperatura"})
     public void setPropietario(Usuario propietario) {
         this.propietario = propietario;
     }
