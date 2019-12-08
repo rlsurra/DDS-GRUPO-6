@@ -9,7 +9,9 @@ import ar.edu.utn.frba.dds.model.material.Material;
 import ar.edu.utn.frba.dds.model.categoria.Categoria;
 import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.TipoPrenda;
 import ar.edu.utn.frba.dds.model.usuario.Usuario;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.imageio.ImageIO;
 import javax.persistence.*;
@@ -45,7 +47,7 @@ public class Prenda extends Entidad {
     private String imagenPrenda;
 
     @ManyToOne
-    @JsonIgnore
+    @JsonIgnoreProperties(value = "prendas", allowSetters = true)
     private Guardarropa guardarropaActual;
 
     @OneToMany(
@@ -98,7 +100,7 @@ public class Prenda extends Entidad {
         return imagenPrenda;
     }
 
-    @JsonIgnore
+    @JsonIgnoreProperties(value = "prendas", allowSetters = true)
     public Guardarropa getGuardarropaAcual() {
         return guardarropaActual;
     }
@@ -123,6 +125,7 @@ public class Prenda extends Entidad {
         this.colorSecundario = colorSecundario;
     }
 
+    @JsonIgnoreProperties(value = "prendas", allowSetters = true)
     public void setGuardarropaAcual(Guardarropa guardarropa) {
         this.guardarropaActual = guardarropa;
     }

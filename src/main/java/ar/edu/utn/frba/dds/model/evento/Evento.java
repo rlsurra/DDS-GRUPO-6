@@ -5,7 +5,9 @@ import ar.edu.utn.frba.dds.model.atuendo.Atuendo;
 import ar.edu.utn.frba.dds.model.evento.notificador.NotificadorAplicacion;
 import ar.edu.utn.frba.dds.model.evento.notificador.NotificadorEvento;
 import ar.edu.utn.frba.dds.model.usuario.Usuario;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -32,7 +34,7 @@ public class Evento extends Entidad {
     private Double temperatura;
 
     @ManyToOne
-    @JsonIgnore
+    @JsonIgnoreProperties(value = "eventos", allowSetters = true)
     private Usuario usuario;
 
     public Evento() {
@@ -106,11 +108,12 @@ public class Evento extends Entidad {
                 + temperatura + "]";
     }
 
-    @JsonIgnore
+    @JsonIgnoreProperties(value = "eventos", allowSetters = true)
     public Usuario getUsuario() {
         return usuario;
     }
 
+    @JsonIgnoreProperties(value = "eventos", allowSetters = true)
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
