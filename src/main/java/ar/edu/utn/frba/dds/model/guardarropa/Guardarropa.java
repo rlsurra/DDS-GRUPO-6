@@ -67,7 +67,7 @@ public class Guardarropa extends Entidad {
 
     @JsonIgnoreProperties(value = "guardarropaActual", allowSetters = true)
     public void setPrendas(List<Prenda> prendas) {
-        prendas.forEach(prenda -> {prenda.setGuardarropaAcual(this);});
+        prendas.forEach(prenda -> {prenda.setGuardarropaActual(this);});
         this.prendas = prendas;
     }
 

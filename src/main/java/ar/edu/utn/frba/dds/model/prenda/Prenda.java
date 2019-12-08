@@ -101,7 +101,7 @@ public class Prenda extends Entidad {
     }
 
     @JsonIgnoreProperties({"prendas", "propietario"})
-    public Guardarropa getGuardarropaAcual() {
+    public Guardarropa getGuardarropaActual() {
         return guardarropaActual;
     }
 
@@ -126,7 +126,7 @@ public class Prenda extends Entidad {
     }
 
     @JsonIgnoreProperties({"prendas", "propietario"})
-    public void setGuardarropaAcual(Guardarropa guardarropa) {
+    public void setGuardarropaActual(Guardarropa guardarropa) {
         this.guardarropaActual = guardarropa;
     }
 
@@ -199,5 +199,29 @@ public class Prenda extends Entidad {
 
     public double getPuntajeDeUsuario(Usuario usuario) {
         return this.getPuntajes().stream().filter(puntaje -> puntaje.getUsuario().equals(usuario)).mapToDouble(PuntajePrenda::getPuntaje).sum();
+    }
+
+    public void update(Prenda prenda){
+        if (prenda.getGuardarropaActual() != null){
+            this.setGuardarropaActual(prenda.getGuardarropaActual());
+        }
+        if (prenda.getTipoPrenda() != null){
+            this.setTipoPrenda(prenda.getTipoPrenda());
+        }
+        if (prenda.getImagenPrenda() != null){
+            this.setImagenPrenda(prenda.getImagenPrenda());
+        }
+        if (prenda.getColorPrimario() != null){
+            this.setColorPrimario(prenda.getColorPrimario());
+        }
+        if (prenda.getMaterial() != null){
+            this.setMaterial(prenda.getMaterial());
+        }
+        if (prenda.getColorSecundario() != null){
+            this.setColorSecundario(prenda.getColorSecundario());
+        }
+        if (prenda.getNombre() != null){
+            this.setNombre(prenda.getNombre());
+        }
     }
 }
