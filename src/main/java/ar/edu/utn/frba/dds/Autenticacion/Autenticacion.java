@@ -1,6 +1,7 @@
 package ar.edu.utn.frba.dds.Autenticacion;
 
 import ar.edu.utn.frba.dds.exceptions.InvalidCredentialsException;
+import ar.edu.utn.frba.dds.exceptions.UserNotLoggedException;
 import ar.edu.utn.frba.dds.model.usuario.Usuario;
 import ar.edu.utn.frba.dds.persistence.JPAUtils;
 import ar.edu.utn.frba.dds.persistence.Repositorio;
@@ -39,6 +40,21 @@ public class Autenticacion {
 
         return token;
     }
+
+    public static void checkSession(String token) throws UserNotLoggedException {
+        if (!Sessions.getSessiones().containsKey(token)){
+            throw new UserNotLoggedException();
+        }
+    };
+
+    public static void deleteSession(String token) {
+        Sessions.getSessiones().remove(token);
+    };
+
+    public static Session getSession(String token) throws UserNotLoggedException {
+        checkSession(token);
+        return Sessions.getSessiones().get(token);
+    };
 
     public void logout(String token) {
         Sessions.getSessiones().remove(token);

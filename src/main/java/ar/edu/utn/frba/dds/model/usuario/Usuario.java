@@ -10,6 +10,7 @@ import ar.edu.utn.frba.dds.model.prenda.PuntajePrenda;
 import ar.edu.utn.frba.dds.model.usuario.referenciaTemperatura.ReferenciaTemperatura;
 import ar.edu.utn.frba.dds.model.usuario.tipoUsuario.TipoUsuario;
 import ar.edu.utn.frba.dds.persistence.Repositorio;
+import com.fasterxml.jackson.annotation.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -35,6 +36,8 @@ public class Usuario extends Entidad {
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
+    @JsonIgnoreProperties(value = "propietario", allowSetters = true)
+    @JsonProperty(value = "guardarropas")
     private List<Guardarropa> guardarropas = new ArrayList<>();
 
     @OneToMany(
@@ -42,6 +45,7 @@ public class Usuario extends Entidad {
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
+    @JsonIgnoreProperties(value = "usuario", allowSetters = true)
     private List<Evento> eventos = new ArrayList<>();
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -82,10 +86,13 @@ public class Usuario extends Entidad {
     /*
     getters
      */
+
+    @JsonIgnoreProperties(value = "propietario", allowSetters = true)
     public List<Guardarropa> getGuardarropas() {
         return guardarropas;
     }
 
+    @JsonIgnoreProperties(value = "usuarios", allowSetters = true)
     public List<Evento> getEventos() {
         return eventos;
     }
@@ -102,10 +109,12 @@ public class Usuario extends Entidad {
     setters
      */
 
+    @JsonIgnoreProperties(value = "propietario", allowSetters = true)
     public void setGuardarropas(List<Guardarropa> guardarropas) {
         this.guardarropas = guardarropas;
     }
 
+    @JsonIgnoreProperties(value = "usuarios", allowSetters = true)
     public void setEventos(List<Evento> eventos) {
         this.eventos = eventos;
     }
@@ -126,6 +135,7 @@ public class Usuario extends Entidad {
             throw new MaximaCantidadPrendasException();
         }
         guardarropas.add(guardarropa);
+        guardarropa.setPropietario(this);
     }
 
     public void agregarEvento(Evento evento) {
@@ -136,6 +146,7 @@ public class Usuario extends Entidad {
             this.eventos = new ArrayList<>();
         }
         this.eventos.add(evento);
+        evento.setUsuario(this);
     }
 
     public void setTipoUsuario(TipoUsuario tipoUsuario) {
@@ -210,10 +221,10 @@ public class Usuario extends Entidad {
             return null;
         }
     }
-
+/*
     public static Long getUsuarioIdFromUsername(String username){
         return ((Number) Repositorio.getInstance().getEntityManager().createNativeQuery("SELECT id FROM Usuario WHERE username = '" + username + "'"
         ).getSingleResult()).longValue();
-    }
+    }*/
 
 }

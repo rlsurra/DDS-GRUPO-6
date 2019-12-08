@@ -10,7 +10,7 @@ import ar.edu.utn.frba.dds.model.evento.Evento;
 import ar.edu.utn.frba.dds.model.prenda.Prenda;
 import ar.edu.utn.frba.dds.model.prenda.PrendaVacio;
 import ar.edu.utn.frba.dds.model.usuario.Usuario;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.*;
 import com.google.common.collect.Sets;
 
 import javax.persistence.*;
@@ -26,50 +26,62 @@ import static ar.edu.utn.frba.dds.model.categoria.superior.CategoriaSuperiorAbri
 @Entity
 public class Guardarropa extends Entidad {
 
-    @OneToMany(
-            mappedBy = "guardarropaActual",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
-    private List<Prenda> prendas = new ArrayList<>();
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnore
-    private Usuario propietario;
-
-    @ManyToMany(mappedBy = "guardarropasAccedidos", fetch = FetchType.LAZY)
-    @JsonIgnore
-    private List<Usuario> usuarios = new ArrayList<>();
+    public Guardarropa() {
+    }
 
     public Guardarropa(Usuario propietario) {
         this.propietario = propietario;
     }
 
+    @OneToMany(
+            mappedBy = "guardarropaActual",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    @JsonIgnoreProperties(value = "guardarropaActual", allowSetters = true)
+    private List<Prenda> prendas = new ArrayList<>();
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnoreProperties({"guardarropas", "eventos", "tipoUsuario", "guardarropasAccedidos", "refTemperatura"})
+    @JsonProperty(value = "propietario")
+    private Usuario propietario;
+
+    @ManyToMany(mappedBy = "guardarropasAccedidos", fetch = FetchType.LAZY)
+    private List<Usuario> usuarios = new ArrayList<>();
+
+
+    @JsonIgnoreProperties({"guardarropas", "eventos", "tipoUsuario", "guardarropasAccedidos", "refTemperatura"})
     public Usuario getPropietario() {
         return propietario;
     }
 
-    public Guardarropa() {
+    @JsonIgnore
+    public List<Usuario> getUsuarios() {
+        return usuarios;
     }
 
+    @JsonIgnoreProperties(value = "guardarropaActual", allowSetters = true)
     public List<Prenda> getPrendas() {
         return prendas;
     }
 
+    @JsonIgnoreProperties(value = "guardarropaActual", allowSetters = true)
     public void setPrendas(List<Prenda> prendas) {
+        prendas.forEach(prenda -> {prenda.setGuardarropaActual(this);});
         this.prendas = prendas;
     }
 
+    @JsonIgnoreProperties({"guardarropas", "eventos", "tipoUsuario", "guardarropasAccedidos", "refTemperatura"})
     public void setPropietario(Usuario propietario) {
         this.propietario = propietario;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setUsuarios(List<Usuario> usuarios) {
+        this.usuarios = usuarios;
     }
 
-    public Long getId() {
-        return id;
+    public void agregarUsuario(Usuario usuario) {
+        this.usuarios.add(usuario);
     }
 
     /*
@@ -141,18 +153,6 @@ public class Guardarropa extends Entidad {
         return "Guardarropa{" +
                 "prendas=" + prendas +
                 '}';
-    }
-
-    public List<Usuario> getUsuarios() {
-        return usuarios;
-    }
-
-    public void setUsuarios(List<Usuario> usuarios) {
-        this.usuarios = usuarios;
-    }
-
-    public void agregarUsuario(Usuario usuario) {
-        this.usuarios.add(usuario);
     }
 
 }

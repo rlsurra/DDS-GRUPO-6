@@ -16,9 +16,9 @@ public class LogoutController {
     @PostMapping
     public String logout(@RequestHeader("Authorization") String token) throws UserNotLoggedException {
         Autenticacion auth = new Autenticacion();
-        Sessions.getSession(token);
+        Autenticacion.getSession(token);
 
-        Sessions.getSessiones().remove(token);
+        Autenticacion.deleteSession(token);
 
         return String.format("{\"OK\":\"%s\"}", "1");
     }
