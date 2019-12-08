@@ -16,15 +16,7 @@ public class Session {
         return token;
     }
 
-    public void setToken(String token) {
-        this.token = token;
-    }
-
     public Long getUsuarioId() {
         return usuarioId;
-    }
-
-    public void setUsuarioId(Long usuarioId) {
-        this.usuarioId = usuarioId;
     }
 }
