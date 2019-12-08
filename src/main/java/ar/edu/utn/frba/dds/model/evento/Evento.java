@@ -5,6 +5,7 @@ import ar.edu.utn.frba.dds.model.atuendo.Atuendo;
 import ar.edu.utn.frba.dds.model.evento.notificador.NotificadorAplicacion;
 import ar.edu.utn.frba.dds.model.evento.notificador.NotificadorEvento;
 import ar.edu.utn.frba.dds.model.usuario.Usuario;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -31,6 +32,7 @@ public class Evento extends Entidad {
     private Double temperatura;
 
     @ManyToOne
+    @JsonIgnore
     private Usuario usuario;
 
     public Evento() {
@@ -104,7 +106,7 @@ public class Evento extends Entidad {
                 + temperatura + "]";
     }
 
-
+    @JsonIgnore
     public Usuario getUsuario() {
         return usuario;
     }

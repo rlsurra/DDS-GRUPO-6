@@ -28,6 +28,7 @@ public class PuntajePrenda extends Entidad {
         this.usuario = usuario;
     }
 
+    @JsonIgnore
     public Prenda getPrenda() {
         return prenda;
     }

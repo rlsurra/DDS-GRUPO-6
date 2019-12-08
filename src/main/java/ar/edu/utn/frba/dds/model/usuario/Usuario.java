@@ -9,13 +9,20 @@ import ar.edu.utn.frba.dds.model.evento.Evento;
 import ar.edu.utn.frba.dds.model.prenda.PuntajePrenda;
 import ar.edu.utn.frba.dds.model.usuario.referenciaTemperatura.ReferenciaTemperatura;
 import ar.edu.utn.frba.dds.model.usuario.tipoUsuario.TipoUsuario;
+import ar.edu.utn.frba.dds.persistence.Repositorio;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@NamedQueries({
+	@NamedQuery(name = "selectUserByUsername", query = "SELECT u FROM Usuario u WHERE u.username = :username")
+})
 public class Usuario extends Entidad {
+
+    @Column
+    private String apellido;
 
     @Column(unique = true)
     private String username;
@@ -184,4 +191,29 @@ public class Usuario extends Entidad {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public static Usuario getUsuarioFromUserName(String username){
+        try {
+        	TypedQuery<Usuario> namedQuery = Repositorio.getInstance().getEntityManager().createNamedQuery("selectUserByUsername", Usuario.class);
+        	namedQuery.setParameter("username", username);
+        	return namedQuery.getSingleResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+/*
+    public static Long getUsuarioIdFromUsername(String username){
+        return ((Number) Repositorio.getInstance().getEntityManager().createNativeQuery("SELECT id FROM Usuario WHERE username = '" + username + "'"
+        ).getSingleResult()).longValue();
+    }*/
+
 }

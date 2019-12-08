@@ -25,6 +25,8 @@ import ar.edu.utn.frba.dds.model.usuario.Usuario;
 import ar.edu.utn.frba.dds.model.usuario.referenciaTemperatura.Caluroso;
 import ar.edu.utn.frba.dds.model.usuario.referenciaTemperatura.ReferenciaTemperatura;
 import ar.edu.utn.frba.dds.persistence.Repositorio;
+import junit.framework.TestCase;
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -53,7 +55,6 @@ public class RepositorioTest {
     private TipoUsuario tipoUsuarioGratuito;
     private Usuario usuario;
     private Repositorio repositorio;
-    private EntityManagerFactory emFactory;
     private Guardarropa guardarropa;
     private RegistroAtuendoSeleccionado historialAtuendo;
     private PuntajePrenda preferencia;
@@ -62,9 +63,7 @@ public class RepositorioTest {
 
     @Before
     public void setUp() {
-        emFactory = Persistence.createEntityManagerFactory("PERSISTENCE");
         repositorio = Repositorio.getInstance();
-
         evento = new EventoSimple(3435910, LocalDateTime.now());
         prendaSuperior = new Prenda(new TipoRemeraCorta(), Material.ALGODON, Color.ORANGE);
         prendaSuperior.setId(null);

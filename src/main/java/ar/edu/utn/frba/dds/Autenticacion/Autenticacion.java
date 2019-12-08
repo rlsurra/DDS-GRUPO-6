@@ -14,11 +14,12 @@ public class Autenticacion {
         EntityManager manager = null;
         try {
             manager = JPAUtils.getEntityManagerFactory().createEntityManager();
-            Long idusuario = ((Number) manager.createNativeQuery("SELECT id FROM Usuario WHERE username = '" + username + "'"
-            ).getSingleResult()).longValue();
 
-            Repositorio repo = Repositorio.getInstance();
-            Usuario user = repo.getEntidadById(Usuario.class, idusuario);
+            Usuario user = Usuario.getUsuarioFromUserName(username);
+
+            if (user == null){
+                throw new InvalidCredentialsException();
+            }
 
             if (!user.getPassword().equals(password)) {
                 throw new InvalidCredentialsException();
