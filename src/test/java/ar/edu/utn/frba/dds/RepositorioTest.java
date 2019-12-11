@@ -13,6 +13,10 @@ import ar.edu.utn.frba.dds.model.evento.EventoSimple;
 import ar.edu.utn.frba.dds.model.prenda.Prenda;
 import ar.edu.utn.frba.dds.model.prenda.PrendaVacio;
 import ar.edu.utn.frba.dds.model.prenda.PuntajePrenda;
+import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.TipoPrenda;
+import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.TipoPrendaCalzado;
+import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.TipoPrendaInferior;
+import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.TipoPrendaSuperior;
 import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.calzado.TipoZapatilla;
 import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.inferior.TipoJean;
 import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.superior.abrigoLigero.TipoSweater;
@@ -60,20 +64,44 @@ public class RepositorioTest {
     private PuntajePrenda preferencia;
     private NotificadorCorreo notificadorCorreo;
     private NotificadorAplicacion notificadorAplicacion;
+    private TipoPrenda TipoRemeraCorta;
+    private Material ALGODON;
+    private TipoPrenda TipoJean;
+    private Material JEAN;
+    private TipoPrenda TipoZapatilla;
+    private Material LONA;
+    private TipoPrenda TipoSweater;
+    private Material LANA;
 
     @Before
     public void setUp() {
+        ALGODON = new Material("ALGODON");
+        TipoRemeraCorta = new TipoPrendaSuperior();
+        TipoRemeraCorta.getMaterialesPermitidos().add(ALGODON);
+
+        JEAN = new Material("JEAN");
+        TipoJean = new TipoPrendaInferior();
+        TipoJean.getMaterialesPermitidos().add(JEAN);
+
+        LONA = new Material("LONA");
+        TipoZapatilla = new TipoPrendaCalzado();
+        TipoZapatilla.getMaterialesPermitidos().add(LONA);
+
+        LANA = new Material("LANA");
+        TipoSweater = new TipoPrendaSuperior();
+        TipoSweater.getMaterialesPermitidos().add(LANA);
+
         repositorio = Repositorio.getInstance();
         evento = new EventoSimple(3435910, LocalDateTime.now());
-        prendaSuperior = new Prenda(new TipoRemeraCorta(), Material.ALGODON, Color.ORANGE);
+        prendaSuperior = new Prenda(TipoRemeraCorta, ALGODON, Color.ORANGE);
         prendaSuperior.setId(null);
-        prendaInferior = new Prenda(new TipoJean(), Material.JEAN, Color.BLACK);
+        prendaInferior = new Prenda(TipoJean, JEAN, Color.BLACK);
         prendaInferior.setId(null);
-        prendaCalzado = new Prenda(new TipoZapatilla(), Material.LONA, Color.DARK_GRAY);
+        prendaCalzado = new Prenda(TipoZapatilla, LONA, Color.DARK_GRAY);
         prendaCalzado.setId(null);
         prendaAccesorio = new PrendaVacio(CategoriaAccesorio.CATEGORIA_ACCESORIO);
         prendaAccesorio.setId(null);
-        prendaAbrigoLigero = new Prenda(new TipoSweater(), Material.LANA, Color.YELLOW);
+        prendaAbrigoLigero = new Prenda(TipoSweater, LANA, Color.YELLOW);
         prendaAbrigoLigero.setId(null);
         prendaAbrigoPesado = new PrendaVacio(CategoriaSuperiorAbrigoPesado.CATEGORIA_SUPERIOR_ABRIGO_PESADO);
         prendaAbrigoPesado.setId(null);

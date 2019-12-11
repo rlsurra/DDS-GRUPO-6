@@ -7,6 +7,10 @@ import ar.edu.utn.frba.dds.model.material.Material;
 import ar.edu.utn.frba.dds.model.prenda.Prenda;
 import ar.edu.utn.frba.dds.model.evento.Evento;
 import ar.edu.utn.frba.dds.model.evento.EventoSimple;
+import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.TipoPrenda;
+import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.TipoPrendaCalzado;
+import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.TipoPrendaInferior;
+import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.TipoPrendaSuperior;
 import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.calzado.TipoOjota;
 import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.calzado.TipoZapatilla;
 import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.calzado.TipoZapato;
@@ -40,19 +44,54 @@ public class UsuarioTest {
 
     //    @Before
     public void setUp() {
+        Material ALGODON = new Material("ALGODON");
+        Material NYLON = new Material("NYLON");
+        Material JEAN = new Material("JEAN");
+        Material GABARDINA = new Material("GABARDINA");
+        Material LONA = new Material("LONA");
+        Material CUERO = new Material("CUERO");
+        Material CAUCHO = new Material("CAUCHO");
+
+        TipoPrendaSuperior TipoCamisaCorta = new TipoPrendaSuperior();
+        TipoCamisaCorta.getMaterialesPermitidos().add(ALGODON);
+
+        TipoPrendaSuperior TipoRemeraCorta = new TipoPrendaSuperior();
+        TipoRemeraCorta.getMaterialesPermitidos().add(NYLON);
+
+        TipoPrendaSuperior TipoChomba = new TipoPrendaSuperior();
+        TipoChomba.getMaterialesPermitidos().add(ALGODON);
+
+        TipoPrendaInferior TipoJean = new TipoPrendaInferior();
+        TipoJean.getMaterialesPermitidos().add(JEAN);
+
+        TipoPrendaInferior TipoJogging = new TipoPrendaInferior();
+        TipoJogging.getMaterialesPermitidos().add(ALGODON);
+
+        TipoPrendaInferior TipoBermuda = new TipoPrendaInferior();
+        TipoBermuda.getMaterialesPermitidos().add(GABARDINA);
+
+        TipoPrendaCalzado TipoZapatilla = new TipoPrendaCalzado();
+        TipoZapatilla.getMaterialesPermitidos().add(LONA);
+
+        TipoPrendaCalzado TipoZapato = new TipoPrendaCalzado();
+        TipoZapato.getMaterialesPermitidos().add(CUERO);
+
+        TipoPrendaCalzado TipoOjota = new TipoPrendaCalzado();
+        TipoOjota.getMaterialesPermitidos().add(CAUCHO);
+
         guardarropa1.setPrendas(Arrays.asList(
-                new Prenda(new TipoCamisaCorta(), Material.ALGODON, Color.RED),
-                new Prenda(new TipoRemeraCorta(), Material.NYLON, Color.BLACK),
-                new Prenda(new TipoChomba(), Material.ALGODON, Color.blue)
+                new Prenda(TipoCamisaCorta, ALGODON, Color.RED),
+                new Prenda(TipoRemeraCorta, NYLON, Color.BLACK),
+                new Prenda(TipoChomba, ALGODON, Color.blue)
         ));
 
         guardarropa2.setPrendas(Arrays.asList(
-                new Prenda(new TipoJean(), Material.JEAN, Color.BLUE),
-                new Prenda(new TipoJogging(), Material.ALGODON, Color.BLACK),
-                new Prenda(new TipoBermuda(), Material.GABARDINA, Color.GRAY),
-                new Prenda(new TipoZapatilla(), Material.LONA, Color.BLACK),
-                new Prenda(new TipoZapato(), Material.CUERO, Color.BLACK),
-                new Prenda(new TipoOjota(), Material.CAUCHO, Color.GREEN)
+                new Prenda(TipoJean, JEAN, Color.BLUE),
+                new Prenda(TipoJogging, ALGODON, Color.BLACK),
+                new Prenda(TipoBermuda, GABARDINA, Color.GRAY),
+                new Prenda(TipoZapatilla, LONA, Color.BLACK),
+                new Prenda(TipoZapato, CUERO, Color.BLACK),
+                new Prenda(TipoOjota, CAUCHO, Color.GREEN)
         ));
 
     }

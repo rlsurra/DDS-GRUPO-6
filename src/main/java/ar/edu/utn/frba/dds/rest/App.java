@@ -7,9 +7,6 @@ import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.TipoPrenda;
 import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.TipoPrendaCalzado;
 import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.TipoPrendaInferior;
 import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.TipoPrendaSuperior;
-import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.superior.abrigoLigero.TipoSweater;
-import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.superior.remera.TipoRemeraCorta;
-import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.superior.remera.TipoRemeraLarga;
 import ar.edu.utn.frba.dds.model.usuario.Usuario;
 import ar.edu.utn.frba.dds.model.usuario.referenciaTemperatura.Caluroso;
 import ar.edu.utn.frba.dds.model.usuario.referenciaTemperatura.ReferenciaTemperatura;
@@ -34,8 +31,92 @@ public class App {
 
         Repositorio repo = Repositorio.getInstance();
 
+        Material ALGODON = Material.buscarMaterialPorNombre("ALGODON");
+        if (ALGODON != null) {
+            ALGODON = new Material();
+            ALGODON.setNombre("ALGODON");
+        }
+
+        Material GABARDINA = Material.buscarMaterialPorNombre("GABARDINA");
+        if (GABARDINA != null) {
+            GABARDINA = new Material();
+            GABARDINA.setNombre("GABARDINA");
+        }
+
+        Material LINO = Material.buscarMaterialPorNombre("LINO");
+        if (LINO != null) {
+            LINO = new Material();
+            LINO.setNombre("LINO");
+        }
+
+        Material NYLON = Material.buscarMaterialPorNombre("NYLON");
+        if (NYLON != null) {
+            NYLON = new Material();
+            NYLON.setNombre("NYLON");
+        }
+
+        Material CAUCHO = Material.buscarMaterialPorNombre("CAUCHO");
+        if (CAUCHO != null) {
+            CAUCHO = new Material();
+            CAUCHO.setNombre("CAUCHO");
+        }
+
+        Material LONA = Material.buscarMaterialPorNombre("LONA");
+        if (LONA != null) {
+            LONA = new Material();
+            LONA.setNombre("LONA");
+        }
+
+        Material PLASTICO = Material.buscarMaterialPorNombre("PLASTICO");
+        if (PLASTICO != null) {
+            PLASTICO = new Material();
+            PLASTICO.setNombre("PLASTICO");
+        }
+
+        Material METAL = Material.buscarMaterialPorNombre("METAL");
+        if (METAL != null) {
+            METAL = new Material();
+            METAL.setNombre("METAL");
+        }
+
+        Material LANA = Material.buscarMaterialPorNombre("LANA");
+        if (LANA != null) {
+            LANA = new Material();
+            LANA.setNombre("LANA");
+        }
+
+        Material JEAN = Material.buscarMaterialPorNombre("JEAN");
+        if (JEAN != null) {
+            JEAN = new Material();
+            JEAN.setNombre("JEAN");
+        }
+
+        Material CUERO = Material.buscarMaterialPorNombre("CUERO");
+        if (CUERO != null) {
+            CUERO = new Material();
+            CUERO.setNombre("CUERO");
+        }
+
+        Material LYCRA = Material.buscarMaterialPorNombre("LYCRA");
+        if (LYCRA != null) {
+            LYCRA = new Material();
+            LYCRA.setNombre("LYCRA");
+        }
+
+        Material POLIESTER = Material.buscarMaterialPorNombre("POLIESTER");
+        if (POLIESTER != null) {
+            POLIESTER = new Material();
+            POLIESTER.setNombre("POLIESTER");
+        }
+
+        Material SEDA = Material.buscarMaterialPorNombre("SEDA");
+        if (SEDA != null) {
+            SEDA = new Material();
+            SEDA.setNombre("SEDA");
+        }
+
         TipoPrenda RemeraCuelloRedondoMangaCorta = TipoPrenda.buscarTipoDePrendaPorCodigo("REMERA_CUELLO_REDONDO_MANGA_CORTA");
-        if (RemeraCuelloRedondoMangaCorta == null){
+        if (RemeraCuelloRedondoMangaCorta == null) {
             RemeraCuelloRedondoMangaCorta = new TipoPrendaSuperior();
             RemeraCuelloRedondoMangaCorta.setNombre("Remera cuello redondo manga corta");
             RemeraCuelloRedondoMangaCorta.setCodigo("REMERA_CUELLO_REDONDO_MANGA_CORTA");
@@ -45,7 +126,7 @@ public class App {
         }
 
         TipoPrenda RemeraCuelloRedondoMangaLarga = TipoPrenda.buscarTipoDePrendaPorCodigo("REMERA_CUELLO_REDONDO_MANGA_LARGA");
-        if (RemeraCuelloRedondoMangaLarga == null){
+        if (RemeraCuelloRedondoMangaLarga == null) {
             RemeraCuelloRedondoMangaLarga = new TipoPrendaSuperior();
             RemeraCuelloRedondoMangaLarga.setNombre("Remera cuello redondo manga larga");
             RemeraCuelloRedondoMangaLarga.setCodigo("REMERA_CUELLO_REDONDO_MANGA_LARGA");
@@ -55,8 +136,8 @@ public class App {
         }
 
 
-        TipoPrenda RemeraEscoteVMangaCorta = TipoPrenda.buscarTipoDePrendaPorCodigo("REMERA_ESCOTE_V_MANGA_CORTA") ;
-        if (RemeraEscoteVMangaCorta == null){
+        TipoPrenda RemeraEscoteVMangaCorta = TipoPrenda.buscarTipoDePrendaPorCodigo("REMERA_ESCOTE_V_MANGA_CORTA");
+        if (RemeraEscoteVMangaCorta == null) {
             RemeraEscoteVMangaCorta = new TipoPrendaSuperior();
             RemeraEscoteVMangaCorta.setNombre("Remera escote V manga corta");
             RemeraEscoteVMangaCorta.setCodigo("REMERA_ESCOTE_V_MANGA_CORTA");
@@ -67,8 +148,8 @@ public class App {
 
 
         TipoPrenda RemeraEscoteVMangaLarga = TipoPrenda.buscarTipoDePrendaPorCodigo("REMERA_ESCOTE_V_MANGA_LARGA");
-        if (RemeraEscoteVMangaLarga == null){
-            RemeraEscoteVMangaLarga =  new TipoPrendaSuperior();
+        if (RemeraEscoteVMangaLarga == null) {
+            RemeraEscoteVMangaLarga = new TipoPrendaSuperior();
             RemeraEscoteVMangaLarga.setNombre("Remera escote V manga larga");
             RemeraEscoteVMangaLarga.setCodigo("REMERA_ESCOTE_V_MANGA_LARGA");
             RemeraEscoteVMangaLarga.setNivelDeCalor(8D);
@@ -77,7 +158,7 @@ public class App {
         }
 
         TipoPrenda sueter = TipoPrenda.buscarTipoDePrendaPorCodigo("SUETER");
-        if (sueter == null){
+        if (sueter == null) {
             sueter = new TipoPrendaSuperior();
             sueter.setNombre("Sueter");
             sueter.setCodigo("SUETER");
@@ -87,7 +168,7 @@ public class App {
         }
 
         TipoPrenda campera = TipoPrenda.buscarTipoDePrendaPorCodigo("CAMPERA");
-        if (campera == null){
+        if (campera == null) {
             campera = new TipoPrendaSuperior();
             campera.setNombre("Campera");
             campera.setCodigo("CAMPERA");
@@ -97,7 +178,7 @@ public class App {
         }
 
         TipoPrenda pantalonLargo = TipoPrenda.buscarTipoDePrendaPorCodigo("PANTALON_LARGO");
-        if (pantalonLargo == null){
+        if (pantalonLargo == null) {
             pantalonLargo = new TipoPrendaInferior();
             pantalonLargo.setNombre("Pantalón largo");
             pantalonLargo.setCodigo("PANTALON_LARGO");
@@ -108,7 +189,7 @@ public class App {
         }
 
         TipoPrenda pantalonCorto = TipoPrenda.buscarTipoDePrendaPorCodigo("PANTALON_CORTO");
-        if (pantalonCorto == null){
+        if (pantalonCorto == null) {
             pantalonCorto = new TipoPrendaInferior();
             pantalonCorto.setNombre("Pantalón corto");
             pantalonCorto.setCodigo("PANTALON_CORTO");
@@ -119,7 +200,7 @@ public class App {
         }
 
         TipoPrenda bermuda = TipoPrenda.buscarTipoDePrendaPorCodigo("BERMUDA");
-        if (bermuda == null){
+        if (bermuda == null) {
             bermuda = new TipoPrendaInferior();
             bermuda.setNombre("Bermuda");
             bermuda.setCodigo("BERMUDA");
@@ -130,7 +211,7 @@ public class App {
         }
 
         TipoPrenda pollera = TipoPrenda.buscarTipoDePrendaPorCodigo("POLLERA");
-        if (pollera == null){
+        if (pollera == null) {
             pollera = new TipoPrendaInferior();
             pollera.setNombre("Pollera");
             pollera.setCodigo("POLLERA");
@@ -141,7 +222,7 @@ public class App {
         }
 
         TipoPrenda calza = TipoPrenda.buscarTipoDePrendaPorCodigo("CALZA");
-        if (calza == null){
+        if (calza == null) {
             calza = new TipoPrendaInferior();
             calza.setNombre("Calza");
             calza.setCodigo("CALZA");
@@ -152,7 +233,7 @@ public class App {
         }
 
         TipoPrenda buzo = TipoPrenda.buscarTipoDePrendaPorCodigo("BUZO");
-        if (buzo == null){
+        if (buzo == null) {
             buzo = new TipoPrendaSuperior();
             buzo.setNombre("Buzo");
             buzo.setCodigo("BUZO");
@@ -163,7 +244,7 @@ public class App {
         }
 
         TipoPrenda musculosa = TipoPrenda.buscarTipoDePrendaPorCodigo("MUSCULOSA");
-        if (musculosa == null){
+        if (musculosa == null) {
             musculosa = new TipoPrendaSuperior();
             musculosa.setNombre("Musculosa");
             musculosa.setCodigo("MUSCULOSA");
@@ -174,7 +255,7 @@ public class App {
         }
 
         TipoPrenda zapatillas = TipoPrenda.buscarTipoDePrendaPorCodigo("ZAPATILLAS");
-        if (zapatillas == null){
+        if (zapatillas == null) {
             zapatillas = new TipoPrendaCalzado();
             zapatillas.setNombre("Zapatillas");
             zapatillas.setCodigo("ZAPATILLAS");
@@ -185,7 +266,7 @@ public class App {
         }
 
         TipoPrenda zapatos = TipoPrenda.buscarTipoDePrendaPorCodigo("ZAPATOS");
-        if (zapatos == null){
+        if (zapatos == null) {
             zapatos = new TipoPrendaCalzado();
             zapatos.setNombre("Zapatos");
             zapatos.setCodigo("ZAPATOS");
@@ -196,7 +277,7 @@ public class App {
         }
 
         TipoPrenda sandalias = TipoPrenda.buscarTipoDePrendaPorCodigo("SANDALIAS");
-        if (sandalias == null){
+        if (sandalias == null) {
             sandalias = new TipoPrendaCalzado();
             sandalias.setNombre("Sandalias");
             sandalias.setCodigo("SANDALIAS");
@@ -235,22 +316,21 @@ public class App {
             if (guardarropaAroco.getPrendas().size() == 0) {
 
                 java.util.List<Prenda> prendas = guardarropaAroco.getPrendas();
-                prendas.add(new Prenda(RemeraCuelloRedondoMangaCorta, Material.ALGODON, Color.BLACK));
-                prendas.add(new Prenda(RemeraEscoteVMangaCorta, Material.LYCRA, Color.WHITE));
-                prendas.add(new Prenda(musculosa, Material.LYCRA, Color.YELLOW));
-                prendas.add(new Prenda(campera, Material.CUERO, Color.WHITE));
-                prendas.add(new Prenda(sueter, Material.POLIESTER, Color.WHITE));
-                prendas.add(new Prenda(bermuda, Material.JEAN, new Color(0, 128, 255)));
-                prendas.add(new Prenda(pantalonLargo, Material.NYLON, Color.gray));
-                prendas.add(new Prenda(zapatillas, Material.NYLON, new Color(112, 0, 0)));
-                prendas.add(new Prenda(zapatos, Material.CUERO, Color.BLACK));
+                prendas.add(new Prenda(RemeraCuelloRedondoMangaCorta, ALGODON, Color.BLACK));
+                prendas.add(new Prenda(RemeraEscoteVMangaCorta, LYCRA, Color.WHITE));
+                prendas.add(new Prenda(musculosa, LYCRA, Color.YELLOW));
+                prendas.add(new Prenda(campera, CUERO, Color.WHITE));
+                prendas.add(new Prenda(sueter, POLIESTER, Color.WHITE));
+                prendas.add(new Prenda(bermuda, JEAN, new Color(0, 128, 255)));
+                prendas.add(new Prenda(pantalonLargo, NYLON, Color.gray));
+                prendas.add(new Prenda(zapatillas, NYLON, new Color(112, 0, 0)));
+                prendas.add(new Prenda(zapatos, CUERO, Color.BLACK));
                 guardarropaAroco.setPrendas(prendas);
             }
             aroco.getGuardarropas().clear();
             aroco.getGuardarropas().add(guardarropaAroco);
             repo.save(aroco);
         }
-
 
 
         //Usuario jazul
@@ -274,18 +354,18 @@ public class App {
             repo.save(jazul);
 
             Guardarropa guardarropajazul = jazul.getGuardarropas().get(0);
-            if (guardarropajazul.getPrendas().size() == 0){
+            if (guardarropajazul.getPrendas().size() == 0) {
 
                 java.util.List<Prenda> prendas = guardarropajazul.getPrendas();
-                prendas.add(new Prenda(RemeraCuelloRedondoMangaLarga, Material.LYCRA, Color.YELLOW ));
-                prendas.add(new Prenda(RemeraEscoteVMangaLarga, Material.ALGODON, Color.WHITE ));
-                prendas.add(new Prenda(musculosa, Material.LYCRA, Color.GREEN ));
-                prendas.add(new Prenda(sueter, Material.POLIESTER, Color.GRAY ));
-                prendas.add(new Prenda(pollera, Material.SEDA, Color.BLACK ));
-                prendas.add(new Prenda(calza, Material.NYLON, Color.BLACK ));
-                prendas.add(new Prenda(buzo, Material.ALGODON, Color.WHITE ));
-                prendas.add(new Prenda(zapatos, Material.CUERO, Color.BLACK ));
-                prendas.add(new Prenda(sandalias, Material.CUERO, Color.BLACK ));
+                prendas.add(new Prenda(RemeraCuelloRedondoMangaLarga, LYCRA, Color.YELLOW));
+                prendas.add(new Prenda(RemeraEscoteVMangaLarga, ALGODON, Color.WHITE));
+                prendas.add(new Prenda(musculosa, LYCRA, Color.GREEN));
+                prendas.add(new Prenda(sueter, POLIESTER, Color.GRAY));
+                prendas.add(new Prenda(pollera, SEDA, Color.BLACK));
+                prendas.add(new Prenda(calza, NYLON, Color.BLACK));
+                prendas.add(new Prenda(buzo, ALGODON, Color.WHITE));
+                prendas.add(new Prenda(zapatos, CUERO, Color.BLACK));
+                prendas.add(new Prenda(sandalias, CUERO, Color.BLACK));
                 guardarropajazul.setPrendas(prendas);
             }
             jazul.getGuardarropas().clear();

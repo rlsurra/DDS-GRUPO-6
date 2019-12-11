@@ -149,9 +149,7 @@ public class Prenda extends Entidad {
     }
 
     protected void validarPrendaMaterial(TipoPrenda tipoPrenda, Material material) {
-        ValidacionPrendaMaterial validacionPrendaMaterial = ValidacionPrendaMaterial.ValidacionPrendaMaterial();
-        if (!validacionPrendaMaterial.validarPrenda(material, tipoPrenda)) {
-            //TODO: CAMBIAR EL SOUT POR LOGGER, USAR SLF4J de LOMBOK que es tremendo!
+        if (!ValidacionPrendaMaterial.validarPrenda(material, tipoPrenda)) {
             System.out.println("Prenda no valida");
             throw new PrendaNoValidaException("COMBINACION TIPO DE PRENDA / MATERIAL NO VALIDA !");
         }
