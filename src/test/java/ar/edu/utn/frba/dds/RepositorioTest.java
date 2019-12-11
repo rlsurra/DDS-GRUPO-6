@@ -2,14 +2,14 @@ package ar.edu.utn.frba.dds;
 
 
 import ar.edu.utn.frba.dds.model.atuendo.Atuendo;
+import ar.edu.utn.frba.dds.model.categoria.CategoriaAccesorio;
+import ar.edu.utn.frba.dds.model.categoria.superior.CategoriaSuperiorAbrigoPesado;
 import ar.edu.utn.frba.dds.model.evento.Evento;
+import ar.edu.utn.frba.dds.model.evento.EventoSimple;
 import ar.edu.utn.frba.dds.model.evento.notificador.NotificadorAplicacion;
 import ar.edu.utn.frba.dds.model.evento.notificador.NotificadorCorreo;
 import ar.edu.utn.frba.dds.model.guardarropa.Guardarropa;
 import ar.edu.utn.frba.dds.model.material.Material;
-import ar.edu.utn.frba.dds.model.categoria.CategoriaAccesorio;
-import ar.edu.utn.frba.dds.model.categoria.superior.CategoriaSuperiorAbrigoPesado;
-import ar.edu.utn.frba.dds.model.evento.EventoSimple;
 import ar.edu.utn.frba.dds.model.prenda.Prenda;
 import ar.edu.utn.frba.dds.model.prenda.PrendaVacio;
 import ar.edu.utn.frba.dds.model.prenda.PuntajePrenda;
@@ -17,26 +17,17 @@ import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.TipoPrenda;
 import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.TipoPrendaCalzado;
 import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.TipoPrendaInferior;
 import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.TipoPrendaSuperior;
-import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.calzado.TipoZapatilla;
-import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.inferior.TipoJean;
-import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.superior.abrigoLigero.TipoSweater;
-import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.superior.remera.TipoRemeraCorta;
 import ar.edu.utn.frba.dds.model.usuario.HistorialAtuendos.RegistroAtuendoSeleccionado;
-import ar.edu.utn.frba.dds.model.usuario.tipoUsuario.TipoUsuario;
-import ar.edu.utn.frba.dds.model.usuario.tipoUsuario.TipoUsuarioGratuito;
-import ar.edu.utn.frba.dds.model.usuario.tipoUsuario.TipoUsuarioPremium;
 import ar.edu.utn.frba.dds.model.usuario.Usuario;
 import ar.edu.utn.frba.dds.model.usuario.referenciaTemperatura.Caluroso;
 import ar.edu.utn.frba.dds.model.usuario.referenciaTemperatura.ReferenciaTemperatura;
+import ar.edu.utn.frba.dds.model.usuario.tipoUsuario.TipoUsuario;
+import ar.edu.utn.frba.dds.model.usuario.tipoUsuario.TipoUsuarioGratuito;
+import ar.edu.utn.frba.dds.model.usuario.tipoUsuario.TipoUsuarioPremium;
 import ar.edu.utn.frba.dds.persistence.Repositorio;
-import junit.framework.TestCase;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import java.awt.*;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -50,7 +41,7 @@ public class RepositorioTest {
 
     private Prenda prendaSuperior;
     private Prenda prendaInferior;
-    private  Prenda prendaCalzado;
+    private Prenda prendaCalzado;
     private Prenda prendaAccesorio;
     private Prenda prendaAbrigoLigero;
     private Prenda prendaAbrigoPesado;
@@ -123,7 +114,6 @@ public class RepositorioTest {
         usuario.getEventos().add(evento);
         usuario.setTipoUsuario(tipoUsuarioPremium);
         usuario.setId(null);
-
 
 
         guardarropa = new Guardarropa();

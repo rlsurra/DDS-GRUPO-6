@@ -1,11 +1,11 @@
 package ar.edu.utn.frba.dds;
 
 import ar.edu.utn.frba.dds.exceptions.ColorPrimarioIgualAlSecundarioException;
+import ar.edu.utn.frba.dds.model.categoria.superior.CategoriaSuperiorRemera;
 import ar.edu.utn.frba.dds.model.material.Material;
 import ar.edu.utn.frba.dds.model.prenda.Prenda;
-import ar.edu.utn.frba.dds.model.categoria.superior.CategoriaSuperiorRemera;
 import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.TipoPrenda;
-import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.superior.remera.TipoRemeraCorta;
+import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.TipoPrendaSuperior;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -16,7 +16,7 @@ public class PrendaTest {
     @Test
     public void saberTipoDePrenda() {
         Material algodon = new Material();
-        TipoPrenda tipoRemeraCorta = new TipoRemeraCorta();
+        TipoPrenda tipoRemeraCorta = new TipoPrendaSuperior();
         tipoRemeraCorta.getMaterialesPermitidos().add(algodon);
         Prenda remera = new Prenda(tipoRemeraCorta, algodon, Color.BLACK, Color.BLUE);
         Assert.assertEquals(tipoRemeraCorta, remera.getTipoPrenda());
@@ -25,7 +25,7 @@ public class PrendaTest {
     @Test
     public void saberCategoria() {
         Material algodon = new Material();
-        TipoPrenda tipoRemeraCorta = new TipoRemeraCorta();
+        TipoPrenda tipoRemeraCorta = new TipoPrendaSuperior();
         tipoRemeraCorta.getMaterialesPermitidos().add(algodon);
         Prenda remera = new Prenda(tipoRemeraCorta, algodon, Color.BLACK);
         Assert.assertEquals(remera.getCategoria(), CategoriaSuperiorRemera.CATEGORIA_SUPERIOR_REMERA);
@@ -34,7 +34,7 @@ public class PrendaTest {
     @Test(expected = ColorPrimarioIgualAlSecundarioException.class)
     public void crearPrendaNoValidaPorColoresIguales() {
         Material algodon = new Material();
-        TipoPrenda tipoRemeraCorta = new TipoRemeraCorta();
+        TipoPrenda tipoRemeraCorta = new TipoPrendaSuperior();
         tipoRemeraCorta.getMaterialesPermitidos().add(algodon);
         new Prenda(tipoRemeraCorta, algodon, Color.RED, Color.RED);
     }
