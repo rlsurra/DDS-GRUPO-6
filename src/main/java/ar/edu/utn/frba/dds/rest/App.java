@@ -32,87 +32,101 @@ public class App {
         Repositorio repo = Repositorio.getInstance();
 
         Material ALGODON = Material.buscarMaterialPorNombre("ALGODON");
-        if (ALGODON != null) {
+        if (ALGODON == null) {
             ALGODON = new Material();
             ALGODON.setNombre("ALGODON");
+            repo.save(ALGODON);
         }
 
         Material GABARDINA = Material.buscarMaterialPorNombre("GABARDINA");
-        if (GABARDINA != null) {
+        if (GABARDINA == null) {
             GABARDINA = new Material();
             GABARDINA.setNombre("GABARDINA");
+            repo.save(GABARDINA);
         }
 
         Material LINO = Material.buscarMaterialPorNombre("LINO");
-        if (LINO != null) {
+        if (LINO == null) {
             LINO = new Material();
             LINO.setNombre("LINO");
+            repo.save(LINO);
         }
 
         Material NYLON = Material.buscarMaterialPorNombre("NYLON");
-        if (NYLON != null) {
+        if (NYLON == null) {
             NYLON = new Material();
             NYLON.setNombre("NYLON");
+            repo.save(NYLON);
         }
 
         Material CAUCHO = Material.buscarMaterialPorNombre("CAUCHO");
-        if (CAUCHO != null) {
+        if (CAUCHO == null) {
             CAUCHO = new Material();
             CAUCHO.setNombre("CAUCHO");
+            repo.save(CAUCHO);
         }
 
         Material LONA = Material.buscarMaterialPorNombre("LONA");
-        if (LONA != null) {
+        if (LONA == null) {
             LONA = new Material();
             LONA.setNombre("LONA");
+            repo.save(LONA);
         }
 
         Material PLASTICO = Material.buscarMaterialPorNombre("PLASTICO");
-        if (PLASTICO != null) {
+        if (PLASTICO == null) {
             PLASTICO = new Material();
             PLASTICO.setNombre("PLASTICO");
+            repo.save(PLASTICO);
         }
 
         Material METAL = Material.buscarMaterialPorNombre("METAL");
-        if (METAL != null) {
+        if (METAL == null) {
             METAL = new Material();
             METAL.setNombre("METAL");
+            repo.save(METAL);
         }
 
         Material LANA = Material.buscarMaterialPorNombre("LANA");
-        if (LANA != null) {
+        if (LANA == null) {
             LANA = new Material();
             LANA.setNombre("LANA");
+            repo.save(LANA);
         }
 
         Material JEAN = Material.buscarMaterialPorNombre("JEAN");
-        if (JEAN != null) {
+        if (JEAN == null) {
             JEAN = new Material();
             JEAN.setNombre("JEAN");
+            repo.save(JEAN);
         }
 
         Material CUERO = Material.buscarMaterialPorNombre("CUERO");
-        if (CUERO != null) {
+        if (CUERO == null) {
             CUERO = new Material();
             CUERO.setNombre("CUERO");
+            repo.save(CUERO);
         }
 
         Material LYCRA = Material.buscarMaterialPorNombre("LYCRA");
-        if (LYCRA != null) {
+        if (LYCRA == null) {
             LYCRA = new Material();
             LYCRA.setNombre("LYCRA");
+            repo.save(LYCRA);
         }
 
         Material POLIESTER = Material.buscarMaterialPorNombre("POLIESTER");
-        if (POLIESTER != null) {
+        if (POLIESTER == null) {
             POLIESTER = new Material();
             POLIESTER.setNombre("POLIESTER");
+            repo.save(POLIESTER);
         }
 
         Material SEDA = Material.buscarMaterialPorNombre("SEDA");
-        if (SEDA != null) {
+        if (SEDA == null) {
             SEDA = new Material();
             SEDA.setNombre("SEDA");
+            repo.save(SEDA);
         }
 
         TipoPrenda RemeraCuelloRedondoMangaCorta = TipoPrenda.buscarTipoDePrendaPorCodigo("REMERA_CUELLO_REDONDO_MANGA_CORTA");

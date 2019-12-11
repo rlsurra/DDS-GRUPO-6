@@ -64,7 +64,7 @@ public class Prenda extends Entidad {
 
     public Prenda(TipoPrenda tipoPrenda, Material material, Color colorPrimario, Color colorSecundario) {
         validarParametrosInvalidos(tipoPrenda, material, colorPrimario);
-        //validarPrendaMaterial(tipoPrenda, material);
+        validarPrendaMaterial(tipoPrenda, material);
         validarColores(colorPrimario, colorSecundario);
         this.tipoPrenda = tipoPrenda;
         this.material = material;
