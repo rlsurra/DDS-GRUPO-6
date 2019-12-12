@@ -32,7 +32,7 @@ public class Prenda extends Entidad {
     @ManyToOne(cascade = CascadeType.ALL)
     private TipoPrenda tipoPrenda;
 
-    @Column
+    @OneToOne
     private Material material;
 
     @Column

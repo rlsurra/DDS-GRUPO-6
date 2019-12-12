@@ -18,7 +18,7 @@ import java.util.List;
 })
 public abstract class TipoPrenda extends Entidad {
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     private Categoria categoria;
 
     @Column
@@ -27,9 +27,7 @@ public abstract class TipoPrenda extends Entidad {
     @Column
     private String codigo;
 
-    @OneToMany(
-            orphanRemoval = false
-    )
+    @ManyToMany
     private List<Material> materialesPermitidos = new ArrayList<>();
 
     public TipoPrenda() {

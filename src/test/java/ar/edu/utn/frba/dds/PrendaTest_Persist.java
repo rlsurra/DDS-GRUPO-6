@@ -17,7 +17,7 @@ public class PrendaTest_Persist {
     @Test
     public void saberTipoDePrenda() {
         Material ALGODON = new Material("ALGODON");
-        TipoPrenda tipoRemeraCorta = new TipoPrendaSuperior();
+        TipoPrenda tipoRemeraCorta = new TipoPrendaSuperior(CategoriaSuperior.getInstance());
         tipoRemeraCorta.getMaterialesPermitidos().add(ALGODON);
         Prenda remera = new Prenda(tipoRemeraCorta, ALGODON, Color.BLACK, Color.BLUE);
         Assert.assertEquals(tipoRemeraCorta, remera.getTipoPrenda());
@@ -28,7 +28,7 @@ public class PrendaTest_Persist {
     @Test
     public void saberCategoria() {
         Material ALGODON = new Material("ALGODON");
-        TipoPrenda tipoRemeraCorta = new TipoPrendaSuperior();
+        TipoPrenda tipoRemeraCorta = new TipoPrendaSuperior(CategoriaSuperior.getInstance());
         tipoRemeraCorta.getMaterialesPermitidos().add(ALGODON);
         Prenda remera = new Prenda(tipoRemeraCorta, ALGODON, Color.BLACK);
         Assert.assertEquals(remera.getCategoria(), CategoriaSuperior.getInstance());
@@ -37,7 +37,7 @@ public class PrendaTest_Persist {
     @Test(expected = ColorPrimarioIgualAlSecundarioException.class)
     public void crearPrendaNoValidaPorColoresIguales() {
         Material ALGODON = new Material("ALGODON");
-        TipoPrenda tipoRemeraCorta = new TipoPrendaSuperior();
+        TipoPrenda tipoRemeraCorta = new TipoPrendaSuperior(CategoriaSuperior.getInstance());
         tipoRemeraCorta.getMaterialesPermitidos().add(ALGODON);
         new Prenda(tipoRemeraCorta, ALGODON, Color.RED, Color.RED);
     }
@@ -52,7 +52,7 @@ public class PrendaTest_Persist {
     @Ignore
     public void cargarImagenAUnaPrenda() {
         Material ALGODON = new Material("ALGODON");
-        TipoPrenda tipoRemeraCorta = new TipoPrendaSuperior();
+        TipoPrenda tipoRemeraCorta = new TipoPrendaSuperior(CategoriaSuperior.getInstance());
         tipoRemeraCorta.getMaterialesPermitidos().add(ALGODON);
         Prenda remera = new Prenda(tipoRemeraCorta, ALGODON, Color.BLACK);
         remera.setImagenPrenda("/remeraNegra.jpg");

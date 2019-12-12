@@ -1,5 +1,6 @@
 package ar.edu.utn.frba.dds;
 
+import ar.edu.utn.frba.dds.model.categoria.CategoriaSuperior;
 import ar.edu.utn.frba.dds.model.material.Material;
 import ar.edu.utn.frba.dds.model.prenda.ValidacionPrendaMaterial;
 import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.TipoPrenda;
@@ -12,7 +13,7 @@ public class ValidacionPrendaMaterialTest {
     @Test
     public void validarMaterialYTipoDePrenda() {
         Material algodon = new Material("ALGODON");
-        TipoPrenda trm = new TipoPrendaSuperior();
+        TipoPrenda trm = new TipoPrendaSuperior(CategoriaSuperior.getInstance());
         trm.getMaterialesPermitidos().add(algodon);
         Assert.assertTrue(ValidacionPrendaMaterial.validarPrenda(algodon, trm));
     }
@@ -20,7 +21,7 @@ public class ValidacionPrendaMaterialTest {
     @Test
     public void validarMaterialYTipoDePrendaError() {
         Material algodon = new Material("ALGODON");
-        TipoPrenda trm = new TipoPrendaSuperior();
+        TipoPrenda trm = new TipoPrendaSuperior(CategoriaSuperior.getInstance());
         trm.getMaterialesPermitidos().add(algodon);
         Assert.assertFalse(ValidacionPrendaMaterial.validarPrenda(new Material("CUERO"), trm));
     }

@@ -1,5 +1,11 @@
 package ar.edu.utn.frba.dds;
 
+import ar.edu.utn.frba.dds.model.categoria.CategoriaAccesorio;
+import ar.edu.utn.frba.dds.model.categoria.CategoriaCalzado;
+import ar.edu.utn.frba.dds.model.categoria.CategoriaInferior;
+import ar.edu.utn.frba.dds.model.categoria.CategoriaSuperior;
+import ar.edu.utn.frba.dds.model.categoria.superior.CategoriaSuperiorAbrigoLigero;
+import ar.edu.utn.frba.dds.model.categoria.superior.CategoriaSuperiorAbrigoPesado;
 import ar.edu.utn.frba.dds.model.guardarropa.Guardarropa;
 import ar.edu.utn.frba.dds.model.material.Material;
 import ar.edu.utn.frba.dds.model.prenda.Prenda;
@@ -45,32 +51,32 @@ public class GeneradorGuardarropa {
         guardarropaPedro.agregarUsuario(pablo);
 
 
-        TipoPrenda tipoCamisaLarga = new TipoPrendaSuperior();
+        TipoPrenda tipoCamisaLarga = new TipoPrendaSuperior(CategoriaSuperior.getInstance());
         tipoCamisaLarga.getMaterialesPermitidos().add(ALGODON);
-        TipoPrenda tipoRemeraCorta = new TipoPrendaSuperior();
+        TipoPrenda tipoRemeraCorta = new TipoPrendaSuperior(CategoriaSuperior.getInstance());
         tipoRemeraCorta.getMaterialesPermitidos().add(ALGODON);
         tipoRemeraCorta.getMaterialesPermitidos().add(NYLON);
-        TipoPrenda tipoJean = new TipoPrendaInferior();
+        TipoPrenda tipoJean = new TipoPrendaInferior(CategoriaInferior.getInstance());
         tipoJean.getMaterialesPermitidos().add(JEAN);
-        TipoPrenda tipoBermuda = new TipoPrendaInferior();
+        TipoPrenda tipoBermuda = new TipoPrendaInferior(CategoriaInferior.getInstance());
         tipoBermuda.getMaterialesPermitidos().add(GABARDINA);
-        TipoPrenda tipoZapatilla = new TipoPrendaCalzado();
+        TipoPrenda tipoZapatilla = new TipoPrendaCalzado(CategoriaCalzado.getInstance());
         tipoZapatilla.getMaterialesPermitidos().add(CUERO);
         tipoZapatilla.getMaterialesPermitidos().add(LONA);
-        TipoPrenda tipoZapato = new TipoPrendaCalzado();
+        TipoPrenda tipoZapato = new TipoPrendaCalzado(CategoriaCalzado.getInstance());
         tipoZapato.getMaterialesPermitidos().add(CUERO);
-        TipoPrenda tipoReloj = new TipoPrendaAccesorio();
+        TipoPrenda tipoReloj = new TipoPrendaAccesorio(CategoriaAccesorio.getInstance());
         tipoReloj.getMaterialesPermitidos().add(METAL);
         tipoReloj.getMaterialesPermitidos().add(PLASTICO);
-        TipoPrenda tipoGorra = new TipoPrendaAccesorio();
+        TipoPrenda tipoGorra = new TipoPrendaAccesorio(CategoriaAccesorio.getInstance());
         tipoGorra.getMaterialesPermitidos().add(ALGODON);
-        TipoPrenda tipoCampera = new TipoPrendaInferior();
+        TipoPrenda tipoCampera = new TipoPrendaInferior(CategoriaInferior.getInstance());
         tipoCampera.getMaterialesPermitidos().add(CUERO);
-        TipoPrenda tipoBuzoPolar = new TipoPrendaInferior();
+        TipoPrenda tipoBuzoPolar = new TipoPrendaInferior(CategoriaInferior.getInstance());
         tipoBuzoPolar.getMaterialesPermitidos().add(LANA);
-        TipoPrenda tipoBuzo = new TipoPrendaInferior();
+        TipoPrenda tipoBuzo = new TipoPrendaInferior(CategoriaSuperiorAbrigoPesado.getInstance());
         tipoBuzo.getMaterialesPermitidos().add(LANA);
-        TipoPrenda tipoSweater = new TipoPrendaInferior();
+        TipoPrenda tipoSweater = new TipoPrendaInferior(CategoriaSuperiorAbrigoLigero.getInstance());
         tipoSweater.getMaterialesPermitidos().add(LANA);
 
 

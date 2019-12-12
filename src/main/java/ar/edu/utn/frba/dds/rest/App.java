@@ -1,5 +1,11 @@
 package ar.edu.utn.frba.dds.rest;
 
+import ar.edu.utn.frba.dds.model.categoria.Categoria;
+import ar.edu.utn.frba.dds.model.categoria.CategoriaCalzado;
+import ar.edu.utn.frba.dds.model.categoria.CategoriaInferior;
+import ar.edu.utn.frba.dds.model.categoria.CategoriaSuperior;
+import ar.edu.utn.frba.dds.model.categoria.superior.CategoriaSuperiorAbrigoLigero;
+import ar.edu.utn.frba.dds.model.categoria.superior.CategoriaSuperiorAbrigoPesado;
 import ar.edu.utn.frba.dds.model.guardarropa.Guardarropa;
 import ar.edu.utn.frba.dds.model.material.Material;
 import ar.edu.utn.frba.dds.model.prenda.Prenda;
@@ -14,10 +20,12 @@ import ar.edu.utn.frba.dds.model.usuario.tipoUsuario.TipoUsuario;
 import ar.edu.utn.frba.dds.model.usuario.tipoUsuario.TipoUsuarioGratuito;
 import ar.edu.utn.frba.dds.model.usuario.tipoUsuario.TipoUsuarioPremium;
 import ar.edu.utn.frba.dds.persistence.Repositorio;
+import org.checkerframework.checker.units.qual.A;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 @SpringBootApplication
 public class App {
@@ -131,173 +139,224 @@ public class App {
 
         TipoPrenda RemeraCuelloRedondoMangaCorta = TipoPrenda.buscarTipoDePrendaPorCodigo("REMERA_CUELLO_REDONDO_MANGA_CORTA");
         if (RemeraCuelloRedondoMangaCorta == null) {
-            RemeraCuelloRedondoMangaCorta = new TipoPrendaSuperior();
+            RemeraCuelloRedondoMangaCorta = new TipoPrendaSuperior(CategoriaSuperior.getInstance());
             RemeraCuelloRedondoMangaCorta.setNombre("Remera cuello redondo manga corta");
             RemeraCuelloRedondoMangaCorta.setCodigo("REMERA_CUELLO_REDONDO_MANGA_CORTA");
             RemeraCuelloRedondoMangaCorta.setNivelDeCalor(5D);
+            RemeraCuelloRedondoMangaCorta.getMaterialesPermitidos().add(ALGODON);
+            RemeraCuelloRedondoMangaCorta.getMaterialesPermitidos().add(SEDA);
+            RemeraCuelloRedondoMangaCorta.getMaterialesPermitidos().add(POLIESTER);
+            RemeraCuelloRedondoMangaCorta.getMaterialesPermitidos().add(LYCRA);
             repo.save(RemeraCuelloRedondoMangaCorta);
-            //No puedo agregar telas admitidas ni combina con
+            //No puedo agregar combina con
         }
 
         TipoPrenda RemeraCuelloRedondoMangaLarga = TipoPrenda.buscarTipoDePrendaPorCodigo("REMERA_CUELLO_REDONDO_MANGA_LARGA");
         if (RemeraCuelloRedondoMangaLarga == null) {
-            RemeraCuelloRedondoMangaLarga = new TipoPrendaSuperior();
+            RemeraCuelloRedondoMangaLarga = new TipoPrendaSuperior(CategoriaSuperior.getInstance());
             RemeraCuelloRedondoMangaLarga.setNombre("Remera cuello redondo manga larga");
             RemeraCuelloRedondoMangaLarga.setCodigo("REMERA_CUELLO_REDONDO_MANGA_LARGA");
             RemeraCuelloRedondoMangaLarga.setNivelDeCalor(8D);
-            //No puedo agregar telas admitidas ni combina con
+            RemeraCuelloRedondoMangaLarga.getMaterialesPermitidos().add(ALGODON);
+            RemeraCuelloRedondoMangaLarga.getMaterialesPermitidos().add(SEDA);
+            RemeraCuelloRedondoMangaLarga.getMaterialesPermitidos().add(POLIESTER);
+            RemeraCuelloRedondoMangaLarga.getMaterialesPermitidos().add(LYCRA);
+            //No puedo agregar combina con
             repo.save(RemeraCuelloRedondoMangaLarga);
         }
 
 
         TipoPrenda RemeraEscoteVMangaCorta = TipoPrenda.buscarTipoDePrendaPorCodigo("REMERA_ESCOTE_V_MANGA_CORTA");
         if (RemeraEscoteVMangaCorta == null) {
-            RemeraEscoteVMangaCorta = new TipoPrendaSuperior();
+            RemeraEscoteVMangaCorta = new TipoPrendaSuperior(CategoriaSuperior.getInstance());
             RemeraEscoteVMangaCorta.setNombre("Remera escote V manga corta");
             RemeraEscoteVMangaCorta.setCodigo("REMERA_ESCOTE_V_MANGA_CORTA");
             RemeraEscoteVMangaCorta.setNivelDeCalor(5D);
-            //No puedo agregar telas admitidas ni combina con
+            RemeraEscoteVMangaCorta.getMaterialesPermitidos().add(ALGODON);
+            RemeraEscoteVMangaCorta.getMaterialesPermitidos().add(SEDA);
+            RemeraEscoteVMangaCorta.getMaterialesPermitidos().add(POLIESTER);
+            RemeraEscoteVMangaCorta.getMaterialesPermitidos().add(LYCRA);
+            //No puedo agregar combina con
             repo.save(RemeraEscoteVMangaCorta);
         }
 
 
         TipoPrenda RemeraEscoteVMangaLarga = TipoPrenda.buscarTipoDePrendaPorCodigo("REMERA_ESCOTE_V_MANGA_LARGA");
         if (RemeraEscoteVMangaLarga == null) {
-            RemeraEscoteVMangaLarga = new TipoPrendaSuperior();
+            RemeraEscoteVMangaLarga = new TipoPrendaSuperior(CategoriaSuperior.getInstance());
             RemeraEscoteVMangaLarga.setNombre("Remera escote V manga larga");
             RemeraEscoteVMangaLarga.setCodigo("REMERA_ESCOTE_V_MANGA_LARGA");
             RemeraEscoteVMangaLarga.setNivelDeCalor(8D);
-            //No puedo agregar telas admitidas ni combina con
+            RemeraEscoteVMangaLarga.getMaterialesPermitidos().add(ALGODON);
+            RemeraEscoteVMangaLarga.getMaterialesPermitidos().add(SEDA);
+            RemeraEscoteVMangaLarga.getMaterialesPermitidos().add(POLIESTER);
+            RemeraEscoteVMangaLarga.getMaterialesPermitidos().add(LYCRA);
+            //No puedo agregar combina con
             repo.save(RemeraEscoteVMangaLarga);
         }
 
         TipoPrenda sueter = TipoPrenda.buscarTipoDePrendaPorCodigo("SUETER");
         if (sueter == null) {
-            sueter = new TipoPrendaSuperior();
+            sueter = new TipoPrendaSuperior(CategoriaSuperiorAbrigoLigero.getInstance());
             sueter.setNombre("Sueter");
             sueter.setCodigo("SUETER");
             sueter.setNivelDeCalor(15D);
-            //No puedo agregar telas admitidas ni combina con
+            sueter.getMaterialesPermitidos().add(ALGODON);
+            sueter.getMaterialesPermitidos().add(SEDA);
+            sueter.getMaterialesPermitidos().add(POLIESTER);
+            //No puedo agregar combina con
             repo.save(sueter);
         }
 
         TipoPrenda campera = TipoPrenda.buscarTipoDePrendaPorCodigo("CAMPERA");
         if (campera == null) {
-            campera = new TipoPrendaSuperior();
+            campera = new TipoPrendaSuperior(CategoriaSuperiorAbrigoPesado.getInstance());
             campera.setNombre("Campera");
             campera.setCodigo("CAMPERA");
             campera.setNivelDeCalor(15D);
-            //No puedo agregar telas admitidas ni combina con
+            campera.getMaterialesPermitidos().add(ALGODON);
+            campera.getMaterialesPermitidos().add(SEDA);
+            campera.getMaterialesPermitidos().add(POLIESTER);
+            campera.getMaterialesPermitidos().add(CUERO);
+            campera.getMaterialesPermitidos().add(NYLON);
+            //No puedo agregar combina con
             repo.save(campera);
         }
 
         TipoPrenda pantalonLargo = TipoPrenda.buscarTipoDePrendaPorCodigo("PANTALON_LARGO");
         if (pantalonLargo == null) {
-            pantalonLargo = new TipoPrendaInferior();
+            pantalonLargo = new TipoPrendaInferior(CategoriaInferior.getInstance());
             pantalonLargo.setNombre("Pantalón largo");
             pantalonLargo.setCodigo("PANTALON_LARGO");
             pantalonLargo.setNivelDeCalor(8D);
+            pantalonLargo.getMaterialesPermitidos().add(ALGODON);
+            pantalonLargo.getMaterialesPermitidos().add(SEDA);
+            pantalonLargo.getMaterialesPermitidos().add(POLIESTER);
+            pantalonLargo.getMaterialesPermitidos().add(NYLON);
+            pantalonLargo.getMaterialesPermitidos().add(JEAN);
 
-            //No puedo agregar telas admitidas ni combina con
+            //No puedo agregar combina con
             repo.save(pantalonLargo);
         }
 
         TipoPrenda pantalonCorto = TipoPrenda.buscarTipoDePrendaPorCodigo("PANTALON_CORTO");
         if (pantalonCorto == null) {
-            pantalonCorto = new TipoPrendaInferior();
+            pantalonCorto = new TipoPrendaInferior(CategoriaInferior.getInstance());
             pantalonCorto.setNombre("Pantalón corto");
             pantalonCorto.setCodigo("PANTALON_CORTO");
             pantalonCorto.setNivelDeCalor(8D);
-
-            //No puedo agregar telas admitidas ni combina con
+            pantalonCorto.getMaterialesPermitidos().add(ALGODON);
+            pantalonCorto.getMaterialesPermitidos().add(SEDA);
+            pantalonCorto.getMaterialesPermitidos().add(POLIESTER);
+            pantalonCorto.getMaterialesPermitidos().add(NYLON);
+            pantalonCorto.getMaterialesPermitidos().add(JEAN);
+            //No puedo agregar combina con
             repo.save(pantalonCorto);
         }
 
         TipoPrenda bermuda = TipoPrenda.buscarTipoDePrendaPorCodigo("BERMUDA");
         if (bermuda == null) {
-            bermuda = new TipoPrendaInferior();
+            bermuda = new TipoPrendaInferior(CategoriaInferior.getInstance());
             bermuda.setNombre("Bermuda");
             bermuda.setCodigo("BERMUDA");
             bermuda.setNivelDeCalor(3D);
+            bermuda.getMaterialesPermitidos().add(ALGODON);
+            bermuda.getMaterialesPermitidos().add(SEDA);
+            bermuda.getMaterialesPermitidos().add(POLIESTER);
+            bermuda.getMaterialesPermitidos().add(NYLON);
+            bermuda.getMaterialesPermitidos().add(JEAN);
 
-            //No puedo agregar telas admitidas ni combina con
+            //No puedo agregar combina con
             repo.save(bermuda);
         }
 
         TipoPrenda pollera = TipoPrenda.buscarTipoDePrendaPorCodigo("POLLERA");
         if (pollera == null) {
-            pollera = new TipoPrendaInferior();
+            pollera = new TipoPrendaInferior(CategoriaInferior.getInstance());
             pollera.setNombre("Pollera");
             pollera.setCodigo("POLLERA");
             pollera.setNivelDeCalor(3D);
-
-            //No puedo agregar telas admitidas ni combina con
+            pollera.getMaterialesPermitidos().add(ALGODON);
+            pollera.getMaterialesPermitidos().add(SEDA);
+            pollera.getMaterialesPermitidos().add(POLIESTER);
+            pollera.getMaterialesPermitidos().add(NYLON);
+            pollera.getMaterialesPermitidos().add(JEAN);
+            //No puedo agregar combina con
             repo.save(pollera);
         }
 
         TipoPrenda calza = TipoPrenda.buscarTipoDePrendaPorCodigo("CALZA");
         if (calza == null) {
-            calza = new TipoPrendaInferior();
+            calza = new TipoPrendaInferior(CategoriaInferior.getInstance());
             calza.setNombre("Calza");
             calza.setCodigo("CALZA");
             calza.setNivelDeCalor(5D);
-
-            //No puedo agregar telas admitidas ni combina con
+            calza.getMaterialesPermitidos().add(ALGODON);
+            calza.getMaterialesPermitidos().add(SEDA);
+            calza.getMaterialesPermitidos().add(POLIESTER);
+            calza.getMaterialesPermitidos().add(NYLON);
+            //No puedo agregar combina con
             repo.save(calza);
         }
 
         TipoPrenda buzo = TipoPrenda.buscarTipoDePrendaPorCodigo("BUZO");
         if (buzo == null) {
-            buzo = new TipoPrendaSuperior();
+            buzo = new TipoPrendaSuperior(CategoriaSuperiorAbrigoLigero.getInstance());
             buzo.setNombre("Buzo");
             buzo.setCodigo("BUZO");
             buzo.setNivelDeCalor(13D);
-
-            //No puedo agregar telas admitidas ni combina con
+            buzo.getMaterialesPermitidos().add(ALGODON);
+            buzo.getMaterialesPermitidos().add(SEDA);
+            buzo.getMaterialesPermitidos().add(POLIESTER);
+            buzo.getMaterialesPermitidos().add(NYLON);
+            //No puedo agregar combina con
             repo.save(buzo);
         }
 
         TipoPrenda musculosa = TipoPrenda.buscarTipoDePrendaPorCodigo("MUSCULOSA");
         if (musculosa == null) {
-            musculosa = new TipoPrendaSuperior();
+            musculosa = new TipoPrendaSuperior(CategoriaSuperior.getInstance());
             musculosa.setNombre("Musculosa");
             musculosa.setCodigo("MUSCULOSA");
             musculosa.setNivelDeCalor(3D);
-
-            //No puedo agregar telas admitidas ni combina con
+            musculosa.getMaterialesPermitidos().add(ALGODON);
+            musculosa.getMaterialesPermitidos().add(LYCRA);
+            //No puedo agregar combina con
             repo.save(musculosa);
         }
 
         TipoPrenda zapatillas = TipoPrenda.buscarTipoDePrendaPorCodigo("ZAPATILLAS");
         if (zapatillas == null) {
-            zapatillas = new TipoPrendaCalzado();
+            zapatillas = new TipoPrendaCalzado(CategoriaCalzado.getInstance());
             zapatillas.setNombre("Zapatillas");
             zapatillas.setCodigo("ZAPATILLAS");
             zapatillas.setNivelDeCalor(0D);
-
-            //No puedo agregar telas admitidas ni combina con
+            zapatillas.getMaterialesPermitidos().add(CUERO);
+            zapatillas.getMaterialesPermitidos().add(NYLON);
+            //No puedo agregar combina con
             repo.save(zapatillas);
         }
 
         TipoPrenda zapatos = TipoPrenda.buscarTipoDePrendaPorCodigo("ZAPATOS");
         if (zapatos == null) {
-            zapatos = new TipoPrendaCalzado();
+            zapatos = new TipoPrendaCalzado(CategoriaCalzado.getInstance());
             zapatos.setNombre("Zapatos");
             zapatos.setCodigo("ZAPATOS");
             zapatos.setNivelDeCalor(0D);
+            zapatos.getMaterialesPermitidos().add(CUERO);
 
-            //No puedo agregar telas admitidas ni combina con
+            //No puedo agregar combina con
             repo.save(zapatos);
         }
 
         TipoPrenda sandalias = TipoPrenda.buscarTipoDePrendaPorCodigo("SANDALIAS");
         if (sandalias == null) {
-            sandalias = new TipoPrendaCalzado();
+            sandalias = new TipoPrendaCalzado(CategoriaCalzado.getInstance());
             sandalias.setNombre("Sandalias");
             sandalias.setCodigo("SANDALIAS");
             sandalias.setNivelDeCalor(0D);
-
-            //No puedo agregar telas admitidas ni combina con
+            sandalias.getMaterialesPermitidos().add(CUERO);
+            //No puedo agregar combina con
             repo.save(sandalias);
         }
 

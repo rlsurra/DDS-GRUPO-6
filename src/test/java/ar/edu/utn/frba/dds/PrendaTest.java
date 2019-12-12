@@ -16,7 +16,7 @@ public class PrendaTest {
     @Test
     public void saberTipoDePrenda() {
         Material algodon = new Material();
-        TipoPrenda tipoRemeraCorta = new TipoPrendaSuperior();
+        TipoPrenda tipoRemeraCorta = new TipoPrendaSuperior(CategoriaSuperior.getInstance());
         tipoRemeraCorta.getMaterialesPermitidos().add(algodon);
         Prenda remera = new Prenda(tipoRemeraCorta, algodon, Color.BLACK, Color.BLUE);
         Assert.assertEquals(tipoRemeraCorta, remera.getTipoPrenda());
@@ -25,7 +25,7 @@ public class PrendaTest {
     @Test
     public void saberCategoria() {
         Material algodon = new Material();
-        TipoPrenda tipoRemeraCorta = new TipoPrendaSuperior();
+        TipoPrenda tipoRemeraCorta = new TipoPrendaSuperior(CategoriaSuperior.getInstance());
         tipoRemeraCorta.getMaterialesPermitidos().add(algodon);
         Prenda remera = new Prenda(tipoRemeraCorta, algodon, Color.BLACK);
         Assert.assertEquals(remera.getCategoria(), CategoriaSuperior.getInstance());
@@ -34,7 +34,7 @@ public class PrendaTest {
     @Test(expected = ColorPrimarioIgualAlSecundarioException.class)
     public void crearPrendaNoValidaPorColoresIguales() {
         Material algodon = new Material();
-        TipoPrenda tipoRemeraCorta = new TipoPrendaSuperior();
+        TipoPrenda tipoRemeraCorta = new TipoPrendaSuperior(CategoriaSuperior.getInstance());
         tipoRemeraCorta.getMaterialesPermitidos().add(algodon);
         new Prenda(tipoRemeraCorta, algodon, Color.RED, Color.RED);
     }

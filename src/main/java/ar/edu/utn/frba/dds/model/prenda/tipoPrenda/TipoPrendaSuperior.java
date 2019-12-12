@@ -13,9 +13,8 @@ public class TipoPrendaSuperior extends TipoPrenda {
 //        super(CategoriaSuperior.CATEGORIA_SUPERIOR, nivelDeCalor);
 //    }
 
-    public TipoPrendaSuperior() {
-        super(CategoriaSuperior.getInstance(), 0.0 );
-    }
+    public TipoPrendaSuperior() {    }
+    public TipoPrendaSuperior(Categoria categoria) { super(categoria, 0.0 );}
 
     public TipoPrendaSuperior(Categoria categoria, Double nivelDeCalor) {
         super(categoria, nivelDeCalor);

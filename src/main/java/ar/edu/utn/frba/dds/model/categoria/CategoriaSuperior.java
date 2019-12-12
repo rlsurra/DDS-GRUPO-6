@@ -1,5 +1,7 @@
 package ar.edu.utn.frba.dds.model.categoria;
 
+import ar.edu.utn.frba.dds.persistence.Repositorio;
+
 import javax.persistence.Entity;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -14,6 +16,7 @@ public class CategoriaSuperior extends Categoria {
             CATEGORIA_SUPERIOR = Categoria.buscarCategoriaByNombre("CATEGORIA_SUPERIOR");
             if (CATEGORIA_SUPERIOR == null){
                 CATEGORIA_SUPERIOR = new CategoriaSuperior("CATEGORIA_SUPERIOR");
+                Repositorio.getInstance().save(CATEGORIA_SUPERIOR);
             }
         }
         return CATEGORIA_SUPERIOR;

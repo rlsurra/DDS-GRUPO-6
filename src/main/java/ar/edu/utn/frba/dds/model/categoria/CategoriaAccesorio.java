@@ -1,5 +1,7 @@
 package ar.edu.utn.frba.dds.model.categoria;
 
+import ar.edu.utn.frba.dds.persistence.Repositorio;
+
 import javax.persistence.Entity;
 
 @Entity
@@ -12,6 +14,7 @@ public class CategoriaAccesorio extends Categoria {
             CATEGORIA_ACCESORIO = Categoria.buscarCategoriaByNombre("CATEGORIA_ACCESORIO");
             if (CATEGORIA_ACCESORIO == null){
                 CATEGORIA_ACCESORIO = new CategoriaAccesorio("CATEGORIA_ACCESORIO");
+                Repositorio.getInstance().save(CATEGORIA_ACCESORIO);
             }
         }
         return CATEGORIA_ACCESORIO;

@@ -2,6 +2,7 @@ package ar.edu.utn.frba.dds.model.categoria.superior;
 
 import ar.edu.utn.frba.dds.model.categoria.Categoria;
 import ar.edu.utn.frba.dds.model.categoria.CategoriaSuperior;
+import ar.edu.utn.frba.dds.persistence.Repositorio;
 
 import javax.persistence.Entity;
 
@@ -15,6 +16,7 @@ public class CategoriaSuperiorAbrigoPesado extends CategoriaSuperior {
             CATEGORIA_SUPERIOR_ABRIGO_PESADO = Categoria.buscarCategoriaByNombre("CATEGORIA_SUPERIOR_ABRIGO_PESADO");
             if (CATEGORIA_SUPERIOR_ABRIGO_PESADO == null){
                 CATEGORIA_SUPERIOR_ABRIGO_PESADO = new CategoriaSuperiorAbrigoPesado("CATEGORIA_SUPERIOR_ABRIGO_PESADO");
+                Repositorio.getInstance().save(CATEGORIA_SUPERIOR_ABRIGO_PESADO);
             }
         }
         return CATEGORIA_SUPERIOR_ABRIGO_PESADO;

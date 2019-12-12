@@ -2,7 +2,8 @@ package ar.edu.utn.frba.dds;
 
 
 import ar.edu.utn.frba.dds.model.atuendo.Atuendo;
-import ar.edu.utn.frba.dds.model.categoria.CategoriaAccesorio;
+import ar.edu.utn.frba.dds.model.categoria.*;
+import ar.edu.utn.frba.dds.model.categoria.superior.CategoriaSuperiorAbrigoLigero;
 import ar.edu.utn.frba.dds.model.categoria.superior.CategoriaSuperiorAbrigoPesado;
 import ar.edu.utn.frba.dds.model.evento.Evento;
 import ar.edu.utn.frba.dds.model.evento.EventoSimple;
@@ -67,19 +68,19 @@ public class RepositorioTest {
     @Before
     public void setUp() {
         ALGODON = new Material("ALGODON");
-        TipoRemeraCorta = new TipoPrendaSuperior();
+        TipoRemeraCorta = new TipoPrendaSuperior(CategoriaSuperior.getInstance());
         TipoRemeraCorta.getMaterialesPermitidos().add(ALGODON);
 
         JEAN = new Material("JEAN");
-        TipoJean = new TipoPrendaInferior();
+        TipoJean = new TipoPrendaInferior(CategoriaInferior.getInstance());
         TipoJean.getMaterialesPermitidos().add(JEAN);
 
         LONA = new Material("LONA");
-        TipoZapatilla = new TipoPrendaCalzado();
+        TipoZapatilla = new TipoPrendaCalzado(CategoriaCalzado.getInstance());
         TipoZapatilla.getMaterialesPermitidos().add(LONA);
 
         LANA = new Material("LANA");
-        TipoSweater = new TipoPrendaSuperior();
+        TipoSweater = new TipoPrendaSuperior(CategoriaSuperiorAbrigoLigero.getInstance());
         TipoSweater.getMaterialesPermitidos().add(LANA);
 
         repositorio = Repositorio.getInstance();
