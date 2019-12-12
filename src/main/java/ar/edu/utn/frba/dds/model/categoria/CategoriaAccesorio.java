@@ -5,8 +5,21 @@ import javax.persistence.Entity;
 @Entity
 public class CategoriaAccesorio extends Categoria {
 
-    public static final Categoria CATEGORIA_ACCESORIO = new CategoriaAccesorio();
+    private static Categoria CATEGORIA_ACCESORIO = null;
+
+    public static Categoria getInstance(){
+        if (CATEGORIA_ACCESORIO == null){
+            CATEGORIA_ACCESORIO = Categoria.buscarCategoriaByNombre("CATEGORIA_ACCESORIO");
+            if (CATEGORIA_ACCESORIO == null){
+                CATEGORIA_ACCESORIO = new CategoriaAccesorio("CATEGORIA_ACCESORIO");
+            }
+        }
+        return CATEGORIA_ACCESORIO;
+    }
 
     public CategoriaAccesorio() {
+    }
+
+    private CategoriaAccesorio(String nombre) {
     }
 }

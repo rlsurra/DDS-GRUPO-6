@@ -90,11 +90,11 @@ public class RepositorioTest {
         prendaInferior.setId(null);
         prendaCalzado = new Prenda(TipoZapatilla, LONA, Color.DARK_GRAY);
         prendaCalzado.setId(null);
-        prendaAccesorio = new PrendaVacio(CategoriaAccesorio.CATEGORIA_ACCESORIO);
+        prendaAccesorio = new PrendaVacio(CategoriaAccesorio.getInstance());
         prendaAccesorio.setId(null);
         prendaAbrigoLigero = new Prenda(TipoSweater, LANA, Color.YELLOW);
         prendaAbrigoLigero.setId(null);
-        prendaAbrigoPesado = new PrendaVacio(CategoriaSuperiorAbrigoPesado.CATEGORIA_SUPERIOR_ABRIGO_PESADO);
+        prendaAbrigoPesado = new PrendaVacio(CategoriaSuperiorAbrigoPesado.getInstance());
         prendaAbrigoPesado.setId(null);
         atuendoElegido = new Atuendo(prendaSuperior, prendaInferior, prendaCalzado, prendaAccesorio, prendaAbrigoLigero, prendaAbrigoPesado);
         evento.setAtuendoElegido(atuendoElegido);

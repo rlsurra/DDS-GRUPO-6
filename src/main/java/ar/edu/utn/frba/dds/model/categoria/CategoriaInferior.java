@@ -5,8 +5,21 @@ import javax.persistence.Entity;
 @Entity
 public class CategoriaInferior extends Categoria {
 
-    public static final Categoria CATEGORIA_INFERIOR = new CategoriaInferior();
+    private static Categoria CATEGORIA_INFERIOR = null;
+
+    public static Categoria getInstance() {
+        if (CATEGORIA_INFERIOR == null) {
+            CATEGORIA_INFERIOR = Categoria.buscarCategoriaByNombre("CATEGORIA_INFERIOR");
+            if (CATEGORIA_INFERIOR == null) {
+                CATEGORIA_INFERIOR = new CategoriaInferior("CATEGORIA_INFERIOR");
+            }
+        }
+        return CATEGORIA_INFERIOR;
+    }
 
     public CategoriaInferior() {
+    }
+
+    private CategoriaInferior(String nombre) {
     }
 }

@@ -8,10 +8,10 @@ import javax.persistence.Entity;
 @Entity
 public class TipoPrendaInferior extends TipoPrenda {
     public TipoPrendaInferior() {
-        super(CategoriaInferior.CATEGORIA_INFERIOR, 0.0 );
+        super(CategoriaInferior.getInstance(), 0.0 );
     }
 
     public TipoPrendaInferior(Double nivelDeCalor) {
-        super(CategoriaInferior.CATEGORIA_INFERIOR, nivelDeCalor);
+        super(CategoriaInferior.getInstance(), nivelDeCalor);
     }
 }

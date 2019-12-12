@@ -84,4 +84,8 @@ public abstract class TipoPrenda extends Entidad {
     public void setMaterialesPermitidos(List<Material> materialesPermitidos) {
         this.materialesPermitidos = materialesPermitidos;
     }
+
+    public void setCategoria(Categoria categoria)  {
+        this.categoria = categoria;
+    }
 }

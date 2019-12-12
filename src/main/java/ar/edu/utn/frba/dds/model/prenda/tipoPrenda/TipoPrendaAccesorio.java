@@ -8,6 +8,6 @@ import javax.persistence.Entity;
 public class TipoPrendaAccesorio extends TipoPrenda {
 
     public TipoPrendaAccesorio() {
-        super(CategoriaAccesorio.CATEGORIA_ACCESORIO, 0.0);
+        super(CategoriaAccesorio.getInstance(), 0.0);
     }
 }

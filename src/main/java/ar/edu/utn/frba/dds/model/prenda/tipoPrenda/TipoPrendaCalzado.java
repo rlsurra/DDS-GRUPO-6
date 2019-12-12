@@ -8,6 +8,6 @@ import javax.persistence.Entity;
 public class TipoPrendaCalzado extends TipoPrenda {
 
     public TipoPrendaCalzado() {
-        super(CategoriaCalzado.CATEGORIA_CALZADO, 0.0);
+        super(CategoriaCalzado.getInstance(), 0.0);
     }
 }

@@ -2,6 +2,7 @@ package ar.edu.utn.frba.dds.model.prenda.tipoPrenda;
 
 import ar.edu.utn.frba.dds.model.categoria.Categoria;
 import ar.edu.utn.frba.dds.model.categoria.CategoriaSuperior;
+import ar.edu.utn.frba.dds.model.categoria.superior.CategoriaSuperiorAbrigoPesado;
 
 import javax.persistence.Entity;
 
@@ -13,7 +14,7 @@ public class TipoPrendaSuperior extends TipoPrenda {
 //    }
 
     public TipoPrendaSuperior() {
-        super(CategoriaSuperior.CATEGORIA_SUPERIOR, 0.0 );
+        super(CategoriaSuperior.getInstance(), 0.0 );
     }
 
     public TipoPrendaSuperior(Categoria categoria, Double nivelDeCalor) {
