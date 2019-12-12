@@ -3,6 +3,7 @@ package ar.edu.utn.frba.dds.persistence;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import java.util.List;
 
 public class Repositorio {
 

@@ -1,11 +1,11 @@
 package ar.edu.utn.frba.dds;
 
 import ar.edu.utn.frba.dds.exceptions.ColorPrimarioIgualAlSecundarioException;
+import ar.edu.utn.frba.dds.model.categoria.CategoriaSuperior;
 import ar.edu.utn.frba.dds.model.material.Material;
 import ar.edu.utn.frba.dds.model.prenda.Prenda;
-import ar.edu.utn.frba.dds.model.categoria.superior.CategoriaSuperiorRemera;
 import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.TipoPrenda;
-import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.superior.remera.TipoRemeraCorta;
+import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.TipoPrendaSuperior;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -15,22 +15,28 @@ public class PrendaTest {
 
     @Test
     public void saberTipoDePrenda() {
-        TipoPrenda tipoRemeraCorta = new TipoRemeraCorta();
-        Prenda remera = new Prenda(tipoRemeraCorta, Material.ALGODON, Color.BLACK, Color.BLUE);
+        Material algodon = new Material();
+        TipoPrenda tipoRemeraCorta = new TipoPrendaSuperior(CategoriaSuperior.getInstance());
+        tipoRemeraCorta.getMaterialesPermitidos().add(algodon);
+        Prenda remera = new Prenda(tipoRemeraCorta, algodon, Color.BLACK, Color.BLUE);
         Assert.assertEquals(tipoRemeraCorta, remera.getTipoPrenda());
     }
 
     @Test
     public void saberCategoria() {
-        TipoPrenda tipoRemeraCorta = new TipoRemeraCorta();
-        Prenda remera = new Prenda(tipoRemeraCorta, Material.ALGODON, Color.BLACK);
-        Assert.assertEquals(remera.getCategoria(), CategoriaSuperiorRemera.CATEGORIA_SUPERIOR_REMERA);
+        Material algodon = new Material();
+        TipoPrenda tipoRemeraCorta = new TipoPrendaSuperior(CategoriaSuperior.getInstance());
+        tipoRemeraCorta.getMaterialesPermitidos().add(algodon);
+        Prenda remera = new Prenda(tipoRemeraCorta, algodon, Color.BLACK);
+        Assert.assertEquals(remera.getCategoria(), CategoriaSuperior.getInstance());
     }
 
     @Test(expected = ColorPrimarioIgualAlSecundarioException.class)
     public void crearPrendaNoValidaPorColoresIguales() {
-        TipoPrenda tipoRemeraCorta = new TipoRemeraCorta();
-        new Prenda(tipoRemeraCorta, Material.ALGODON, Color.RED, Color.RED);
+        Material algodon = new Material();
+        TipoPrenda tipoRemeraCorta = new TipoPrendaSuperior(CategoriaSuperior.getInstance());
+        tipoRemeraCorta.getMaterialesPermitidos().add(algodon);
+        new Prenda(tipoRemeraCorta, algodon, Color.RED, Color.RED);
     }
 
     @Test

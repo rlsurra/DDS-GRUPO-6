@@ -2,37 +2,33 @@ package ar.edu.utn.frba.dds;
 
 
 import ar.edu.utn.frba.dds.model.atuendo.Atuendo;
+import ar.edu.utn.frba.dds.model.categoria.*;
+import ar.edu.utn.frba.dds.model.categoria.superior.CategoriaSuperiorAbrigoLigero;
+import ar.edu.utn.frba.dds.model.categoria.superior.CategoriaSuperiorAbrigoPesado;
 import ar.edu.utn.frba.dds.model.evento.Evento;
+import ar.edu.utn.frba.dds.model.evento.EventoSimple;
 import ar.edu.utn.frba.dds.model.evento.notificador.NotificadorAplicacion;
 import ar.edu.utn.frba.dds.model.evento.notificador.NotificadorCorreo;
 import ar.edu.utn.frba.dds.model.guardarropa.Guardarropa;
 import ar.edu.utn.frba.dds.model.material.Material;
-import ar.edu.utn.frba.dds.model.categoria.CategoriaAccesorio;
-import ar.edu.utn.frba.dds.model.categoria.superior.CategoriaSuperiorAbrigoPesado;
-import ar.edu.utn.frba.dds.model.evento.EventoSimple;
 import ar.edu.utn.frba.dds.model.prenda.Prenda;
 import ar.edu.utn.frba.dds.model.prenda.PrendaVacio;
 import ar.edu.utn.frba.dds.model.prenda.PuntajePrenda;
-import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.calzado.TipoZapatilla;
-import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.inferior.TipoJean;
-import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.superior.abrigoLigero.TipoSweater;
-import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.superior.remera.TipoRemeraCorta;
+import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.TipoPrenda;
+import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.TipoPrendaCalzado;
+import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.TipoPrendaInferior;
+import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.TipoPrendaSuperior;
 import ar.edu.utn.frba.dds.model.usuario.HistorialAtuendos.RegistroAtuendoSeleccionado;
-import ar.edu.utn.frba.dds.model.usuario.tipoUsuario.TipoUsuario;
-import ar.edu.utn.frba.dds.model.usuario.tipoUsuario.TipoUsuarioGratuito;
-import ar.edu.utn.frba.dds.model.usuario.tipoUsuario.TipoUsuarioPremium;
 import ar.edu.utn.frba.dds.model.usuario.Usuario;
 import ar.edu.utn.frba.dds.model.usuario.referenciaTemperatura.Caluroso;
 import ar.edu.utn.frba.dds.model.usuario.referenciaTemperatura.ReferenciaTemperatura;
+import ar.edu.utn.frba.dds.model.usuario.tipoUsuario.TipoUsuario;
+import ar.edu.utn.frba.dds.model.usuario.tipoUsuario.TipoUsuarioGratuito;
+import ar.edu.utn.frba.dds.model.usuario.tipoUsuario.TipoUsuarioPremium;
 import ar.edu.utn.frba.dds.persistence.Repositorio;
-import junit.framework.TestCase;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import java.awt.*;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -46,7 +42,7 @@ public class RepositorioTest {
 
     private Prenda prendaSuperior;
     private Prenda prendaInferior;
-    private  Prenda prendaCalzado;
+    private Prenda prendaCalzado;
     private Prenda prendaAccesorio;
     private Prenda prendaAbrigoLigero;
     private Prenda prendaAbrigoPesado;
@@ -60,22 +56,46 @@ public class RepositorioTest {
     private PuntajePrenda preferencia;
     private NotificadorCorreo notificadorCorreo;
     private NotificadorAplicacion notificadorAplicacion;
+    private TipoPrenda TipoRemeraCorta;
+    private Material ALGODON;
+    private TipoPrenda TipoJean;
+    private Material JEAN;
+    private TipoPrenda TipoZapatilla;
+    private Material LONA;
+    private TipoPrenda TipoSweater;
+    private Material LANA;
 
     @Before
     public void setUp() {
+        ALGODON = new Material("ALGODON");
+        TipoRemeraCorta = new TipoPrendaSuperior(CategoriaSuperior.getInstance());
+        TipoRemeraCorta.getMaterialesPermitidos().add(ALGODON);
+
+        JEAN = new Material("JEAN");
+        TipoJean = new TipoPrendaInferior(CategoriaInferior.getInstance());
+        TipoJean.getMaterialesPermitidos().add(JEAN);
+
+        LONA = new Material("LONA");
+        TipoZapatilla = new TipoPrendaCalzado(CategoriaCalzado.getInstance());
+        TipoZapatilla.getMaterialesPermitidos().add(LONA);
+
+        LANA = new Material("LANA");
+        TipoSweater = new TipoPrendaSuperior(CategoriaSuperiorAbrigoLigero.getInstance());
+        TipoSweater.getMaterialesPermitidos().add(LANA);
+
         repositorio = Repositorio.getInstance();
         evento = new EventoSimple(3435910, LocalDateTime.now());
-        prendaSuperior = new Prenda(new TipoRemeraCorta(), Material.ALGODON, Color.ORANGE);
+        prendaSuperior = new Prenda(TipoRemeraCorta, ALGODON, Color.ORANGE);
         prendaSuperior.setId(null);
-        prendaInferior = new Prenda(new TipoJean(), Material.JEAN, Color.BLACK);
+        prendaInferior = new Prenda(TipoJean, JEAN, Color.BLACK);
         prendaInferior.setId(null);
-        prendaCalzado = new Prenda(new TipoZapatilla(), Material.LONA, Color.DARK_GRAY);
+        prendaCalzado = new Prenda(TipoZapatilla, LONA, Color.DARK_GRAY);
         prendaCalzado.setId(null);
-        prendaAccesorio = new PrendaVacio(CategoriaAccesorio.CATEGORIA_ACCESORIO);
+        prendaAccesorio = new PrendaVacio(CategoriaAccesorio.getInstance());
         prendaAccesorio.setId(null);
-        prendaAbrigoLigero = new Prenda(new TipoSweater(), Material.LANA, Color.YELLOW);
+        prendaAbrigoLigero = new Prenda(TipoSweater, LANA, Color.YELLOW);
         prendaAbrigoLigero.setId(null);
-        prendaAbrigoPesado = new PrendaVacio(CategoriaSuperiorAbrigoPesado.CATEGORIA_SUPERIOR_ABRIGO_PESADO);
+        prendaAbrigoPesado = new PrendaVacio(CategoriaSuperiorAbrigoPesado.getInstance());
         prendaAbrigoPesado.setId(null);
         atuendoElegido = new Atuendo(prendaSuperior, prendaInferior, prendaCalzado, prendaAccesorio, prendaAbrigoLigero, prendaAbrigoPesado);
         evento.setAtuendoElegido(atuendoElegido);
@@ -95,7 +115,6 @@ public class RepositorioTest {
         usuario.getEventos().add(evento);
         usuario.setTipoUsuario(tipoUsuarioPremium);
         usuario.setId(null);
-
 
 
         guardarropa = new Guardarropa();

@@ -1,5 +1,6 @@
 package ar.edu.utn.frba.dds.model.prenda.tipoPrenda;
 
+import ar.edu.utn.frba.dds.model.categoria.Categoria;
 import ar.edu.utn.frba.dds.model.categoria.CategoriaAccesorio;
 
 import javax.persistence.Entity;
@@ -8,6 +9,8 @@ import javax.persistence.Entity;
 public class TipoPrendaAccesorio extends TipoPrenda {
 
     public TipoPrendaAccesorio() {
-        super(CategoriaAccesorio.CATEGORIA_ACCESORIO, 0.0);
     }
+
+    public TipoPrendaAccesorio(Categoria categoria) { super(categoria, 0.0 );}
+
 }
