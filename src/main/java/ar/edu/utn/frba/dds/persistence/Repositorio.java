@@ -60,6 +60,31 @@ public class Repositorio {
         em.getTransaction().commit();
         entidad.afterDelete(em);
     }
+
+    public void update(Entidad entidad) {
+        em.getTransaction().begin();
+        try {
+            em.merge(entidad);
+        }
+        catch (Exception e){
+            em.getTransaction().rollback();
+            throw e;
+        }
+        em.getTransaction().commit();
+    }
+
+    public void savePrenda(Entidad entidad){
+        em.getTransaction().begin();
+        try {
+            em.persist(entidad);
+        }
+        catch (Exception e){
+            em.getTransaction().rollback();
+            throw e;
+        }
+        em.getTransaction().commit();
+    }
+
     public <T> T getEntidadById(Class<T> clase, Long id){
         return em.find(clase, id);
     }

@@ -7,11 +7,14 @@ import ar.edu.utn.frba.dds.exceptions.ParametrosInvalidosException;
 import ar.edu.utn.frba.dds.exceptions.UserNotLoggedException;
 import ar.edu.utn.frba.dds.model.guardarropa.Guardarropa;
 import ar.edu.utn.frba.dds.model.prenda.Prenda;
+import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.TipoPrenda;
 import ar.edu.utn.frba.dds.model.usuario.Usuario;
 import ar.edu.utn.frba.dds.persistence.Repositorio;
+import ar.edu.utn.frba.dds.rest.DTOs.PrendaDTO;
 import org.hibernate.Hibernate;
 import org.springframework.web.bind.annotation.*;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
@@ -85,29 +88,40 @@ public class PrendasController {
     }
 
     @PostMapping
-    public Prenda AddOne(@RequestHeader("Authorization") String token, @RequestBody Prenda prenda) throws UserNotLoggedException {
+    public Prenda AddOne(@RequestHeader("Authorization") String token, @RequestBody PrendaDTO prendaDto) throws UserNotLoggedException {
         Repositorio repo = Repositorio.getInstance();
-        Prenda respuesta = null;
         Session session = Autenticacion.getSession(token);
         boolean ok = Boolean.FALSE;
+
         Usuario usuario = repo.getEntidadById(Usuario.class, session.getUsuarioId());
-        if (prenda.getGuardarropaActual() == null){
+        Guardarropa guardarropaDTO = repo.getEntidadById(Guardarropa.class, Long.valueOf(prendaDto.getGuardarropaID()));
+        if (guardarropaDTO == null){
             throw new ParametrosInvalidosException("La prenda debe pertenecer a un guardarropa");
         }
-        for (Guardarropa guardarropa : usuario.getGuardarropas()){
-            if (guardarropa.getId().equals(prenda.getGuardarropaActual().getId())){
-                guardarropa.getPrendas().add(prenda);
-                repo.save(usuario);
+        TipoPrenda tipoPrendaDTO = repo.getEntidadById(TipoPrenda.class, Long.valueOf(prendaDto.getTipoPrendaID()));
+
+        Prenda nuevaPrenda = new Prenda();
+        //Color, imagen de TEST
+        nuevaPrenda.setColorPrimario(null);
+        nuevaPrenda.setImagenPrenda(prendaDto.getImagenUrl());
+        nuevaPrenda.setNombre(prendaDto.getNombrePrenda());
+        nuevaPrenda.setTipoPrenda(tipoPrendaDTO);
+        nuevaPrenda.setGuardarropaActual(guardarropaDTO);
+
+        for (Guardarropa guardarropa : usuario.getGuardarropas()) {
+            if (guardarropa.getId().equals(guardarropaDTO.getId())) {
+                guardarropa.getPrendas().add(nuevaPrenda);
+                repo.savePrenda(nuevaPrenda);
+                repo.update(guardarropa);
                 ok = true;
             }
         }
 
-        if (!ok){
-            throw new ParametrosInvalidosException("Debes acceder al guardarropa");
+        if (!ok) {
+            throw new RuntimeException("No se guardo la prenda porque no posees el guardarropa indicado");
         }
 
-        respuesta = repo.getEntidadById(Prenda.class, prenda.getId());
-        return respuesta;
+        return repo.getEntidadById(Prenda.class, nuevaPrenda.getId());
     }
 
     @DeleteMapping(path = "{id}")

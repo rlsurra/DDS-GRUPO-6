@@ -6,6 +6,7 @@ import ar.edu.utn.frba.dds.model.categoria.CategoriaInferior;
 import ar.edu.utn.frba.dds.model.categoria.CategoriaSuperior;
 import ar.edu.utn.frba.dds.model.categoria.superior.CategoriaSuperiorAbrigoLigero;
 import ar.edu.utn.frba.dds.model.categoria.superior.CategoriaSuperiorAbrigoPesado;
+import ar.edu.utn.frba.dds.model.evento.Evento;
 import ar.edu.utn.frba.dds.model.guardarropa.Guardarropa;
 import ar.edu.utn.frba.dds.model.material.Material;
 import ar.edu.utn.frba.dds.model.prenda.Prenda;
@@ -443,6 +444,16 @@ public class App {
             }
             jazul.getGuardarropas().clear();
             jazul.getGuardarropas().add(guardarropajazul);
+            repo.save(jazul);
+
+            if(jazul.getEventos().size() == 0) {
+                Evento fiesta = new Evento();
+                fiesta.setTemperatura(10.0);
+                fiesta.setCiudad(10);
+                fiesta.setUsuario(jazul);
+                repo.save(fiesta);
+                jazul.agregarEvento(fiesta);
+            }
             repo.save(jazul);
         }
 
