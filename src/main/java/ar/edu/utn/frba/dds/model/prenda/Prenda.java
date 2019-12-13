@@ -55,6 +55,7 @@ public class Prenda extends Entidad {
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
+    @JsonIgnore
     private java.util.List<PuntajePrenda> puntajes = new  java.util.ArrayList<>();
 
 
