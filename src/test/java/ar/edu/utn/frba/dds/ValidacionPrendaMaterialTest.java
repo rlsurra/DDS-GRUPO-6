@@ -1,25 +1,29 @@
 package ar.edu.utn.frba.dds;
 
+import ar.edu.utn.frba.dds.model.categoria.CategoriaSuperior;
 import ar.edu.utn.frba.dds.model.material.Material;
 import ar.edu.utn.frba.dds.model.prenda.ValidacionPrendaMaterial;
-import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.superior.remera.TipoRemeraCorta;
+import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.TipoPrenda;
+import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.TipoPrendaSuperior;
 import org.junit.Assert;
 import org.junit.Test;
 
 public class ValidacionPrendaMaterialTest {
 
-    private ValidacionPrendaMaterial validador;
-
     @Test
     public void validarMaterialYTipoDePrenda() {
-        this.validador = ValidacionPrendaMaterial.ValidacionPrendaMaterial();
-        Assert.assertTrue(validador.validarPrenda(Material.ALGODON, new TipoRemeraCorta()));
+        Material algodon = new Material("ALGODON");
+        TipoPrenda trm = new TipoPrendaSuperior(CategoriaSuperior.getInstance());
+        trm.getMaterialesPermitidos().add(algodon);
+        Assert.assertTrue(ValidacionPrendaMaterial.validarPrenda(algodon, trm));
     }
 
     @Test
     public void validarMaterialYTipoDePrendaError() {
-        this.validador = ValidacionPrendaMaterial.ValidacionPrendaMaterial();
-        Assert.assertFalse(validador.validarPrenda(Material.CUERO, new TipoRemeraCorta()));
+        Material algodon = new Material("ALGODON");
+        TipoPrenda trm = new TipoPrendaSuperior(CategoriaSuperior.getInstance());
+        trm.getMaterialesPermitidos().add(algodon);
+        Assert.assertFalse(ValidacionPrendaMaterial.validarPrenda(new Material("CUERO"), trm));
     }
 
 }

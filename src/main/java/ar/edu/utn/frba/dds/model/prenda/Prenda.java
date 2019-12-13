@@ -32,7 +32,7 @@ public class Prenda extends Entidad {
     @ManyToOne(cascade = CascadeType.ALL)
     private TipoPrenda tipoPrenda;
 
-    @Column
+    @OneToOne
     private Material material;
 
     @Column
@@ -55,6 +55,7 @@ public class Prenda extends Entidad {
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
+    @JsonIgnore
     private java.util.List<PuntajePrenda> puntajes = new  java.util.ArrayList<>();
 
 
@@ -64,7 +65,7 @@ public class Prenda extends Entidad {
 
     public Prenda(TipoPrenda tipoPrenda, Material material, Color colorPrimario, Color colorSecundario) {
         validarParametrosInvalidos(tipoPrenda, material, colorPrimario);
-        //validarPrendaMaterial(tipoPrenda, material);
+        validarPrendaMaterial(tipoPrenda, material);
         validarColores(colorPrimario, colorSecundario);
         this.tipoPrenda = tipoPrenda;
         this.material = material;
@@ -149,9 +150,7 @@ public class Prenda extends Entidad {
     }
 
     protected void validarPrendaMaterial(TipoPrenda tipoPrenda, Material material) {
-        ValidacionPrendaMaterial validacionPrendaMaterial = ValidacionPrendaMaterial.ValidacionPrendaMaterial();
-        if (!validacionPrendaMaterial.validarPrenda(material, tipoPrenda)) {
-            //TODO: CAMBIAR EL SOUT POR LOGGER, USAR SLF4J de LOMBOK que es tremendo!
+        if (!ValidacionPrendaMaterial.validarPrenda(material, tipoPrenda)) {
             System.out.println("Prenda no valida");
             throw new PrendaNoValidaException("COMBINACION TIPO DE PRENDA / MATERIAL NO VALIDA !");
         }
