@@ -6,14 +6,12 @@ import ar.edu.utn.frba.dds.exceptions.UserNotLoggedException;
 import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.TipoPrenda;
 import ar.edu.utn.frba.dds.model.usuario.Usuario;
 import ar.edu.utn.frba.dds.persistence.Repositorio;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "*", methods= {RequestMethod.GET})
 @RequestMapping(path = "tiposPrenda")
 public class TiposPrendaController {
 
