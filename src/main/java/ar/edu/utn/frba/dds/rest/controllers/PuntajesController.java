@@ -10,6 +10,7 @@ import ar.edu.utn.frba.dds.model.prenda.PuntajePrenda;
 import ar.edu.utn.frba.dds.model.usuario.Usuario;
 import ar.edu.utn.frba.dds.persistence.Entidad;
 import ar.edu.utn.frba.dds.persistence.Repositorio;
+import ar.edu.utn.frba.dds.rest.DTOs.PuntajeDTO;
 import org.hibernate.Hibernate;
 import org.springframework.web.bind.annotation.*;
 
@@ -46,23 +47,28 @@ public class PuntajesController {
     }
 
     @PostMapping
-    public PuntajePrenda AddOne(@RequestHeader("Authorization") String token, @RequestBody PuntajePrenda puntaje) throws UserNotLoggedException {
+    public PuntajePrenda AddOne(@RequestHeader("Authorization") String token, @RequestBody PuntajeDTO puntajeDTO) throws UserNotLoggedException, EntidadNoEncontradaException {
         Repositorio repo = Repositorio.getInstance();
         PuntajePrenda respuesta = null;
         Session session = Autenticacion.getSession(token);
         Usuario usuario = repo.getEntidadById(Usuario.class, session.getUsuarioId());
-        final Long prendaid = puntaje.getPrenda().getId();
+        final Long prendaid = puntajeDTO.getPrendaid();
+        PuntajePrenda puntaje = new PuntajePrenda();
+        puntaje.setPuntaje(puntajeDTO.getPuntaje());
         if (usuario.obtenerTodasLasPrendas().stream().map(Entidad::getId).collect(Collectors.toList()).contains(prendaid)){
             Prenda prendaPuntuada = usuario.obtenerTodasLasPrendas().stream().filter(prenda -> prenda.getId().equals(prendaid)).findFirst().orElse(null);
             puntaje.setPrenda(prendaPuntuada);
+        } else {
+            throw new EntidadNoEncontradaException();
         }
 
         if (usuario.getPuntajes().stream().anyMatch(puntajeU -> puntajeU.getPrenda().getId().equals(puntaje.getPrenda().getId()))){
             PuntajePrenda puntajeActual = usuario.getPuntajes().stream().filter((puntajeU -> puntajeU.getPrenda().getId().equals(puntaje.getPrenda().getId()))).findFirst().orElse(null);
             usuario.getPuntajes().remove(puntajeActual);
         }
-        usuario.getPuntajes().add(puntaje);
         puntaje.setUsuario(usuario);
+        repo.savePrenda(puntaje);
+        usuario.getPuntajes().add(puntaje);
         repo.save(usuario);
         respuesta = repo.getEntidadById(PuntajePrenda.class, puntaje.getId());
         return respuesta;

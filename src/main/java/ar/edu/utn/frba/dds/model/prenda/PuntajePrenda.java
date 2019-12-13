@@ -15,7 +15,7 @@ public class PuntajePrenda extends Entidad {
     private Usuario usuario;
 
     @ManyToOne(targetEntity = Prenda.class, cascade = CascadeType.MERGE)
-    @JsonIgnoreProperties({"tipoPrenda", "material", "colorPrimario", "colorSecundario", "imagenPrenda", "guardarropaActual"})
+    @JsonIgnoreProperties({"tipoPrenda", "material", "colorPrimario", "colorSecundario", "imagenPrenda", "guardarropaActual", "categoria", "nombre"})
     private Prenda prenda;
 
     @Column
@@ -29,11 +29,12 @@ public class PuntajePrenda extends Entidad {
         this.usuario = usuario;
     }
 
-    @JsonIgnore
+    @JsonIgnoreProperties({"tipoPrenda", "material", "colorPrimario", "colorSecundario", "imagenPrenda", "guardarropaActual", "categoria", "nombre"})
     public Prenda getPrenda() {
         return prenda;
     }
 
+    @JsonIgnoreProperties({"tipoPrenda", "material", "colorPrimario", "colorSecundario", "imagenPrenda", "guardarropaActual", "categoria", "nombre"})
     public void setPrenda(Prenda prenda) {
         this.prenda = prenda;
     }
