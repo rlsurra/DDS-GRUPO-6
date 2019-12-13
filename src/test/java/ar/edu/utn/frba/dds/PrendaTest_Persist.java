@@ -1,12 +1,14 @@
 package ar.edu.utn.frba.dds;
 
 import ar.edu.utn.frba.dds.exceptions.ColorPrimarioIgualAlSecundarioException;
+import ar.edu.utn.frba.dds.model.categoria.CategoriaSuperior;
 import ar.edu.utn.frba.dds.model.material.Material;
 import ar.edu.utn.frba.dds.model.prenda.Prenda;
-import ar.edu.utn.frba.dds.model.categoria.superior.CategoriaSuperiorRemera;
 import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.TipoPrenda;
-import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.superior.remera.TipoRemeraCorta;
-import org.junit.*;
+import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.TipoPrendaSuperior;
+import org.junit.Assert;
+import org.junit.Ignore;
+import org.junit.Test;
 
 import java.awt.*;
 
@@ -14,9 +16,10 @@ public class PrendaTest_Persist {
 
     @Test
     public void saberTipoDePrenda() {
-
-        TipoPrenda tipoRemeraCorta = new TipoRemeraCorta();
-        Prenda remera = new Prenda(tipoRemeraCorta, Material.ALGODON, Color.BLACK, Color.BLUE);
+        Material ALGODON = new Material("ALGODON");
+        TipoPrenda tipoRemeraCorta = new TipoPrendaSuperior(CategoriaSuperior.getInstance());
+        tipoRemeraCorta.getMaterialesPermitidos().add(ALGODON);
+        Prenda remera = new Prenda(tipoRemeraCorta, ALGODON, Color.BLACK, Color.BLUE);
         Assert.assertEquals(tipoRemeraCorta, remera.getTipoPrenda());
 
     }
@@ -24,15 +27,19 @@ public class PrendaTest_Persist {
 
     @Test
     public void saberCategoria() {
-        TipoPrenda tipoRemeraCorta = new TipoRemeraCorta();
-        Prenda remera = new Prenda(tipoRemeraCorta, Material.ALGODON, Color.BLACK);
-        Assert.assertEquals(remera.getCategoria(), CategoriaSuperiorRemera.CATEGORIA_SUPERIOR_REMERA);
+        Material ALGODON = new Material("ALGODON");
+        TipoPrenda tipoRemeraCorta = new TipoPrendaSuperior(CategoriaSuperior.getInstance());
+        tipoRemeraCorta.getMaterialesPermitidos().add(ALGODON);
+        Prenda remera = new Prenda(tipoRemeraCorta, ALGODON, Color.BLACK);
+        Assert.assertEquals(remera.getCategoria(), CategoriaSuperior.getInstance());
     }
 
     @Test(expected = ColorPrimarioIgualAlSecundarioException.class)
     public void crearPrendaNoValidaPorColoresIguales() {
-        TipoPrenda tipoRemeraCorta = new TipoRemeraCorta();
-        new Prenda(tipoRemeraCorta, Material.ALGODON, Color.RED, Color.RED);
+        Material ALGODON = new Material("ALGODON");
+        TipoPrenda tipoRemeraCorta = new TipoPrendaSuperior(CategoriaSuperior.getInstance());
+        tipoRemeraCorta.getMaterialesPermitidos().add(ALGODON);
+        new Prenda(tipoRemeraCorta, ALGODON, Color.RED, Color.RED);
     }
 
     @Test
@@ -44,8 +51,10 @@ public class PrendaTest_Persist {
     @Test
     @Ignore
     public void cargarImagenAUnaPrenda() {
-        TipoPrenda tipoRemeraCorta = new TipoRemeraCorta();
-        Prenda remera = new Prenda(tipoRemeraCorta, Material.ALGODON, Color.BLACK);
+        Material ALGODON = new Material("ALGODON");
+        TipoPrenda tipoRemeraCorta = new TipoPrendaSuperior(CategoriaSuperior.getInstance());
+        tipoRemeraCorta.getMaterialesPermitidos().add(ALGODON);
+        Prenda remera = new Prenda(tipoRemeraCorta, ALGODON, Color.BLACK);
         remera.setImagenPrenda("/remeraNegra.jpg");
         Assert.assertEquals("/home/dds/TP/repo/DDS-GRUPO-6/images/TipoRemeraCortaALGODON.jpg", remera.getImagenPrenda());
     }
