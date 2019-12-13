@@ -3,6 +3,7 @@ package ar.edu.utn.frba.dds.model.prenda;
 import ar.edu.utn.frba.dds.persistence.Entidad;
 import ar.edu.utn.frba.dds.model.usuario.Usuario;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 
@@ -14,7 +15,7 @@ public class PuntajePrenda extends Entidad {
     private Usuario usuario;
 
     @ManyToOne(targetEntity = Prenda.class, cascade = CascadeType.MERGE)
-    @JsonIgnore
+    @JsonIgnoreProperties({"tipoPrenda", "material", "colorPrimario", "colorSecundario", "imagenPrenda", "guardarropaActual"})
     private Prenda prenda;
 
     @Column
