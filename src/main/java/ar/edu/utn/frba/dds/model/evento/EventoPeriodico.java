@@ -15,8 +15,8 @@ public class EventoPeriodico extends Evento {
     public EventoPeriodico() {
     }
 
-    public EventoPeriodico(Integer ciudad, NotificadorEvento notificadorEvento, PeriodicidadEvento periodicidadEvento) {
-        super(ciudad, notificadorEvento);
+    public EventoPeriodico(Integer ciudad, PeriodicidadEvento periodicidadEvento) {
+        super(ciudad);
         this.periodicidadEvento = periodicidadEvento;
     }
 
