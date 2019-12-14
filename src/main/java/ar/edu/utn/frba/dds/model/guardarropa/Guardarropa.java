@@ -1,16 +1,18 @@
 package ar.edu.utn.frba.dds.model.guardarropa;
 
 import ar.edu.utn.frba.dds.model.atuendo.Atuendo;
+import ar.edu.utn.frba.dds.model.categoria.*;
+import ar.edu.utn.frba.dds.model.categoria.superior.CategoriaSuperiorAbrigoLigero;
+import ar.edu.utn.frba.dds.model.categoria.superior.CategoriaSuperiorAbrigoPesado;
 import ar.edu.utn.frba.dds.model.clima.ClimaAPIsProxy;
-import ar.edu.utn.frba.dds.persistence.Entidad;
-import ar.edu.utn.frba.dds.model.categoria.CategoriaCalzado;
-import ar.edu.utn.frba.dds.model.categoria.CategoriaInferior;
-import ar.edu.utn.frba.dds.model.categoria.CategoriaSuperior;
 import ar.edu.utn.frba.dds.model.evento.Evento;
 import ar.edu.utn.frba.dds.model.prenda.Prenda;
 import ar.edu.utn.frba.dds.model.prenda.PrendaVacio;
 import ar.edu.utn.frba.dds.model.usuario.Usuario;
-import com.fasterxml.jackson.annotation.*;
+import ar.edu.utn.frba.dds.persistence.Entidad;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.collect.Sets;
 
 import javax.persistence.*;
@@ -18,10 +20,6 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import static ar.edu.utn.frba.dds.model.categoria.CategoriaAccesorio.CATEGORIA_ACCESORIO;
-import static ar.edu.utn.frba.dds.model.categoria.superior.CategoriaSuperiorAbrigoLigero.CATEGORIA_SUPERIOR_ABRIGO_LIGERO;
-import static ar.edu.utn.frba.dds.model.categoria.superior.CategoriaSuperiorAbrigoPesado.CATEGORIA_SUPERIOR_ABRIGO_PESADO;
 
 @Entity
 public class Guardarropa extends Entidad {
@@ -67,7 +65,9 @@ public class Guardarropa extends Entidad {
 
     @JsonIgnoreProperties(value = "guardarropaActual", allowSetters = true)
     public void setPrendas(List<Prenda> prendas) {
-        prendas.forEach(prenda -> {prenda.setGuardarropaAcual(this);});
+        prendas.forEach(prenda -> {
+            prenda.setGuardarropaActual(this);
+        });
         this.prendas = prendas;
     }
 
@@ -103,22 +103,22 @@ public class Guardarropa extends Entidad {
         List<Prenda> prendasCalzado = new ArrayList<>();
         List<Prenda> prendasAccesorio = new ArrayList<>();
 
-        prendasAbrigoLigero.add(new PrendaVacio(CATEGORIA_SUPERIOR_ABRIGO_LIGERO));
-        prendasAbrigoPesado.add(new PrendaVacio(CATEGORIA_SUPERIOR_ABRIGO_PESADO));
-        prendasAccesorio.add(new PrendaVacio(CATEGORIA_ACCESORIO));
+        prendasAbrigoLigero.add(new PrendaVacio(CategoriaSuperior.getInstance()));
+        prendasAbrigoPesado.add(new PrendaVacio(CategoriaSuperior.getInstance()));
+        prendasAccesorio.add(new PrendaVacio(CategoriaAccesorio.getInstance()));
 
         prendas.forEach(prenda -> {
-            if (prenda.getCategoria().equals(CATEGORIA_ACCESORIO)) {
+            if (prenda.getCategoria().equals(CategoriaAccesorio.getInstance())) {
                 prendasAccesorio.add(prenda);
-            } else if (prenda.getCategoria().equals(CATEGORIA_SUPERIOR_ABRIGO_LIGERO)) {
+            } else if (prenda.getCategoria().equals(CategoriaSuperiorAbrigoLigero.getInstance())) {
                 prendasAbrigoLigero.add(prenda);
-            } else if (prenda.getCategoria().equals(CATEGORIA_SUPERIOR_ABRIGO_PESADO)) {
+            } else if (prenda.getCategoria().equals(CategoriaSuperiorAbrigoPesado.getInstance())) {
                 prendasAbrigoPesado.add(prenda);
-            } else if (prenda.getCategoria().equals(new CategoriaInferior())) {
+            } else if (prenda.getCategoria().equals(CategoriaInferior.getInstance())) {
                 prendasInferiores.add(prenda);
-            } else if (prenda.getCategoria().equals(new CategoriaCalzado())) {
+            } else if (prenda.getCategoria().equals(CategoriaCalzado.getInstance())) {
                 prendasCalzado.add(prenda);
-            } else if (prenda.getCategoria().equals(new CategoriaSuperior())) {
+            } else if (prenda.getCategoria().equals(CategoriaSuperior.getInstance())) {
                 prendasSuperiores.add(prenda);
             }
         });

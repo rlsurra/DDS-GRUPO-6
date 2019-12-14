@@ -1,18 +1,34 @@
 package ar.edu.utn.frba.dds.model.material;
 
-public enum Material {
-    ALGODON,
-    GABARDINA,
-    LINO,
-    NYLON,
-    CAUCHO,
-    LONA,
-    PLASTICO,
-    METAL,
-    LANA,
-    JEAN,
-    CUERO,
-    LYCRA,
-    POLIESTER,
-    SEDA
+import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.TipoPrenda;
+import ar.edu.utn.frba.dds.persistence.Entidad;
+import ar.edu.utn.frba.dds.persistence.Repositorio;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity
+@NamedQueries({
+        @NamedQuery(name = "selectMaterialByNombre", query = "SELECT u FROM Material u WHERE u.nombre = :nombre")
+})
+public class Material extends Entidad {
+
+    public Material(){};
+
+    public Material(String nombre){
+        this.nombre = nombre;
+    }
+
+    public static Material buscarMaterialPorNombre(String nombre){
+        try {
+            TypedQuery<Material> namedQuery = Repositorio.getInstance().getEntityManager().createNamedQuery("selectMaterialByNombre", Material.class);
+            namedQuery.setParameter("nombre", nombre);
+            return namedQuery.getSingleResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 }

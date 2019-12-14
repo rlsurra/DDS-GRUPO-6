@@ -32,7 +32,7 @@ public class Prenda extends Entidad {
     @ManyToOne(cascade = CascadeType.ALL)
     private TipoPrenda tipoPrenda;
 
-    @Column
+    @OneToOne
     private Material material;
 
     @Column
@@ -55,6 +55,7 @@ public class Prenda extends Entidad {
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
+    @JsonIgnore
     private java.util.List<PuntajePrenda> puntajes = new  java.util.ArrayList<>();
 
 
@@ -64,7 +65,7 @@ public class Prenda extends Entidad {
 
     public Prenda(TipoPrenda tipoPrenda, Material material, Color colorPrimario, Color colorSecundario) {
         validarParametrosInvalidos(tipoPrenda, material, colorPrimario);
-        //validarPrendaMaterial(tipoPrenda, material);
+        validarPrendaMaterial(tipoPrenda, material);
         validarColores(colorPrimario, colorSecundario);
         this.tipoPrenda = tipoPrenda;
         this.material = material;
@@ -101,7 +102,7 @@ public class Prenda extends Entidad {
     }
 
     @JsonIgnoreProperties({"prendas", "propietario"})
-    public Guardarropa getGuardarropaAcual() {
+    public Guardarropa getGuardarropaActual() {
         return guardarropaActual;
     }
 
@@ -126,7 +127,7 @@ public class Prenda extends Entidad {
     }
 
     @JsonIgnoreProperties({"prendas", "propietario"})
-    public void setGuardarropaAcual(Guardarropa guardarropa) {
+    public void setGuardarropaActual(Guardarropa guardarropa) {
         this.guardarropaActual = guardarropa;
     }
 
@@ -149,9 +150,7 @@ public class Prenda extends Entidad {
     }
 
     protected void validarPrendaMaterial(TipoPrenda tipoPrenda, Material material) {
-        ValidacionPrendaMaterial validacionPrendaMaterial = ValidacionPrendaMaterial.ValidacionPrendaMaterial();
-        if (!validacionPrendaMaterial.validarPrenda(material, tipoPrenda)) {
-            //TODO: CAMBIAR EL SOUT POR LOGGER, USAR SLF4J de LOMBOK que es tremendo!
+        if (!ValidacionPrendaMaterial.validarPrenda(material, tipoPrenda)) {
             System.out.println("Prenda no valida");
             throw new PrendaNoValidaException("COMBINACION TIPO DE PRENDA / MATERIAL NO VALIDA !");
         }
@@ -199,5 +198,29 @@ public class Prenda extends Entidad {
 
     public double getPuntajeDeUsuario(Usuario usuario) {
         return this.getPuntajes().stream().filter(puntaje -> puntaje.getUsuario().equals(usuario)).mapToDouble(PuntajePrenda::getPuntaje).sum();
+    }
+
+    public void update(Prenda prenda){
+        if (prenda.getGuardarropaActual() != null){
+            this.setGuardarropaActual(prenda.getGuardarropaActual());
+        }
+        if (prenda.getTipoPrenda() != null){
+            this.setTipoPrenda(prenda.getTipoPrenda());
+        }
+        if (prenda.getImagenPrenda() != null){
+            this.setImagenPrenda(prenda.getImagenPrenda());
+        }
+        if (prenda.getColorPrimario() != null){
+            this.setColorPrimario(prenda.getColorPrimario());
+        }
+        if (prenda.getMaterial() != null){
+            this.setMaterial(prenda.getMaterial());
+        }
+        if (prenda.getColorSecundario() != null){
+            this.setColorSecundario(prenda.getColorSecundario());
+        }
+        if (prenda.getNombre() != null){
+            this.setNombre(prenda.getNombre());
+        }
     }
 }

@@ -1,5 +1,6 @@
 package ar.edu.utn.frba.dds.model.usuario;
 
+import ar.edu.utn.frba.dds.model.prenda.Prenda;
 import ar.edu.utn.frba.dds.model.usuario.HistorialAtuendos.RegistroAtuendoSeleccionado;
 import ar.edu.utn.frba.dds.persistence.Entidad;
 import ar.edu.utn.frba.dds.exceptions.MaximaCantidadPrendasException;
@@ -220,6 +221,12 @@ public class Usuario extends Entidad {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public List<Prenda> obtenerTodasLasPrendas(){
+        List<Prenda> respuesta = new ArrayList<>();
+        this.getGuardarropas().forEach(guardarropa -> respuesta.addAll(guardarropa.getPrendas()));
+        return respuesta;
     }
 /*
     public static Long getUsuarioIdFromUsername(String username){

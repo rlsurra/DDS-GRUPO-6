@@ -1,20 +1,24 @@
 package ar.edu.utn.frba.dds.model.prenda.tipoPrenda;
 
 import ar.edu.utn.frba.dds.model.categoria.Categoria;
+import ar.edu.utn.frba.dds.model.material.Material;
 import ar.edu.utn.frba.dds.model.usuario.Usuario;
 import ar.edu.utn.frba.dds.persistence.Entidad;
 import ar.edu.utn.frba.dds.persistence.Repositorio;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
 @NamedQueries({
-        @NamedQuery(name = "selectTipoPrendaByCodigo", query = "SELECT u FROM TipoPrenda u WHERE u.codigo = :codigo")
+        @NamedQuery(name = "selectTipoPrendaByCodigo", query = "SELECT u FROM TipoPrenda u WHERE u.codigo = :codigo"),
+        @NamedQuery(name = "findallTipoPrenda", query = "SELECT u FROM TipoPrenda u")
 })
 public abstract class TipoPrenda extends Entidad {
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     private Categoria categoria;
 
     @Column
@@ -22,6 +26,9 @@ public abstract class TipoPrenda extends Entidad {
 
     @Column
     private String codigo;
+
+    @ManyToMany
+    private List<Material> materialesPermitidos = new ArrayList<>();
 
     public TipoPrenda() {
     }
@@ -61,5 +68,22 @@ public abstract class TipoPrenda extends Entidad {
 
     public void setCodigo(String codigo) {
         this.codigo = codigo;
+    }
+
+    public static List<TipoPrenda> findall(){
+        TypedQuery<TipoPrenda> namedQuery = Repositorio.getInstance().getEntityManager().createNamedQuery("findallTipoPrenda", TipoPrenda.class);
+        return namedQuery.getResultList();
+    }
+
+    public List<Material> getMaterialesPermitidos() {
+        return materialesPermitidos;
+    }
+
+    public void setMaterialesPermitidos(List<Material> materialesPermitidos) {
+        this.materialesPermitidos = materialesPermitidos;
+    }
+
+    public void setCategoria(Categoria categoria)  {
+        this.categoria = categoria;
     }
 }
