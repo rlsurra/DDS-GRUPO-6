@@ -212,35 +212,4 @@ public class Prenda extends Entidad {
         return this.getPuntajes().stream().filter(puntaje -> puntaje.getUsuario().equals(usuario)).mapToDouble(PuntajePrenda::getPuntaje).sum();
     }
 
-    public void update(PrendaDTO prendaDTO){
-        //tipo, material, color1, color2, imagen, nombre, guardarropa y puntajes
-        //TODO: queda ver como actualizar el puntaje
-
-        if (prendaDTO.getTipoPrendaID() != null) {
-            throw new ParametrosInvalidosException("No se puede modificar el Tipo de Prenda");
-        }
-
-        if (prendaDTO.getMaterialId() != null) {
-            throw new ParametrosInvalidosException("No se puede modificar el Material de la prenda");
-        }
-
-        if (prendaDTO.getColorPrincipal() != null) {
-        }
-
-        if (prendaDTO.getColorSecundario() != null) {
-        }
-
-        if (prendaDTO.getGuardarropaID() != null) {
-            //TODO: verificar que el nuevo tmb sea del usuario
-            throw new ParametrosInvalidosException("No se puede modificar el Guardarropa de la prenda");
-        }
-
-        if (prendaDTO.getImagenUrl() != null) {
-        }
-
-        if (prendaDTO.getNombrePrenda() != null) {
-            this.setNombre(prendaDTO.getNombrePrenda());
-        }
-
-    }
 }

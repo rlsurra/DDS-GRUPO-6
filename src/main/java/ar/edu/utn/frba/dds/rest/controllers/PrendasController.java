@@ -71,9 +71,6 @@ public class PrendasController {
     @PutMapping(path = "{id}")
     public Prenda RefreshOne(@RequestHeader("Authorization") String token, @PathVariable("id") Long id, @RequestBody PrendaDTO prendaDto) throws UserNotLoggedException, EntidadNoEncontradaException {
 
-        //TODO: Ver como funciona lo de los puntajes de la prenda
-        boolean esPrendaDelUsuario = Boolean.FALSE;
-
         Repositorio repo = Repositorio.getInstance();
         Session session = Autenticacion.getSession(token);
         Usuario usuario = repo.getEntidadById(Usuario.class, session.getUsuarioId());
@@ -83,6 +80,7 @@ public class PrendasController {
             throw new EntidadNoEncontradaException();
         }
 
+        boolean esPrendaDelUsuario = Boolean.FALSE;
         for (Guardarropa guardarropa : usuario.getGuardarropas()){
             for (Prenda prenda : guardarropa.getPrendas()){
                 if (prenda.getId().equals(prendaOld.getId())){
@@ -95,12 +93,12 @@ public class PrendasController {
             throw new GuardarropaUsuarioException("La prenda no esta en ningun guardarropa del usuario");
         }
 
-
         if (prendaDto.getTipoPrendaID() != null) {
             TipoPrenda nuevoTipo = repo.getEntidadById(TipoPrenda.class, Long.valueOf(prendaDto.getTipoPrendaID()));
             if (nuevoTipo == null) {
                 throw new ParametrosInvalidosException("Debe ingresar un Tipo de Prenda valido");
             }
+            prendaOld.setTipoPrenda(nuevoTipo);
         }
 
         if (prendaDto.getMaterialId() != null) {
@@ -108,6 +106,7 @@ public class PrendasController {
             if (nuevoMaterial == null) {
                 throw new ParametrosInvalidosException("Debe ingresar un Material valido");
             }
+            prendaOld.setMaterial(nuevoMaterial);
         }
 
         if (prendaDto.getGuardarropaID() != null) {
@@ -118,17 +117,30 @@ public class PrendasController {
 
             boolean esGuardarropaDelUsuario = Boolean.FALSE;
             for (Guardarropa guardarropa : usuario.getGuardarropas()){
-                if (guardarropa.getId().equals(prendaDto.getGuardarropaID())) {
+                if (guardarropa.getId().equals(nuevoGuardarropa.getId())) {
                     esGuardarropaDelUsuario = Boolean.TRUE;
                 }
             }
             if (!esGuardarropaDelUsuario) {
                 throw new GuardarropaUsuarioException("El nuevo guardarropa no pertenece al usuario");
             }
+            prendaOld.setGuardarropaActual(nuevoGuardarropa);
         }
 
+        if (prendaDto.getNombrePrenda() != null) {
+            prendaOld.setNombre(prendaDto.getNombrePrenda());
+        }
 
-        prendaOld.update(prendaDto);
+        //TODO: queda ver como actualizar el puntaje
+        if (prendaDto.getColorPrincipal() != null) {
+        }
+
+        if (prendaDto.getColorSecundario() != null) {
+        }
+
+        if (prendaDto.getImagenUrl() != null) {
+        }
+
         repo.update(prendaOld);
         return prendaOld;
     }
