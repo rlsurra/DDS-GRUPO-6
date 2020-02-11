@@ -9,6 +9,7 @@ import ar.edu.utn.frba.dds.model.material.Material;
 import ar.edu.utn.frba.dds.model.categoria.Categoria;
 import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.TipoPrenda;
 import ar.edu.utn.frba.dds.model.usuario.Usuario;
+import ar.edu.utn.frba.dds.rest.DTOs.PrendaDTO;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -67,6 +68,17 @@ public class Prenda extends Entidad {
         validarParametrosInvalidos(tipoPrenda, material, colorPrimario);
         validarPrendaMaterial(tipoPrenda, material);
         validarColores(colorPrimario, colorSecundario);
+        this.tipoPrenda = tipoPrenda;
+        this.material = material;
+        this.colorPrimario = colorPrimario;
+        this.colorSecundario = colorSecundario;
+    }
+
+    public Prenda(String nombre, TipoPrenda tipoPrenda, Material material, Color colorPrimario, Color colorSecundario) {
+        validarParametrosInvalidos(tipoPrenda, material, colorPrimario);
+        validarPrendaMaterial(tipoPrenda, material);
+        validarColores(colorPrimario, colorSecundario);
+        this.nombre = nombre;
         this.tipoPrenda = tipoPrenda;
         this.material = material;
         this.colorPrimario = colorPrimario;
@@ -200,27 +212,35 @@ public class Prenda extends Entidad {
         return this.getPuntajes().stream().filter(puntaje -> puntaje.getUsuario().equals(usuario)).mapToDouble(PuntajePrenda::getPuntaje).sum();
     }
 
-    public void update(Prenda prenda){
-        if (prenda.getGuardarropaActual() != null){
-            this.setGuardarropaActual(prenda.getGuardarropaActual());
+    public void update(PrendaDTO prendaDTO){
+        //tipo, material, color1, color2, imagen, nombre, guardarropa y puntajes
+        //TODO: queda ver como actualizar el puntaje
+
+        if (prendaDTO.getTipoPrendaID() != null) {
+            throw new ParametrosInvalidosException("No se puede modificar el Tipo de Prenda");
         }
-        if (prenda.getTipoPrenda() != null){
-            this.setTipoPrenda(prenda.getTipoPrenda());
+
+        if (prendaDTO.getMaterialId() != null) {
+            throw new ParametrosInvalidosException("No se puede modificar el Material de la prenda");
         }
-        if (prenda.getImagenPrenda() != null){
-            this.setImagenPrenda(prenda.getImagenPrenda());
+
+        if (prendaDTO.getColorPrincipal() != null) {
         }
-        if (prenda.getColorPrimario() != null){
-            this.setColorPrimario(prenda.getColorPrimario());
+
+        if (prendaDTO.getColorSecundario() != null) {
         }
-        if (prenda.getMaterial() != null){
-            this.setMaterial(prenda.getMaterial());
+
+        if (prendaDTO.getGuardarropaID() != null) {
+            //TODO: verificar que el nuevo tmb sea del usuario
+            throw new ParametrosInvalidosException("No se puede modificar el Guardarropa de la prenda");
         }
-        if (prenda.getColorSecundario() != null){
-            this.setColorSecundario(prenda.getColorSecundario());
+
+        if (prendaDTO.getImagenUrl() != null) {
         }
-        if (prenda.getNombre() != null){
-            this.setNombre(prenda.getNombre());
+
+        if (prendaDTO.getNombrePrenda() != null) {
+            this.setNombre(prendaDTO.getNombrePrenda());
         }
+
     }
 }

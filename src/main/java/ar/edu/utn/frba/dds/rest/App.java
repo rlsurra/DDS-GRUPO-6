@@ -227,7 +227,7 @@ public class App {
         TipoPrenda pantalonLargo = TipoPrenda.buscarTipoDePrendaPorCodigo("PANTALON_LARGO");
         if (pantalonLargo == null) {
             pantalonLargo = new TipoPrendaInferior(CategoriaInferior.getInstance());
-            pantalonLargo.setNombre("Pantalón largo");
+            pantalonLargo.setNombre("Pantalon largo");
             pantalonLargo.setCodigo("PANTALON_LARGO");
             pantalonLargo.setNivelDeCalor(8D);
             pantalonLargo.getMaterialesPermitidos().add(ALGODON);
@@ -243,7 +243,7 @@ public class App {
         TipoPrenda pantalonCorto = TipoPrenda.buscarTipoDePrendaPorCodigo("PANTALON_CORTO");
         if (pantalonCorto == null) {
             pantalonCorto = new TipoPrendaInferior(CategoriaInferior.getInstance());
-            pantalonCorto.setNombre("Pantalón corto");
+            pantalonCorto.setNombre("Pantalon corto");
             pantalonCorto.setCodigo("PANTALON_CORTO");
             pantalonCorto.setNivelDeCalor(8D);
             pantalonCorto.getMaterialesPermitidos().add(ALGODON);
@@ -390,7 +390,7 @@ public class App {
             if (guardarropaAroco.getPrendas().size() == 0) {
 
                 java.util.List<Prenda> prendas = guardarropaAroco.getPrendas();
-                prendas.add(new Prenda(RemeraCuelloRedondoMangaCorta, ALGODON, Color.BLACK));
+                prendas.add(new Prenda("Remera 1 ale",RemeraCuelloRedondoMangaCorta, ALGODON, Color.BLACK, Color.RED));
                 prendas.add(new Prenda(RemeraEscoteVMangaCorta, LYCRA, Color.WHITE));
                 prendas.add(new Prenda(musculosa, LYCRA, Color.YELLOW));
                 prendas.add(new Prenda(campera, CUERO, Color.WHITE));
