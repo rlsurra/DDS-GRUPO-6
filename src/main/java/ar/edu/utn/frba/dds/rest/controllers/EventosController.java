@@ -17,10 +17,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "*", methods= {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
 @RequestMapping(path = "eventos")
 public class EventosController {
 
-    @GetMapping
+    @GetMapping(produces = "application/json")
     public List<Evento> findAll(@RequestHeader("Authorization") String token) throws UserNotLoggedException {
         Repositorio repo = Repositorio.getInstance();
         List<Evento> respuesta = null;
