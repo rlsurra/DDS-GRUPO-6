@@ -12,6 +12,9 @@ import java.util.stream.Stream;
 @Table
 public class Atuendo extends Entidad {
 
+    @Column
+    private Long calificacion;
+
     @ManyToOne(targetEntity = Prenda.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "prenda_calzo_id")
     private Prenda prendaCalzado;
@@ -116,5 +119,14 @@ public class Atuendo extends Entidad {
 
     public void setPrendaAccesorio(Prenda prendaAccesorio) {
         this.prendaAccesorio = prendaAccesorio;
+    }
+
+
+    public Long getCalificacion() {
+        return calificacion;
+    }
+
+    public void setCalificacion(Long calificacion) {
+        this.calificacion = calificacion;
     }
 }
