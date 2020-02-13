@@ -9,6 +9,7 @@ import ar.edu.utn.frba.dds.model.material.Material;
 import ar.edu.utn.frba.dds.model.categoria.Categoria;
 import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.TipoPrenda;
 import ar.edu.utn.frba.dds.model.usuario.Usuario;
+import ar.edu.utn.frba.dds.rest.DTOs.PrendaDTO;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -67,6 +68,17 @@ public class Prenda extends Entidad {
         validarParametrosInvalidos(tipoPrenda, material, colorPrimario);
         validarPrendaMaterial(tipoPrenda, material);
         validarColores(colorPrimario, colorSecundario);
+        this.tipoPrenda = tipoPrenda;
+        this.material = material;
+        this.colorPrimario = colorPrimario;
+        this.colorSecundario = colorSecundario;
+    }
+
+    public Prenda(String nombre, TipoPrenda tipoPrenda, Material material, Color colorPrimario, Color colorSecundario) {
+        validarParametrosInvalidos(tipoPrenda, material, colorPrimario);
+        validarPrendaMaterial(tipoPrenda, material);
+        validarColores(colorPrimario, colorSecundario);
+        this.nombre = nombre;
         this.tipoPrenda = tipoPrenda;
         this.material = material;
         this.colorPrimario = colorPrimario;
@@ -200,27 +212,4 @@ public class Prenda extends Entidad {
         return this.getPuntajes().stream().filter(puntaje -> puntaje.getUsuario().equals(usuario)).mapToDouble(PuntajePrenda::getPuntaje).sum();
     }
 
-    public void update(Prenda prenda){
-        if (prenda.getGuardarropaActual() != null){
-            this.setGuardarropaActual(prenda.getGuardarropaActual());
-        }
-        if (prenda.getTipoPrenda() != null){
-            this.setTipoPrenda(prenda.getTipoPrenda());
-        }
-        if (prenda.getImagenPrenda() != null){
-            this.setImagenPrenda(prenda.getImagenPrenda());
-        }
-        if (prenda.getColorPrimario() != null){
-            this.setColorPrimario(prenda.getColorPrimario());
-        }
-        if (prenda.getMaterial() != null){
-            this.setMaterial(prenda.getMaterial());
-        }
-        if (prenda.getColorSecundario() != null){
-            this.setColorSecundario(prenda.getColorSecundario());
-        }
-        if (prenda.getNombre() != null){
-            this.setNombre(prenda.getNombre());
-        }
-    }
 }

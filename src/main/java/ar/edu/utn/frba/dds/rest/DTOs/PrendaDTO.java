@@ -1,8 +1,11 @@
 package ar.edu.utn.frba.dds.rest.DTOs;
 
 public class PrendaDTO {
+
     private Integer tipoPrendaID;
+    private Integer materialId;
     private String colorPrincipal;
+    private String colorSecundario;
     private Integer guardarropaID;
     private String imagenUrl;
     private String nombrePrenda;
@@ -33,6 +36,22 @@ public class PrendaDTO {
 
     public String getImagenUrl() {
         return imagenUrl;
+    }
+
+    public Integer getMaterialId() {
+        return materialId;
+    }
+
+    public void setMaterialId(Integer materialId) {
+        this.materialId = materialId;
+    }
+
+    public String getColorSecundario() {
+        return colorSecundario;
+    }
+
+    public void setColorSecundario(String colorSecundario) {
+        this.colorSecundario = colorSecundario;
     }
 
     public void setImagenUrl(String imagenUrl) {

@@ -3,15 +3,19 @@ package ar.edu.utn.frba.dds.rest.controllers;
 import ar.edu.utn.frba.dds.Autenticacion.Autenticacion;
 import ar.edu.utn.frba.dds.Autenticacion.Session;
 import ar.edu.utn.frba.dds.exceptions.EntidadNoEncontradaException;
+import ar.edu.utn.frba.dds.exceptions.GuardarropaUsuarioException;
 import ar.edu.utn.frba.dds.exceptions.ParametrosInvalidosException;
 import ar.edu.utn.frba.dds.exceptions.UserNotLoggedException;
 import ar.edu.utn.frba.dds.model.guardarropa.Guardarropa;
+import ar.edu.utn.frba.dds.model.material.Material;
 import ar.edu.utn.frba.dds.model.prenda.Prenda;
 import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.TipoPrenda;
 import ar.edu.utn.frba.dds.model.usuario.Usuario;
 import ar.edu.utn.frba.dds.persistence.Repositorio;
 import ar.edu.utn.frba.dds.rest.DTOs.PrendaDTO;
 import org.hibernate.Hibernate;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.awt.*;
@@ -47,11 +51,13 @@ public class PrendasController {
         return respuesta;
     }
 
+    //TODO: Ver si esta bien devolver entidad no encontrada cuando no pertenece al usuario la prenda buscada
     @GetMapping(path = "{id}")
     public Prenda findOne(@RequestHeader("Authorization") String token, @PathVariable("id") Long id) throws UserNotLoggedException, EntidadNoEncontradaException {
         Repositorio repo = Repositorio.getInstance();
         Session session = Autenticacion.getSession(token);
         Usuario usuario = repo.getEntidadById(Usuario.class, session.getUsuarioId());
+
         for (Guardarropa guardarropa : usuario.getGuardarropas()){
             for (Prenda prenda : guardarropa.getPrendas()){
                 if (prenda.getId().equals(id)){
@@ -59,33 +65,85 @@ public class PrendasController {
                 }
             }
         }
+
         throw new EntidadNoEncontradaException();
     }
 
-    @PutMapping
-    public Prenda RefreshOne(@RequestHeader("Authorization") String token, @RequestBody Prenda prenda) throws UserNotLoggedException, EntidadNoEncontradaException {
+    @PutMapping(path = "{id}")
+    public Prenda RefreshOne(@RequestHeader("Authorization") String token, @PathVariable("id") Long id, @RequestBody PrendaDTO prendaDto) throws UserNotLoggedException, EntidadNoEncontradaException {
+
         Repositorio repo = Repositorio.getInstance();
-        Prenda respuesta = null;
-        Prenda prendaOld = null;
         Session session = Autenticacion.getSession(token);
         Usuario usuario = repo.getEntidadById(Usuario.class, session.getUsuarioId());
-        if (prenda.getId() == null){
-            throw new ParametrosInvalidosException("Debe enviar el id de su prenda a actualizar");
+
+        Prenda prendaOld = repo.getEntidadById(Prenda.class, id);
+        if (prendaOld == null){
+            throw new EntidadNoEncontradaException();
         }
+
+        boolean esPrendaDelUsuario = Boolean.FALSE;
         for (Guardarropa guardarropa : usuario.getGuardarropas()){
-            for (Prenda prendaBusq : guardarropa.getPrendas()){
-                if (prendaBusq.getId().equals(prenda.getId())){
-                    prendaOld = prendaBusq;
+            for (Prenda prenda : guardarropa.getPrendas()){
+                if (prenda.getId().equals(prendaOld.getId())){
+                    esPrendaDelUsuario = Boolean.TRUE;
                 }
             }
         }
 
-        if (prendaOld == null) {
-            throw new EntidadNoEncontradaException();
+        if (!esPrendaDelUsuario) {
+            throw new GuardarropaUsuarioException("La prenda no esta en ningun guardarropa del usuario");
         }
-        prendaOld.update(prenda);
-        respuesta = prendaOld;
-        return respuesta;
+
+        if (prendaDto.getTipoPrendaID() != null) {
+            TipoPrenda nuevoTipo = repo.getEntidadById(TipoPrenda.class, Long.valueOf(prendaDto.getTipoPrendaID()));
+            if (nuevoTipo == null) {
+                throw new ParametrosInvalidosException("Debe ingresar un Tipo de Prenda valido");
+            }
+            prendaOld.setTipoPrenda(nuevoTipo);
+        }
+
+        if (prendaDto.getMaterialId() != null) {
+            Material nuevoMaterial = repo.getEntidadById(Material.class, Long.valueOf(prendaDto.getMaterialId()));
+            if (nuevoMaterial == null) {
+                throw new ParametrosInvalidosException("Debe ingresar un Material valido");
+            }
+            prendaOld.setMaterial(nuevoMaterial);
+        }
+
+        if (prendaDto.getGuardarropaID() != null) {
+            Guardarropa nuevoGuardarropa = repo.getEntidadById(Guardarropa.class, Long.valueOf(prendaDto.getGuardarropaID()));
+            if (nuevoGuardarropa == null) {
+                throw new ParametrosInvalidosException("Debe ingresar un Guardarropa valido");
+            }
+
+            boolean esGuardarropaDelUsuario = Boolean.FALSE;
+            for (Guardarropa guardarropa : usuario.getGuardarropas()){
+                if (guardarropa.getId().equals(nuevoGuardarropa.getId())) {
+                    esGuardarropaDelUsuario = Boolean.TRUE;
+                }
+            }
+            if (!esGuardarropaDelUsuario) {
+                throw new GuardarropaUsuarioException("El nuevo guardarropa no pertenece al usuario");
+            }
+            prendaOld.setGuardarropaActual(nuevoGuardarropa);
+        }
+
+        if (prendaDto.getNombrePrenda() != null) {
+            prendaOld.setNombre(prendaDto.getNombrePrenda());
+        }
+
+        //TODO: queda ver como actualizar el puntaje
+        if (prendaDto.getColorPrincipal() != null) {
+        }
+
+        if (prendaDto.getColorSecundario() != null) {
+        }
+
+        if (prendaDto.getImagenUrl() != null) {
+        }
+
+        repo.update(prendaOld);
+        return prendaOld;
     }
 
     @PostMapping
@@ -99,7 +157,9 @@ public class PrendasController {
         if (guardarropaDTO == null){
             throw new ParametrosInvalidosException("La prenda debe pertenecer a un guardarropa");
         }
+
         TipoPrenda tipoPrendaDTO = repo.getEntidadById(TipoPrenda.class, Long.valueOf(prendaDto.getTipoPrendaID()));
+        Material materialPrendaDTO = repo.getEntidadById(Material.class, Long.valueOf(prendaDto.getMaterialId()));
 
         Prenda nuevaPrenda = new Prenda();
         //Color, imagen de TEST
@@ -108,6 +168,7 @@ public class PrendasController {
         nuevaPrenda.setNombre(prendaDto.getNombrePrenda());
         nuevaPrenda.setTipoPrenda(tipoPrendaDTO);
         nuevaPrenda.setGuardarropaActual(guardarropaDTO);
+        nuevaPrenda.setMaterial(materialPrendaDTO);
 
         for (Guardarropa guardarropa : usuario.getGuardarropas()) {
             if (guardarropa.getId().equals(guardarropaDTO.getId())) {
@@ -150,4 +211,5 @@ public class PrendasController {
         repo.delete(respuesta);
         return respuesta;
     }
+
 }
