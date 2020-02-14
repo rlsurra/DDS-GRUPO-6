@@ -2,6 +2,7 @@ package ar.edu.utn.frba.dds.rest.controllers;
 
 import ar.edu.utn.frba.dds.exceptions.EntidadNoEncontradaException;
 import ar.edu.utn.frba.dds.exceptions.GuardarropaUsuarioException;
+import ar.edu.utn.frba.dds.exceptions.NoSePuedePuntearUnAtuendoNoSeleccionadoException;
 import ar.edu.utn.frba.dds.exceptions.ParametrosInvalidosException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -44,7 +45,8 @@ public class ExceptionController {
 
     @ExceptionHandler({
             GuardarropaUsuarioException.class,
-            ParametrosInvalidosException.class
+            ParametrosInvalidosException.class,
+            NoSePuedePuntearUnAtuendoNoSeleccionadoException.class
     })
     public ResponseEntity<Object> badRequestException(Exception exception) {
         return new ResponseEntity<>(new ApiError(HttpStatus.BAD_REQUEST, exception.getMessage()), HttpStatus.BAD_REQUEST);
