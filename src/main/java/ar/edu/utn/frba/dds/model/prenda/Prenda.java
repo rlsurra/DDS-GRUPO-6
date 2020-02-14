@@ -37,12 +37,10 @@ public class Prenda extends Entidad {
     private Material material;
 
     @Column
-    @Convert(converter = ColorJpaConverter.class)
-    private Color colorPrimario;
+    private String colorPrimario;
 
     @Column
-    @Convert(converter = ColorJpaConverter.class)
-    private Color colorSecundario;
+    private String colorSecundario;
 
     @Column
     private String imagenPrenda;
@@ -60,11 +58,11 @@ public class Prenda extends Entidad {
     private java.util.List<PuntajePrenda> puntajes = new  java.util.ArrayList<>();
 
 
-    public Prenda(TipoPrenda tipoPrenda, Material material, Color colorPrimario) {
+    public Prenda(TipoPrenda tipoPrenda, Material material, String colorPrimario) {
         this(tipoPrenda, material, colorPrimario, null);
     }
 
-    public Prenda(TipoPrenda tipoPrenda, Material material, Color colorPrimario, Color colorSecundario) {
+    public Prenda(TipoPrenda tipoPrenda, Material material, String colorPrimario, String colorSecundario) {
         validarParametrosInvalidos(tipoPrenda, material, colorPrimario);
         validarPrendaMaterial(tipoPrenda, material);
         validarColores(colorPrimario, colorSecundario);
@@ -74,7 +72,7 @@ public class Prenda extends Entidad {
         this.colorSecundario = colorSecundario;
     }
 
-    public Prenda(String nombre, TipoPrenda tipoPrenda, Material material, Color colorPrimario, Color colorSecundario) {
+    public Prenda(String nombre, TipoPrenda tipoPrenda, Material material, String colorPrimario, String colorSecundario) {
         validarParametrosInvalidos(tipoPrenda, material, colorPrimario);
         validarPrendaMaterial(tipoPrenda, material);
         validarColores(colorPrimario, colorSecundario);
@@ -93,11 +91,11 @@ public class Prenda extends Entidad {
         return material;
     }
 
-    public Color getColorPrimario() {
+    public String getColorPrimario() {
         return colorPrimario;
     }
 
-    public Color getColorSecundario() {
+    public String getColorSecundario() {
         return colorSecundario;
     }
 
@@ -130,11 +128,11 @@ public class Prenda extends Entidad {
         this.material = material;
     }
 
-    public void setColorPrimario(Color colorPrimario) {
+    public void setColorPrimario(String colorPrimario) {
         this.colorPrimario = colorPrimario;
     }
 
-    public void setColorSecundario(Color colorSecundario) {
+    public void setColorSecundario(String colorSecundario) {
         this.colorSecundario = colorSecundario;
     }
 
@@ -168,13 +166,13 @@ public class Prenda extends Entidad {
         }
     }
 
-    protected void validarColores(Color primario, Color secundario) {
+    protected void validarColores(String primario, String secundario) {
         if (primario.equals(secundario)) {
             throw new ColorPrimarioIgualAlSecundarioException("El color primario debe ser distinto al secundario");
         }
     }
 
-    protected void validarParametrosInvalidos(TipoPrenda tipoPrenda, Material material, Color primario) {
+    protected void validarParametrosInvalidos(TipoPrenda tipoPrenda, Material material, String primario) {
         if (tipoPrenda == null || tipoPrenda.getCategoria() == null || material == null || primario == null) {
             throw new ParametrosInvalidosException("Los parámetros no pueden ser vacíos");
         }
