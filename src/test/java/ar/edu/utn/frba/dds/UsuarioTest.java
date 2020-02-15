@@ -73,18 +73,18 @@ public class UsuarioTest {
         TipoOjota.getMaterialesPermitidos().add(CAUCHO);
 
         guardarropa1.setPrendas(Arrays.asList(
-                new Prenda(TipoCamisaCorta, ALGODON, "255|0|0|1"),
-                new Prenda(TipoRemeraCorta, NYLON, "0|0|0|1"),
-                new Prenda(TipoChomba, ALGODON, "0|0|255|1")
+                new Prenda("", TipoCamisaCorta, ALGODON, "255|0|0|1"),
+                new Prenda("", TipoRemeraCorta, NYLON, "0|0|0|1"),
+                new Prenda("", TipoChomba, ALGODON, "0|0|255|1")
         ));
 
         guardarropa2.setPrendas(Arrays.asList(
-                new Prenda(TipoJean, JEAN, "0|0|255|1"),
-                new Prenda(TipoJogging, ALGODON, "0|0|0|1"),
-                new Prenda(TipoBermuda, GABARDINA, "128|128|128|1"),
-                new Prenda(TipoZapatilla, LONA, "0|0|0|1"),
-                new Prenda(TipoZapato, CUERO,"0|0|0|1"),
-                new Prenda(TipoOjota, CAUCHO, "0|255|0|1")
+                new Prenda("", TipoJean, JEAN, "0|0|255|1"),
+                new Prenda("", TipoJogging, ALGODON, "0|0|0|1"),
+                new Prenda("", TipoBermuda, GABARDINA, "128|128|128|1"),
+                new Prenda("", TipoZapatilla, LONA, "0|0|0|1"),
+                new Prenda("", TipoZapato, CUERO,"0|0|0|1"),
+                new Prenda("", TipoOjota, CAUCHO, "0|255|0|1")
         ));
 
     }

@@ -30,7 +30,7 @@ public class PrendaTest_Persist {
         Material ALGODON = new Material("ALGODON");
         TipoPrenda tipoRemeraCorta = new TipoPrendaSuperior(CategoriaSuperior.getInstance());
         tipoRemeraCorta.getMaterialesPermitidos().add(ALGODON);
-        Prenda remera = new Prenda(tipoRemeraCorta, ALGODON, "0|0|0|1");
+        Prenda remera = new Prenda("", tipoRemeraCorta, ALGODON, "0|0|0|1");
         Assert.assertEquals(remera.getCategoria(), CategoriaSuperior.getInstance());
     }
 
@@ -54,7 +54,7 @@ public class PrendaTest_Persist {
         Material ALGODON = new Material("ALGODON");
         TipoPrenda tipoRemeraCorta = new TipoPrendaSuperior(CategoriaSuperior.getInstance());
         tipoRemeraCorta.getMaterialesPermitidos().add(ALGODON);
-        Prenda remera = new Prenda(tipoRemeraCorta, ALGODON, "0|0|0|1");
+        Prenda remera = new Prenda("", tipoRemeraCorta, ALGODON, "0|0|0|1");
         remera.setImagenPrenda("/remeraNegra.jpg");
         Assert.assertEquals("/home/dds/TP/repo/DDS-GRUPO-6/images/TipoRemeraCortaALGODON.jpg", remera.getImagenPrenda());
     }

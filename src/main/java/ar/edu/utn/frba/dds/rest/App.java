@@ -27,6 +27,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 
 @SpringBootApplication
 public class App {
@@ -368,7 +370,7 @@ public class App {
         //Usuario Aroco
         Usuario aroco = Usuario.getUsuarioFromUserName("aroco");
        /* SI LO TENGO SUPONGO QUE ESTA BIEN, SI ESTA MAL HAY QUE ELIMINARLO PARA QUE SE VUELVA A CREAR,
-        SINO voy a estar pisandolo todo el tiempo */
+        SINO voy a estar pisandolo tod el tiempo */
         if (aroco == null) {
             aroco = new Usuario();
             aroco.setRefTemperatura(caluroso);
@@ -389,15 +391,18 @@ public class App {
             Guardarropa guardarropaAroco = aroco.getGuardarropas().get(0);
             if (guardarropaAroco.getPrendas().size() == 0) {
                 java.util.List<Prenda> prendas = guardarropaAroco.getPrendas();
-                prendas.add(new Prenda("Remera 1 ale",RemeraCuelloRedondoMangaCorta, ALGODON, "0|0|0|1", "255|0|0|1"));
-                prendas.add(new Prenda(RemeraEscoteVMangaCorta, LYCRA, "255|255|255|1"));
-                prendas.add(new Prenda(musculosa, LYCRA, "255|255|0|1"));
-                prendas.add(new Prenda(campera, CUERO, "255|255|255|1"));
-                prendas.add(new Prenda(sueter, POLIESTER, "255|255|255|1"));
-                prendas.add(new Prenda(bermuda, JEAN, "0|128|255|1"));
-                prendas.add(new Prenda(pantalonLargo, NYLON, "128|128|128|1"));
-                prendas.add(new Prenda(zapatillas, NYLON, "112|0|0|1"));
-                prendas.add(new Prenda(zapatos, CUERO, "0|0|0|1"));
+
+                Prenda prenda1 = new Prenda("Remera cuello redondo", RemeraCuelloRedondoMangaCorta, ALGODON, "0|0|0|1", "255|0|0|1");
+                Prenda prenda2 = new Prenda("Remera escote ", RemeraEscoteVMangaCorta, LYCRA, "255|255|255|1");
+                Prenda prenda3 = new Prenda("La muscuLoca", musculosa, LYCRA, "255|255|0|1");
+                Prenda prenda4 = new Prenda("La Jampera del tio", campera, CUERO, "255|255|255|1");
+                Prenda prenda5 = new Prenda("Su eter", sueter, POLIESTER, "255|255|255|1");
+                Prenda prenda6 = new Prenda("Bermudeli", bermuda, JEAN, "0|128|255|1");
+                Prenda prenda7 = new Prenda("Jean para el bolo", pantalonLargo, NYLON, "128|128|128|1");
+                Prenda prenda8 = new Prenda("Los championes", zapatillas, NYLON, "112|0|0|1");
+                Prenda prenda9 = new Prenda("Zapatito para trajedia", zapatos, CUERO, "0|0|0|1");
+
+                prendas.addAll(Arrays.asList(prenda1,prenda2, prenda3, prenda4, prenda5, prenda6, prenda7, prenda8, prenda9));
                 guardarropaAroco.setPrendas(prendas);
             }
             aroco.getGuardarropas().clear();
@@ -409,7 +414,7 @@ public class App {
         //Usuario jazul
         Usuario jazul = Usuario.getUsuarioFromUserName("jazul");
         /* SI LO TENGO SUPONGO QUE ESTA BIEN, SI ESTA MAL HAY QUE ELIMINARLO PARA QUE SE VUELVA A CREAR,
-        SINO voy a estar pisandolo todo el tiempo */
+        SINO voy a estar pisandolo tod el tiempo */
         if (jazul == null) {
             jazul = new Usuario();
             jazul.setRefTemperatura(caluroso);
@@ -430,15 +435,18 @@ public class App {
             if (guardarropajazul.getPrendas().size() == 0) {
 
                 java.util.List<Prenda> prendas = guardarropajazul.getPrendas();
-                prendas.add(new Prenda(RemeraCuelloRedondoMangaLarga, LYCRA, "255|255|0|1"));
-                prendas.add(new Prenda(RemeraEscoteVMangaLarga, ALGODON, "255|255|255|1"));
-                prendas.add(new Prenda(musculosa, LYCRA, "0|255|0|1"));
-                prendas.add(new Prenda(sueter, POLIESTER, "128|128|128|1"));
-                prendas.add(new Prenda(pollera, SEDA, "0|0|0|1"));
-                prendas.add(new Prenda(calza, NYLON, "0|0|0|1"));
-                prendas.add(new Prenda(buzo, ALGODON, "255|255|255|1"));
-                prendas.add(new Prenda(zapatos, CUERO, "0|0|0|1"));
-                prendas.add(new Prenda(sandalias, CUERO, "0|0|0|1"));
+
+                Prenda prenda1 = new Prenda("Remera cuello redondo", RemeraCuelloRedondoMangaLarga, LYCRA, "255|255|0|1");
+                Prenda prenda2 = new Prenda("Remera cuello V", RemeraEscoteVMangaLarga, ALGODON, "255|255|255|1");
+                Prenda prenda3 = new Prenda("Musculosa verde", musculosa, LYCRA, "0|255|0|1");
+                Prenda prenda4 = new Prenda("Sweater", sueter, POLIESTER, "128|128|128|1");
+                Prenda prenda5 = new Prenda("La pollerita", pollera, SEDA, "0|0|0|1");
+                Prenda prenda6 = new Prenda("Calza", calza, NYLON, "0|0|0|1");
+                Prenda prenda7 = new Prenda("El Paton Buzo", buzo, ALGODON, "255|255|255|1");
+                Prenda prenda8 = new Prenda("Zapatos de fiesta", zapatos, CUERO, "0|0|0|1");
+                Prenda prenda9 = new Prenda("Sandalias para todos los dias", sandalias, CUERO, "0|0|0|1");
+
+                prendas.addAll(Arrays.asList(prenda1,prenda2, prenda3, prenda4, prenda5, prenda6, prenda7, prenda8, prenda9));
                 guardarropajazul.setPrendas(prendas);
             }
             jazul.getGuardarropas().clear();

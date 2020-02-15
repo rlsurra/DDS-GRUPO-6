@@ -85,15 +85,16 @@ public class RepositorioTest {
 
         repositorio = Repositorio.getInstance();
         evento = new EventoSimple(3435910, LocalDateTime.now());
-        prendaSuperior = new Prenda(TipoRemeraCorta, ALGODON, "255|200|0|1");
+
+        prendaSuperior = new Prenda("", TipoRemeraCorta, ALGODON, "255|200|0|1");
         prendaSuperior.setId(null);
-        prendaInferior = new Prenda(TipoJean, JEAN, "0|0|0|1");
+        prendaInferior = new Prenda("", TipoJean, JEAN, "0|0|0|1");
         prendaInferior.setId(null);
-        prendaCalzado = new Prenda(TipoZapatilla, LONA, "64|64|64|1");
+        prendaCalzado = new Prenda("", TipoZapatilla, LONA, "64|64|64|1");
         prendaCalzado.setId(null);
         prendaAccesorio = new PrendaVacio(CategoriaAccesorio.getInstance());
         prendaAccesorio.setId(null);
-        prendaAbrigoLigero = new Prenda(TipoSweater, LANA, "255|255|0|1");
+        prendaAbrigoLigero = new Prenda("", TipoSweater, LANA, "255|255|0|1");
         prendaAbrigoLigero.setId(null);
         prendaAbrigoPesado = new PrendaVacio(CategoriaSuperiorAbrigoPesado.getInstance());
         prendaAbrigoPesado.setId(null);
@@ -134,10 +135,7 @@ public class RepositorioTest {
         historialAtuendo.setFecha(LocalTime.now());
         historialAtuendo.setNombre("Hola");
 
-        preferencia = new PuntajePrenda();
-        preferencia.setPrenda(prendaAccesorio);
-        preferencia.setUsuario(usuario);
-        preferencia.setPuntaje(5.00);
+        preferencia = new PuntajePrenda(usuario,prendaAccesorio,5.00);
 
     }
 

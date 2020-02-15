@@ -99,9 +99,9 @@ public class GeneradorGuardarropa {
 
         Prenda remeraPablo3 = new Prenda(tipoRemeraCorta, NYLON, "255|255|255|1", "0|0|0|1");
         Prenda camisaPablo = new Prenda(tipoCamisaLarga, ALGODON, "255|255|255|1", "0|0|0|1");
-        Prenda camperaPablo = new Prenda(tipoCampera, CUERO, "0|0|0|1");
-        Prenda buzoPolarPablo = new Prenda(tipoBuzoPolar, LANA, "255|0|0|1");
-        Prenda buzoPablo = new Prenda(tipoBuzo, LANA, "0|0|255|1");
+        Prenda camperaPablo = new Prenda("", tipoCampera, CUERO, "0|0|0|1");
+        Prenda buzoPolarPablo = new Prenda("", tipoBuzoPolar, LANA, "255|0|0|1");
+        Prenda buzoPablo = new Prenda("", tipoBuzo, LANA, "0|0|255|1");
         Prenda jeanPablo2 = new Prenda(tipoJean, JEAN, "255|0|0|1", "0|0|255|1");
         Prenda bermudaPablo = new Prenda(tipoBermuda, GABARDINA, "255|255|255|1", "0|0|0|1");
         Prenda zapatoPablo = new Prenda(tipoZapato, CUERO,"255|255|255|1", "0|0|0|1");
@@ -125,7 +125,7 @@ public class GeneradorGuardarropa {
         Prenda zapatoPedro = new Prenda(tipoZapato, CUERO, "255|255|255|1", "0|0|0|1");
         Prenda relojPedro = new Prenda(tipoReloj, PLASTICO, "255|0|0|1", "0|0|255|1");
         Prenda gorraPedro = new Prenda(tipoGorra, ALGODON, "255|0|0|1", "0|0|255|1");
-        Prenda sweaterPedro = new Prenda(tipoSweater, LANA, "128|128|128|1");
+        Prenda sweaterPedro = new Prenda("", tipoSweater, LANA, "128|128|128|1");
 
         List<Prenda> prendasPedro = new ArrayList<>();
         prendasPedro.add(sweaterPedro);

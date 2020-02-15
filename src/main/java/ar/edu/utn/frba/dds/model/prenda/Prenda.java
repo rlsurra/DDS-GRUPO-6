@@ -21,6 +21,8 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Entity(name = "prenda")
@@ -58,8 +60,8 @@ public class Prenda extends Entidad {
     private java.util.List<PuntajePrenda> puntajes = new  java.util.ArrayList<>();
 
 
-    public Prenda(TipoPrenda tipoPrenda, Material material, String colorPrimario) {
-        this(tipoPrenda, material, colorPrimario, null);
+    public Prenda(String nombre, TipoPrenda tipoPrenda, Material material, String colorPrimario) {
+        this(nombre, tipoPrenda, material, colorPrimario, null);
     }
 
     public Prenda(TipoPrenda tipoPrenda, Material material, String colorPrimario, String colorSecundario) {
@@ -202,12 +204,31 @@ public class Prenda extends Entidad {
         return puntajes;
     }
 
-    public void setPuntajes(java.util.List<PuntajePrenda> puntajes) {
-        this.puntajes = puntajes;
+    public void setPuntaje(Usuario usuario, Double puntos) {
+        List<PuntajePrenda> puntajeDelUsuario = this.puntajes.stream().filter(puntaje -> puntaje.getUsuario().equals(usuario)).collect(Collectors.toList());
+        if (puntajeDelUsuario.isEmpty()) {
+            PuntajePrenda nuevoPuntaje = new PuntajePrenda(usuario, this, puntos);
+            this.puntajes.add(nuevoPuntaje);
+            return;
+        }
+        PuntajePrenda puntajeActual = puntajeDelUsuario.get(0);
+        puntajeActual.setPuntaje(puntos);
     }
 
     public double getPuntajeDeUsuario(Usuario usuario) {
-        return this.getPuntajes().stream().filter(puntaje -> puntaje.getUsuario().equals(usuario)).mapToDouble(PuntajePrenda::getPuntaje).sum();
+        List<PuntajePrenda> collect = this.puntajes.stream().filter(puntaje -> puntaje.getUsuario().equals(usuario)).collect(Collectors.toList());
+        if (collect.isEmpty()) {
+            return (double) 0;
+        }
+        return collect.get(0).getPuntaje();
+    }
+
+    public PuntajePrenda getPuntajePrendaDelUsuario(Usuario usuario) {
+        List<PuntajePrenda> collect = this.puntajes.stream().filter(puntaje -> puntaje.getUsuario().equals(usuario)).collect(Collectors.toList());
+        if (collect.isEmpty()) {
+            return null;
+        }
+        return collect.get(0);
     }
 
 }
