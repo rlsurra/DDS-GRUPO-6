@@ -1,9 +1,6 @@
 package ar.edu.utn.frba.dds.rest.controllers;
 
-import ar.edu.utn.frba.dds.exceptions.EntidadNoEncontradaException;
-import ar.edu.utn.frba.dds.exceptions.GuardarropaUsuarioException;
-import ar.edu.utn.frba.dds.exceptions.NoSePuedePuntearUnAtuendoNoSeleccionadoException;
-import ar.edu.utn.frba.dds.exceptions.ParametrosInvalidosException;
+import ar.edu.utn.frba.dds.exceptions.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -13,12 +10,22 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class ExceptionController {
 
     public class ApiError {
+        private Integer code;
         private HttpStatus status;
         private String error;
 
-        public ApiError(HttpStatus status, String error) {
+        public ApiError(Integer code, HttpStatus status, String error) {
+            this.code = code;
             this.status = status;
             this.error = error;
+        }
+
+        public Integer getCode() {
+            return code;
+        }
+
+        public void setCode(Integer code) {
+            this.code = code;
         }
 
         public HttpStatus getStatus() {
@@ -40,7 +47,9 @@ public class ExceptionController {
 
     @ExceptionHandler(value = EntidadNoEncontradaException.class)
     public ResponseEntity<Object> entidadNoEncontradaException(EntidadNoEncontradaException exception) {
-        return new ResponseEntity<>(new ApiError(HttpStatus.NOT_FOUND, exception.getMessage()), HttpStatus.NOT_FOUND);
+        Integer code = HttpStatus.NOT_FOUND.value();
+        HttpStatus status = HttpStatus.NOT_FOUND;
+        return new ResponseEntity<>(new ApiError(code, status, exception.getMessage()), HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler({
@@ -49,7 +58,16 @@ public class ExceptionController {
             NoSePuedePuntearUnAtuendoNoSeleccionadoException.class
     })
     public ResponseEntity<Object> badRequestException(Exception exception) {
-        return new ResponseEntity<>(new ApiError(HttpStatus.BAD_REQUEST, exception.getMessage()), HttpStatus.BAD_REQUEST);
+        Integer code = HttpStatus.BAD_REQUEST.value();
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+        return new ResponseEntity<>(new ApiError(code, status, exception.getMessage()), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(value = UserNotLoggedException.class)
+    public ResponseEntity<Object> usuarioNoLogueadoException(UserNotLoggedException exception) {
+        Integer code = HttpStatus.UNAUTHORIZED.value();
+        HttpStatus status = HttpStatus.UNAUTHORIZED;
+        return new ResponseEntity<>(new ApiError(code, status, exception.getMessage()), HttpStatus.NOT_FOUND);
     }
 
 }
