@@ -390,18 +390,17 @@ public class App {
 
             Guardarropa guardarropaAroco = aroco.getGuardarropas().get(0);
             if (guardarropaAroco.getPrendas().size() == 0) {
-
                 java.util.List<Prenda> prendas = guardarropaAroco.getPrendas();
 
-                Prenda prenda1 = new Prenda("Remera cuello redondo", RemeraCuelloRedondoMangaCorta, ALGODON, Color.BLACK, Color.RED);
-                Prenda prenda2 = new Prenda("Remera escote ", RemeraEscoteVMangaCorta, LYCRA, Color.WHITE);
-                Prenda prenda3 = new Prenda("La muscuLoca", musculosa, LYCRA, Color.YELLOW);
-                Prenda prenda4 = new Prenda("La Jampera del tio", campera, CUERO, Color.WHITE);
-                Prenda prenda5 = new Prenda("Su eter", sueter, POLIESTER, Color.WHITE);
-                Prenda prenda6 = new Prenda("Bermudeli", bermuda, JEAN, new Color(0, 128, 255));
-                Prenda prenda7 = new Prenda("Jean para el bolo", pantalonLargo, NYLON, Color.gray);
-                Prenda prenda8 = new Prenda("Los championes", zapatillas, NYLON, new Color(112, 0, 0));
-                Prenda prenda9 = new Prenda("Zapatito para trajedia", zapatos, CUERO, Color.BLACK);
+                Prenda prenda1 = new Prenda("Remera cuello redondo", RemeraCuelloRedondoMangaCorta, ALGODON, "0|0|0|1", "255|0|0|1");
+                Prenda prenda2 = new Prenda("Remera escote ", RemeraEscoteVMangaCorta, LYCRA, "255|255|255|1");
+                Prenda prenda3 = new Prenda("La muscuLoca", musculosa, LYCRA, "255|255|0|1");
+                Prenda prenda4 = new Prenda("La Jampera del tio", campera, CUERO, "255|255|255|1");
+                Prenda prenda5 = new Prenda("Su eter", sueter, POLIESTER, "255|255|255|1");
+                Prenda prenda6 = new Prenda("Bermudeli", bermuda, JEAN, "0|128|255|1");
+                Prenda prenda7 = new Prenda("Jean para el bolo", pantalonLargo, NYLON, "128|128|128|1");
+                Prenda prenda8 = new Prenda("Los championes", zapatillas, NYLON, "112|0|0|1");
+                Prenda prenda9 = new Prenda("Zapatito para trajedia", zapatos, CUERO, "0|0|0|1");
 
                 prendas.addAll(Arrays.asList(prenda1,prenda2, prenda3, prenda4, prenda5, prenda6, prenda7, prenda8, prenda9));
                 guardarropaAroco.setPrendas(prendas);
@@ -437,15 +436,15 @@ public class App {
 
                 java.util.List<Prenda> prendas = guardarropajazul.getPrendas();
 
-                Prenda prenda1 = new Prenda("Remera cuello redondo", RemeraCuelloRedondoMangaLarga, LYCRA, Color.YELLOW);
-                Prenda prenda2 = new Prenda("Remera cuello V", RemeraEscoteVMangaLarga, ALGODON, Color.WHITE);
-                Prenda prenda3 = new Prenda("Musculosa verde", musculosa, LYCRA, Color.GREEN);
-                Prenda prenda4 = new Prenda("Sweater", sueter, POLIESTER, Color.GRAY);
-                Prenda prenda5 = new Prenda("La pollerita", pollera, SEDA, Color.BLACK);
-                Prenda prenda6 = new Prenda("Calza", calza, NYLON, Color.BLACK);
-                Prenda prenda7 = new Prenda("El Paton Buzo", buzo, ALGODON, Color.WHITE);
-                Prenda prenda8 = new Prenda("Zapatos de fiesta", zapatos, CUERO, Color.BLACK);
-                Prenda prenda9 = new Prenda("Sandalias para todos los dias", sandalias, CUERO, Color.BLACK);
+                Prenda prenda1 = new Prenda("Remera cuello redondo", RemeraCuelloRedondoMangaLarga, LYCRA, "255|255|0|1");
+                Prenda prenda2 = new Prenda("Remera cuello V", RemeraEscoteVMangaLarga, ALGODON, "255|255|255|1");
+                Prenda prenda3 = new Prenda("Musculosa verde", musculosa, LYCRA, "0|255|0|1");
+                Prenda prenda4 = new Prenda("Sweater", sueter, POLIESTER, "128|128|128|1");
+                Prenda prenda5 = new Prenda("La pollerita", pollera, SEDA, "0|0|0|1");
+                Prenda prenda6 = new Prenda("Calza", calza, NYLON, "0|0|0|1");
+                Prenda prenda7 = new Prenda("El Paton Buzo", buzo, ALGODON, "255|255|255|1");
+                Prenda prenda8 = new Prenda("Zapatos de fiesta", zapatos, CUERO, "0|0|0|1");
+                Prenda prenda9 = new Prenda("Sandalias para todos los dias", sandalias, CUERO, "0|0|0|1");
 
                 prendas.addAll(Arrays.asList(prenda1,prenda2, prenda3, prenda4, prenda5, prenda6, prenda7, prenda8, prenda9));
                 guardarropajazul.setPrendas(prendas);

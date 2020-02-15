@@ -22,10 +22,10 @@ public class PrendaVacio extends Prenda {
     }
 
     @Override
-    protected void validarColores(Color primario, Color secundario) {
+    protected void validarColores(String primario, String secundario) {
     }
 
     @Override
-    protected void validarParametrosInvalidos(TipoPrenda tipoPrenda, Material material, Color primario) {
+    protected void validarParametrosInvalidos(TipoPrenda tipoPrenda, Material material, String primario) {
     }
 }

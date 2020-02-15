@@ -20,7 +20,7 @@ public class PrendaTest {
         Material algodon = new Material();
         TipoPrenda tipoRemeraCorta = new TipoPrendaSuperior(CategoriaSuperior.getInstance());
         tipoRemeraCorta.getMaterialesPermitidos().add(algodon);
-        Prenda remera = new Prenda(tipoRemeraCorta, algodon, Color.BLACK, Color.BLUE);
+        Prenda remera = new Prenda(tipoRemeraCorta, algodon,"0|0|0|1", "0|0|255|1");
         Assert.assertEquals(tipoRemeraCorta, remera.getTipoPrenda());
     }
 
@@ -29,7 +29,7 @@ public class PrendaTest {
         Material algodon = new Material();
         TipoPrenda tipoRemeraCorta = new TipoPrendaSuperior(CategoriaSuperior.getInstance());
         tipoRemeraCorta.getMaterialesPermitidos().add(algodon);
-        Prenda remera = new Prenda("", tipoRemeraCorta, algodon, Color.BLACK);
+        Prenda remera = new Prenda("", tipoRemeraCorta, algodon, "0|0|0|1");
         Assert.assertEquals(remera.getCategoria(), CategoriaSuperior.getInstance());
     }
 
@@ -38,7 +38,7 @@ public class PrendaTest {
         Material algodon = new Material();
         TipoPrenda tipoRemeraCorta = new TipoPrendaSuperior(CategoriaSuperior.getInstance());
         tipoRemeraCorta.getMaterialesPermitidos().add(algodon);
-        new Prenda(tipoRemeraCorta, algodon, Color.RED, Color.RED);
+        new Prenda(tipoRemeraCorta, algodon, "255|0|0|1", "255|0|0|1");
     }
 
     @Test
@@ -54,7 +54,7 @@ public class PrendaTest {
         Material algodon = new Material();
         TipoPrenda tipoRemeraCorta = new TipoPrendaSuperior(CategoriaSuperior.getInstance());
         tipoRemeraCorta.getMaterialesPermitidos().add(algodon);
-        Prenda remera = new Prenda(tipoRemeraCorta, algodon, Color.BLACK, Color.BLUE);
+        Prenda remera = new Prenda(tipoRemeraCorta, algodon, "255|0|0|1", "255|0|0|1");
 
         Assert.assertEquals(0, (int) remera.getPuntajeDeUsuario(usuario));
         Assert.assertEquals(0, (int) remera.getPuntajeDeUsuario(usuario2));
