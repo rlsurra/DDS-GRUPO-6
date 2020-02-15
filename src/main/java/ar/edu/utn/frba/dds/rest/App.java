@@ -27,6 +27,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 
 @SpringBootApplication
 public class App {
@@ -368,7 +370,7 @@ public class App {
         //Usuario Aroco
         Usuario aroco = Usuario.getUsuarioFromUserName("aroco");
        /* SI LO TENGO SUPONGO QUE ESTA BIEN, SI ESTA MAL HAY QUE ELIMINARLO PARA QUE SE VUELVA A CREAR,
-        SINO voy a estar pisandolo todo el tiempo */
+        SINO voy a estar pisandolo tod el tiempo */
         if (aroco == null) {
             aroco = new Usuario();
             aroco.setRefTemperatura(caluroso);
@@ -390,15 +392,18 @@ public class App {
             if (guardarropaAroco.getPrendas().size() == 0) {
 
                 java.util.List<Prenda> prendas = guardarropaAroco.getPrendas();
-                prendas.add(new Prenda("Remera 1 ale",RemeraCuelloRedondoMangaCorta, ALGODON, Color.BLACK, Color.RED));
-                prendas.add(new Prenda(RemeraEscoteVMangaCorta, LYCRA, Color.WHITE));
-                prendas.add(new Prenda(musculosa, LYCRA, Color.YELLOW));
-                prendas.add(new Prenda(campera, CUERO, Color.WHITE));
-                prendas.add(new Prenda(sueter, POLIESTER, Color.WHITE));
-                prendas.add(new Prenda(bermuda, JEAN, new Color(0, 128, 255)));
-                prendas.add(new Prenda(pantalonLargo, NYLON, Color.gray));
-                prendas.add(new Prenda(zapatillas, NYLON, new Color(112, 0, 0)));
-                prendas.add(new Prenda(zapatos, CUERO, Color.BLACK));
+
+                Prenda prenda1 = new Prenda("Remera cuello redondo", RemeraCuelloRedondoMangaCorta, ALGODON, Color.BLACK, Color.RED);
+                Prenda prenda2 = new Prenda("Remera escote ", RemeraEscoteVMangaCorta, LYCRA, Color.WHITE);
+                Prenda prenda3 = new Prenda("La muscuLoca", musculosa, LYCRA, Color.YELLOW);
+                Prenda prenda4 = new Prenda("La Jampera del tio", campera, CUERO, Color.WHITE);
+                Prenda prenda5 = new Prenda("Su eter", sueter, POLIESTER, Color.WHITE);
+                Prenda prenda6 = new Prenda("Bermudeli", bermuda, JEAN, new Color(0, 128, 255));
+                Prenda prenda7 = new Prenda("Jean para el bolo", pantalonLargo, NYLON, Color.gray);
+                Prenda prenda8 = new Prenda("Los championes", zapatillas, NYLON, new Color(112, 0, 0));
+                Prenda prenda9 = new Prenda("Zapatito para trajedia", zapatos, CUERO, Color.BLACK);
+
+                prendas.addAll(Arrays.asList(prenda1,prenda2, prenda3, prenda4, prenda5, prenda6, prenda7, prenda8, prenda9));
                 guardarropaAroco.setPrendas(prendas);
             }
             aroco.getGuardarropas().clear();
@@ -410,7 +415,7 @@ public class App {
         //Usuario jazul
         Usuario jazul = Usuario.getUsuarioFromUserName("jazul");
         /* SI LO TENGO SUPONGO QUE ESTA BIEN, SI ESTA MAL HAY QUE ELIMINARLO PARA QUE SE VUELVA A CREAR,
-        SINO voy a estar pisandolo todo el tiempo */
+        SINO voy a estar pisandolo tod el tiempo */
         if (jazul == null) {
             jazul = new Usuario();
             jazul.setRefTemperatura(caluroso);
@@ -431,15 +436,18 @@ public class App {
             if (guardarropajazul.getPrendas().size() == 0) {
 
                 java.util.List<Prenda> prendas = guardarropajazul.getPrendas();
-                prendas.add(new Prenda(RemeraCuelloRedondoMangaLarga, LYCRA, Color.YELLOW));
-                prendas.add(new Prenda(RemeraEscoteVMangaLarga, ALGODON, Color.WHITE));
-                prendas.add(new Prenda(musculosa, LYCRA, Color.GREEN));
-                prendas.add(new Prenda(sueter, POLIESTER, Color.GRAY));
-                prendas.add(new Prenda(pollera, SEDA, Color.BLACK));
-                prendas.add(new Prenda(calza, NYLON, Color.BLACK));
-                prendas.add(new Prenda(buzo, ALGODON, Color.WHITE));
-                prendas.add(new Prenda(zapatos, CUERO, Color.BLACK));
-                prendas.add(new Prenda(sandalias, CUERO, Color.BLACK));
+
+                Prenda prenda1 = new Prenda("Remera cuello redondo", RemeraCuelloRedondoMangaLarga, LYCRA, Color.YELLOW);
+                Prenda prenda2 = new Prenda("Remera cuello V", RemeraEscoteVMangaLarga, ALGODON, Color.WHITE);
+                Prenda prenda3 = new Prenda("Musculosa verde", musculosa, LYCRA, Color.GREEN);
+                Prenda prenda4 = new Prenda("Sweater", sueter, POLIESTER, Color.GRAY);
+                Prenda prenda5 = new Prenda("La pollerita", pollera, SEDA, Color.BLACK);
+                Prenda prenda6 = new Prenda("Calza", calza, NYLON, Color.BLACK);
+                Prenda prenda7 = new Prenda("El Paton Buzo", buzo, ALGODON, Color.WHITE);
+                Prenda prenda8 = new Prenda("Zapatos de fiesta", zapatos, CUERO, Color.BLACK);
+                Prenda prenda9 = new Prenda("Sandalias para todos los dias", sandalias, CUERO, Color.BLACK);
+
+                prendas.addAll(Arrays.asList(prenda1,prenda2, prenda3, prenda4, prenda5, prenda6, prenda7, prenda8, prenda9));
                 guardarropajazul.setPrendas(prendas);
             }
             jazul.getGuardarropas().clear();

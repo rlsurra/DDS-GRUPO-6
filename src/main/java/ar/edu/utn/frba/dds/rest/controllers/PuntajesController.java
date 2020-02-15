@@ -3,6 +3,7 @@ package ar.edu.utn.frba.dds.rest.controllers;
 import ar.edu.utn.frba.dds.Autenticacion.Autenticacion;
 import ar.edu.utn.frba.dds.Autenticacion.Session;
 import ar.edu.utn.frba.dds.exceptions.EntidadNoEncontradaException;
+import ar.edu.utn.frba.dds.exceptions.GuardarropaUsuarioException;
 import ar.edu.utn.frba.dds.exceptions.UserNotLoggedException;
 import ar.edu.utn.frba.dds.model.guardarropa.Guardarropa;
 import ar.edu.utn.frba.dds.model.prenda.Prenda;
@@ -14,6 +15,7 @@ import ar.edu.utn.frba.dds.rest.DTOs.PuntajeDTO;
 import org.hibernate.Hibernate;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,54 +25,62 @@ import java.util.stream.Collectors;
 public class PuntajesController {
 
     @GetMapping
-    public List<PuntajePrenda> findAll(@RequestHeader("Authorization") String token) throws UserNotLoggedException {
+    public List<PuntajePrenda> getTodosLosPuntajesDelUsuario(@RequestHeader("Authorization") String token) throws UserNotLoggedException {
         Repositorio repo = Repositorio.getInstance();
-        List<PuntajePrenda> respuesta = null;
-        Usuario usuario = null;
         Session session = Autenticacion.getSession(token);
-        usuario = repo.getEntidadById(Usuario.class, session.getUsuarioId());
-        respuesta = usuario.getPuntajes();
-        return respuesta;
+        Usuario usuario = repo.getEntidadById(Usuario.class, session.getUsuarioId());
+
+        List<PuntajePrenda> puntajes = new ArrayList<>();
+        for (Guardarropa guardarropa : usuario.getGuardarropas()){
+            for (Prenda prenda : guardarropa.getPrendas()){
+                PuntajePrenda puntajePrendaDelUsuario = prenda.getPuntajePrendaDelUsuario(usuario);
+                if (puntajePrendaDelUsuario != null) {
+                    puntajes.add(puntajePrendaDelUsuario);
+                }
+            }
+        }
+        return puntajes;
     }
 
     @GetMapping(path = "{idPrenda}")
-    public PuntajePrenda findOne(@RequestHeader("Authorization") String token, @PathVariable("idPrenda") Long idPrenda) throws UserNotLoggedException, EntidadNoEncontradaException {
+    public Double getPuntajeDeUnaPrenda(@RequestHeader("Authorization") String token, @PathVariable("idPrenda") Long idPrenda) throws UserNotLoggedException, EntidadNoEncontradaException {
         Repositorio repo = Repositorio.getInstance();
-        PuntajePrenda respuesta = null;
         Session session = Autenticacion.getSession(token);
         Usuario usuario = repo.getEntidadById(Usuario.class, session.getUsuarioId());
-        respuesta = usuario.getPuntajes().stream().filter(puntaje -> puntaje.getPrenda().getId().equals(idPrenda)).findFirst().orElse(null);
-        if (respuesta == null) {
+
+        Prenda prenda = repo.getEntidadById(Prenda.class, idPrenda);
+        if (prenda == null) {
             throw new EntidadNoEncontradaException();
         }
-        return respuesta;
+        return prenda.getPuntajeDeUsuario(usuario);
     }
 
     @PostMapping
-    public PuntajePrenda AddOne(@RequestHeader("Authorization") String token, @RequestBody PuntajeDTO puntajeDTO) throws UserNotLoggedException, EntidadNoEncontradaException {
+    public Double agregarPuntajeAUnaPrenda(@RequestHeader("Authorization") String token, @RequestBody PuntajeDTO puntajeDTO) throws UserNotLoggedException, EntidadNoEncontradaException {
         Repositorio repo = Repositorio.getInstance();
-        PuntajePrenda respuesta = null;
         Session session = Autenticacion.getSession(token);
         Usuario usuario = repo.getEntidadById(Usuario.class, session.getUsuarioId());
-        final Long prendaid = puntajeDTO.getPrendaid();
-        PuntajePrenda puntaje = new PuntajePrenda();
-        puntaje.setPuntaje(puntajeDTO.getPuntaje());
-        if (usuario.obtenerTodasLasPrendas().stream().map(Entidad::getId).collect(Collectors.toList()).contains(prendaid)){
-            Prenda prendaPuntuada = usuario.obtenerTodasLasPrendas().stream().filter(prenda -> prenda.getId().equals(prendaid)).findFirst().orElse(null);
-            puntaje.setPrenda(prendaPuntuada);
-        } else {
+
+        Prenda prendaAPuntuar = repo.getEntidadById(Prenda.class, Long.valueOf(puntajeDTO.getPrendaid()));
+        if (prendaAPuntuar == null) {
             throw new EntidadNoEncontradaException();
         }
 
-        if (usuario.getPuntajes().stream().anyMatch(puntajeU -> puntajeU.getPrenda().getId().equals(puntaje.getPrenda().getId()))){
-            PuntajePrenda puntajeActual = usuario.getPuntajes().stream().filter((puntajeU -> puntajeU.getPrenda().getId().equals(puntaje.getPrenda().getId()))).findFirst().orElse(null);
-            usuario.getPuntajes().remove(puntajeActual);
+        boolean esPrendaDelUsuario = Boolean.FALSE;
+        for (Guardarropa guardarropa : usuario.getGuardarropas()){
+            for (Prenda prenda : guardarropa.getPrendas()){
+                if (prenda.getId().equals(prendaAPuntuar.getId())){
+                    esPrendaDelUsuario = Boolean.TRUE;
+                }
+            }
         }
-        puntaje.setUsuario(usuario);
-        repo.savePrenda(puntaje);
-        usuario.getPuntajes().add(puntaje);
-        repo.save(usuario);
-        respuesta = repo.getEntidadById(PuntajePrenda.class, puntaje.getId());
-        return respuesta;
+
+        if (!esPrendaDelUsuario) {
+            throw new GuardarropaUsuarioException("La prenda a puntuar no pertenece al usuario");
+        }
+
+        prendaAPuntuar.setPuntaje(usuario, Double.valueOf(puntajeDTO.getPuntaje()));
+        repo.update(prendaAPuntuar);
+        return prendaAPuntuar.getPuntajeDeUsuario(usuario);
     }
 }

@@ -47,4 +47,12 @@ public class PuntajePrenda extends Entidad {
         this.puntaje = puntaje;
     }
 
+    public PuntajePrenda(Usuario usuario, Prenda prenda, Double puntaje) {
+        this.usuario = usuario;
+        this.prenda = prenda;
+        this.puntaje = puntaje;
+    }
+
+    public PuntajePrenda() {
+    }
 }

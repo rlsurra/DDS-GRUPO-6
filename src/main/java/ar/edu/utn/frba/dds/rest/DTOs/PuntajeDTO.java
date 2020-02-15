@@ -2,27 +2,26 @@ package ar.edu.utn.frba.dds.rest.DTOs;
 
 public class PuntajeDTO {
 
-    private Long prendaid;
+    private Integer prendaid;
 
-    private Double puntaje;
+    private Integer puntaje;
 
     public PuntajeDTO() {
     }
 
-
-    public Double getPuntaje() {
+    public Integer getPuntaje() {
         return puntaje;
     }
 
-    public void setPuntaje(Double puntaje) {
+    public void setPuntaje(Integer puntaje) {
         this.puntaje = puntaje;
     }
 
-    public Long getPrendaid() {
+    public Integer getPrendaid() {
         return prendaid;
     }
 
-    public void setPrendaid(Long prendaid) {
+    public void setPrendaid(Integer prendaid) {
         this.prendaid = prendaid;
     }
 }

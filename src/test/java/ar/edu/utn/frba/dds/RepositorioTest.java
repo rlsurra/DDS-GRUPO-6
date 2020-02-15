@@ -85,15 +85,15 @@ public class RepositorioTest {
 
         repositorio = Repositorio.getInstance();
         evento = new EventoSimple(3435910, LocalDateTime.now());
-        prendaSuperior = new Prenda(TipoRemeraCorta, ALGODON, Color.ORANGE);
+        prendaSuperior = new Prenda("", TipoRemeraCorta, ALGODON, Color.ORANGE);
         prendaSuperior.setId(null);
-        prendaInferior = new Prenda(TipoJean, JEAN, Color.BLACK);
+        prendaInferior = new Prenda("", TipoJean, JEAN, Color.BLACK);
         prendaInferior.setId(null);
-        prendaCalzado = new Prenda(TipoZapatilla, LONA, Color.DARK_GRAY);
+        prendaCalzado = new Prenda("", TipoZapatilla, LONA, Color.DARK_GRAY);
         prendaCalzado.setId(null);
         prendaAccesorio = new PrendaVacio(CategoriaAccesorio.getInstance());
         prendaAccesorio.setId(null);
-        prendaAbrigoLigero = new Prenda(TipoSweater, LANA, Color.YELLOW);
+        prendaAbrigoLigero = new Prenda("", TipoSweater, LANA, Color.YELLOW);
         prendaAbrigoLigero.setId(null);
         prendaAbrigoPesado = new PrendaVacio(CategoriaSuperiorAbrigoPesado.getInstance());
         prendaAbrigoPesado.setId(null);
@@ -134,10 +134,7 @@ public class RepositorioTest {
         historialAtuendo.setFecha(LocalTime.now());
         historialAtuendo.setNombre("Hola");
 
-        preferencia = new PuntajePrenda();
-        preferencia.setPrenda(prendaAccesorio);
-        preferencia.setUsuario(usuario);
-        preferencia.setPuntaje(5.00);
+        preferencia = new PuntajePrenda(usuario,prendaAccesorio,5.00);
 
     }
 

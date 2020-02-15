@@ -14,7 +14,7 @@ public class PrendaVacio extends Prenda {
     }
 
     public PrendaVacio(Categoria categoria) {
-        super(new TipoPrendaVacio(categoria), null, null);
+        super("", new TipoPrendaVacio(categoria), null, null);
     }
 
     @Override

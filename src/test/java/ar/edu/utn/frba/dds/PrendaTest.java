@@ -4,8 +4,10 @@ import ar.edu.utn.frba.dds.exceptions.ColorPrimarioIgualAlSecundarioException;
 import ar.edu.utn.frba.dds.model.categoria.CategoriaSuperior;
 import ar.edu.utn.frba.dds.model.material.Material;
 import ar.edu.utn.frba.dds.model.prenda.Prenda;
+import ar.edu.utn.frba.dds.model.prenda.PuntajePrenda;
 import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.TipoPrenda;
 import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.TipoPrendaSuperior;
+import ar.edu.utn.frba.dds.model.usuario.Usuario;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -27,7 +29,7 @@ public class PrendaTest {
         Material algodon = new Material();
         TipoPrenda tipoRemeraCorta = new TipoPrendaSuperior(CategoriaSuperior.getInstance());
         tipoRemeraCorta.getMaterialesPermitidos().add(algodon);
-        Prenda remera = new Prenda(tipoRemeraCorta, algodon, Color.BLACK);
+        Prenda remera = new Prenda("", tipoRemeraCorta, algodon, Color.BLACK);
         Assert.assertEquals(remera.getCategoria(), CategoriaSuperior.getInstance());
     }
 
@@ -45,12 +47,27 @@ public class PrendaTest {
         generadorGuardarropa.getCasosDePrueba();
     }
 
-/*    @Test
-    public void cargarImagenAUnaPrenda(){
-        TipoPrenda tipoRemeraCorta = new TipoRemeraCorta();
-        Prenda remera = new Prenda(tipoRemeraCorta, Material.ALGODON, Color.BLACK);
-        remera.setImagenPrenda("/home/dds/Escritorio/remeraNegra.jpg");
-        Assert.assertEquals("/home/dds/TP/repo/DDS-GRUPO-6/images/TipoRemeraCortaALGODON.jpg", remera.getImagenPrenda());
-    }*/
+    @Test
+    public void agregarYActualizarPuntajePrenda(){
+        Usuario usuario = new Usuario();
+        Usuario usuario2 = new Usuario();
+        Material algodon = new Material();
+        TipoPrenda tipoRemeraCorta = new TipoPrendaSuperior(CategoriaSuperior.getInstance());
+        tipoRemeraCorta.getMaterialesPermitidos().add(algodon);
+        Prenda remera = new Prenda(tipoRemeraCorta, algodon, Color.BLACK, Color.BLUE);
+
+        Assert.assertEquals(0, (int) remera.getPuntajeDeUsuario(usuario));
+        Assert.assertEquals(0, (int) remera.getPuntajeDeUsuario(usuario2));
+
+        remera.setPuntaje(usuario, (double) 5);
+        remera.setPuntaje(usuario2, (double) 3);
+
+        Assert.assertEquals(5, (int) remera.getPuntajeDeUsuario(usuario));
+        Assert.assertEquals(3, (int) remera.getPuntajeDeUsuario(usuario2));
+
+        remera.setPuntaje(usuario, (double) 3);
+        remera.setPuntaje(usuario, (double) 4);
+        Assert.assertEquals(4, (int) remera.getPuntajeDeUsuario(usuario));
+    }
 
 }
