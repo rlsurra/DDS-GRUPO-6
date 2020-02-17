@@ -26,5 +26,6 @@ public class CategoriaSuperiorAbrigoLigero extends CategoriaSuperior {
     }
 
     private CategoriaSuperiorAbrigoLigero(String nombre) {
+        this.nombre = nombre;
     }
 }

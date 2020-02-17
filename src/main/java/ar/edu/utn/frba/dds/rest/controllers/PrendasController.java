@@ -132,14 +132,12 @@ public class PrendasController {
             prendaOld.setNombre(prendaDto.getNombrePrenda());
         }
 
-        //TODO: queda ver como actualizar el puntaje
+
+        //TODO: Ver como actualizar los colores, porque deberia recibir string y setearlo
         if (prendaDto.getColorPrincipal() != null) {
         }
 
         if (prendaDto.getColorSecundario() != null) {
-        }
-
-        if (prendaDto.getImagenUrl() != null) {
         }
 
         repo.update(prendaOld);
