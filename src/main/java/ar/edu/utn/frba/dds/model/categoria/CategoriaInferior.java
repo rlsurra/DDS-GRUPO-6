@@ -24,5 +24,6 @@ public class CategoriaInferior extends Categoria {
     }
 
     private CategoriaInferior(String nombre) {
+        this.nombre = nombre;
     }
 }

@@ -408,6 +408,16 @@ public class App {
             aroco.getGuardarropas().clear();
             aroco.getGuardarropas().add(guardarropaAroco);
             repo.save(aroco);
+
+            if(aroco.getEventos().size() == 0) {
+                Evento fiesta = new Evento();
+                fiesta.setTemperatura(10.0);
+                fiesta.setCiudad(10);
+                fiesta.setUsuario(aroco);
+                repo.save(fiesta);
+                aroco.agregarEvento(fiesta);
+            }
+            repo.save(aroco);
         }
 
 

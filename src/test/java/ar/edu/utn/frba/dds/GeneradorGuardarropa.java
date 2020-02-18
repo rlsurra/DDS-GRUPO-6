@@ -53,31 +53,43 @@ public class GeneradorGuardarropa {
 
         TipoPrenda tipoCamisaLarga = new TipoPrendaSuperior(CategoriaSuperior.getInstance());
         tipoCamisaLarga.getMaterialesPermitidos().add(ALGODON);
+        tipoCamisaLarga.setNivelDeCalor(5D);
         TipoPrenda tipoRemeraCorta = new TipoPrendaSuperior(CategoriaSuperior.getInstance());
         tipoRemeraCorta.getMaterialesPermitidos().add(ALGODON);
         tipoRemeraCorta.getMaterialesPermitidos().add(NYLON);
+        tipoRemeraCorta.setNivelDeCalor(3D);
         TipoPrenda tipoJean = new TipoPrendaInferior(CategoriaInferior.getInstance());
         tipoJean.getMaterialesPermitidos().add(JEAN);
+        tipoJean.setNivelDeCalor(7D);
         TipoPrenda tipoBermuda = new TipoPrendaInferior(CategoriaInferior.getInstance());
         tipoBermuda.getMaterialesPermitidos().add(GABARDINA);
+        tipoBermuda.setNivelDeCalor(4D);
         TipoPrenda tipoZapatilla = new TipoPrendaCalzado(CategoriaCalzado.getInstance());
         tipoZapatilla.getMaterialesPermitidos().add(CUERO);
         tipoZapatilla.getMaterialesPermitidos().add(LONA);
+        tipoZapatilla.setNivelDeCalor(1D);
         TipoPrenda tipoZapato = new TipoPrendaCalzado(CategoriaCalzado.getInstance());
         tipoZapato.getMaterialesPermitidos().add(CUERO);
+        tipoZapato.setNivelDeCalor(2D);
         TipoPrenda tipoReloj = new TipoPrendaAccesorio(CategoriaAccesorio.getInstance());
         tipoReloj.getMaterialesPermitidos().add(METAL);
         tipoReloj.getMaterialesPermitidos().add(PLASTICO);
+        tipoReloj.setNivelDeCalor(0D);
         TipoPrenda tipoGorra = new TipoPrendaAccesorio(CategoriaAccesorio.getInstance());
         tipoGorra.getMaterialesPermitidos().add(ALGODON);
+        tipoGorra.setNivelDeCalor(0D);
         TipoPrenda tipoCampera = new TipoPrendaInferior(CategoriaInferior.getInstance());
         tipoCampera.getMaterialesPermitidos().add(CUERO);
+        tipoCampera.setNivelDeCalor(8D);
         TipoPrenda tipoBuzoPolar = new TipoPrendaInferior(CategoriaInferior.getInstance());
         tipoBuzoPolar.getMaterialesPermitidos().add(LANA);
+        tipoBuzoPolar.setNivelDeCalor(10D);
         TipoPrenda tipoBuzo = new TipoPrendaInferior(CategoriaSuperiorAbrigoPesado.getInstance());
         tipoBuzo.getMaterialesPermitidos().add(LANA);
+        tipoBuzo.setNivelDeCalor(7D);
         TipoPrenda tipoSweater = new TipoPrendaInferior(CategoriaSuperiorAbrigoLigero.getInstance());
         tipoSweater.getMaterialesPermitidos().add(LANA);
+        tipoSweater.setNivelDeCalor(7D);
 
 
         // guardarropa pablo 1

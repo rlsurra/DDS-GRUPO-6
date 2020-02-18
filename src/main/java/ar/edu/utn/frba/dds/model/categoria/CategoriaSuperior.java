@@ -26,5 +26,6 @@ public class CategoriaSuperior extends Categoria {
     }
 
     private CategoriaSuperior(String nombre) {
+        this.nombre = nombre;
     }
 }

@@ -24,5 +24,6 @@ public class CategoriaCalzado extends Categoria {
     }
 
     private CategoriaCalzado(String nombre) {
+        this.nombre = nombre;
     }
 }

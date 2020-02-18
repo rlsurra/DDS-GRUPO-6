@@ -26,5 +26,6 @@ public class CategoriaSuperiorAbrigoPesado extends CategoriaSuperior {
     }
 
     private CategoriaSuperiorAbrigoPesado(String nombre) {
+        this.nombre = nombre;
     }
 }

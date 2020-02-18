@@ -6,4 +6,8 @@ public class EntidadNoEncontradaException extends Exception {
         super("La entidad buscada no se encuentra");
     }
 
+    public EntidadNoEncontradaException(String msj){
+        super(msj);
+    }
+
 }
