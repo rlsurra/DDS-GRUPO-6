@@ -15,27 +15,27 @@ public class Atuendo extends Entidad {
     @Column
     private Long calificacion;
 
-    @ManyToOne(targetEntity = Prenda.class, cascade = CascadeType.ALL)
+    @ManyToOne(targetEntity = Prenda.class, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "prenda_calzo_id")
     private Prenda prendaCalzado;
 
-    @ManyToOne(targetEntity = Prenda.class, cascade = CascadeType.ALL)
+    @ManyToOne(targetEntity = Prenda.class, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "prenda_inf_id")
     private Prenda prendaInferior;
 
-    @ManyToOne(targetEntity = Prenda.class, cascade = CascadeType.ALL)
+    @ManyToOne(targetEntity = Prenda.class, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "prenda_sup_id")
     private Prenda prendaSuperior;
 
-    @ManyToOne(targetEntity = Prenda.class, cascade = CascadeType.ALL)
+    @ManyToOne(targetEntity = Prenda.class, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "prenda_abr_lig_id")
     private Prenda abrigoLigero;
 
-    @ManyToOne(targetEntity = Prenda.class, cascade = CascadeType.ALL)
+    @ManyToOne(targetEntity = Prenda.class, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "prenda_abr_pes_id")
     private Prenda abrigoPesado;
 
-    @ManyToOne(targetEntity = Prenda.class, cascade = CascadeType.ALL)
+    @ManyToOne(targetEntity = Prenda.class, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "prenda_acce_id")
     private Prenda prendaAccesorio;
 
