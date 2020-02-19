@@ -3,6 +3,7 @@ package ar.edu.utn.frba.dds.rest;
 import ar.edu.utn.frba.dds.csvReader.CSVReader;
 import ar.edu.utn.frba.dds.csvReader.Ciudad;
 import ar.edu.utn.frba.dds.model.CiudadesService;
+import ar.edu.utn.frba.dds.model.categoria.CategoriaAccesorio;
 import ar.edu.utn.frba.dds.model.categoria.CategoriaCalzado;
 import ar.edu.utn.frba.dds.model.categoria.CategoriaInferior;
 import ar.edu.utn.frba.dds.model.categoria.CategoriaSuperior;
@@ -12,10 +13,7 @@ import ar.edu.utn.frba.dds.model.evento.Evento;
 import ar.edu.utn.frba.dds.model.guardarropa.Guardarropa;
 import ar.edu.utn.frba.dds.model.material.Material;
 import ar.edu.utn.frba.dds.model.prenda.Prenda;
-import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.TipoPrenda;
-import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.TipoPrendaCalzado;
-import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.TipoPrendaInferior;
-import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.TipoPrendaSuperior;
+import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.*;
 import ar.edu.utn.frba.dds.model.usuario.Usuario;
 import ar.edu.utn.frba.dds.model.usuario.referenciaTemperatura.Caluroso;
 import ar.edu.utn.frba.dds.model.usuario.referenciaTemperatura.ReferenciaTemperatura;
@@ -363,6 +361,16 @@ public class App {
             sandalias.getMaterialesPermitidos().add(CUERO);
             //No puedo agregar combina con
             repo.save(sandalias);
+        }
+
+        TipoPrenda reloj = TipoPrenda.buscarTipoDePrendaPorCodigo("RELOJ");
+        if (reloj == null) {
+            reloj = new TipoPrendaAccesorio(CategoriaAccesorio.getInstance());
+            reloj.setNombre("Rolex");
+            reloj.setCodigo("RELOJ");
+            reloj.setNivelDeCalor(0D);
+            reloj.getMaterialesPermitidos().add(METAL);
+            repo.save(reloj);
         }
 
         ReferenciaTemperatura caluroso = new Caluroso();

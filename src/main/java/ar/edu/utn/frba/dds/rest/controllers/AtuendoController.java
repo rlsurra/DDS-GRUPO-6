@@ -8,11 +8,11 @@ import ar.edu.utn.frba.dds.exceptions.UserNotLoggedException;
 import ar.edu.utn.frba.dds.model.atuendo.Atuendo;
 import ar.edu.utn.frba.dds.model.evento.Evento;
 import ar.edu.utn.frba.dds.model.guardarropa.Guardarropa;
-import ar.edu.utn.frba.dds.model.prenda.Prenda;
 import ar.edu.utn.frba.dds.model.usuario.Usuario;
 import ar.edu.utn.frba.dds.persistence.Repositorio;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -21,7 +21,7 @@ import java.util.List;
 public class AtuendoController {
 
     @GetMapping
-    public List<Atuendo> generarAtuendosDelGuardarropa(@RequestHeader("Authorization") String token, @RequestParam(name = "guardarropa") Long guardarropaid,
+    public Evento generarAtuendosDelGuardarropa(@RequestHeader("Authorization") String token, @RequestParam(name = "guardarropa") Long guardarropaid,
                                                        @RequestParam(name = "evento") Long eventoid ) throws UserNotLoggedException, EntidadNoEncontradaException {
 
         Repositorio repo = Repositorio.getInstance();
@@ -41,7 +41,34 @@ public class AtuendoController {
 
         esDelUsuario(guardarropasDelUsuario, guardarropa);
 
-        return guardarropa.generarSugerencias(usuario, evento);
+        List<Atuendo> sugerencias = guardarropa.generarSugerencias(usuario, evento);
+
+        for (Atuendo at: sugerencias) {
+            repo.save(at);
+        }
+
+        evento.setPosiblesAtuendos(sugerencias);
+        return evento;
+
+    }
+
+    @DeleteMapping
+    public Evento EliminarSugerencias(@RequestHeader("Authorization") String token, @RequestParam(name = "evento") Long eventoid ) throws UserNotLoggedException, EntidadNoEncontradaException {
+
+        Repositorio repo = Repositorio.getInstance();
+        Session session = Autenticacion.getSession(token);
+
+        Usuario usuario = repo.getEntidadById(Usuario.class, session.getUsuarioId());
+
+        Evento evento = usuario.getEventos().stream().filter(evento2 -> evento2.getId().equals(eventoid)).findFirst().orElse(null);
+
+        if (evento == null) {
+            throw new EntidadNoEncontradaException("No es posible encontrar el Evento indicado");
+        }
+
+        evento.setPosiblesAtuendos(new ArrayList<Atuendo>());
+
+        return evento;
     }
 
     private void esDelUsuario(List<Guardarropa> guardarropas, Guardarropa guardarropa){

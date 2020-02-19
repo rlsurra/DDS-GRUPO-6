@@ -63,7 +63,6 @@ public class EventosController {
     @PostMapping
     public Evento AddOne(@RequestHeader("Authorization") String token, @RequestBody EventoDTO eventoDTO) throws UserNotLoggedException {
         Repositorio repo = Repositorio.getInstance();
-        Evento respuesta = null;
         Session session = Autenticacion.getSession(token);
         Usuario usuario = repo.getEntidadById(Usuario.class, session.getUsuarioId());
         Evento evento = null;
@@ -77,11 +76,7 @@ public class EventosController {
         evento = evento.fillWithDTO(eventoDTO, evento);
 
         usuario.agregarEvento(evento);
-        repo.savePrenda(evento);
-        repo.save(usuario);
-        //evento.initOnDemand();
-        respuesta = repo.getEntidadById(Evento.class, evento.getId());
-        return respuesta;
+        return evento;
     }
 
     @DeleteMapping(path = "{id}")

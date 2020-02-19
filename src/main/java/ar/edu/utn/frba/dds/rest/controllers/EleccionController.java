@@ -44,7 +44,6 @@ public class EleccionController {
 
         evento.setAtuendoElegido(atuendo);
 
-        repo.save(evento);
         return evento;
     }
 }
