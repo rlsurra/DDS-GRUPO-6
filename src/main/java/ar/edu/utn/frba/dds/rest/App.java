@@ -1,6 +1,8 @@
 package ar.edu.utn.frba.dds.rest;
 
-import ar.edu.utn.frba.dds.model.categoria.Categoria;
+import ar.edu.utn.frba.dds.csvReader.CSVReader;
+import ar.edu.utn.frba.dds.csvReader.Ciudad;
+import ar.edu.utn.frba.dds.model.CiudadesService;
 import ar.edu.utn.frba.dds.model.categoria.CategoriaCalzado;
 import ar.edu.utn.frba.dds.model.categoria.CategoriaInferior;
 import ar.edu.utn.frba.dds.model.categoria.CategoriaSuperior;
@@ -21,20 +23,20 @@ import ar.edu.utn.frba.dds.model.usuario.tipoUsuario.TipoUsuario;
 import ar.edu.utn.frba.dds.model.usuario.tipoUsuario.TipoUsuarioGratuito;
 import ar.edu.utn.frba.dds.model.usuario.tipoUsuario.TipoUsuarioPremium;
 import ar.edu.utn.frba.dds.persistence.Repositorio;
-import org.checkerframework.checker.units.qual.A;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.awt.*;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
+import java.util.List;
 
 @SpringBootApplication
 public class App {
 
     public static void main(String[] args) {
         crearCasosDePrueba();
+
+        cargarCiudades();
+
         SpringApplication.run(App.class, args);
     }
 
@@ -411,8 +413,9 @@ public class App {
 
             if(aroco.getEventos().size() == 0) {
                 Evento fiesta = new Evento();
+                fiesta.setNombre("Previa con los pibes");
                 fiesta.setTemperatura(10.0);
-                fiesta.setCiudad(10);
+                fiesta.setCiudad(3430310);
                 fiesta.setUsuario(aroco);
                 repo.save(fiesta);
                 aroco.agregarEvento(fiesta);
@@ -465,14 +468,32 @@ public class App {
 
             if(jazul.getEventos().size() == 0) {
                 Evento fiesta = new Evento();
+                fiesta.setNombre("Cumple de Ro");
                 fiesta.setTemperatura(10.0);
-                fiesta.setCiudad(10);
+                fiesta.setCiudad(3430234);
                 fiesta.setUsuario(jazul);
                 repo.save(fiesta);
                 jazul.agregarEvento(fiesta);
             }
             repo.save(jazul);
         }
+
+    }
+
+    private static void cargarCiudades(){
+
+        CiudadesService service = CiudadesService.CiudadesService();
+
+        List<Ciudad> ciudades = CSVReader.readBooksFromCSV("/Users/juanmartinconde/Documents/Facultad/DDS/2019/QMP/DDS-GRUPO-6/src/main/resources/ciudades.csv");
+
+        service.setCiudades(ciudades);
+
+        int contador = 0;
+        for (Ciudad c : ciudades) {
+            contador++;
+        }
+
+        System.out.println("Se cargaron " + contador + " ciudades");
 
     }
 }
