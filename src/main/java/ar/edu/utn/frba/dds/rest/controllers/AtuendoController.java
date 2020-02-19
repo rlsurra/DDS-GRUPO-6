@@ -44,6 +44,11 @@ public class AtuendoController {
 
         List<Atuendo> sugerencias = guardarropa.generarSugerenciasPosibles();
 
+        for (Atuendo at: sugerencias
+             ) {
+            repo.save(at);
+        }
+
         evento.setPosiblesAtuendos(sugerencias);
 
         return evento;
