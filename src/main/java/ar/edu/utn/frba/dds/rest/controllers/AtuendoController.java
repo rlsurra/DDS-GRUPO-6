@@ -41,9 +41,7 @@ public class AtuendoController {
 
         esDelUsuario(guardarropasDelUsuario, guardarropa);
 
-//        return guardarropa.generarSugerencias(usuario, evento);
-        return guardarropa.generarSugerenciasPosibles();
-
+        return guardarropa.generarSugerencias(usuario, evento);
     }
 
     private void esDelUsuario(List<Guardarropa> guardarropas, Guardarropa guardarropa){

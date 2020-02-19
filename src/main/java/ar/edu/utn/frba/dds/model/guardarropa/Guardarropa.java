@@ -90,9 +90,13 @@ public class Guardarropa extends Entidad {
 
     public List<Atuendo> generarSugerencias(Usuario usuario, Evento evento) {
         List<Atuendo> atuendosPosibles = generarSugerenciasPosibles();
-        System.out.println("Se generaron " + atuendosPosibles.size() + " atuendos");
+        System.out.println("Se generaron " + atuendosPosibles.size() + " atuendos posibles");
         System.out.println("Niveles de calor de atuendos: " + atuendosPosibles.stream().map(Atuendo::getNivelDeCalor).collect(Collectors.toList()));
-        return ordenarSugerenciasPorPuntaje(filtrarSugerenciasPorNivelCalor(usuario, evento, atuendosPosibles), usuario);
+
+        List<Atuendo> sugerenciasPorNivelCalor = filtrarSugerenciasPorNivelCalor(usuario, evento, atuendosPosibles);
+        System.out.println("Sugerencias restantes luego de filtrar por Nivel de Calor: " + sugerenciasPorNivelCalor.size());
+
+        return ordenarSugerenciasPorPuntaje(sugerenciasPorNivelCalor, usuario);
     }
 
     public List<Atuendo> generarSugerenciasPosibles() {
