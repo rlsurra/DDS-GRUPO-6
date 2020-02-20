@@ -114,15 +114,15 @@ public class Guardarropa extends Entidad {
         prendas.forEach(prenda -> {
             if (prenda.getCategoria().equals(CategoriaAccesorio.getInstance())) {
                 prendasAccesorio.add(prenda);
-            } else if (prenda.getCategoria().equals(CategoriaSuperiorAbrigoLigero.getInstance())) {
+            } else if (prenda.getCategoria().getId().equals(CategoriaSuperiorAbrigoLigero.getInstance().getId())) {
                 prendasAbrigoLigero.add(prenda);
-            } else if (prenda.getCategoria().equals(CategoriaSuperiorAbrigoPesado.getInstance())) {
+            } else if (prenda.getCategoria().getId().equals(CategoriaSuperiorAbrigoPesado.getInstance().getId())) {
                 prendasAbrigoPesado.add(prenda);
-            } else if (prenda.getCategoria().equals(CategoriaInferior.getInstance())) {
+            } else if (prenda.getCategoria().getId().equals(CategoriaInferior.getInstance().getId())) {
                 prendasInferiores.add(prenda);
-            } else if (prenda.getCategoria().equals(CategoriaCalzado.getInstance())) {
+            } else if (prenda.getCategoria().getId().equals(CategoriaCalzado.getInstance().getId())) {
                 prendasCalzado.add(prenda);
-            } else if (prenda.getCategoria().equals(CategoriaSuperior.getInstance())) {
+            } else if (prenda.getCategoria().getId().equals(CategoriaSuperior.getInstance().getId())) {
                 prendasSuperiores.add(prenda);
             }
         });
