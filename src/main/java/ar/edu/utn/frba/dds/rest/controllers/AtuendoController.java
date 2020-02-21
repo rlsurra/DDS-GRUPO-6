@@ -24,7 +24,7 @@ public class AtuendoController {
     public Evento generarAtuendosDelGuardarropa(@RequestHeader("Authorization") String token, @RequestParam(name = "guardarropa") Long guardarropaid,
                                                        @RequestParam(name = "evento") Long eventoid ) throws UserNotLoggedException, EntidadNoEncontradaException {
 
-        Repositorio repo = Repositorio.getInstance();
+            Repositorio repo = Repositorio.getInstance();
         Session session = Autenticacion.getSession(token);
 
         Guardarropa guardarropa = repo.getEntidadById(Guardarropa.class, guardarropaid);
@@ -41,10 +41,13 @@ public class AtuendoController {
 
         esDelUsuario(guardarropasDelUsuario, guardarropa);
 
+        evento.setPosiblesAtuendos(new ArrayList<Atuendo>());
+        evento.setAtuendoElegido(null);
+
         List<Atuendo> sugerencias = guardarropa.generarSugerencias(usuario, evento);
 
         for (Atuendo at: sugerencias) {
-            repo.save(at);
+            repo.persist(at);
         }
 
         evento.setPosiblesAtuendos(sugerencias);
@@ -67,6 +70,7 @@ public class AtuendoController {
         }
 
         evento.setPosiblesAtuendos(new ArrayList<Atuendo>());
+        evento.setAtuendoElegido(null);
 
         return evento;
     }

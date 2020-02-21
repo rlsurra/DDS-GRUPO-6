@@ -7,13 +7,9 @@ import ar.edu.utn.frba.dds.exceptions.NoSePuedePuntearUnAtuendoNoSeleccionadoExc
 import ar.edu.utn.frba.dds.exceptions.UserNotLoggedException;
 import ar.edu.utn.frba.dds.model.atuendo.Atuendo;
 import ar.edu.utn.frba.dds.model.evento.Evento;
-import ar.edu.utn.frba.dds.model.prenda.Prenda;
-import ar.edu.utn.frba.dds.model.prenda.PuntajePrenda;
 import ar.edu.utn.frba.dds.model.usuario.Usuario;
-import ar.edu.utn.frba.dds.persistence.Entidad;
 import ar.edu.utn.frba.dds.persistence.Repositorio;
 import ar.edu.utn.frba.dds.rest.DTOs.CalificacionDTO;
-import ar.edu.utn.frba.dds.rest.DTOs.PuntajeDTO;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -69,7 +65,7 @@ public class CalificacionesController {
         }
 
         atuendo.setCalificacion(calificacionDTO.getCalificacion());
-        repo.savePrenda(atuendo);
+        repo.persist(atuendo);
         respuesta = atuendo;
         return respuesta;
     }

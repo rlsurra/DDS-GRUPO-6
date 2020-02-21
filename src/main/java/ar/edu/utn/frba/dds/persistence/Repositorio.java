@@ -73,7 +73,7 @@ public class Repositorio {
         em.getTransaction().commit();
     }
 
-    public void savePrenda(Entidad entidad){
+    public void persist(Entidad entidad){
         em.getTransaction().begin();
         try {
             em.persist(entidad);

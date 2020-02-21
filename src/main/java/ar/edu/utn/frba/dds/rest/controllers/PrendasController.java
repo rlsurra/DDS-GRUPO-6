@@ -13,17 +13,10 @@ import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.TipoPrenda;
 import ar.edu.utn.frba.dds.model.usuario.Usuario;
 import ar.edu.utn.frba.dds.persistence.Repositorio;
 import ar.edu.utn.frba.dds.rest.DTOs.PrendaDTO;
-import org.hibernate.Hibernate;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Function;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @RestController
 @CrossOrigin(origins = "*", methods= {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
@@ -171,7 +164,7 @@ public class PrendasController {
         for (Guardarropa guardarropa : usuario.getGuardarropas()) {
             if (guardarropa.getId().equals(guardarropaDTO.getId())) {
                 guardarropa.getPrendas().add(nuevaPrenda);
-                repo.savePrenda(nuevaPrenda);
+                repo.persist(nuevaPrenda);
                 repo.update(guardarropa);
                 ok = true;
             }
