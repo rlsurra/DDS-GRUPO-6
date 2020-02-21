@@ -8,8 +8,8 @@ import javax.persistence.Entity;
 public class Normal extends ReferenciaTemperatura {
 
     public Normal() {
-        this.setMaximo(60);
-        this.setMinimo(40);
+        this.setMaximo(25);
+        this.setMinimo(15);
     }
 
 }
