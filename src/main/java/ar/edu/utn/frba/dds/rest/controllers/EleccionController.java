@@ -12,6 +12,7 @@ import ar.edu.utn.frba.dds.rest.DTOs.EleccionDTO;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin(origins = "*", methods= {RequestMethod.POST})
 @RequestMapping(path = "elegir")
 public class EleccionController {
 
