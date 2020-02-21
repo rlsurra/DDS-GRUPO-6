@@ -63,9 +63,8 @@ public class GuardarropaController {
         Guardarropa respuesta = null;
         Session session = Autenticacion.getSession(token);
         Usuario usuario = repo.getEntidadById(Usuario.class, session.getUsuarioId());
-        repo.save(guardarropa);
+        repo.persist(guardarropa);
         usuario.agregarGuardarropa(guardarropa);
-        repo.save(usuario);
         respuesta = repo.getEntidadById(Guardarropa.class, guardarropa.getId());
         return respuesta;
     }
