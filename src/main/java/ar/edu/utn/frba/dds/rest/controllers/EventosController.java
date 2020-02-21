@@ -75,6 +75,7 @@ public class EventosController {
 
         evento = evento.fillWithDTO(eventoDTO, evento);
 
+        repo.persist(evento);
         usuario.agregarEvento(evento);
         return evento;
     }
