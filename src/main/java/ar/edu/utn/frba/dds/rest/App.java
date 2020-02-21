@@ -370,16 +370,6 @@ public class App {
             repo.save(sandalias);
         }
 
-//        TipoPrenda reloj = TipoPrenda.buscarTipoDePrendaPorCodigo("RELOJ");
-//        if (reloj == null) {
-//            reloj = new TipoPrendaAccesorio(CategoriaAccesorio.getInstance());
-//            reloj.setNombre("Rolex");
-//            reloj.setCodigo("RELOJ");
-//            reloj.setNivelDeCalor(0D);
-//            reloj.getMaterialesPermitidos().add(METAL);
-//            repo.save(reloj);
-//        }
-
         ReferenciaTemperatura caluroso = new Caluroso();
         TipoUsuario gratuito = new TipoUsuarioGratuito();
         TipoUsuario premium = new TipoUsuarioPremium();

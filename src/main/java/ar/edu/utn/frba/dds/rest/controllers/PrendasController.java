@@ -154,8 +154,8 @@ public class PrendasController {
 
         Prenda nuevaPrenda = new Prenda();
         //Color, imagen de TEST
-        nuevaPrenda.setColorPrimario(null);
-        nuevaPrenda.setImagenPrenda(prendaDto.getImagenUrl());
+        nuevaPrenda.setColorPrimario(prendaDto.getColorPrincipal());
+        nuevaPrenda.setColorSecundario(prendaDto.getColorSecundario());
         nuevaPrenda.setNombre(prendaDto.getNombrePrenda());
         nuevaPrenda.setTipoPrenda(tipoPrendaDTO);
         nuevaPrenda.setGuardarropaActual(guardarropaDTO);

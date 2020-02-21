@@ -60,13 +60,11 @@ public class GuardarropaController {
     @PostMapping
     public Guardarropa AddOne(@RequestHeader("Authorization") String token, @RequestBody Guardarropa guardarropa) throws UserNotLoggedException {
         Repositorio repo = Repositorio.getInstance();
-        Guardarropa respuesta = null;
         Session session = Autenticacion.getSession(token);
         Usuario usuario = repo.getEntidadById(Usuario.class, session.getUsuarioId());
-        repo.persist(guardarropa);
         usuario.agregarGuardarropa(guardarropa);
-        respuesta = repo.getEntidadById(Guardarropa.class, guardarropa.getId());
-        return respuesta;
+        repo.persist(guardarropa);
+        return repo.getEntidadById(Guardarropa.class, guardarropa.getId());
     }
 
     @DeleteMapping(path = "{id}")
