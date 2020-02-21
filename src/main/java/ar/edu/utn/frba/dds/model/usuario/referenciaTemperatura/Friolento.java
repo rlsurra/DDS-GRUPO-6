@@ -8,8 +8,8 @@ import javax.persistence.Entity;
 public class Friolento extends ReferenciaTemperatura {
 
     public Friolento() {
-        this.setMaximo(100);
-        this.setMinimo(60);
+        this.setMaximo(35);
+        this.setMinimo(25);
     }
 
 }

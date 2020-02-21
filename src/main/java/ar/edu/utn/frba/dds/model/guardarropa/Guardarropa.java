@@ -90,9 +90,13 @@ public class Guardarropa extends Entidad {
 
     public List<Atuendo> generarSugerencias(Usuario usuario, Evento evento) {
         List<Atuendo> atuendosPosibles = generarSugerenciasPosibles();
-        System.out.println("Se generaron " + atuendosPosibles.size() + " atuendos");
+        System.out.println("Se generaron " + atuendosPosibles.size() + " atuendos posibles");
         System.out.println("Niveles de calor de atuendos: " + atuendosPosibles.stream().map(Atuendo::getNivelDeCalor).collect(Collectors.toList()));
-        return ordenarSugerenciasPorPuntaje(filtrarSugerenciasPorNivelCalor(usuario, evento, atuendosPosibles), usuario);
+
+        List<Atuendo> sugerenciasPorNivelCalor = filtrarSugerenciasPorNivelCalor(usuario, evento, atuendosPosibles);
+        System.out.println("Sugerencias restantes luego de filtrar por Nivel de Calor: " + sugerenciasPorNivelCalor.size());
+
+        return ordenarSugerenciasPorPuntaje(sugerenciasPorNivelCalor, usuario);
     }
 
     public List<Atuendo> generarSugerenciasPosibles() {
@@ -110,15 +114,15 @@ public class Guardarropa extends Entidad {
         prendas.forEach(prenda -> {
             if (prenda.getCategoria().equals(CategoriaAccesorio.getInstance())) {
                 prendasAccesorio.add(prenda);
-            } else if (prenda.getCategoria().equals(CategoriaSuperiorAbrigoLigero.getInstance())) {
+            } else if (prenda.getCategoria().getId().equals(CategoriaSuperiorAbrigoLigero.getInstance().getId())) {
                 prendasAbrigoLigero.add(prenda);
-            } else if (prenda.getCategoria().equals(CategoriaSuperiorAbrigoPesado.getInstance())) {
+            } else if (prenda.getCategoria().getId().equals(CategoriaSuperiorAbrigoPesado.getInstance().getId())) {
                 prendasAbrigoPesado.add(prenda);
-            } else if (prenda.getCategoria().equals(CategoriaInferior.getInstance())) {
+            } else if (prenda.getCategoria().getId().equals(CategoriaInferior.getInstance().getId())) {
                 prendasInferiores.add(prenda);
-            } else if (prenda.getCategoria().equals(CategoriaCalzado.getInstance())) {
+            } else if (prenda.getCategoria().getId().equals(CategoriaCalzado.getInstance().getId())) {
                 prendasCalzado.add(prenda);
-            } else if (prenda.getCategoria().equals(CategoriaSuperior.getInstance())) {
+            } else if (prenda.getCategoria().getId().equals(CategoriaSuperior.getInstance().getId())) {
                 prendasSuperiores.add(prenda);
             }
         });

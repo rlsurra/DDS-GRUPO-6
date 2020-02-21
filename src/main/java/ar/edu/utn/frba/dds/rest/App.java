@@ -1,46 +1,53 @@
 package ar.edu.utn.frba.dds.rest;
 
-import ar.edu.utn.frba.dds.model.categoria.Categoria;
-import ar.edu.utn.frba.dds.model.categoria.CategoriaCalzado;
-import ar.edu.utn.frba.dds.model.categoria.CategoriaInferior;
-import ar.edu.utn.frba.dds.model.categoria.CategoriaSuperior;
+import ar.edu.utn.frba.dds.csvReader.CSVReader;
+import ar.edu.utn.frba.dds.csvReader.Ciudad;
+import ar.edu.utn.frba.dds.model.CiudadesService;
+import ar.edu.utn.frba.dds.model.categoria.*;
 import ar.edu.utn.frba.dds.model.categoria.superior.CategoriaSuperiorAbrigoLigero;
 import ar.edu.utn.frba.dds.model.categoria.superior.CategoriaSuperiorAbrigoPesado;
 import ar.edu.utn.frba.dds.model.evento.Evento;
+import ar.edu.utn.frba.dds.model.evento.EventoSimple;
 import ar.edu.utn.frba.dds.model.guardarropa.Guardarropa;
 import ar.edu.utn.frba.dds.model.material.Material;
 import ar.edu.utn.frba.dds.model.prenda.Prenda;
-import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.TipoPrenda;
-import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.TipoPrendaCalzado;
-import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.TipoPrendaInferior;
-import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.TipoPrendaSuperior;
+import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.*;
 import ar.edu.utn.frba.dds.model.usuario.Usuario;
 import ar.edu.utn.frba.dds.model.usuario.referenciaTemperatura.Caluroso;
+import ar.edu.utn.frba.dds.model.usuario.referenciaTemperatura.Friolento;
 import ar.edu.utn.frba.dds.model.usuario.referenciaTemperatura.ReferenciaTemperatura;
 import ar.edu.utn.frba.dds.model.usuario.tipoUsuario.TipoUsuario;
 import ar.edu.utn.frba.dds.model.usuario.tipoUsuario.TipoUsuarioGratuito;
 import ar.edu.utn.frba.dds.model.usuario.tipoUsuario.TipoUsuarioPremium;
 import ar.edu.utn.frba.dds.persistence.Repositorio;
-import org.checkerframework.checker.units.qual.A;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.awt.*;
-import java.util.ArrayList;
+import java.time.LocalDateTime;
 import java.util.Arrays;
-import java.util.Collection;
+import java.util.List;
 
 @SpringBootApplication
 public class App {
 
     public static void main(String[] args) {
         crearCasosDePrueba();
+
+        cargarCiudades();
+
         SpringApplication.run(App.class, args);
     }
 
     private static void crearCasosDePrueba() {
 
         Repositorio repo = Repositorio.getInstance();
+
+        CategoriaSuperior.getInstance();
+        CategoriaInferior.getInstance();
+        CategoriaCalzado.getInstance();
+        CategoriaAccesorio.getInstance();
+        CategoriaSuperiorAbrigoLigero.getInstance();
+        CategoriaSuperiorAbrigoPesado.getInstance();
 
         Material ALGODON = Material.buscarMaterialPorNombre("ALGODON");
         if (ALGODON == null) {
@@ -216,7 +223,7 @@ public class App {
             campera = new TipoPrendaSuperior(CategoriaSuperiorAbrigoPesado.getInstance());
             campera.setNombre("Campera");
             campera.setCodigo("CAMPERA");
-            campera.setNivelDeCalor(15D);
+            campera.setNivelDeCalor(13D);
             campera.getMaterialesPermitidos().add(ALGODON);
             campera.getMaterialesPermitidos().add(SEDA);
             campera.getMaterialesPermitidos().add(POLIESTER);
@@ -247,7 +254,7 @@ public class App {
             pantalonCorto = new TipoPrendaInferior(CategoriaInferior.getInstance());
             pantalonCorto.setNombre("Pantalon corto");
             pantalonCorto.setCodigo("PANTALON_CORTO");
-            pantalonCorto.setNivelDeCalor(8D);
+            pantalonCorto.setNivelDeCalor(3D);
             pantalonCorto.getMaterialesPermitidos().add(ALGODON);
             pantalonCorto.getMaterialesPermitidos().add(SEDA);
             pantalonCorto.getMaterialesPermitidos().add(POLIESTER);
@@ -363,6 +370,16 @@ public class App {
             repo.save(sandalias);
         }
 
+//        TipoPrenda reloj = TipoPrenda.buscarTipoDePrendaPorCodigo("RELOJ");
+//        if (reloj == null) {
+//            reloj = new TipoPrendaAccesorio(CategoriaAccesorio.getInstance());
+//            reloj.setNombre("Rolex");
+//            reloj.setCodigo("RELOJ");
+//            reloj.setNivelDeCalor(0D);
+//            reloj.getMaterialesPermitidos().add(METAL);
+//            repo.save(reloj);
+//        }
+
         ReferenciaTemperatura caluroso = new Caluroso();
         TipoUsuario gratuito = new TipoUsuarioGratuito();
         TipoUsuario premium = new TipoUsuarioPremium();
@@ -392,15 +409,15 @@ public class App {
             if (guardarropaAroco.getPrendas().size() == 0) {
                 java.util.List<Prenda> prendas = guardarropaAroco.getPrendas();
 
-                Prenda prenda1 = new Prenda("Remera cuello redondo", RemeraCuelloRedondoMangaCorta, ALGODON, "0|0|0|1", "255|0|0|1");
-                Prenda prenda2 = new Prenda("Remera escote ", RemeraEscoteVMangaCorta, LYCRA, "255|255|255|1");
-                Prenda prenda3 = new Prenda("La muscuLoca", musculosa, LYCRA, "255|255|0|1");
-                Prenda prenda4 = new Prenda("La Jampera del tio", campera, CUERO, "255|255|255|1");
-                Prenda prenda5 = new Prenda("Su eter", sueter, POLIESTER, "255|255|255|1");
-                Prenda prenda6 = new Prenda("Bermudeli", bermuda, JEAN, "0|128|255|1");
-                Prenda prenda7 = new Prenda("Jean para el bolo", pantalonLargo, NYLON, "128|128|128|1");
-                Prenda prenda8 = new Prenda("Los championes", zapatillas, NYLON, "112|0|0|1");
-                Prenda prenda9 = new Prenda("Zapatito para trajedia", zapatos, CUERO, "0|0|0|1");
+                Prenda prenda1 = new Prenda("Remera cuello redondo manga corta", RemeraCuelloRedondoMangaCorta, ALGODON, "0|0|0|1");
+                Prenda prenda2 = new Prenda("Remera escote V manga corta ", RemeraEscoteVMangaCorta, LYCRA, "255|255|255|1");
+                Prenda prenda3 = new Prenda("Musculosa", musculosa, LYCRA, "255|255|0|1");
+                Prenda prenda4 = new Prenda("Campera", campera, CUERO, "255|255|255|1");
+                Prenda prenda5 = new Prenda("Sueter", sueter, POLIESTER, "255|255|255|1");
+                Prenda prenda6 = new Prenda("Bermuda", bermuda, JEAN, "0|128|255|1");
+                Prenda prenda7 = new Prenda("Pantalón largo", pantalonLargo, NYLON, "128|128|128|1");
+                Prenda prenda8 = new Prenda("Zapatillas", zapatillas, NYLON, "112|0|0|1");
+                Prenda prenda9 = new Prenda("Zapatos", zapatos, CUERO, "0|0|0|1");
 
                 prendas.addAll(Arrays.asList(prenda1,prenda2, prenda3, prenda4, prenda5, prenda6, prenda7, prenda8, prenda9));
                 guardarropaAroco.setPrendas(prendas);
@@ -410,10 +427,12 @@ public class App {
             repo.save(aroco);
 
             if(aroco.getEventos().size() == 0) {
-                Evento fiesta = new Evento();
-                fiesta.setTemperatura(10.0);
-                fiesta.setCiudad(10);
+                EventoSimple fiesta = new EventoSimple();
+                fiesta.setNombre("Casamiento");
+                fiesta.setTemperatura(20.0);
+                fiesta.setCiudad(3430310);
                 fiesta.setUsuario(aroco);
+                fiesta.setFecha(LocalDateTime.parse("2020-04-27T12:15:00.000"));
                 repo.save(fiesta);
                 aroco.agregarEvento(fiesta);
             }
@@ -446,15 +465,15 @@ public class App {
 
                 java.util.List<Prenda> prendas = guardarropajazul.getPrendas();
 
-                Prenda prenda1 = new Prenda("Remera cuello redondo", RemeraCuelloRedondoMangaLarga, LYCRA, "255|255|0|1");
-                Prenda prenda2 = new Prenda("Remera cuello V", RemeraEscoteVMangaLarga, ALGODON, "255|255|255|1");
-                Prenda prenda3 = new Prenda("Musculosa verde", musculosa, LYCRA, "0|255|0|1");
-                Prenda prenda4 = new Prenda("Sweater", sueter, POLIESTER, "128|128|128|1");
-                Prenda prenda5 = new Prenda("La pollerita", pollera, SEDA, "0|0|0|1");
+                Prenda prenda1 = new Prenda("Remera cuello redondo manga larga", RemeraCuelloRedondoMangaLarga, LYCRA, "255|255|0|1");
+                Prenda prenda2 = new Prenda("Remera escote V manga larga", RemeraEscoteVMangaLarga, ALGODON, "255|255|255|1");
+                Prenda prenda3 = new Prenda("Musculosa", musculosa, LYCRA, "0|255|0|1");
+                Prenda prenda4 = new Prenda("Sueter", sueter, POLIESTER, "128|128|128|1");
+                Prenda prenda5 = new Prenda("Pollera", pollera, SEDA, "0|0|0|1");
                 Prenda prenda6 = new Prenda("Calza", calza, NYLON, "0|0|0|1");
-                Prenda prenda7 = new Prenda("El Paton Buzo", buzo, ALGODON, "255|255|255|1");
-                Prenda prenda8 = new Prenda("Zapatos de fiesta", zapatos, CUERO, "0|0|0|1");
-                Prenda prenda9 = new Prenda("Sandalias para todos los dias", sandalias, CUERO, "0|0|0|1");
+                Prenda prenda7 = new Prenda("Buzo", buzo, ALGODON, "255|255|255|1");
+                Prenda prenda8 = new Prenda("Zapatos", zapatos, CUERO, "0|0|0|1");
+                Prenda prenda9 = new Prenda("Sandalias", sandalias, CUERO, "0|0|0|1");
 
                 prendas.addAll(Arrays.asList(prenda1,prenda2, prenda3, prenda4, prenda5, prenda6, prenda7, prenda8, prenda9));
                 guardarropajazul.setPrendas(prendas);
@@ -464,15 +483,36 @@ public class App {
             repo.save(jazul);
 
             if(jazul.getEventos().size() == 0) {
-                Evento fiesta = new Evento();
-                fiesta.setTemperatura(10.0);
-                fiesta.setCiudad(10);
+                EventoSimple fiesta = new EventoSimple();
+                fiesta.setNombre("Cumple de Ro");
+                fiesta.setTemperatura(18.0);
+                fiesta.setCiudad(3430234);
                 fiesta.setUsuario(jazul);
+                fiesta.setFecha(LocalDateTime.parse("2020-03-02T17:40:00.000"));
                 repo.save(fiesta);
                 jazul.agregarEvento(fiesta);
             }
             repo.save(jazul);
         }
+
+    }
+
+    private static void cargarCiudades(){
+
+        CiudadesService service = CiudadesService.CiudadesService();
+
+        String worDir = System.getProperty("user.dir");
+
+        List<Ciudad> ciudades = CSVReader.readBooksFromCSV(worDir + "/src/main/resources/ciudades.csv");
+
+        service.setCiudades(ciudades);
+
+        int contador = 0;
+        for (Ciudad c : ciudades) {
+            contador++;
+        }
+
+        System.out.println("Se cargaron " + contador + " ciudades");
 
     }
 }
