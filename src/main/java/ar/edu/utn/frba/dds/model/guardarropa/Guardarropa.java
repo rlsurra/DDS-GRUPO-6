@@ -140,7 +140,7 @@ public class Guardarropa extends Entidad {
         ClimaAPIsProxy proxy = new ClimaAPIsProxy();
         Float temp = proxy.getTemperatura(evento.getCiudad());
         System.out.println("Temperatura: " + temp);
-
+        evento.setTemperatura(Double.valueOf(temp.toString()));
         return atuendosPosibles.stream()
                 .filter(x -> x.getNivelDeCalor() + temp < usuario.getRefTemperatura().getMaximo() &&
                         x.getNivelDeCalor() + temp > usuario.getRefTemperatura().getMinimo())
