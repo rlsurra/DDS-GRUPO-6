@@ -4,6 +4,7 @@ import ar.edu.utn.frba.dds.Autenticacion.Autenticacion;
 import ar.edu.utn.frba.dds.Autenticacion.Session;
 import ar.edu.utn.frba.dds.exceptions.EntidadNoEncontradaException;
 import ar.edu.utn.frba.dds.exceptions.GuardarropaUsuarioException;
+import ar.edu.utn.frba.dds.exceptions.MaximaCantidadPrendasException;
 import ar.edu.utn.frba.dds.exceptions.ParametrosInvalidosException;
 import ar.edu.utn.frba.dds.exceptions.UserNotLoggedException;
 import ar.edu.utn.frba.dds.model.guardarropa.Guardarropa;
@@ -163,10 +164,15 @@ public class PrendasController {
 
         for (Guardarropa guardarropa : usuario.getGuardarropas()) {
             if (guardarropa.getId().equals(guardarropaDTO.getId())) {
+                if (!usuario.getTipoUsuario().validarCantidadMaxima(guardarropa)) {
+                    throw new MaximaCantidadPrendasException();
+                }
+                
                 guardarropa.getPrendas().add(nuevaPrenda);
                 repo.persist(nuevaPrenda);
                 repo.update(guardarropa);
                 ok = true;
+                break;
             }
         }
 

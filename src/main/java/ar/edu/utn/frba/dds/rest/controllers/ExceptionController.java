@@ -55,7 +55,8 @@ public class ExceptionController {
     @ExceptionHandler({
             GuardarropaUsuarioException.class,
             ParametrosInvalidosException.class,
-            NoSePuedePuntearUnAtuendoNoSeleccionadoException.class
+            NoSePuedePuntearUnAtuendoNoSeleccionadoException.class,
+            MaximaCantidadPrendasException.class
     })
     public ResponseEntity<Object> badRequestException(Exception exception) {
         Integer code = HttpStatus.BAD_REQUEST.value();
