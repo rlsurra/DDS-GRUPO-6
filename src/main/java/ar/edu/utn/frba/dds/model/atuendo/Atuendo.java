@@ -7,43 +7,37 @@ import ar.edu.utn.frba.dds.model.usuario.Usuario;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import javax.persistence.*;
+import java.util.Objects;
 import java.util.stream.Stream;
 
-@JsonInclude(JsonInclude.Include.NON_NULL)
 @Entity(name = "atuendo")
 @Table
 public class Atuendo extends Entidad {
 
-    @JsonInclude(JsonInclude.Include.NON_NULL)
     @Column
     private Long calificacion;
 
-    @JsonInclude(JsonInclude.Include.NON_NULL)
     @ManyToOne(targetEntity = Prenda.class, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "prenda_calzo_id")
     private Prenda prendaCalzado;
 
-    @JsonInclude(JsonInclude.Include.NON_NULL)
     @ManyToOne(targetEntity = Prenda.class, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "prenda_inf_id")
     private Prenda prendaInferior;
 
-    @JsonInclude(JsonInclude.Include.NON_NULL)
+
     @ManyToOne(targetEntity = Prenda.class, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "prenda_sup_id")
     private Prenda prendaSuperior;
 
-    @JsonInclude(JsonInclude.Include.NON_NULL)
     @ManyToOne(targetEntity = Prenda.class, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "prenda_abr_lig_id")
     private Prenda abrigoLigero;
 
-    @JsonInclude(JsonInclude.Include.NON_NULL)
     @ManyToOne(targetEntity = Prenda.class, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "prenda_abr_pes_id")
     private Prenda abrigoPesado;
 
-    @JsonInclude(JsonInclude.Include.NON_NULL)
     @ManyToOne(targetEntity = Prenda.class, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "prenda_acce_id")
     private Prenda prendaAccesorio;
@@ -62,11 +56,11 @@ public class Atuendo extends Entidad {
     }
 
     public Double getNivelDeCalor() {
-        return Stream.of(prendaCalzado, prendaInferior, prendaSuperior, abrigoLigero, abrigoPesado, prendaAccesorio).mapToDouble(x -> x.getTipoPrenda().getNivelDeCalor()).sum();
+        return Stream.of(prendaCalzado, prendaInferior, prendaSuperior, abrigoLigero, abrigoPesado, prendaAccesorio).filter(Objects::nonNull).mapToDouble(x -> x.getTipoPrenda().getNivelDeCalor()).sum();
     }
 
     public Double getPuntaje(Usuario usuario) {
-        return Stream.of(prendaCalzado, prendaInferior, prendaSuperior, abrigoLigero, abrigoPesado, prendaAccesorio).mapToDouble(x -> x.getPuntajeDeUsuario(usuario)).sum();
+        return Stream.of(prendaCalzado, prendaInferior, prendaSuperior, abrigoLigero, abrigoPesado, prendaAccesorio).filter(Objects::nonNull).mapToDouble(x -> x.getPuntajeDeUsuario(usuario)).sum();
     }
 
     @Override
@@ -81,51 +75,62 @@ public class Atuendo extends Entidad {
                 '}';
     }
 
-
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     public Prenda getPrendaCalzado() {
         return prendaCalzado;
     }
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     public void setPrendaCalzado(Prenda prendaCalzado) {
         this.prendaCalzado = prendaCalzado;
     }
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     public Prenda getPrendaInferior() {
         return prendaInferior;
     }
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     public void setPrendaInferior(Prenda prendaInferior) {
         this.prendaInferior = prendaInferior;
     }
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     public Prenda getPrendaSuperior() {
         return prendaSuperior;
     }
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     public void setPrendaSuperior(Prenda prendaSuperior) {
         this.prendaSuperior = prendaSuperior;
     }
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     public Prenda getAbrigoLigero() {
         return abrigoLigero;
     }
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     public void setAbrigoLigero(Prenda abrigoLigero) {
         this.abrigoLigero = abrigoLigero;
     }
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     public Prenda getAbrigoPesado() {
         return abrigoPesado;
     }
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     public void setAbrigoPesado(Prenda abrigoPesado) {
         this.abrigoPesado = abrigoPesado;
     }
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     public Prenda getPrendaAccesorio() {
         return prendaAccesorio;
     }
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     public void setPrendaAccesorio(Prenda prendaAccesorio) {
         this.prendaAccesorio = prendaAccesorio;
     }
