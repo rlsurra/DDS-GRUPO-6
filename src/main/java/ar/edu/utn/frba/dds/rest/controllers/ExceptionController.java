@@ -63,6 +63,15 @@ public class ExceptionController {
         return new ResponseEntity<>(new ApiError(code, status, exception.getMessage()), HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler({
+            NoSePudoConectarConNingunaApiDeClima.class
+    })
+    public ResponseEntity<Object> apiClimaException(Exception exception) {
+        Integer code = HttpStatus.SERVICE_UNAVAILABLE.value();
+        HttpStatus status = HttpStatus.SERVICE_UNAVAILABLE;
+        return new ResponseEntity<>(new ApiError(code, status, exception.getMessage()), HttpStatus.SERVICE_UNAVAILABLE);
+    }
+
     @ExceptionHandler(value = UserNotLoggedException.class)
     public ResponseEntity<Object> usuarioNoLogueadoException(UserNotLoggedException exception) {
         Integer code = HttpStatus.UNAUTHORIZED.value();
