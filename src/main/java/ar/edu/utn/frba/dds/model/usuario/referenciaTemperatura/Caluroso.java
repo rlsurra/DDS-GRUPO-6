@@ -8,8 +8,8 @@ import javax.persistence.Entity;
 public class Caluroso extends ReferenciaTemperatura {
 
     public Caluroso() {
-        this.setMaximo(40);
-        this.setMinimo(20);
+        this.setMaximo(40D);
+        this.setMinimo(20D);
     }
 
 }
