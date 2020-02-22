@@ -2,6 +2,7 @@ package ar.edu.utn.frba.dds.rest.controllers;
 
 import ar.edu.utn.frba.dds.Autenticacion.Autenticacion;
 import ar.edu.utn.frba.dds.Autenticacion.Session;
+import ar.edu.utn.frba.dds.exceptions.EntidadNoEncontradaException;
 import ar.edu.utn.frba.dds.exceptions.ParametrosInvalidosException;
 import ar.edu.utn.frba.dds.exceptions.UserNotLoggedException;
 import ar.edu.utn.frba.dds.model.atuendo.Atuendo;
@@ -17,11 +18,10 @@ import org.springframework.web.bind.annotation.*;
 public class EleccionController {
 
     @PostMapping
-    public Evento AddOne(@RequestHeader("Authorization") String token, @RequestBody EleccionDTO eleccionDTO) throws UserNotLoggedException {
+    public Evento AddOne(@RequestHeader("Authorization") String token, @RequestBody EleccionDTO eleccionDTO) throws UserNotLoggedException, EntidadNoEncontradaException {
         Repositorio repo = Repositorio.getInstance();
         Session session = Autenticacion.getSession(token);
         Usuario usuario = repo.getEntidadById(Usuario.class, session.getUsuarioId());
-        Evento evento = null;
 
         if (eleccionDTO.getEventoid() == null) {
             throw new ParametrosInvalidosException("Debe seleccionar algun evento");
@@ -31,21 +31,25 @@ public class EleccionController {
             throw new ParametrosInvalidosException("Debe seleccionar algun atuendo");
         }
 
-        evento = usuario.getEventos().stream().filter(evento1 -> evento1.getId().equals(eleccionDTO.getEventoid())).findFirst().orElse(null);
+        Evento eventoBBDD = repo.getEntidadById(Evento.class, eleccionDTO.getEventoid());
+        if (eventoBBDD == null) {
+            throw new EntidadNoEncontradaException("No es posible encontrar el Evento indicado");
+        }
 
-        if (evento == null) {
+
+        Evento eventoJava = usuario.getEventos().stream().filter(evento1 -> evento1.getId().equals(eventoBBDD.getId())).findFirst().orElse(null);
+        if (eventoJava == null) {
             throw new ParametrosInvalidosException("El usuario no puede acceder a ese evento");
         }
 
-        Atuendo atuendo = evento.getPosiblesAtuendos().stream().filter(atuendo1 -> atuendo1.getId().equals(eleccionDTO.getAtuendoid())).findFirst().orElse(null);
-
+        Atuendo atuendo = eventoJava.getPosiblesAtuendos().stream().filter(atuendo1 -> atuendo1.getId().equals(eleccionDTO.getAtuendoid())).findFirst().orElse(null);
         if (atuendo == null) {
             throw new ParametrosInvalidosException("Ese evento no tiene a ese atuendo entre sus sugerencias");
         }
 
-        evento.setAtuendoElegido(atuendo);
-
-        return evento;
+        eventoBBDD.setAtuendoElegido(atuendo);
+        repo.persist(eventoBBDD);
+        return eventoBBDD;
     }
 }
 

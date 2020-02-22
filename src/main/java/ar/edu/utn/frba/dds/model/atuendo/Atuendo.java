@@ -4,37 +4,46 @@ package ar.edu.utn.frba.dds.model.atuendo;
 import ar.edu.utn.frba.dds.persistence.Entidad;
 import ar.edu.utn.frba.dds.model.prenda.Prenda;
 import ar.edu.utn.frba.dds.model.usuario.Usuario;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 import javax.persistence.*;
 import java.util.stream.Stream;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @Entity(name = "atuendo")
 @Table
 public class Atuendo extends Entidad {
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @Column
     private Long calificacion;
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @ManyToOne(targetEntity = Prenda.class, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "prenda_calzo_id")
     private Prenda prendaCalzado;
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @ManyToOne(targetEntity = Prenda.class, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "prenda_inf_id")
     private Prenda prendaInferior;
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @ManyToOne(targetEntity = Prenda.class, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "prenda_sup_id")
     private Prenda prendaSuperior;
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @ManyToOne(targetEntity = Prenda.class, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "prenda_abr_lig_id")
     private Prenda abrigoLigero;
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @ManyToOne(targetEntity = Prenda.class, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "prenda_abr_pes_id")
     private Prenda abrigoPesado;
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @ManyToOne(targetEntity = Prenda.class, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "prenda_acce_id")
     private Prenda prendaAccesorio;

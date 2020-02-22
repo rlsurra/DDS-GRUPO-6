@@ -8,6 +8,7 @@ import ar.edu.utn.frba.dds.exceptions.UserNotLoggedException;
 import ar.edu.utn.frba.dds.model.atuendo.Atuendo;
 import ar.edu.utn.frba.dds.model.evento.Evento;
 import ar.edu.utn.frba.dds.model.guardarropa.Guardarropa;
+import ar.edu.utn.frba.dds.model.prenda.tipoPrenda.TipoPrendaVacio;
 import ar.edu.utn.frba.dds.model.usuario.Usuario;
 import ar.edu.utn.frba.dds.persistence.Repositorio;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +25,7 @@ public class AtuendoController {
     public Evento generarAtuendosDelGuardarropa(@RequestHeader("Authorization") String token, @RequestParam(name = "guardarropa") Long guardarropaid,
                                                        @RequestParam(name = "evento") Long eventoid ) throws UserNotLoggedException, EntidadNoEncontradaException {
 
-            Repositorio repo = Repositorio.getInstance();
+        Repositorio repo = Repositorio.getInstance();
         Session session = Autenticacion.getSession(token);
 
         Guardarropa guardarropa = repo.getEntidadById(Guardarropa.class, guardarropaid);
@@ -47,6 +48,7 @@ public class AtuendoController {
         List<Atuendo> sugerencias = guardarropa.generarSugerencias(usuario, evento);
 
         for (Atuendo at: sugerencias) {
+            sacarPrendasVacias(at);
             repo.persist(at);
         }
 
@@ -84,6 +86,27 @@ public class AtuendoController {
         }
         if (!esDelUsuario){
             throw new GuardarropaUsuarioException("El usuario no posee el guardarropa indicado");
+        }
+    }
+
+    private void sacarPrendasVacias(Atuendo atuendo) {
+        if (atuendo.getPrendaSuperior().getTipoPrenda().getClass().equals(TipoPrendaVacio.class)) {
+            atuendo.setPrendaSuperior(null);
+        }
+        if (atuendo.getAbrigoLigero().getTipoPrenda().getClass().equals(TipoPrendaVacio.class)) {
+            atuendo.setAbrigoLigero(null);
+        }
+        if (atuendo.getAbrigoPesado().getTipoPrenda().getClass().equals(TipoPrendaVacio.class)) {
+            atuendo.setAbrigoPesado(null);
+        }
+        if (atuendo.getPrendaInferior().getTipoPrenda().getClass().equals(TipoPrendaVacio.class)) {
+            atuendo.setPrendaInferior(null);
+        }
+        if (atuendo.getPrendaCalzado().getTipoPrenda().getClass().equals(TipoPrendaVacio.class)) {
+            atuendo.setPrendaCalzado(null);
+        }
+        if (atuendo.getPrendaAccesorio().getTipoPrenda().getClass().equals(TipoPrendaVacio.class)) {
+            atuendo.setPrendaAccesorio(null);
         }
     }
 

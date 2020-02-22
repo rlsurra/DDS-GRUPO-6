@@ -3,6 +3,7 @@ package ar.edu.utn.frba.dds.rest.controllers;
 import ar.edu.utn.frba.dds.Autenticacion.Autenticacion;
 import ar.edu.utn.frba.dds.Autenticacion.Session;
 import ar.edu.utn.frba.dds.exceptions.EntidadNoEncontradaException;
+import ar.edu.utn.frba.dds.exceptions.GuardarropaUsuarioException;
 import ar.edu.utn.frba.dds.exceptions.UserNotLoggedException;
 import ar.edu.utn.frba.dds.model.guardarropa.Guardarropa;
 import ar.edu.utn.frba.dds.model.usuario.Usuario;
@@ -69,19 +70,32 @@ public class GuardarropaController {
 
     @DeleteMapping(path = "{id}")
     public Guardarropa deleteOne(@RequestHeader("Authorization") String token, @PathVariable("id") Long id) throws EntidadNoEncontradaException, UserNotLoggedException {
-        Repositorio repo = null;
-        Guardarropa respuesta = null;
-        repo = Repositorio.getInstance();
+        Repositorio repo = Repositorio.getInstance();
         Session session = Autenticacion.getSession(token);
         Usuario usuario = repo.getEntidadById(Usuario.class, session.getUsuarioId());
-        Guardarropa guardarropa2 = usuario.getGuardarropas().stream().filter(guardarropa -> guardarropa.getId().equals(id)).findFirst().orElse(null);
-        if (guardarropa2 == null) {
-            throw new EntidadNoEncontradaException();
+
+        Guardarropa aBorrar = repo.getEntidadById(Guardarropa.class, id);
+        if (aBorrar == null) {
+            throw new EntidadNoEncontradaException("No existe el guardarropa indicado");
         }
-        repo.delete(guardarropa2);
-        usuario.getGuardarropas().remove(guardarropa2);
+
+        Guardarropa g2 = null;
+        boolean guardarropaDelUsuario = Boolean.FALSE;
+        for (Guardarropa guardarropa : usuario.getGuardarropas()) {
+            if ( guardarropa.getId().equals(id) ) {
+                g2 = guardarropa;
+                guardarropaDelUsuario = Boolean.TRUE;
+            }
+        }
+
+        if (!guardarropaDelUsuario) {
+            throw new GuardarropaUsuarioException("Estas queriendo borrar un guardarropa que no te pertenece");
+        }
+
+
+        repo.delete(aBorrar);
+        usuario.getGuardarropas().remove(g2);
         repo.save(usuario);
-        respuesta = guardarropa2;
-        return respuesta;
+        return g2;
     }
 }
