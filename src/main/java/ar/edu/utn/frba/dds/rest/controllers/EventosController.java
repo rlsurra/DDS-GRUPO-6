@@ -93,7 +93,6 @@ public class EventosController {
         }
         repo.delete(evento);
         usuario.getEventos().remove(evento);
-        repo.save(usuario);
         respuesta = evento;
         return respuesta;
     }
