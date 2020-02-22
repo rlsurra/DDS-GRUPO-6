@@ -154,8 +154,8 @@ public class PrendasController {
 
         Prenda nuevaPrenda = new Prenda();
         //Color, imagen de TEST
-        nuevaPrenda.setColorPrimario(null);
-        nuevaPrenda.setImagenPrenda(prendaDto.getImagenUrl());
+        nuevaPrenda.setColorPrimario(prendaDto.getColorPrincipal());
+        nuevaPrenda.setColorSecundario(prendaDto.getColorSecundario());
         nuevaPrenda.setNombre(prendaDto.getNombrePrenda());
         nuevaPrenda.setTipoPrenda(tipoPrendaDTO);
         nuevaPrenda.setGuardarropaActual(guardarropaDTO);
@@ -190,6 +190,7 @@ public class PrendasController {
                 if (prendaBusq.getId().equals(id)){
                     respuesta = prendaBusq;
                     guardarropa.getPrendas().remove(respuesta);
+                    break;
                 }
             }
         }
@@ -198,8 +199,8 @@ public class PrendasController {
             throw new EntidadNoEncontradaException();
         }
 
-        repo.save(usuario);
         repo.delete(respuesta);
+
         return respuesta;
     }
 
