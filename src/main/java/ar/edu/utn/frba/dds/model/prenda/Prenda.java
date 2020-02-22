@@ -32,7 +32,7 @@ public class Prenda extends Entidad {
     public Prenda() {
     }
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private TipoPrenda tipoPrenda;
 
     @OneToOne

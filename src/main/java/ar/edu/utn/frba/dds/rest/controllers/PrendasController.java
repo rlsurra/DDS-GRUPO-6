@@ -190,6 +190,7 @@ public class PrendasController {
                 if (prendaBusq.getId().equals(id)){
                     respuesta = prendaBusq;
                     guardarropa.getPrendas().remove(respuesta);
+                    break;
                 }
             }
         }
@@ -198,8 +199,8 @@ public class PrendasController {
             throw new EntidadNoEncontradaException();
         }
 
-        repo.save(usuario);
         repo.delete(respuesta);
+
         return respuesta;
     }
 
